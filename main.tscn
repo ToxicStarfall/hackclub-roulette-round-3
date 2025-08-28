@@ -1,0 +1,246 @@
+[gd_scene load_steps=13 format=3 uid="uid://cqcvewcu1865c"]
+
+[ext_resource type="Script" uid="uid://chg4vaayt84u3" path="res://main.gd" id="1_0xm2m"]
+[ext_resource type="Texture2D" uid="uid://dgr60uub4xhi1" path="res://icon.svg" id="2_h2yge"]
+[ext_resource type="Texture2D" uid="uid://d4fqvf6rhpni0" path="res://ui/background/orig.png" id="3_kek77"]
+[ext_resource type="Script" uid="uid://spgiq2pdi4kh" path="res://world.gd" id="3_lquwl"]
+[ext_resource type="Texture2D" uid="uid://b4kgsovve55y5" path="res://ui/background/3.png" id="4_4c57u"]
+[ext_resource type="Script" uid="uid://bjjcvc1u7oqea" path="res://ui/ui.gd" id="4_7mycd"]
+[ext_resource type="PackedScene" uid="uid://btcpqt1oxshp8" path="res://ui/character_card.tscn" id="4_lquwl"]
+[ext_resource type="PackedScene" uid="uid://bk4q4hhrohwl5" path="res://ui/event_panel.tscn" id="6_7mycd"]
+[ext_resource type="PackedScene" uid="uid://cl3toryj5f76b" path="res://ui/options/options_panel.tscn" id="6_272bh"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lquwl"]
+normal = Vector2(0, 1)
+distance = 401.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7dm0k"]
+bg_color = Color(0.16, 0.155467, 0.152, 1)
+border_width_top = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5vw27"]
+bg_color = Color(0.16, 0.155467, 0.152, 1)
+border_width_right = 3
+border_width_bottom = 3
+
+[node name="Main" type="Node"]
+script = ExtResource("1_0xm2m")
+
+[node name="World" type="Node2D" parent="."]
+script = ExtResource("3_lquwl")
+
+[node name="WorldParallax" type="Node2D" parent="World"]
+unique_name_in_owner = true
+
+[node name="Parallax2D" type="Parallax2D" parent="World/WorldParallax"]
+repeat_size = Vector2(1280, 0)
+ignore_camera_scroll = true
+
+[node name="Sprite2D" type="Sprite2D" parent="World/WorldParallax/Parallax2D"]
+position = Vector2(641.778, 353)
+scale = Vector2(2.22839, 2.22839)
+texture = ExtResource("3_kek77")
+
+[node name="Sprite2D2" type="Sprite2D" parent="World/WorldParallax/Parallax2D"]
+position = Vector2(640, 685)
+scale = Vector2(2.22839, 2.22839)
+texture = ExtResource("4_4c57u")
+region_enabled = true
+region_rect = Rect2(0, 280.5, 576, 43.5)
+
+[node name="Borders" type="Node2D" parent="World"]
+visible = false
+
+[node name="StaticBody2D" type="StaticBody2D" parent="World/Borders"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Borders/StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_lquwl")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="World/Borders"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Borders/StaticBody2D2"]
+shape = SubResource("WorldBoundaryShape2D_lquwl")
+
+[node name="Sprite2D" type="Sprite2D" parent="World"]
+visible = false
+position = Vector2(199, 498)
+scale = Vector2(0.3, 0.5)
+texture = ExtResource("2_h2yge")
+
+[node name="UI" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_7mycd")
+
+[node name="MainScreen" type="Control" parent="UI"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BottomBar" type="Panel" parent="UI/MainScreen"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7dm0k")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/MainScreen/BottomBar"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 40
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/MainScreen/BottomBar/MarginContainer"]
+layout_mode = 2
+
+[node name="CharacterCard" parent="UI/MainScreen/BottomBar/MarginContainer/HBoxContainer" instance=ExtResource("4_lquwl")]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="UI/MainScreen/BottomBar"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -100.0
+offset_right = 150.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="OptionsPanel" parent="UI/MainScreen/BottomBar/MarginContainer2" instance=ExtResource("6_272bh")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="EventPanelWrapper" type="HBoxContainer" parent="UI/MainScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/MainScreen/EventPanelWrapper"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 128
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="EventPanel" parent="UI/MainScreen/EventPanelWrapper/MarginContainer" instance=ExtResource("6_7mycd")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="UI/MainScreen"]
+layout_mode = 1
+offset_right = 204.0
+offset_bottom = 42.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_5vw27")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/MainScreen/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MainScreen/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="LocationLabel" type="Label" parent="UI/MainScreen/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Location: Grasslands"
+
+[node name="DistanceLabel" type="Label" parent="UI/MainScreen/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Distance Traveled: 0"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/MainScreen"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -333.0
+offset_right = 333.0
+offset_bottom = 27.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="TravelProgress" type="ProgressBar" parent="UI/MainScreen/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+max_value = 24.0
+
+[node name="TimeLabel" type="Label" parent="UI/MainScreen"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+offset_left = 256.0
+offset_right = 318.0
+offset_bottom = 23.0
+text = "0:00 AM"
+horizontal_alignment = 1
+
+[node name="StartMenu" type="Control" parent="UI"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StartMenuParallax" type="Node2D" parent="UI/StartMenu"]
+
+[node name="Parallax2D" type="Parallax2D" parent="UI/StartMenu/StartMenuParallax"]
+
+[node name="TextureRect" type="TextureRect" parent="UI/StartMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_h2yge")
+stretch_mode = 6
+
+[node name="CenterContainer" type="CenterContainer" parent="UI/StartMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayButton" type="Button" parent="UI/StartMenu/CenterContainer"]
+layout_mode = 2
+text = "PLAY"
+
+[connection signal="pressed" from="UI/StartMenu/CenterContainer/PlayButton" to="." method="_on_play_button_pressed"]

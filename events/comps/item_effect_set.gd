@@ -1,0 +1,2 @@
+class_name ItemEffectSet
+extends Resource

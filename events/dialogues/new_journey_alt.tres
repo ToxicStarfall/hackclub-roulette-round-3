@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="Event" load_steps=5 format=3 uid="uid://b04ta6jvgoefm"]
+
+[ext_resource type="Script" uid="uid://dk7vmirn2sppi" path="res://events/comps/dialogue/dialogue.gd" id="1_rmjqm"]
+[ext_resource type="Script" uid="uid://b3uril2uwjvfv" path="res://events/comps/dialogue/dialogue_option.gd" id="2_7aco4"]
+[ext_resource type="Script" uid="uid://bsblkh2ebc60y" path="res://events/event.gd" id="2_gkgej"]
+
+[sub_resource type="Resource" id="Resource_rmjqm"]
+script = ExtResource("1_rmjqm")
+description = "Survivor, your end has not yet arrived. 
+
+In the face of this madness, you must continue to persevere.
+Ahead of you lies many challenges and difficult choices but your future is still uncertain at this time. However, hidden past the murky depths of this blight is salvation.
+
+This is the beginning of your journey, Survivor.
+
+[right][i]Click to continue...[/i][/right]"
+options = Array[ExtResource("2_7aco4")]([])
+metadata/_custom_type_script = "uid://dk7vmirn2sppi"
+
+[resource]
+script = ExtResource("2_gkgej")
+title = "A New Journey"
+dialogue = Array[ExtResource("1_rmjqm")]([SubResource("Resource_rmjqm")])
+options = Array[ExtResource("2_7aco4")]([])

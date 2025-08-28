@@ -1,0 +1,64 @@
+The Beggar
+	A dirty and dishelved beggar approches you, carying with him a small rucksack.
+
+	35% chance
+	He wants water
+	-   Give a genourous amount
+	-	Give some water
+	-	Give no water
+
+	35% chance
+	He wants food
+	-	generous
+	-	some
+	-	none
+
+	30% chance
+	He wants gold
+	-	generous
+			25%
+			He reveals himself as a wealthy prince, and in payment for your generosity pays you back twice in return.
+			15%
+			Pays you back thrice in return.
+	-	some
+	-	none
+
+
+Flowing
+	As you travel, you encounter a Small River!
+
+	Would you like to collect some water?
+	-	Yes
+			Bending down, you collect { 3-6 water }
+			Time - 2 hr
+	-	No
+			You decide not to collect any and continue on
+
+
+The Water's Path
+	The river seems to continue {direction}
+
+	River Crossing
+	Crossing with boat
+	Float along the river's path
+
+
+Desert Winds
+	Taking a short stop, you notice the wind picking up, and the sand slowly rises with it.
+	In the distance, you see dark, sweeping clouds, swathing the land before you in darkness.
+
+	A Sandstorm is approaching!
+
+	You do not know how long it will last.
+
+	What will you do?
+
+	-----
+	Dust devils versions
+
+
+
+Torrents
+	large rain7
+	large river delta
+	largw rain river

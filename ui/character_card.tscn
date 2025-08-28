@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://btcpqt1oxshp8"]
+
+[ext_resource type="Texture2D" uid="uid://dgr60uub4xhi1" path="res://icon.svg" id="1_3nck4"]
+[ext_resource type="Script" uid="uid://bou0wif8bx3bk" path="res://ui/character_card.gd" id="1_mrcpf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1bvp3"]
+bg_color = Color(0.2, 0.187, 0.174, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+
+[node name="CharacterCard" type="PanelContainer"]
+custom_minimum_size = Vector2(80, 100)
+theme_override_styles/panel = SubResource("StyleBoxFlat_1bvp3")
+script = ExtResource("1_mrcpf")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_3nck4")
+expand_mode = 4
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "texte"
+horizontal_alignment = 1

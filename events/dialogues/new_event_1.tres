@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Event" load_steps=3 format=3 uid="uid://btbj2o6j3iqci"]
+
+[ext_resource type="Script" uid="uid://ct86nttddcrru" path="res://events/comps/dialogue/base_dialogue.gd" id="1_q42q0"]
+[ext_resource type="Script" uid="uid://bsblkh2ebc60y" path="res://events/event.gd" id="2_s0iqn"]
+
+[resource]
+script = ExtResource("2_s0iqn")
+title = ""
+dialogue = Array[ExtResource("1_q42q0")]([])
+paths = Dictionary[String, ExtResource("1_q42q0")]({})
+metadata/_custom_type_script = "uid://bsblkh2ebc60y"

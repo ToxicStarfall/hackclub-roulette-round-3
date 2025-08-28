@@ -1,0 +1,163 @@
+[gd_resource type="Resource" script_class="Event" load_steps=28 format=3 uid="uid://d3ppdxakq3fir"]
+
+[ext_resource type="Script" uid="uid://dk7vmirn2sppi" path="res://events/comps/dialogue/dialogue.gd" id="1_7aco4"]
+[ext_resource type="Script" uid="uid://ct86nttddcrru" path="res://events/comps/dialogue/base_dialogue.gd" id="1_s1n41"]
+[ext_resource type="Script" uid="uid://bsblkh2ebc60y" path="res://events/event.gd" id="2_gkgej"]
+[ext_resource type="Script" uid="uid://b3uril2uwjvfv" path="res://events/comps/dialogue/dialogue_option.gd" id="2_s1n41"]
+[ext_resource type="Script" uid="uid://bm88kigu7qrmt" path="res://events/comps/effects/effect.gd" id="3_vaw0e"]
+[ext_resource type="Script" uid="uid://55i3a0h3thr5" path="res://events/comps/effects/item_effect.gd" id="5_vaw0e"]
+
+[sub_resource type="Resource" id="Resource_u16e5"]
+script = ExtResource("2_s1n41")
+name = "Yes"
+effects = Array[ExtResource("3_vaw0e")]([])
+path = ""
+metadata/_custom_type_script = "uid://b3uril2uwjvfv"
+
+[sub_resource type="Resource" id="Resource_kejax"]
+script = ExtResource("2_s1n41")
+name = "No, of course not."
+effects = Array[ExtResource("3_vaw0e")]([])
+path = ""
+metadata/_custom_type_script = "uid://b3uril2uwjvfv"
+
+[sub_resource type="Resource" id="Resource_gg8lf"]
+script = ExtResource("1_7aco4")
+description = "Survivor. 
+SuRVivor...
+
+Are you one of those... 
+DeEgEnErAtEs??"
+options = Array[ExtResource("2_s1n41")]([SubResource("Resource_u16e5"), SubResource("Resource_kejax")])
+metadata/_custom_type_script = "uid://dk7vmirn2sppi"
+
+[sub_resource type="Resource" id="Resource_0k5g8"]
+script = ExtResource("2_s1n41")
+name = "Famine"
+effects = Array[ExtResource("3_vaw0e")]([])
+path = ""
+metadata/_custom_type_script = "uid://b3uril2uwjvfv"
+
+[sub_resource type="Resource" id="Resource_65iq6"]
+script = ExtResource("2_s1n41")
+name = "War"
+effects = Array[ExtResource("3_vaw0e")]([])
+path = ""
+metadata/_custom_type_script = "uid://b3uril2uwjvfv"
+
+[sub_resource type="Resource" id="Resource_q8t4a"]
+script = ExtResource("2_s1n41")
+name = "None, It has been peaceful"
+effects = Array[ExtResource("3_vaw0e")]([])
+path = ""
+metadata/_custom_type_script = "uid://b3uril2uwjvfv"
+
+[sub_resource type="Resource" id="Resource_e262n"]
+script = ExtResource("1_7aco4")
+description = "What terrors have you witnissed?"
+options = Array[ExtResource("2_s1n41")]([SubResource("Resource_0k5g8"), SubResource("Resource_65iq6"), SubResource("Resource_q8t4a")])
+metadata/_custom_type_script = "uid://dk7vmirn2sppi"
+
+[sub_resource type="Resource" id="Resource_4l1bp"]
+script = ExtResource("2_s1n41")
+name = "Profession 1"
+effects = Array[ExtResource("3_vaw0e")]([])
+path = ""
+metadata/_custom_type_script = "uid://b3uril2uwjvfv"
+
+[sub_resource type="Resource" id="Resource_7cbhv"]
+script = ExtResource("2_s1n41")
+name = "Profession 2"
+effects = Array[ExtResource("3_vaw0e")]([])
+path = ""
+metadata/_custom_type_script = "uid://b3uril2uwjvfv"
+
+[sub_resource type="Resource" id="Resource_y4oov"]
+script = ExtResource("1_7aco4")
+description = "What did you do before this?"
+options = Array[ExtResource("2_s1n41")]([SubResource("Resource_4l1bp"), SubResource("Resource_7cbhv")])
+metadata/_custom_type_script = "uid://dk7vmirn2sppi"
+
+[sub_resource type="Resource" id="Resource_hkv0a"]
+script = ExtResource("5_vaw0e")
+item = 0
+value = 15.0
+value_min = 1.0
+modifier = 0
+metadata/_custom_type_script = "uid://55i3a0h3thr5"
+
+[sub_resource type="Resource" id="Resource_w86lv"]
+script = ExtResource("2_s1n41")
+name = "Poor"
+effects = Array[ExtResource("3_vaw0e")]([SubResource("Resource_hkv0a")])
+path = ""
+metadata/_custom_type_script = "uid://b3uril2uwjvfv"
+
+[sub_resource type="Resource" id="Resource_nk83c"]
+script = ExtResource("5_vaw0e")
+item = 0
+value = 35.0
+value_min = 1.0
+modifier = 0
+metadata/_custom_type_script = "uid://55i3a0h3thr5"
+
+[sub_resource type="Resource" id="Resource_tt5ye"]
+script = ExtResource("2_s1n41")
+name = "Moderate"
+effects = Array[ExtResource("3_vaw0e")]([SubResource("Resource_nk83c")])
+path = ""
+metadata/_custom_type_script = "uid://b3uril2uwjvfv"
+
+[sub_resource type="Resource" id="Resource_x16md"]
+script = ExtResource("5_vaw0e")
+item = 0
+value = 90.0
+value_min = 1.0
+modifier = 0
+metadata/_custom_type_script = "uid://55i3a0h3thr5"
+
+[sub_resource type="Resource" id="Resource_xlbn0"]
+script = ExtResource("2_s1n41")
+name = "Wealthy"
+effects = Array[ExtResource("3_vaw0e")]([SubResource("Resource_x16md")])
+path = ""
+metadata/_custom_type_script = "uid://b3uril2uwjvfv"
+
+[sub_resource type="Resource" id="Resource_toa1l"]
+script = ExtResource("1_7aco4")
+description = "How would you describe your wealth?"
+options = Array[ExtResource("2_s1n41")]([SubResource("Resource_w86lv"), SubResource("Resource_tt5ye"), SubResource("Resource_xlbn0")])
+metadata/_custom_type_script = "uid://dk7vmirn2sppi"
+
+[sub_resource type="Resource" id="Resource_7aco4"]
+script = ExtResource("2_s1n41")
+name = "20 years old"
+effects = Array[ExtResource("3_vaw0e")]([])
+path = ""
+metadata/_custom_type_script = "uid://b3uril2uwjvfv"
+
+[sub_resource type="Resource" id="Resource_3p0rs"]
+script = ExtResource("1_7aco4")
+description = "How would you describe your age?"
+options = Array[ExtResource("2_s1n41")]([SubResource("Resource_7aco4")])
+metadata/_custom_type_script = "uid://dk7vmirn2sppi"
+
+[sub_resource type="Resource" id="Resource_s1n41"]
+script = ExtResource("2_s1n41")
+name = "Bob"
+effects = Array[ExtResource("3_vaw0e")]([])
+path = ""
+metadata/_custom_type_script = "uid://b3uril2uwjvfv"
+
+[sub_resource type="Resource" id="Resource_68vjb"]
+script = ExtResource("1_7aco4")
+description = "What is your name?"
+options = Array[ExtResource("2_s1n41")]([SubResource("Resource_s1n41")])
+metadata/_custom_type_script = "uid://dk7vmirn2sppi"
+
+[resource]
+script = ExtResource("2_gkgej")
+title = "A new journey"
+dialogue = Array[ExtResource("1_s1n41")]([SubResource("Resource_gg8lf"), SubResource("Resource_e262n"), SubResource("Resource_y4oov"), SubResource("Resource_toa1l"), SubResource("Resource_3p0rs"), SubResource("Resource_68vjb")])
+paths = Dictionary[String, ExtResource("1_s1n41")]({})
+metadata/_custom_type_script = "uid://bsblkh2ebc60y"
