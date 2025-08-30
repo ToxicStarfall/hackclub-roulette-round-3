@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="Event" load_steps=7 format=3 uid="uid://cciull415ps14"]
+
+[ext_resource type="Script" uid="uid://d12js1gdl5pnt" path="res://events/comps/dialogue/base_dialogue.gd" id="1_m4cdp"]
+[ext_resource type="Script" uid="uid://b3uril2uwjvfv" path="res://events/comps/dialogue/dialogue_option.gd" id="2_crtil"]
+[ext_resource type="Script" uid="uid://bsblkh2ebc60y" path="res://events/event.gd" id="2_vx1k2"]
+[ext_resource type="Script" uid="uid://dk7vmirn2sppi" path="res://events/comps/dialogue/dialogue.gd" id="3_0rl0t"]
+
+[sub_resource type="Resource" id="Resource_0ol02"]
+script = ExtResource("3_0rl0t")
+description = "This journey has took its toll on you. Countless days, fighting on, countless situations to fight through.
+But, it has proved to be too much.
+And as your remaining life wastes away, you think..."
+options = Array[ExtResource("2_crtil")]([])
+metadata/_custom_type_script = "uid://dk7vmirn2sppi"
+
+[sub_resource type="Resource" id="Resource_veej2"]
+script = ExtResource("3_0rl0t")
+description = "Perhps I could have made it, and survived to see my hope fulfilled,
+
+in another life..."
+options = Array[ExtResource("2_crtil")]([])
+metadata/_custom_type_script = "uid://dk7vmirn2sppi"
+
+[resource]
+script = ExtResource("2_vx1k2")
+title = "Death, Despair"
+dialogue = Array[ExtResource("1_m4cdp")]([SubResource("Resource_0ol02"), SubResource("Resource_veej2")])
+paths = Array[ExtResource("1_m4cdp")]([])
+metadata/_custom_type_script = "uid://bsblkh2ebc60y"

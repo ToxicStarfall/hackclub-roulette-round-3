@@ -44,6 +44,7 @@ func _on_dialogue_changed(dialogue):
 			#else:
 				#print("This options has a type")
 				#pass
+		print(Game.toggles)
 		if Game.toggles.gamble:
 			var new_option = Button.new()
 			new_option.button_group = OptionButtonGroup

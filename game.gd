@@ -70,8 +70,10 @@ func _physics_process(delta: float) -> void:
 					#EventManager.start_event(Event.new())
 					EventManager.load_random_event()
 					print("new event start rand")
-
 			UI.get_node("%TravelProgress").value = current_tick
+		# ON DEATH
+		if stats.health <= 0:
+			EventManager.load_event("res://events/dialogues/death.tres")
 
 	if current_tick >= TICKS_PER_CYCLE:
 		current_cycle += 1
@@ -100,8 +102,11 @@ func _on_event_started(event):
 func _on_event_ended(event):
 	paused = false
 	World.activate_parallax()
-	if event.resource_path.split("/")[-1].split(".")[0] == "village":
+	var event_file_name = event.resource_path.split("/")[-1].split(".")[0]
+	if event_file_name == "village":
 		World.hide_village()
+	if event_file_name in ["death","final"]:
+		paused = true
 	print("unpaused")
 
 
