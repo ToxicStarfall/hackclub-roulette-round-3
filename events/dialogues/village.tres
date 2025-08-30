@@ -1,0 +1,112 @@
+[gd_resource type="Resource" script_class="Event" load_steps=20 format=3 uid="uid://cn7r85e6o308d"]
+
+[ext_resource type="Script" uid="uid://d12js1gdl5pnt" path="res://events/comps/dialogue/base_dialogue.gd" id="1_yjfrv"]
+[ext_resource type="Script" uid="uid://bsblkh2ebc60y" path="res://events/event.gd" id="2_asw6c"]
+[ext_resource type="Script" uid="uid://b3uril2uwjvfv" path="res://events/comps/dialogue/dialogue_option.gd" id="2_rygj1"]
+[ext_resource type="Script" uid="uid://dk7vmirn2sppi" path="res://events/comps/dialogue/dialogue.gd" id="3_bt0sx"]
+[ext_resource type="Script" uid="uid://bjy5nqhfkji55" path="res://events/comps/effects/effect.gd" id="4_oo1w6"]
+[ext_resource type="Script" uid="uid://bk16x8mwb5shh" path="res://events/comps/effects/stat_effect.gd" id="5_cw8r5"]
+
+[sub_resource type="Resource" id="Resource_jbh6f"]
+script = ExtResource("3_bt0sx")
+description = "As you continue on your journey, you spot some structures in the distance.
+
+Walking closer, you see that its a village!"
+options = Array[ExtResource("2_rygj1")]([])
+metadata/_custom_type_script = "uid://dk7vmirn2sppi"
+
+[sub_resource type="Resource" id="Resource_51ga5"]
+script = ExtResource("2_rygj1")
+name = "Yes"
+effects = Array[ExtResource("4_oo1w6")]([null])
+path = "1"
+metadata/_custom_type_script = "uid://b3uril2uwjvfv"
+
+[sub_resource type="Resource" id="Resource_0hmih"]
+script = ExtResource("2_rygj1")
+name = "No"
+effects = Array[ExtResource("4_oo1w6")]([])
+path = "0"
+metadata/_custom_type_script = "uid://b3uril2uwjvfv"
+
+[sub_resource type="Resource" id="Resource_ek7n5"]
+script = ExtResource("3_bt0sx")
+description = "This village might be a good place for a short respite from your travels, however it might also contain hostile peoples.
+
+Will you go to the village?"
+options = Array[ExtResource("2_rygj1")]([SubResource("Resource_51ga5"), SubResource("Resource_0hmih")])
+metadata/_custom_type_script = "uid://dk7vmirn2sppi"
+
+[sub_resource type="Resource" id="Resource_8w18g"]
+script = ExtResource("3_bt0sx")
+description = "You decide to pass on this village, and so, you continue on past it."
+options = Array[ExtResource("2_rygj1")]([])
+metadata/_custom_type_script = "uid://dk7vmirn2sppi"
+
+[sub_resource type="Resource" id="Resource_vx36m"]
+script = ExtResource("2_rygj1")
+name = "No, leave"
+effects = Array[ExtResource("4_oo1w6")]([])
+path = ""
+metadata/_custom_type_script = "uid://b3uril2uwjvfv"
+
+[sub_resource type="Resource" id="Resource_vxweh"]
+script = ExtResource("3_bt0sx")
+description = "You try speaking to the villagers, however they get angry, and start attack you!
+
+You manage to get away in time, but they managed to hurt you pretty badly."
+options = Array[ExtResource("2_rygj1")]([])
+metadata/_custom_type_script = "uid://dk7vmirn2sppi"
+
+[sub_resource type="Resource" id="Resource_rypjg"]
+script = ExtResource("5_cw8r5")
+stat = 0
+value = 15.0
+modifier = 0
+chance = 1.0
+metadata/_custom_type_script = "uid://bk16x8mwb5shh"
+
+[sub_resource type="Resource" id="Resource_pfq3u"]
+script = ExtResource("2_rygj1")
+name = "Healing"
+effects = Array[ExtResource("4_oo1w6")]([SubResource("Resource_rypjg")])
+path = ""
+metadata/_custom_type_script = "uid://b3uril2uwjvfv"
+
+[sub_resource type="Resource" id="Resource_75wo7"]
+script = ExtResource("3_bt0sx")
+description = "You attempt to talk to them, and the villagers in understanding decide to give you a gift."
+options = Array[ExtResource("2_rygj1")]([SubResource("Resource_pfq3u")])
+metadata/_custom_type_script = "uid://dk7vmirn2sppi"
+
+[sub_resource type="Resource" id="Resource_dj0ud"]
+script = ExtResource("5_cw8r5")
+stat = 0
+value = 20.0
+modifier = 1
+chance = 0.5
+outcome_1 = SubResource("Resource_vxweh")
+outcome_2 = SubResource("Resource_75wo7")
+metadata/_custom_type_script = "uid://bk16x8mwb5shh"
+
+[sub_resource type="Resource" id="Resource_48bvf"]
+script = ExtResource("2_rygj1")
+name = "Yes"
+effects = Array[ExtResource("4_oo1w6")]([SubResource("Resource_dj0ud")])
+path = ""
+metadata/_custom_type_script = "uid://b3uril2uwjvfv"
+
+[sub_resource type="Resource" id="Resource_8515c"]
+script = ExtResource("3_bt0sx")
+description = "Upon arrival at the village, you notice that the villagers seem suprised.
+
+Would you like to attempt to communicate with them?"
+options = Array[ExtResource("2_rygj1")]([SubResource("Resource_vx36m"), SubResource("Resource_48bvf")])
+metadata/_custom_type_script = "uid://dk7vmirn2sppi"
+
+[resource]
+script = ExtResource("2_asw6c")
+title = "The Village"
+dialogue = Array[ExtResource("1_yjfrv")]([SubResource("Resource_jbh6f"), SubResource("Resource_ek7n5")])
+paths = Array[ExtResource("1_yjfrv")]([SubResource("Resource_8w18g"), SubResource("Resource_8515c")])
+metadata/_custom_type_script = "uid://bsblkh2ebc60y"

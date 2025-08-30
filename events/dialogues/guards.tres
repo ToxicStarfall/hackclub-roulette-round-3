@@ -1,0 +1,79 @@
+[gd_resource type="Resource" script_class="Event" load_steps=17 format=3 uid="uid://7abait383yx"]
+
+[ext_resource type="Script" uid="uid://d12js1gdl5pnt" path="res://events/comps/dialogue/base_dialogue.gd" id="1_c6npj"]
+[ext_resource type="Script" uid="uid://bsblkh2ebc60y" path="res://events/event.gd" id="2_1xcyl"]
+[ext_resource type="Script" uid="uid://b3uril2uwjvfv" path="res://events/comps/dialogue/dialogue_option.gd" id="2_qhkhj"]
+[ext_resource type="Script" uid="uid://dk7vmirn2sppi" path="res://events/comps/dialogue/dialogue.gd" id="3_6efmj"]
+[ext_resource type="Script" uid="uid://bjy5nqhfkji55" path="res://events/comps/effects/effect.gd" id="4_sdfyk"]
+[ext_resource type="Script" uid="uid://dsl562vyuejwt" path="res://events/comps/effects/item_effect.gd" id="5_1wk1k"]
+[ext_resource type="Script" uid="uid://bk16x8mwb5shh" path="res://events/comps/effects/stat_effect.gd" id="6_ed552"]
+
+[sub_resource type="Resource" id="Resource_awrdt"]
+script = ExtResource("3_6efmj")
+description = "Walking along a small, overgrown path, you come across some armed soldiers."
+options = Array[ExtResource("2_qhkhj")]([])
+metadata/_custom_type_script = "uid://dk7vmirn2sppi"
+
+[sub_resource type="Resource" id="Resource_ih717"]
+script = ExtResource("5_1wk1k")
+item = 0
+value = 10.0
+modifier = 1
+chance = 1.0
+metadata/_custom_type_script = "uid://dsl562vyuejwt"
+
+[sub_resource type="Resource" id="Resource_jpjlg"]
+script = ExtResource("2_qhkhj")
+name = "Pay the tax"
+effects = Array[ExtResource("4_sdfyk")]([SubResource("Resource_ih717")])
+path = ""
+metadata/_custom_type_script = "uid://b3uril2uwjvfv"
+
+[sub_resource type="Resource" id="Resource_wauji"]
+script = ExtResource("3_6efmj")
+description = "You decide to fight them, barely defeating them, but not without any scratches."
+options = Array[ExtResource("2_qhkhj")]([])
+metadata/_custom_type_script = "uid://dk7vmirn2sppi"
+
+[sub_resource type="Resource" id="Resource_l7yt6"]
+script = ExtResource("3_6efmj")
+description = "You sucessfully defeat them, without a scratch, and continue on."
+options = Array[ExtResource("2_qhkhj")]([null])
+metadata/_custom_type_script = "uid://dk7vmirn2sppi"
+
+[sub_resource type="Resource" id="Resource_6kvki"]
+script = ExtResource("6_ed552")
+stat = 0
+value = 15.0
+modifier = 1
+chance = 0.65
+outcome_1 = SubResource("Resource_wauji")
+outcome_2 = SubResource("Resource_l7yt6")
+metadata/_custom_type_script = "uid://bk16x8mwb5shh"
+
+[sub_resource type="Resource" id="Resource_3cwrw"]
+script = ExtResource("2_qhkhj")
+name = "Fight them"
+effects = Array[ExtResource("4_sdfyk")]([SubResource("Resource_6kvki")])
+path = ""
+metadata/_custom_type_script = "uid://b3uril2uwjvfv"
+
+[sub_resource type="Resource" id="Resource_tnppg"]
+script = ExtResource("2_qhkhj")
+name = "Go another direction"
+effects = Array[ExtResource("4_sdfyk")]([])
+path = ""
+metadata/_custom_type_script = "uid://b3uril2uwjvfv"
+
+[sub_resource type="Resource" id="Resource_wypb8"]
+script = ExtResource("3_6efmj")
+description = "They stop you saying that you must pay a tax to  travel on this road."
+options = Array[ExtResource("2_qhkhj")]([SubResource("Resource_jpjlg"), SubResource("Resource_3cwrw"), SubResource("Resource_tnppg")])
+metadata/_custom_type_script = "uid://dk7vmirn2sppi"
+
+[resource]
+script = ExtResource("2_1xcyl")
+title = "Guards"
+dialogue = Array[ExtResource("1_c6npj")]([SubResource("Resource_awrdt"), SubResource("Resource_wypb8")])
+paths = Array[ExtResource("1_c6npj")]([])
+metadata/_custom_type_script = "uid://bsblkh2ebc60y"

@@ -12,7 +12,7 @@ func _on_event_started(event):
 	%TitleLabel.text = "[b]%s[/b]" % [event.title]
 
 
-func _on_event_ended():
+func _on_event_ended(_event):
 	clear()
 
 
@@ -21,22 +21,20 @@ func _on_dialogue_changed(dialogue):
 	self.show()
 	print("dialogue changed")
 	%DescriptionLabel.text = dialogue.description
+	if EventManager.current_dialogue.options.size() == 0:
+		%DescriptionLabel.text += "
+		[u][i]Click to continue[/i][/u]"
 
 
 func _on_dialogue_button_pressed() -> void:
 	# Only allow "click to cont." when there are no dialogue options.
-	if EventManager.current_dialogue.options.size() >= 0:
+	#if EventManager.current_dialogue.options.size() >= 0:
+	if EventManager.current_dialogue.options.size() == 0:
 		EventManager.dialogue_requested.emit("")
 
 
 func animate_dialogue(text: String):
 	pass
-
-
-func apply(event: Event):
-	self.show()
-	%TitleLabel.text = "[b]%s[/b]" % [event.title]
-	%DescriptionLabel.text = event.description
 
 
 func clear():

@@ -1,14 +1,20 @@
-[gd_scene load_steps=13 format=3 uid="uid://cqcvewcu1865c"]
+[gd_scene load_steps=20 format=3 uid="uid://cqcvewcu1865c"]
 
 [ext_resource type="Script" uid="uid://chg4vaayt84u3" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://dgr60uub4xhi1" path="res://icon.svg" id="2_h2yge"]
-[ext_resource type="Texture2D" uid="uid://d4fqvf6rhpni0" path="res://ui/background/orig.png" id="3_kek77"]
+[ext_resource type="Texture2D" uid="uid://d4fqvf6rhpni0" path="res://ui/background/set_1/orig.png" id="3_kek77"]
 [ext_resource type="Script" uid="uid://spgiq2pdi4kh" path="res://world.gd" id="3_lquwl"]
-[ext_resource type="Texture2D" uid="uid://b4kgsovve55y5" path="res://ui/background/3.png" id="4_4c57u"]
+[ext_resource type="Texture2D" uid="uid://62lb0j00n2a4" path="res://ui/background/set_1/1.png" id="3_ycdy4"]
+[ext_resource type="Texture2D" uid="uid://b4kgsovve55y5" path="res://ui/background/set_1/3.png" id="4_4c57u"]
 [ext_resource type="Script" uid="uid://bjjcvc1u7oqea" path="res://ui/ui.gd" id="4_7mycd"]
 [ext_resource type="PackedScene" uid="uid://btcpqt1oxshp8" path="res://ui/character_card.tscn" id="4_lquwl"]
+[ext_resource type="Texture2D" uid="uid://dqkwvkd6xdb0t" path="res://ui/background/set_1/2.png" id="4_w48qg"]
 [ext_resource type="PackedScene" uid="uid://bk4q4hhrohwl5" path="res://ui/event_panel.tscn" id="6_7mycd"]
 [ext_resource type="PackedScene" uid="uid://cl3toryj5f76b" path="res://ui/options/options_panel.tscn" id="6_272bh"]
+[ext_resource type="Texture2D" uid="uid://cgfn5yxyk2pst" path="res://ui/background/set_1/4.png" id="6_vivmo"]
+[ext_resource type="Texture2D" uid="uid://b0tk1ieqon06c" path="res://ui/background/village_1.png" id="7_w48qg"]
+[ext_resource type="Texture2D" uid="uid://cyvd4cx711o6v" path="res://ui/background/final_village.png" id="8_vivmo"]
+[ext_resource type="Shader" uid="uid://dfcj8ypak1jh" path="res://ui/blur.gdshader" id="10_4c57u"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lquwl"]
 normal = Vector2(0, 1)
@@ -23,6 +29,10 @@ bg_color = Color(0.16, 0.155467, 0.152, 1)
 border_width_right = 3
 border_width_bottom = 3
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_efxa6"]
+shader = ExtResource("10_4c57u")
+shader_parameter/strength = 2
+
 [node name="Main" type="Node"]
 script = ExtResource("1_0xm2m")
 
@@ -32,21 +42,73 @@ script = ExtResource("3_lquwl")
 [node name="WorldParallax" type="Node2D" parent="World"]
 unique_name_in_owner = true
 
-[node name="Parallax2D" type="Parallax2D" parent="World/WorldParallax"]
+[node name="Background" type="Parallax2D" parent="World/WorldParallax"]
 repeat_size = Vector2(1280, 0)
+repeat_times = 2
 ignore_camera_scroll = true
 
-[node name="Sprite2D" type="Sprite2D" parent="World/WorldParallax/Parallax2D"]
+[node name="Sprite2D" type="Sprite2D" parent="World/WorldParallax/Background"]
 position = Vector2(641.778, 353)
 scale = Vector2(2.22839, 2.22839)
-texture = ExtResource("3_kek77")
+texture = ExtResource("3_ycdy4")
 
-[node name="Sprite2D2" type="Sprite2D" parent="World/WorldParallax/Parallax2D"]
+[node name="Background2" type="Parallax2D" parent="World/WorldParallax"]
+unique_name_in_owner = true
+repeat_size = Vector2(1280, 0)
+repeat_times = 2
+ignore_camera_scroll = true
+
+[node name="Sprite2D" type="Sprite2D" parent="World/WorldParallax/Background2"]
+position = Vector2(641.778, 353)
+scale = Vector2(2.22839, 2.22839)
+texture = ExtResource("4_w48qg")
+
+[node name="Midground" type="Parallax2D" parent="World/WorldParallax"]
+unique_name_in_owner = true
+repeat_size = Vector2(1280, 0)
+repeat_times = 2
+ignore_camera_scroll = true
+
+[node name="Sprite2D" type="Sprite2D" parent="World/WorldParallax/Midground"]
+position = Vector2(641.778, 353)
+scale = Vector2(2.22839, 2.22839)
+texture = ExtResource("4_4c57u")
+
+[node name="Foreground2" type="Parallax2D" parent="World/WorldParallax"]
+unique_name_in_owner = true
+repeat_size = Vector2(1280, 0)
+repeat_times = 2
+ignore_camera_scroll = true
+
+[node name="Sprite2D" type="Sprite2D" parent="World/WorldParallax/Foreground2"]
+position = Vector2(641.778, 353)
+scale = Vector2(2.22839, 2.22839)
+texture = ExtResource("6_vivmo")
+
+[node name="Foreground" type="Parallax2D" parent="World/WorldParallax"]
+unique_name_in_owner = true
+repeat_size = Vector2(1280, 0)
+repeat_times = 2
+ignore_camera_scroll = true
+
+[node name="Sprite2D" type="Sprite2D" parent="World/WorldParallax/Foreground"]
 position = Vector2(640, 685)
 scale = Vector2(2.22839, 2.22839)
 texture = ExtResource("4_4c57u")
 region_enabled = true
 region_rect = Rect2(0, 280.5, 576, 43.5)
+
+[node name="Sprite2D2" type="Sprite2D" parent="World/WorldParallax/Foreground"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(641.664, 353)
+scale = Vector2(2.22839, 2.22839)
+texture = ExtResource("7_w48qg")
+
+[node name="Sprite2D3" type="Sprite2D" parent="World/WorldParallax/Foreground"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(632, 488)
+scale = Vector2(2.228, 2.228)
+texture = ExtResource("8_vivmo")
 
 [node name="Borders" type="Node2D" parent="World"]
 visible = false
@@ -110,6 +172,7 @@ theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 40
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/MainScreen/BottomBar/MarginContainer"]
+visible = false
 layout_mode = 2
 
 [node name="CharacterCard" parent="UI/MainScreen/BottomBar/MarginContainer/HBoxContainer" instance=ExtResource("4_lquwl")]
@@ -172,13 +235,20 @@ layout_mode = 2
 
 [node name="LocationLabel" type="Label" parent="UI/MainScreen/PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 text = "Location: Grasslands"
 
 [node name="DistanceLabel" type="Label" parent="UI/MainScreen/PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 text = "Distance Traveled: 0"
+
+[node name="DayLabel" type="Label" parent="UI/MainScreen/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Day: 0"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/MainScreen"]
 layout_mode = 1
@@ -209,7 +279,6 @@ horizontal_alignment = 1
 
 [node name="StartMenu" type="Control" parent="UI"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -222,16 +291,18 @@ grow_vertical = 2
 [node name="Parallax2D" type="Parallax2D" parent="UI/StartMenu/StartMenuParallax"]
 
 [node name="TextureRect" type="TextureRect" parent="UI/StartMenu"]
+material = SubResource("ShaderMaterial_efxa6")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_h2yge")
+texture = ExtResource("3_kek77")
 stretch_mode = 6
 
 [node name="CenterContainer" type="CenterContainer" parent="UI/StartMenu"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -239,8 +310,41 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PlayButton" type="Button" parent="UI/StartMenu/CenterContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/StartMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/StartMenu/HBoxContainer"]
 layout_mode = 2
+
+[node name="VSpacer" type="Control" parent="UI/StartMenu/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="UI/StartMenu/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 64
+theme_override_font_sizes/font_size = 72
+text = "A  Survivor's  JOURNEY"
+
+[node name="VSpacer2" type="Control" parent="UI/StartMenu/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="PlayButton" type="Button" parent="UI/StartMenu/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+size_flags_horizontal = 4
 text = "PLAY"
 
-[connection signal="pressed" from="UI/StartMenu/CenterContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[node name="VSpacer3" type="Control" parent="UI/StartMenu/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[connection signal="pressed" from="UI/StartMenu/HBoxContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]

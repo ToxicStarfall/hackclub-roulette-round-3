@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="Event" load_steps=5 format=3 uid="uid://b04ta6jvgoefm"]
+[gd_resource type="Resource" script_class="Event" load_steps=6 format=3 uid="uid://b04ta6jvgoefm"]
 
 [ext_resource type="Script" uid="uid://dk7vmirn2sppi" path="res://events/comps/dialogue/dialogue.gd" id="1_rmjqm"]
+[ext_resource type="Script" uid="uid://d12js1gdl5pnt" path="res://events/comps/dialogue/base_dialogue.gd" id="1_sct7b"]
 [ext_resource type="Script" uid="uid://b3uril2uwjvfv" path="res://events/comps/dialogue/dialogue_option.gd" id="2_7aco4"]
 [ext_resource type="Script" uid="uid://bsblkh2ebc60y" path="res://events/event.gd" id="2_gkgej"]
 
@@ -20,5 +21,5 @@ metadata/_custom_type_script = "uid://dk7vmirn2sppi"
 [resource]
 script = ExtResource("2_gkgej")
 title = "A New Journey"
-dialogue = Array[ExtResource("1_rmjqm")]([SubResource("Resource_rmjqm")])
-options = Array[ExtResource("2_7aco4")]([])
+dialogue = Array[ExtResource("1_sct7b")]([SubResource("Resource_rmjqm")])
+paths = Array[ExtResource("1_sct7b")]([])

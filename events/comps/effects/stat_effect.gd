@@ -1,8 +1,7 @@
-class_name ItemEffect
+class_name StatEffect
 extends Effect
 
-
-@export var item: Game.Items  # item string name
+@export var stat: Game.Stats
 @export var value: float = 1.0  ##
 #@export var value_min: float = 1.0
 @export var modifier: Modifiers = Modifiers.ADD
@@ -10,9 +9,9 @@ extends Effect
 
 func apply():
 	if chance_check():
-		var item_key = Game.inventory.keys()[item] # same item order in inventory when init as 0
+		var stat_key = Game.stats.keys()[stat] # same item order in inventory when init as 0
 		#var current_value = Game.inventory.get(item)
-		var current_value = Game.inventory.get(item_key)
+		var current_value = Game.stats.get(stat_key)
 		var new_value
 		if modifier == Modifiers.ADD:
 			new_value = current_value + value
@@ -22,7 +21,7 @@ func apply():
 			new_value = current_value * value
 		elif modifier == Modifiers.DIVIDE:
 			new_value = current_value / value
-		Game.inventory.set(item_key, new_value)
+		Game.stats.set(stat_key, new_value)
 
 		EventManager.dialogue_requested.emit("", outcome_1)
 	else:

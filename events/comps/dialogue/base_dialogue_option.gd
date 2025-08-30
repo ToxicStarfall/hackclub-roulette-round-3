@@ -1,0 +1,2 @@
+class_name BaseDialogueOption
+extends Resource

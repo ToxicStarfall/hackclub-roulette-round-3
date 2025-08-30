@@ -15,39 +15,40 @@ func _ready() -> void:
 	EventManager.dialogue_changed.connect( _on_dialogue_changed )
 
 
-func _on_event_started(event):
+func _on_event_started(_event):
 	pass
 
 
-func _on_event_ended():
+func _on_event_ended(_event):
 	clear()
 
 
-func _on_event_changed(event):
+func _on_event_changed(_event):
 	pass
 
 
 func _on_dialogue_changed(dialogue):
 	clear()
-	#if dialogue.has("options"):
 	if dialogue.get("options"):
 		options = dialogue.options
 
 		for option in dialogue.options:
-			#if !option.has("type"):
 			if !option.get("type"):
 				var new_option = Button.new()
 				new_option.button_group = OptionButtonGroup
 				new_option.toggle_mode = true
-				#new_option.pressed.connect( _on_option_pressed )
 				new_option.text = option.name
-				#if option.has("tooltip"):
 				if option.get("tooltip"):
 					new_option.tooltip_text = option.tooltip
 				%OptionsContainer.add_child(new_option)
-			else:
-				print("This options has a type")
-				print(option.type)
+			#else:
+				#print("This options has a type")
+				#pass
+		if Game.toggles.gamble:
+			var new_option = Button.new()
+			new_option.button_group = OptionButtonGroup
+			new_option.toggle_mode = true
+			new_option.text = "Random"
 		self.show()
 
 
@@ -59,13 +60,32 @@ func clear():
 
 
 func _on_option_pressed(option_button):
+	# Gamba option
+	if option_button.text == "Random":
+		var option_idx = option_button.get_index()
+		var option = options[option_idx]
+		var path = ""
+		for effect in option.effects:
+			if effect:  # Non empty check
+				effect.apply()
+				if effect.outcome_1 or effect.outcome_2:
+					# If there are outcomes specified for effects, ignore default dialogue continue
+					return
+		#if path != null: # As long as path has not been affected by any effect Outcomes
+		if option.get("path"): path = option.path
+		EventManager.dialogue_requested.emit(path)
+		return
+
 	var option_idx = option_button.get_index()
 	var option = options[option_idx]
-	for effect in option.effects:
-		effect.apply()
-
 	var path = ""
-	#if option.has("path"): path = option.path
+	for effect in option.effects:
+		if effect:  # Non empty check
+			effect.apply()
+			if effect.outcome_1 or effect.outcome_2:
+				# If there are outcomes specified for effects, ignore default dialogue continue
+				return
+	#if path != null: # As long as path has not been affected by any effect Outcomes
 	if option.get("path"): path = option.path
 
 	EventManager.dialogue_requested.emit(path)

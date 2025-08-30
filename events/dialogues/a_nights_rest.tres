@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="Event" load_steps=8 format=3 uid="uid://b048bsgpf380i"]
 
-[ext_resource type="Script" uid="uid://ct86nttddcrru" path="res://events/comps/dialogue/base_dialogue.gd" id="1_2u1dy"]
+[ext_resource type="Script" uid="uid://d12js1gdl5pnt" path="res://events/comps/dialogue/base_dialogue.gd" id="1_2u1dy"]
 [ext_resource type="Script" uid="uid://b3uril2uwjvfv" path="res://events/comps/dialogue/dialogue_option.gd" id="2_2q0gn"]
 [ext_resource type="Script" uid="uid://bsblkh2ebc60y" path="res://events/event.gd" id="2_5ekqa"]
-[ext_resource type="Script" uid="uid://bm88kigu7qrmt" path="res://events/comps/effects/effect.gd" id="3_84hls"]
+[ext_resource type="Script" uid="uid://bjy5nqhfkji55" path="res://events/comps/effects/effect.gd" id="3_84hls"]
 [ext_resource type="Script" uid="uid://dk7vmirn2sppi" path="res://events/comps/dialogue/dialogue.gd" id="4_0g2i0"]
 
 [sub_resource type="Resource" id="Resource_dycnd"]

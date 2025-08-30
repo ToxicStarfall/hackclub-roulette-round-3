@@ -9,7 +9,8 @@ extends Resource
 @export var title: String = ""
 @export var dialogue: Array[BaseDialogue] = []
 #@export var dialogues: Array[Dialogue] = []
-@export var paths: Dictionary[String, BaseDialogue] = {}
+#@export var paths: Dictionary[String, BaseDialogue] = {}
+@export var paths: Array[BaseDialogue] = []
 
 
 #func exit():

@@ -1,0 +1,104 @@
+[gd_resource type="Resource" script_class="Event" load_steps=20 format=3 uid="uid://bueod42wyexc1"]
+
+[ext_resource type="Script" uid="uid://b3uril2uwjvfv" path="res://events/comps/dialogue/dialogue_option.gd" id="1_jvdr7"]
+[ext_resource type="Script" uid="uid://d12js1gdl5pnt" path="res://events/comps/dialogue/base_dialogue.gd" id="1_m1fc5"]
+[ext_resource type="Script" uid="uid://dk7vmirn2sppi" path="res://events/comps/dialogue/dialogue.gd" id="2_yn44i"]
+[ext_resource type="Script" uid="uid://bjy5nqhfkji55" path="res://events/comps/effects/effect.gd" id="4_1idev"]
+[ext_resource type="Script" uid="uid://bsblkh2ebc60y" path="res://events/event.gd" id="4_ijhqb"]
+[ext_resource type="Script" uid="uid://dsl562vyuejwt" path="res://events/comps/effects/item_effect.gd" id="5_pk1wm"]
+[ext_resource type="Script" uid="uid://bk16x8mwb5shh" path="res://events/comps/effects/stat_effect.gd" id="6_ycu4f"]
+
+[sub_resource type="Resource" id="Resource_ktac5"]
+script = ExtResource("2_yn44i")
+description = "A dirty and dishelved beggar approches you, carying with him a small rucksack.
+He looks hopeful."
+options = Array[ExtResource("1_jvdr7")]([])
+metadata/_custom_type_script = "uid://dk7vmirn2sppi"
+
+[sub_resource type="Resource" id="Resource_bu2sv"]
+script = ExtResource("2_yn44i")
+description = "You give the beggar some gold, and he thanks you, with much gratitude and happiness, bidding you farewell."
+options = Array[ExtResource("1_jvdr7")]([])
+metadata/_custom_type_script = "uid://dk7vmirn2sppi"
+
+[sub_resource type="Resource" id="Resource_qx5x1"]
+script = ExtResource("5_pk1wm")
+item = 0
+value = 20.0
+modifier = 0
+chance = 1.0
+metadata/_custom_type_script = "uid://dsl562vyuejwt"
+
+[sub_resource type="Resource" id="Resource_vee6i"]
+script = ExtResource("1_jvdr7")
+name = "Get 20 gold"
+effects = Array[ExtResource("4_1idev")]([SubResource("Resource_qx5x1")])
+path = ""
+metadata/_custom_type_script = "uid://b3uril2uwjvfv"
+
+[sub_resource type="Resource" id="Resource_30rua"]
+script = ExtResource("2_yn44i")
+description = "He reveals himself as a wealthy prince, and in payment for your generosity pays you back twice in return!"
+options = Array[ExtResource("1_jvdr7")]([SubResource("Resource_vee6i")])
+metadata/_custom_type_script = "uid://dk7vmirn2sppi"
+
+[sub_resource type="Resource" id="Resource_pu4jb"]
+script = ExtResource("5_pk1wm")
+item = 0
+value = 10.0
+modifier = 1
+chance = 0.85
+outcome_1 = SubResource("Resource_bu2sv")
+outcome_2 = SubResource("Resource_30rua")
+metadata/_custom_type_script = "uid://dsl562vyuejwt"
+
+[sub_resource type="Resource" id="Resource_6w2lf"]
+script = ExtResource("1_jvdr7")
+name = "Give some gold"
+effects = Array[ExtResource("4_1idev")]([SubResource("Resource_pu4jb")])
+path = ""
+metadata/_custom_type_script = "uid://b3uril2uwjvfv"
+
+[sub_resource type="Resource" id="Resource_ox5ko"]
+script = ExtResource("2_yn44i")
+description = "The beggar suddenly becomes enraged!
+
+He starts beating you, however you manage to repel him, but not in time to avoid some bruises."
+options = Array[ExtResource("1_jvdr7")]([])
+metadata/_custom_type_script = "uid://dk7vmirn2sppi"
+
+[sub_resource type="Resource" id="Resource_hody6"]
+script = ExtResource("2_yn44i")
+description = "The beggar becomes saddened, the hope bleeding away from his face, and he walks quietly away into the distance."
+options = Array[ExtResource("1_jvdr7")]([])
+metadata/_custom_type_script = "uid://dk7vmirn2sppi"
+
+[sub_resource type="Resource" id="Resource_cvrpo"]
+script = ExtResource("6_ycu4f")
+stat = 0
+value = 5.0
+modifier = 1
+chance = 0.35
+outcome_1 = SubResource("Resource_ox5ko")
+outcome_2 = SubResource("Resource_hody6")
+metadata/_custom_type_script = "uid://bk16x8mwb5shh"
+
+[sub_resource type="Resource" id="Resource_m4g71"]
+script = ExtResource("1_jvdr7")
+name = "Do not give any gold"
+effects = Array[ExtResource("4_1idev")]([SubResource("Resource_cvrpo")])
+path = ""
+metadata/_custom_type_script = "uid://b3uril2uwjvfv"
+
+[sub_resource type="Resource" id="Resource_m1fc5"]
+script = ExtResource("2_yn44i")
+description = "He waves his hand around, and points to your gold pouch."
+options = Array[ExtResource("1_jvdr7")]([SubResource("Resource_6w2lf"), SubResource("Resource_m4g71")])
+metadata/_custom_type_script = "uid://dk7vmirn2sppi"
+
+[resource]
+script = ExtResource("4_ijhqb")
+title = "The Beggar"
+dialogue = Array[ExtResource("1_m1fc5")]([SubResource("Resource_ktac5"), SubResource("Resource_m1fc5")])
+paths = Array[ExtResource("1_m1fc5")]([])
+metadata/_custom_type_script = "uid://dk7vmirn2sppi"
