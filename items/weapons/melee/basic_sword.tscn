@@ -1,0 +1,132 @@
+[gd_scene load_steps=14 format=3 uid="uid://kybewcrxbpie"]
+
+[ext_resource type="Script" uid="uid://cb22s1i10v7f1" path="res://items/weapons/melee/melee_weapon.gd" id="1_uo7ts"]
+[ext_resource type="Texture2D" path="res://items/weapons/plasma_sword.png" id="2_dnteb"]
+[ext_resource type="Script" uid="uid://bh6cqtnko4j6x" path="res://events/dialogues/components/attack_component.gd" id="3_lk4xt"]
+[ext_resource type="Script" uid="uid://d04s5a06kemh" path="res://events/dialogues/components/resources/damage.gd" id="4_7s1vd"]
+[ext_resource type="Texture2D" uid="uid://wju7ydet8xsv" path="res://items/weapons/melee/slash.svg" id="5_7s1vd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cyl87"]
+radius = 96.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lk4xt"]
+size = Vector2(15, 56.5)
+
+[sub_resource type="Resource" id="Resource_fsncm"]
+script = ExtResource("4_7s1vd")
+value = 1
+source = 2
+metadata/_custom_type_script = "uid://d04s5a06kemh"
+
+[sub_resource type="Resource" id="Resource_lk4xt"]
+script = ExtResource("4_7s1vd")
+value = 1
+source = 1
+metadata/_custom_type_script = "uid://d04s5a06kemh"
+
+[sub_resource type="Resource" id="Resource_7s1vd"]
+script = ExtResource("4_7s1vd")
+value = 1
+source = 0
+metadata/_custom_type_script = "uid://d04s5a06kemh"
+
+[sub_resource type="Animation" id="Animation_fsncm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D2:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_7s1vd"]
+resource_name = "sword_swing"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 2.0944, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D2:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.233333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sqpa2"]
+_data = {
+&"RESET": SubResource("Animation_fsncm"),
+&"sword_swing": SubResource("Animation_7s1vd")
+}
+
+[node name="BasicSword" type="Area2D"]
+collision_layer = 2
+collision_mask = 0
+monitorable = false
+script = ExtResource("1_uo7ts")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(7, -19)
+texture = ExtResource("2_dnteb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, -18)
+shape = SubResource("CircleShape2D_cyl87")
+disabled = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(7.5, -22.75)
+shape = SubResource("RectangleShape2D_lk4xt")
+
+[node name="AttackComponent" type="Node" parent="."]
+script = ExtResource("3_lk4xt")
+DamageComp = SubResource("Resource_fsncm")
+attacks = Dictionary[String, ExtResource("4_7s1vd")]({
+"body": SubResource("Resource_lk4xt"),
+"normal": SubResource("Resource_7s1vd")
+})
+metadata/_custom_type_script = "uid://bh6cqtnko4j6x"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_sqpa2")
+}
+
+[node name="Slash" type="Sprite2D" parent="."]
+visible = false
+rotation = -2.35619
+scale = Vector2(1.62109, 1.62109)
+texture = ExtResource("5_7s1vd")

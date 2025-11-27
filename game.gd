@@ -20,10 +20,10 @@ const EVENT_CHANCE_PER_TICK = 0.40 #0.10  # chance that a event occurs.
 const NOTABLE_EVENT_CHANCE = 0.25  # chance for a important event.
 
 var paused: bool = true
-var current_cycle = 0
-var current_tick = 0
-var current_time = 0.0
-var elapsed_time = 0.0
+var current_cycle: int = 0
+var current_tick: int = 0
+var current_time: float = 0.0
+var elapsed_time: float = 0.0
 
 var speed_mod = 1.0
 
@@ -103,6 +103,7 @@ func _on_event_ended(event):
 	paused = false
 	World.activate_parallax()
 	var event_file_name = event.resource_path.split("/")[-1].split(".")[0]
+	print(event_file_name)
 	if event_file_name == "village":
 		World.hide_village()
 	if event_file_name in ["death","final"]:

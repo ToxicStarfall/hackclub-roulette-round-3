@@ -1,6 +1,7 @@
 extends Node
 
 
+@warning_ignore_start("unused_signal")
 signal event_changed
 signal event_started
 signal event_ended
@@ -8,6 +9,7 @@ signal event_aborted
 
 signal dialogue_changed(new_dialogue)
 signal dialogue_requested()
+@warning_ignore_restore("unused_signal")
 
 var current_event: Event
 var current_dialogue: Dialogue
@@ -37,9 +39,10 @@ func _ready() -> void:
 	#load_event("res://events/dialogues/village.tres")
 
 
-func get_event(location):
+func get_event(_location):
 	# Apply modifiers to event
 	pass
+
 
 func load_random_event():
 	load_event( event_array[ randi_range(0, event_array.size() - 1) ])

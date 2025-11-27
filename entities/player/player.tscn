@@ -1,0 +1,54 @@
+[gd_scene load_steps=9 format=3 uid="uid://qwipxaajbarx"]
+
+[ext_resource type="Script" uid="uid://c571joxk7t7gn" path="res://entities/player/player.gd" id="1_merdl"]
+[ext_resource type="Script" uid="uid://d0y3o51r8gh1i" path="res://events/dialogues/components/hitbox_component.gd" id="2_b0kkn"]
+[ext_resource type="Texture2D" uid="uid://dgr60uub4xhi1" path="res://icon.svg" id="2_qiwj3"]
+[ext_resource type="Script" uid="uid://bh6cqtnko4j6x" path="res://events/dialogues/components/attack_component.gd" id="3_qsoyl"]
+[ext_resource type="Script" uid="uid://cqnbkier15avq" path="res://events/dialogues/components/health_component.gd" id="4_rfe5m"]
+[ext_resource type="Script" uid="uid://d04s5a06kemh" path="res://events/dialogues/components/resources/damage.gd" id="11_7thud"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e4p34"]
+size = Vector2(28, 39)
+
+[sub_resource type="Resource" id="Resource_7thud"]
+script = ExtResource("11_7thud")
+value = 1
+source = 0
+metadata/_custom_type_script = "uid://d04s5a06kemh"
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("inventory") groups=["player"]]
+collision_layer = 2
+motion_mode = 1
+script = ExtResource("1_merdl")
+inventory = [null]
+faction = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -2.5)
+scale = Vector2(0.21875, 0.304688)
+texture = ExtResource("2_qiwj3")
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2.5)
+shape = SubResource("RectangleShape2D_e4p34")
+
+[node name="HitboxComponent" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 12
+script = ExtResource("2_b0kkn")
+metadata/_custom_type_script = "uid://d0y3o51r8gh1i"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(0, -2.5)
+shape = SubResource("RectangleShape2D_e4p34")
+
+[node name="AttackComponent" type="Node" parent="."]
+script = ExtResource("3_qsoyl")
+DamageComp = SubResource("Resource_7thud")
+metadata/_custom_type_script = "uid://bh6cqtnko4j6x"
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("4_rfe5m")
+max_health = 10
+metadata/_custom_type_script = "uid://cqnbkier15avq"
