@@ -1,4 +1,5 @@
 ## Base Effect class. This does NOTHING on its own.
+@abstract
 class_name Effect
 extends Resource
 

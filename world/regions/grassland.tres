@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Region" load_steps=2 format=3 uid="uid://b0ho5ytqf6ukt"]
+
+[ext_resource type="Script" uid="uid://c5udorbysqlfg" path="res://world/regions/region.gd" id="1_mf0rq"]
+
+[resource]
+script = ExtResource("1_mf0rq")
+name = "Grassland"
+metadata/_custom_type_script = "uid://c5udorbysqlfg"

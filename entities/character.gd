@@ -1,9 +1,14 @@
-extends Entity
 class_name Character
+extends Entity
 
 
+#enum Stats {
+	#HEALTH,
+	#REST,
+#}
 
-var stats = CharacterStats.new()
+var Info = CharacterInfo.new()
+var Stats = CharacterStats.new()
 
 
 func apply_thirst():
@@ -17,3 +22,9 @@ func apply_energy():
 
 func apply_rest():
 	pass
+
+
+func get_movment_speed() -> float:
+	var speed: float = Stats.walk_speed
+	# speed modifiers
+	return speed

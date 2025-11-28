@@ -21,7 +21,8 @@ func apply():
 			new_value = current_value * value
 		elif modifier == Modifiers.DIVIDE:
 			new_value = current_value / value
-		Game.stats.set(stat_key, new_value)
+		#Game.stats.set(stat_key, new_value)
+		Game.player.Stats.set(stat_key, new_value)
 
 		EventManager.dialogue_requested.emit("", outcome_1)
 	else:

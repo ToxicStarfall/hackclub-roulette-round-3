@@ -210,6 +210,7 @@ grow_vertical = 0
 
 [node name="OptionsPanel" parent="UI/MainScreen/BottomBar/MarginContainer2" instance=ExtResource("6_272bh")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 
 [node name="EventPanelWrapper" type="HBoxContainer" parent="UI/MainScreen"]
@@ -232,6 +233,7 @@ theme_override_constants/margin_bottom = 64
 
 [node name="EventPanel" parent="UI/MainScreen/EventPanelWrapper/MarginContainer" instance=ExtResource("6_7mycd")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="UI/MainScreen"]
@@ -326,7 +328,6 @@ texture = ExtResource("2_h2yge")
 expand_mode = 1
 
 [node name="Screens" type="Control" parent="UI"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -336,4 +337,5 @@ grow_vertical = 2
 
 [node name="StartMenu" parent="UI/Screens" instance=ExtResource("14_w48qg")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1

@@ -7,10 +7,7 @@ enum Items {
 	WATER,
 	WEAPONS,
 }
-enum Stats {
-	HEALTH,
-	REST,
-}
+
 
 const TOTAL_CYCLES = 10  # 1 cycle = day/night.
 const TICKS_PER_CYCLE = 24.0  # 1 tick = 1 second.
@@ -25,18 +22,18 @@ var current_tick: int = 0
 var current_time: float = 0.0
 var elapsed_time: float = 0.0
 
-var speed_mod = 1.0
+## Distance in kilometres
+var distance_total = 250.0
+var distance_required = 0.0
+var distance_travled = 0.0
 
-var characters = []
-var stats = {
-	"health": 100,
-}
-var inventory = {
-	"gold": 0,
-	"medicine": 0,
-	"rations": 0,
-	"water": 0,
-}
+#var speed_mod = 1.0
+
+var player := Character.new()
+#var characters := []
+
+var inventory := InventoryComponent.new()
+
 var toggles = {
 	"gamble": false
 }
@@ -50,16 +47,24 @@ func _ready() -> void:
 	EventManager.event_started.connect( _on_event_started )
 	EventManager.event_ended.connect( _on_event_ended )
 
+	UI = get_tree().root.get_node("Main/%UI")
+	World = get_tree().root.get_node("Main/World")
+
+	#var resource = preload("res://events/dialogues/a.dialogue")
+	#var diag = await DialogueManager.get_next_dialogue_line(resource, "start")
+	#UI.get_node("%DistanceLabel").text = diag.text
+
 
 func _physics_process(delta: float) -> void:
 	if !paused:
 		elapsed_time = snapped(elapsed_time + delta, 0.001)
 		current_time = snapped(current_time + delta, 0.01)
+
 		if current_time >= SECONDS_PER_TICK:
 			current_tick += 1
 			current_time = 0.0  # reset tick timer
 
-			#if current_tick % 1 == 0:
+			# Every 4th tick is chance for event
 			if current_tick % 4 == 0:
 				if randf() <= EVENT_CHANCE_PER_TICK:
 					#paused = true
@@ -72,7 +77,7 @@ func _physics_process(delta: float) -> void:
 					print("new event start rand")
 			UI.get_node("%TravelProgress").value = current_tick
 		# ON DEATH
-		if stats.health <= 0:
+		if player.stats.health <= 0:
 			EventManager.load_event("res://events/dialogues/death.tres")
 
 	if current_tick >= TICKS_PER_CYCLE:
@@ -112,9 +117,9 @@ func _on_event_ended(event):
 
 
 func start_game():
-	UI = get_tree().root.get_node("Main/%UI")
+	#UI = get_tree().root.get_node("Main/%UI")
 	UI.get_node("%StartMenu").hide()
-	World = get_tree().root.get_node("Main/World")
-	print(World)
+	#World = get_tree().root.get_node("Main/World")
+	##print(World)
 	EventManager.load_event("res://events/dialogues/new_journey.tres")
 	#EventManager.load_event("res://events/dialogues/village.tres")

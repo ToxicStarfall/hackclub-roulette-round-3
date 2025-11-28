@@ -1,5 +1,5 @@
-extends Effect
 class_name CharacterEffect
+extends Effect
 
 
 @export var character = Game.characters

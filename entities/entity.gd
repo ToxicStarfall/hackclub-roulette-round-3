@@ -121,7 +121,9 @@ func kill():
 
 func give_item():
 	pass
-#func taka
+
+#func take_item():
+	#pass
 
 
 func get_health():

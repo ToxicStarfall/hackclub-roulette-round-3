@@ -12,5 +12,5 @@ enum Filter {
 #@export var targets_player: bool = true
 #@export var entity_targets: Array[Entity]
 #@export var faction_target
-@export var faction_targets: Array[Entity.Factions]
+@export var faction_targets: Array[Entity.Faction]
 #@export var target_priority = []
