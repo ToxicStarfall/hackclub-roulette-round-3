@@ -17,3 +17,5 @@ mono_crash.*.json
 
 /addons
 /addons/godot_super-wakatime/
+/addons
+/addons/godot_super-wakatime

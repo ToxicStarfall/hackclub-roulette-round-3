@@ -14,5 +14,4 @@ func _ready() -> void:
 
 
 func _on_play_button_pressed() -> void:
-	Game.start_game()
-	pass
+	Game.game_started.emit()

@@ -1,4 +1,15 @@
-extends PanelContainer
+#extends PanelContainer
+extends Control
 
 
-var character_stats#: CharacterStats
+var character: Character
+
+
+func update():
+	%HungerBar.value = Game.player.stats.get("hunger")
+	%HealthBar.value = Game.player.stats.get("health")
+	pass
+
+
+func create(linked_character: Character):
+	pass

@@ -4,6 +4,11 @@ Survivor.
 Survivor!
 This is not your time.
 Tell me about yourself:
+
 What is your name?
+# Ask for input stuff, provide input area.
+# After entering, save info here and continue dialouge.
+# do save_input()
 - 
+
 => END

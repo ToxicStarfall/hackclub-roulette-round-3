@@ -1,5 +1,11 @@
 extends Node
 
+
+signal game_started
+signal game_ended
+
+signal character_added
+
 enum Items {
 	GOLD,
 	MEDICINE,
@@ -7,7 +13,6 @@ enum Items {
 	WATER,
 	WEAPONS,
 }
-
 
 const TOTAL_CYCLES = 10  # 1 cycle = day/night.
 const TICKS_PER_CYCLE = 24.0  # 1 tick = 1 second.
@@ -44,12 +49,14 @@ var World: Node2D
 
 
 func _ready() -> void:
+	game_started.connect( _on_game_start )
 	EventManager.event_started.connect( _on_event_started )
 	EventManager.event_ended.connect( _on_event_ended )
 
 	UI = get_tree().root.get_node("Main/%UI")
 	World = get_tree().root.get_node("Main/World")
 
+	#player.apply_stat( Character.StatType.HEALTH, -10 )
 	#var resource = preload("res://events/dialogues/a.dialogue")
 	#var diag = await DialogueManager.get_next_dialogue_line(resource, "start")
 	#UI.get_node("%DistanceLabel").text = diag.text
@@ -116,10 +123,9 @@ func _on_event_ended(event):
 	print("unpaused")
 
 
-func start_game():
-	#UI = get_tree().root.get_node("Main/%UI")
+func _on_game_start():
 	UI.get_node("%StartMenu").hide()
-	#World = get_tree().root.get_node("Main/World")
-	##print(World)
+	UI.get_node("%CharacterCard").update()
+
 	EventManager.load_event("res://events/dialogues/new_journey.tres")
 	#EventManager.load_event("res://events/dialogues/village.tres")
