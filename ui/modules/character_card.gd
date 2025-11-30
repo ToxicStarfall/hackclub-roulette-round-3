@@ -2,7 +2,7 @@
 extends Control
 
 
-var character: Character
+#var character: Character
 
 
 func update():
@@ -11,5 +11,5 @@ func update():
 	pass
 
 
-func create(linked_character: Character):
-	pass
+#func create(linked_character: Character):
+	#pass

@@ -21,5 +21,9 @@ func apply():
 	pass
 
 
+func effect_add():
+	pass
+
+
 func chance_check():
 	return randf() >= chance

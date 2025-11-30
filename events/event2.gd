@@ -1,0 +1,19 @@
+class_name Event2
+extends Resource
+
+#signal dialogue_progressed
+
+#@export var type: Types = EventTypes.NORMAL
+
+@export var title: String = ""
+#@export var description: String = ""
+@export var dialogue: DialogueResource
+
+@export_category("Configuration")
+#@export var regions: Array[Region]
+
+
+#func exit():
+	# Do stuff after event ends
+	#   Apply effects, etc...
+	#event_exited.emit()

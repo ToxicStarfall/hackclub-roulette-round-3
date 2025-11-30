@@ -9,10 +9,10 @@ var options
 
 func _ready() -> void:
 	OptionButtonGroup.pressed.connect( _on_option_pressed )
-	EventManager.event_started.connect( _on_event_started )
-	EventManager.event_ended.connect( _on_event_ended )
-	EventManager.event_changed.connect( _on_event_changed )
-	EventManager.dialogue_changed.connect( _on_dialogue_changed )
+	#EventManager.event_started.connect( _on_event_started )
+	#EventManager.event_ended.connect( _on_event_ended )
+	#EventManager.event_changed.connect( _on_event_changed )
+	#EventManager.dialogue_changed.connect( _on_dialogue_changed )
 
 
 func _on_event_started(_event):
@@ -28,6 +28,7 @@ func _on_event_changed(_event):
 
 
 func _on_dialogue_changed(dialogue):
+	pass
 	clear()
 	if dialogue.get("options"):
 		options = dialogue.options

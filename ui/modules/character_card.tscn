@@ -82,6 +82,7 @@ theme_override_constants/separation = 0
 alignment = 2
 
 [node name="HungerGroup" type="HBoxContainer" parent="HBoxContainer/StatsPanel/VBoxContainer"]
+visible = false
 layout_mode = 2
 tooltip_text = "This is your hunger status."
 theme_override_constants/separation = 0

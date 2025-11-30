@@ -2,10 +2,10 @@ class_name CharacterEffect
 extends Effect
 
 
-enum {
-	HEALTH,
-	REST,
-}
+#enum {
+	#HEALTH,
+	#REST,
+#}
 
 @export var character = Game.characters
 @export var property = 0

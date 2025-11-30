@@ -6,6 +6,10 @@ signal game_ended
 
 signal character_added
 
+enum State {
+	MENU, ACTIVE, EVENT
+}
+
 enum Items {
 	GOLD,
 	MEDICINE,
@@ -21,15 +25,16 @@ const SECONDS_PER_TICK = 3.0 #5.0  #
 const EVENT_CHANCE_PER_TICK = 0.40 #0.10  # chance that a event occurs.
 const NOTABLE_EVENT_CHANCE = 0.25  # chance for a important event.
 
+# Game time
 var paused: bool = true
 var current_cycle: int = 0
 var current_tick: int = 0
 var current_time: float = 0.0
 var elapsed_time: float = 0.0
 
-## Distance in kilometres
-var distance_total = 250.0
-var distance_required = 0.0
+# Distance in kilometres
+const distance_total = 250.0
+var distance_required = 0.0  ## Distance required to next checkpoint
 var distance_travled = 0.0
 
 #var speed_mod = 1.0
@@ -43,23 +48,32 @@ var toggles = {
 	"gamble": false
 }
 
-
-var UI: Control
-var World: Node2D
+@onready var UI: Control = get_tree().root.get_node("Main/%UI")
+@onready var World: Node2D = get_tree().root.get_node("Main/World")
 
 
 func _ready() -> void:
+	#State.MENU
 	game_started.connect( _on_game_start )
 	EventManager.event_started.connect( _on_event_started )
 	EventManager.event_ended.connect( _on_event_ended )
 
-	UI = get_tree().root.get_node("Main/%UI")
-	World = get_tree().root.get_node("Main/World")
-
+	DialogueManager.passed_title.connect( func(title): print(title) )
 	#player.apply_stat( Character.StatType.HEALTH, -10 )
 	#var resource = preload("res://events/dialogues/a.dialogue")
 	#var diag = await DialogueManager.get_next_dialogue_line(resource, "start")
 	#UI.get_node("%DistanceLabel").text = diag.text
+
+
+func _on_game_start():
+	UI.get_node("%StartMenu").hide()
+	UI.get_node("%CharacterCard").update()
+
+	# Game.add character
+
+	EventManager.start_event("start")
+	#EventManager.load_event("res://events/dialogues/new_journey.tres")
+	#EventManager.load_event("res://events/dialogues/village.tres")
 
 
 func _physics_process(delta: float) -> void:
@@ -69,7 +83,7 @@ func _physics_process(delta: float) -> void:
 
 		if current_time >= SECONDS_PER_TICK:
 			current_tick += 1
-			current_time = 0.0  # reset tick timer
+			current_time = 0.0  # Reset tick timer
 
 			# Every 4th tick is chance for event
 			if current_tick % 4 == 0:
@@ -79,8 +93,7 @@ func _physics_process(delta: float) -> void:
 						#EventManager.start_event(load("res://events/event_1.tres"))
 					#else:
 						#EventManager.start_event(load("res://events/event_1.tres"))
-					#EventManager.start_event(Event.new())
-					EventManager.load_random_event()
+					#EventManager.load_random_event()
 					print("new event start rand")
 			UI.get_node("%TravelProgress").value = current_tick
 		# ON DEATH
@@ -112,6 +125,7 @@ func _on_event_started(event):
 
 # Do stuff after an event is resolved.
 func _on_event_ended(event):
+	print("unpaused")
 	paused = false
 	World.activate_parallax()
 	var event_file_name = event.resource_path.split("/")[-1].split(".")[0]
@@ -120,12 +134,3 @@ func _on_event_ended(event):
 		World.hide_village()
 	if event_file_name in ["death","final"]:
 		paused = true
-	print("unpaused")
-
-
-func _on_game_start():
-	UI.get_node("%StartMenu").hide()
-	UI.get_node("%CharacterCard").update()
-
-	EventManager.load_event("res://events/dialogues/new_journey.tres")
-	#EventManager.load_event("res://events/dialogues/village.tres")

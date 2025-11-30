@@ -1,4 +1,5 @@
 ~ start
+
 Survivor...
 Survivor.
 Survivor!
@@ -9,6 +10,6 @@ What is your name?
 # Ask for input stuff, provide input area.
 # After entering, save info here and continue dialouge.
 # do save_input()
-- 
+-
 
 => END
