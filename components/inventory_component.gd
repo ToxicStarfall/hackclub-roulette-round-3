@@ -3,19 +3,29 @@ extends Node
 
 
 #var items: Array[Item] = []
-var items: Dictionary = {}
+#var items: Array = []
+var items: Dictionary = {
+	GOLD = 0,
+	RATIONS = 0,
+}
 
 @export var size: int
 @export var size_grid: Vector2
 
 
-func add(item: Item, quantity: int, idx: int = -1):
-	pass
+func get_item(item: String):
+	return int(items.get(item))
 
-func remove(item: Item, quantity: int, idx: int = -1):
-	pass
 
-func swap(idx: int, idx2: int):
+func add(item: String, quantity: int, _idx: int = -1):
+	items.set(item, int(items.get(item)) + quantity)
+
+
+func remove(item: String, quantity: int, _idx: int = -1):
+	items.set(item, int(items.get(item)) - quantity)
+
+
+func swap(_idx: int, _idx2: int):
 	pass
 
 #func add_grid(item: Item, quantity: int, grid_pos: Vector2i):

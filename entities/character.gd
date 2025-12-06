@@ -18,7 +18,7 @@ var stats = CharacterStats.new()
 
 func apply_stat(stat_type: StatType, value: float) -> void:
 	var stat = StatType.keys().get(stat_type).to_lower()
-	stats.set(stat, value)
+	stats.set(stat, stats.get(stat) + value)
 	stat_changed.emit() # send ui update request after changing
 
 

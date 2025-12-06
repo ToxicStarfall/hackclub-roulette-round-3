@@ -2,6 +2,7 @@ extends Node
 
 
 var members: Array[Character] = []
+#var inventory: InventoryComponent
 
 
 func add_member():

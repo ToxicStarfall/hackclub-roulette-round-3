@@ -11,7 +11,6 @@ enum State {
 }
 
 enum Items {
-	GOLD,
 	MEDICINE,
 	RATIONS,
 	WATER,
@@ -59,6 +58,12 @@ func _ready() -> void:
 	EventManager.event_ended.connect( _on_event_ended )
 
 	DialogueManager.passed_title.connect( func(title): print(title) )
+	player.stat_changed.connect( UI.get_node("%CharacterCard").update )
+
+	inventory.add(Items.GOLD, 1)
+	print(inventory.get_item(Items.GOLD))
+
+
 	#player.apply_stat( Character.StatType.HEALTH, -10 )
 	#var resource = preload("res://events/dialogues/a.dialogue")
 	#var diag = await DialogueManager.get_next_dialogue_line(resource, "start")
