@@ -6,6 +6,7 @@ extends Resource
 #@export var type: Types = EventTypes.NORMAL
 
 @export var title: String = ""
+#@export var texture: Texture2D
 #@export var description: String = ""
 @export var dialogue: DialogueResource
 

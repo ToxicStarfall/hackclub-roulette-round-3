@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://duwtrlsfehtes"
+path="res://.godot/imported/sight_words.dialogue-2fd92043dc6d6360f953b08fd391b941.tres"
+
+[deps]
+
+source_file="res://events/dialogue2/snippets/sight_words.dialogue"
+dest_files=["res://.godot/imported/sight_words.dialogue-2fd92043dc6d6360f953b08fd391b941.tres"]
+
+[params]
+
+defaults=true

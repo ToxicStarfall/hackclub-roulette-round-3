@@ -46,6 +46,7 @@ layout_mode = 2
 
 [node name="DescriptionLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 bbcode_enabled = true
@@ -53,7 +54,7 @@ text = "event content text stuff"
 fit_content = true
 horizontal_alignment = 1
 
-[node name="DialogueLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+[node name="DialogueOutput" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 bbcode_enabled = true
@@ -61,8 +62,13 @@ text = "event content text stuff"
 fit_content = true
 horizontal_alignment = 1
 script = ExtResource("2_l4rf7")
+seconds_per_step = 0.04
 skip_pause_at_abbreviations = PackedStringArray("Mr", "Mrs", "Ms", "Dr", "etc", "eg", "ex")
 metadata/_custom_type_script = "uid://g32um0mltv5d"
+
+[node name="DialogueOptions" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
 
 [node name="DialogueButton" type="Button" parent="."]
 unique_name_in_owner = true

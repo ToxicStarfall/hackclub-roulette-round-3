@@ -2,13 +2,13 @@ extends Node
 
 
 @warning_ignore_start("unused_signal")
-signal event_changed
-signal event_started
-signal event_ended
-signal event_aborted
+signal event_started(event: Event2)
+signal event_ended(event: Event2)
+signal event_changed(event: Event2)
+signal event_aborted(event: Event2)
 
-signal dialogue_changed(new_dialogue)
-signal dialogue_progressed
+signal dialogue_changed(dialogue_line: DialogueLine)
+signal dialogue_progressed()
 @warning_ignore_restore("unused_signal")
 
 var current_event: Event2
@@ -35,7 +35,7 @@ var event_array = [
 
 func _ready() -> void:
 	#dialogue_changed.connect( _on_dialogue_changed )
-	dialogue_progressed.connect( _on_dialogue_progressed )
+	#dialogue_progressed.connect( _on_dialogue_progressed )
 
 	#load_event("res://events/dialogues/new_journey.tres")
 	#load_event("res://events/dialogues/village.tres")
@@ -45,17 +45,13 @@ func _ready() -> void:
 func start_event(event_id):
 	#print("Event Started: %s" % [event.title])
 	#event_changed.emit(event)
-	#dialogue_changed.emit( get_first_dialogue() )
-
 	var event: Event2 = load("res://events/dialogue2/" + event_id + ".tres")
 	var dialogue: DialogueResource = event.dialogue
-	var dialogue_line: DialogueLine = await DialogueManager.get_next_dialogue_line(dialogue)
 	current_event = event
 	current_dialogue = dialogue
-	current_dialogue_line = dialogue_line
+	get_next_dialogue_line()  # Retrieves the first dialogue line
 
-	event_started.emit(event, dialogue_line)
-	dialogue_changed.emit(dialogue)
+	event_started.emit(current_event)
 
 
 func end_event():
@@ -63,6 +59,25 @@ func end_event():
 	current_event = null
 	current_dialogue = null
 	current_dialogue_line = null
+
+
+func get_next_dialogue_line(next_dialogue_id: String = ""):
+	var next_id = next_dialogue_id   # Dialogue redirect (if next_id given)
+	if !current_dialogue_line: pass  # Beginning of dialogue check
+	elif !next_id: next_id = current_dialogue_line.next_id  # Dialogue continue
+
+	var dialogue_line: DialogueLine
+	dialogue_line = await DialogueManager.get_next_dialogue_line(
+			current_dialogue,
+			next_id,
+			[Game, EventManager, Character])
+	if dialogue_line:
+		#print(dialogue_line)
+		current_dialogue_line = dialogue_line
+		dialogue_changed.emit(current_dialogue_line)
+	else:
+		#event_ended.emit()
+		pass
 
 
 #func get_event(_location):
@@ -90,25 +105,25 @@ func end_event():
 	#else: return get_next_dialogue()
 
 
-func get_next_dialogue():
-	print(dialogue_idx)
-	dialogue_idx += 1
-	if dialogue_list.size() -1  >= dialogue_idx:
-	#if dialogue_list[dialogue_idx]:
-		var dialogue = dialogue_list[dialogue_idx]
-		#if dialogue.has("options"):
-		if dialogue.get("options"):
-			for option in dialogue.options:
-				#print(option.name)
-				pass
-		return dialogue
-	else: end_event()
+#func get_next_dialogue():
+	#print(dialogue_idx)
+	#dialogue_idx += 1
+	#if dialogue_list.size() -1  >= dialogue_idx:
+	##if dialogue_list[dialogue_idx]:
+		#var dialogue = dialogue_list[dialogue_idx]
+		##if dialogue.has("options"):
+		#if dialogue.get("options"):
+			#for option in dialogue.options:
+				##print(option.name)
+				#pass
+		#return dialogue
+	#else: end_event()
 
 
-func get_first_dialogue():
-	var first_dialogue = dialogue_list[0]
-	current_dialogue = first_dialogue
-	return first_dialogue
+#func get_first_dialogue():
+	#var first_dialogue = dialogue_list[0]
+	#current_dialogue = first_dialogue
+	#return first_dialogue
 
 
 #func get_path_dialogue(path: String):
@@ -119,21 +134,6 @@ func get_first_dialogue():
 #func _on_dialogue_changed(new_dialogue):
 	#current_dialogue = new_dialogue
 	#print("new dialogue set")
-
-
-#func _on_dialogue_requested(dialogue_path: String = "", alt_dialogue: Dialogue = null):
-func _on_dialogue_progressed():
-	#if alt_dialogue:
-		#current_dialogue = alt_dialogue
-		#dialogue_changed.emit( alt_dialogue )
-	#else:
-		#var a = get_dialogue(dialogue_path)
-		#if a:
-			#dialogue_changed.emit( a )
-
-	#var dialogue_line: DialogueLine = await current_dialogue.get_next_dialogue_line("")
-	#current_dialogue
-	pass
 
 
 #func load_event(_event_id):

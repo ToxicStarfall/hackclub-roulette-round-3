@@ -10,12 +10,13 @@ enum State {
 	MENU, ACTIVE, EVENT
 }
 
-enum Items {
-	MEDICINE,
-	RATIONS,
-	WATER,
-	WEAPONS,
-}
+#enum Items {
+	#GOLD,
+	#MEDICINE,
+	#RATIONS,
+	#WATER,
+	#WEAPONS,
+#}
 
 const TOTAL_CYCLES = 10  # 1 cycle = day/night.
 const TICKS_PER_CYCLE = 24.0  # 1 tick = 1 second.
@@ -39,8 +40,7 @@ var distance_travled = 0.0
 #var speed_mod = 1.0
 
 var player := Character.new()
-#var characters := []
-
+#var party := Party.new()
 var inventory := InventoryComponent.new()
 
 var toggles = {
@@ -52,12 +52,11 @@ var toggles = {
 
 
 func _ready() -> void:
-	#State.MENU
 	game_started.connect( _on_game_start )
+
 	EventManager.event_started.connect( _on_event_started )
 	EventManager.event_ended.connect( _on_event_ended )
 
-	DialogueManager.passed_title.connect( func(title): print(title) )
 	player.stat_changed.connect( UI.get_node("%CharacterCard").update )
 
 	inventory.add(Items.GOLD, 1)
@@ -77,6 +76,7 @@ func _on_game_start():
 	# Game.add character
 
 	EventManager.start_event("start")
+	EventManager.start_event("animal_attack")
 	#EventManager.load_event("res://events/dialogues/new_journey.tres")
 	#EventManager.load_event("res://events/dialogues/village.tres")
 
@@ -127,6 +127,7 @@ func _on_event_started(event):
 	World.deactivate_parallax()
 	if event.resource_path.split("/")[-1].split(".")[0] == "village":
 		World.show_village()
+
 
 # Do stuff after an event is resolved.
 func _on_event_ended(event):
