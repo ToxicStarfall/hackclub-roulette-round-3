@@ -121,3 +121,4 @@ size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 12
 theme_override_styles/background = SubResource("StyleBoxFlat_eo6kg")
 theme_override_styles/fill = SubResource("StyleBoxFlat_ypn16")
+step = 1.0

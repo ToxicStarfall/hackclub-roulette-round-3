@@ -60,8 +60,6 @@ func _ready() -> void:
 	player.stat_changed.connect( UI.get_node("%CharacterCard").update )
 
 	inventory.add(Items.GOLD, 1)
-	print(inventory.get_item(Items.GOLD))
-
 
 	#player.apply_stat( Character.StatType.HEALTH, -10 )
 	#var resource = preload("res://events/dialogues/a.dialogue")
@@ -75,8 +73,9 @@ func _on_game_start():
 
 	# Game.add character
 
-	EventManager.start_event("start")
+	#EventManager.start_event("start")
 	EventManager.start_event("animal_attack")
+	#EventManager.start_event("a")
 	#EventManager.load_event("res://events/dialogues/new_journey.tres")
 	#EventManager.load_event("res://events/dialogues/village.tres")
 

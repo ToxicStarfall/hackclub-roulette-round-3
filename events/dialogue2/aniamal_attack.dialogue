@@ -1,13 +1,12 @@
 # Import World Region data  
 #import
 
-~ start
-
 #if world.is_forest: 
 #if world.is_plains: 
 #if world.is_mountains:
 
-#% Walking on through some fields, 
+~ start
+# Walking on through some fields, 
 #|	% you notice some dark shapes around you, moving in sync with your pacing. [wait=2] A pack of wild wolves have surrounded you!
 #	% you notice a large hulking shape, moving towards in the distance. [wait=2] Its a grizzly bear!
 
@@ -17,39 +16,31 @@ Walking on through some fields, you notice some dark shapes around you, moving i
 
 - Run away
 	You attempt to run away.
-	% 
-	%
+	% => fight_success
+	% => fight_failure
 
 - Lure away with food - sacrifice 1 ration.
-	%1
-	%2
+	%2 => fight_failure
+	%1 => fight_success
 
 - Lure away with food - sacrifice 2 rations.
-	%1
-	%3.5
+	%1 => fight_failure
+	%3.5 => fight_success
 
 - Fight
 	You attempt to fight the [[wild|rabid|hostile]] [[animals|creatures|beasts]].
-	#=>< Animal_Attack/Animal_Words
-
-	%
-		do Game.player.apply_stat(Character.StatType.HEALTH, -10.0)
-		do Game.player.apply_stat(Character.StatType.HUNGER, -5.0)
-		You sucessfully defeat them albeit not without injury.
-	%
-		do Game.player.apply_stat(Character.StatType.HUNGER, -5.0)
-		You sucessfully defeat them without injury.
-
-
+	% => fight_success
+	% => fight_failure
 => END
 
-~ fight
-	You attempt to fight.
-~ run_away
-~ play_dead
 
+~ fight_success
+do Game.player.apply_stat(Character.StatType.HEALTH, -10.0)
+do Game.player.apply_stat(Character.StatType.HUNGER, -5.0)
+You sucessfully defeat them albeit not without injury.
+=> END
 
-~ Animal_Words
-	[[wild|hostile]]
-~ Animal_Descriptors
-	[[animals|creatures|monsters]]
+~ fight_failure
+do Game.player.apply_stat(Character.StatType.HUNGER, -5.0)
+You sucessfully defeat them without injury.
+=> END

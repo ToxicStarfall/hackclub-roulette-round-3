@@ -58,8 +58,8 @@ func _on_dialogue_button_pressed() -> void:
 	if DialogueOutput.is_typing:
 		DialogueOutput.skip_typing()
 	# Skip dialogue options animaition if not already finished
-	elif DialogueOptions.get_child_count() < EventManager.current_dialogue_line.responses.size():
-		pass
+	#elif DialogueOptions.get_child_count() < EventManager.current_dialogue_line.responses.size():
+		#pass
 	# Continue dialogue when there are no dialogue options to make.
 	elif EventManager.current_dialogue_line.responses.is_empty():
 		EventManager.get_next_dialogue_line()

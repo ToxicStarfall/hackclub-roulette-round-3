@@ -7,8 +7,8 @@ signal stat_changed
 enum StatType {
 	HEALTH,
 	HUNGER,
-	THIRST,
-	ENERGY,
+	#THIRST,
+	#ENERGY,
 	#REST
 }
 

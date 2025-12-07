@@ -5,46 +5,48 @@ extends Node
 signal event_started(event: Event2)
 signal event_ended(event: Event2)
 signal event_changed(event: Event2)
-signal event_aborted(event: Event2)
+#signal event_aborted(event: Event2)
 
 signal dialogue_changed(dialogue_line: DialogueLine)
 signal dialogue_progressed()
 @warning_ignore_restore("unused_signal")
 
+var event_history = []
+
 var current_event: Event2
 var current_dialogue: DialogueResource
 var current_dialogue_line: DialogueLine
 
-var dialogue_idx: int = 0
-var dialogue_count: int = 0
-var dialogue_list: Array = []
+var main_dialogue_path: String  ## The main dialogue path/title
+var current_dialogue_path: String  ## The current dialogue path/title
+
+var event_data = {}
+
+#var dialogue_idx: int = 0
+#var dialogue_count: int = 0
+#var dialogue_list: Array = []
 #var dialogue_paths: Dictionary = {}
-var dialogue_paths = []
+#var dialogue_paths = []
 
-var event_history = []
-
-var event_array = [
-	"res://events/dialogues/animal_attack.tres",
-	"res://events/dialogues/bandits.tres",
-	"res://events/dialogues/desert_winds.tres",
-	"res://events/dialogues/guards.tres",
-	"res://events/dialogues/the_beggar.tres",
-	"res://events/dialogues/village.tres",
-]
+#var event_array = [
+	#"res://events/dialogues/animal_attack.tres",
+	#"res://events/dialogues/bandits.tres",
+	#"res://events/dialogues/desert_winds.tres",
+	#"res://events/dialogues/guards.tres",
+	#"res://events/dialogues/the_beggar.tres",
+	#"res://events/dialogues/village.tres",
+#]
 
 
 func _ready() -> void:
 	#dialogue_changed.connect( _on_dialogue_changed )
 	#dialogue_progressed.connect( _on_dialogue_progressed )
-
-	#load_event("res://events/dialogues/new_journey.tres")
-	#load_event("res://events/dialogues/village.tres")
+	#DialogueManager.passed_title.connect( _on_dialogue_mangager_title_passed )
 	pass
 
 
 func start_event(event_id):
 	#print("Event Started: %s" % [event.title])
-	#event_changed.emit(event)
 	var event: Event2 = load("res://events/dialogue2/" + event_id + ".tres")
 	var dialogue: DialogueResource = event.dialogue
 	current_event = event
@@ -59,6 +61,8 @@ func end_event():
 	current_event = null
 	current_dialogue = null
 	current_dialogue_line = null
+	main_dialogue_path = ""
+	current_dialogue_path = ""
 
 
 func get_next_dialogue_line(next_dialogue_id: String = ""):
@@ -66,18 +70,37 @@ func get_next_dialogue_line(next_dialogue_id: String = ""):
 	if !current_dialogue_line: pass  # Beginning of dialogue check
 	elif !next_id: next_id = current_dialogue_line.next_id  # Dialogue continue
 
+	print(next_id)
 	var dialogue_line: DialogueLine
-	dialogue_line = await DialogueManager.get_next_dialogue_line(
-			current_dialogue,
+	#dialogue_line = await DialogueManager.get_next_dialogue_line(
+	dialogue_line = await current_dialogue.get_next_dialogue_line(
 			next_id,
 			[Game, EventManager, Character])
+	print(dialogue_line)
+
 	if dialogue_line:
-		#print(dialogue_line)
 		current_dialogue_line = dialogue_line
 		dialogue_changed.emit(current_dialogue_line)
 	else:
+		print("no dialogue lines")
 		#event_ended.emit()
 		pass
+
+
+func _on_dialogue_mangager_title_passed(title):
+	# If a new event is here (prior event data cleared)
+	if !main_dialogue_path:
+		main_dialogue_path = title
+		#print("new main dialogue path")
+	#print(main_dialogue_path)
+	#print(title)
+	# Title is not the main dialogue title
+	if main_dialogue_path != title:
+		# Title is not being repeated
+		if current_dialogue_path != title:
+			current_dialogue_path = title
+			get_next_dialogue_line(title)
+			pass
 
 
 #func get_event(_location):
@@ -90,67 +113,13 @@ func get_next_dialogue_line(next_dialogue_id: String = ""):
 	#start_event(current_event)
 
 
-#func get_dialogue(path: String = ""):
-	#var new_dialogue
-	#if path:
-		## Return to main dialogue branch
-		#if path == "^":
-			#new_dialogue = get_next_dialogue()
-		## Go to a side/alternate dialogue branch.
-		#else:
-			#new_dialogue =  get_path_dialogue(path)
-		#current_dialogue = new_dialogue
-		#return new_dialogue
-	## Get the next dialogue in the main branch.
-	#else: return get_next_dialogue()
+## Stores temproary event data (decisions, random values, etc)
+func store(id: String, value: Variant) -> void:
+	event_data.set(id, value)
+
+## Returns specified stored event data
+func retrieve(id) -> Variant:
+	return event_data.get(id)
 
 
-#func get_next_dialogue():
-	#print(dialogue_idx)
-	#dialogue_idx += 1
-	#if dialogue_list.size() -1  >= dialogue_idx:
-	##if dialogue_list[dialogue_idx]:
-		#var dialogue = dialogue_list[dialogue_idx]
-		##if dialogue.has("options"):
-		#if dialogue.get("options"):
-			#for option in dialogue.options:
-				##print(option.name)
-				#pass
-		#return dialogue
-	#else: end_event()
-
-
-#func get_first_dialogue():
-	#var first_dialogue = dialogue_list[0]
-	#current_dialogue = first_dialogue
-	#return first_dialogue
-
-
-#func get_path_dialogue(path: String):
-	#var dialogue = dialogue_paths[int(path)]
-	#return dialogue
-
-
-#func _on_dialogue_changed(new_dialogue):
-	#current_dialogue = new_dialogue
-	#print("new dialogue set")
-
-
-#func load_event(_event_id):
-	#var obj = load(event_res)
-	#current_event = obj
-	#dialogue_idx = 0
-	#dialogue_list = obj.dialogue
-	#dialogue_paths = obj.paths
-	#dialogue_count = dialogue_list.size()
-	#start_event(current_event)
-
-	#var event: Event2 = load("res://events/dialogue2/" + event_id + ".tres")
-	#var dialogue: DialogueResource = event.dialogue
-	#var dialogue_line: DialogueLine = await DialogueManager.get_next_dialogue_line(dialogue)
-	#current_event = event
-	#current_dialogue = dialogue
-	#current_dialogue_line = dialogue_line
-
-	#start_event(event)
-	#pass
+#func clear_dat
