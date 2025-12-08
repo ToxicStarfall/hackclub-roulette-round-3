@@ -145,6 +145,7 @@ scale = Vector2(0.3, 0.5)
 texture = ExtResource("2_h2yge")
 
 [node name="HUD" type="CanvasLayer" parent="World"]
+visible = false
 
 [node name="UI" type="Control" parent="."]
 unique_name_in_owner = true

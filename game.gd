@@ -4,19 +4,11 @@ extends Node
 signal game_started
 signal game_ended
 
-signal character_added
+#signal character_added
 
 enum State {
 	MENU, ACTIVE, EVENT
 }
-
-#enum Items {
-	#GOLD,
-	#MEDICINE,
-	#RATIONS,
-	#WATER,
-	#WEAPONS,
-#}
 
 const TOTAL_CYCLES = 10  # 1 cycle = day/night.
 const TICKS_PER_CYCLE = 24.0  # 1 tick = 1 second.
@@ -39,8 +31,8 @@ var distance_travled = 0.0
 
 #var speed_mod = 1.0
 
-var player := Character.new()
 #var party := Party.new()
+var player := Character.new()
 var inventory := InventoryComponent.new()
 
 var toggles = {
@@ -62,8 +54,6 @@ func _ready() -> void:
 	inventory.add(Items.GOLD, 1)
 
 	#player.apply_stat( Character.StatType.HEALTH, -10 )
-	#var resource = preload("res://events/dialogues/a.dialogue")
-	#var diag = await DialogueManager.get_next_dialogue_line(resource, "start")
 	#UI.get_node("%DistanceLabel").text = diag.text
 
 
@@ -120,22 +110,22 @@ func _physics_process(delta: float) -> void:
 
 
 # Do stuff after an event is started.
-func _on_event_started(event):
-	print("paused")
+func _on_event_started(event: Event2):
+	#print("paused")
 	paused = true
 	World.deactivate_parallax()
-	if event.resource_path.split("/")[-1].split(".")[0] == "village":
-		World.show_village()
+	#if event.resource_path.split("/")[-1].split(".")[0] == "village":
+		#World.show_village()
 
 
 # Do stuff after an event is resolved.
-func _on_event_ended(event):
-	print("unpaused")
+func _on_event_ended(event: Event2):
+	#print("unpaused")
 	paused = false
 	World.activate_parallax()
-	var event_file_name = event.resource_path.split("/")[-1].split(".")[0]
-	print(event_file_name)
-	if event_file_name == "village":
-		World.hide_village()
-	if event_file_name in ["death","final"]:
-		paused = true
+	#var event_file_name = event.resource_path.split("/")[-1].split(".")[0]
+	#print(event_file_name)
+	#if event_file_name == "village":
+		#World.hide_village()
+	#if event_file_name in ["death","final"]:
+		#paused = true

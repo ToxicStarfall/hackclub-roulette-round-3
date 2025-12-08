@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://bk4q4hhrohwl5"]
+[gd_scene load_steps=9 format=3 uid="uid://bk4q4hhrohwl5"]
 
 [ext_resource type="Script" uid="uid://b2wo0q8lec12e" path="res://ui/screens/event_panel.gd" id="1_hss4t"]
 [ext_resource type="Script" uid="uid://g32um0mltv5d" path="res://addons/dialogue_manager/dialogue_label.gd" id="2_l4rf7"]
+[ext_resource type="Script" uid="uid://bb52rsfwhkxbn" path="res://addons/dialogue_manager/dialogue_responses_menu.gd" id="3_uyss2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_272bh"]
 bg_color = Color(0.2, 0.188235, 0.172549, 1)
@@ -69,6 +70,12 @@ metadata/_custom_type_script = "uid://g32um0mltv5d"
 [node name="DialogueOptions" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+
+[node name="DialogueResponsesMenu" type="Container" parent="MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+script = ExtResource("3_uyss2")
+metadata/_custom_type_script = "uid://bb52rsfwhkxbn"
 
 [node name="DialogueButton" type="Button" parent="."]
 unique_name_in_owner = true

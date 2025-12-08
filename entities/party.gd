@@ -1,4 +1,5 @@
-extends Node
+class_name Party
+extends Resource
 
 
 var members: Array[Character] = []

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Event" load_steps=33 format=3 uid="uid://d3ppdxakq3fir"]
+[gd_resource type="Resource" script_class="Event" load_steps=29 format=3 uid="uid://d3ppdxakq3fir"]
 
 [ext_resource type="Script" uid="uid://dk7vmirn2sppi" path="res://events/comps/dialogue/dialogue.gd" id="1_7aco4"]
 [ext_resource type="Script" uid="uid://d12js1gdl5pnt" path="res://events/comps/dialogue/base_dialogue.gd" id="1_s1n41"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" uid="uid://b3uril2uwjvfv" path="res://events/comps/dialogue/dialogue_option.gd" id="2_s1n41"]
 [ext_resource type="Script" uid="uid://bjy5nqhfkji55" path="res://events/comps/effects/effect.gd" id="3_vaw0e"]
 [ext_resource type="Script" uid="uid://dy1p0cahsjs18" path="res://events/comps/effects/toggle_effect.gd" id="4_3p0rs"]
-[ext_resource type="Script" uid="uid://dsl562vyuejwt" path="res://events/comps/effects/item_effect.gd" id="5_vaw0e"]
 
 [sub_resource type="Resource" id="Resource_s2ofv"]
 script = ExtResource("1_7aco4")
@@ -79,37 +78,19 @@ description = "What did you do before this?"
 options = Array[ExtResource("2_s1n41")]([SubResource("Resource_4l1bp"), SubResource("Resource_7cbhv")])
 metadata/_custom_type_script = "uid://dk7vmirn2sppi"
 
-[sub_resource type="Resource" id="Resource_hkv0a"]
-script = ExtResource("5_vaw0e")
-value = 15.0
-metadata/_custom_type_script = "uid://55i3a0h3thr5"
-
 [sub_resource type="Resource" id="Resource_w86lv"]
 script = ExtResource("2_s1n41")
 name = "Poor"
-effects = Array[ExtResource("3_vaw0e")]([SubResource("Resource_hkv0a")])
 metadata/_custom_type_script = "uid://b3uril2uwjvfv"
-
-[sub_resource type="Resource" id="Resource_nk83c"]
-script = ExtResource("5_vaw0e")
-value = 35.0
-metadata/_custom_type_script = "uid://55i3a0h3thr5"
 
 [sub_resource type="Resource" id="Resource_tt5ye"]
 script = ExtResource("2_s1n41")
 name = "Moderate"
-effects = Array[ExtResource("3_vaw0e")]([SubResource("Resource_nk83c")])
 metadata/_custom_type_script = "uid://b3uril2uwjvfv"
-
-[sub_resource type="Resource" id="Resource_x16md"]
-script = ExtResource("5_vaw0e")
-value = 90.0
-metadata/_custom_type_script = "uid://55i3a0h3thr5"
 
 [sub_resource type="Resource" id="Resource_xlbn0"]
 script = ExtResource("2_s1n41")
 name = "Wealthy"
-effects = Array[ExtResource("3_vaw0e")]([SubResource("Resource_x16md")])
 metadata/_custom_type_script = "uid://b3uril2uwjvfv"
 
 [sub_resource type="Resource" id="Resource_toa1l"]

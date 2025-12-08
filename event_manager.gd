@@ -17,8 +17,8 @@ var current_event: Event2
 var current_dialogue: DialogueResource
 var current_dialogue_line: DialogueLine
 
-var main_dialogue_path: String  ## The main dialogue path/title
-var current_dialogue_path: String  ## The current dialogue path/title
+#var main_dialogue_path: String  ## The main dialogue path/title
+#var current_dialogue_path: String  ## The current dialogue path/title
 
 var event_data = {}
 
@@ -28,14 +28,6 @@ var event_data = {}
 #var dialogue_paths: Dictionary = {}
 #var dialogue_paths = []
 
-#var event_array = [
-	#"res://events/dialogues/animal_attack.tres",
-	#"res://events/dialogues/bandits.tres",
-	#"res://events/dialogues/desert_winds.tres",
-	#"res://events/dialogues/guards.tres",
-	#"res://events/dialogues/the_beggar.tres",
-	#"res://events/dialogues/village.tres",
-#]
 
 
 func _ready() -> void:
@@ -48,7 +40,8 @@ func _ready() -> void:
 func start_event(event_id):
 	#print("Event Started: %s" % [event.title])
 	var event: Event2 = load("res://events/dialogue2/" + event_id + ".tres")
-	var dialogue: DialogueResource = event.dialogue
+	#var dialogue: DialogueResource = event.dialogue
+	var dialogue: DialogueResource = load("res://events/dialogue2/" + event_id + ".dialogue")
 	current_event = event
 	current_dialogue = dialogue
 	get_next_dialogue_line()  # Retrieves the first dialogue line
@@ -61,8 +54,8 @@ func end_event():
 	current_event = null
 	current_dialogue = null
 	current_dialogue_line = null
-	main_dialogue_path = ""
-	current_dialogue_path = ""
+	#main_dialogue_path = ""
+	#current_dialogue_path = ""
 
 
 func get_next_dialogue_line(next_dialogue_id: String = ""):
@@ -70,37 +63,36 @@ func get_next_dialogue_line(next_dialogue_id: String = ""):
 	if !current_dialogue_line: pass  # Beginning of dialogue check
 	elif !next_id: next_id = current_dialogue_line.next_id  # Dialogue continue
 
-	print(next_id)
+	#print(next_id)
 	var dialogue_line: DialogueLine
 	#dialogue_line = await DialogueManager.get_next_dialogue_line(
 	dialogue_line = await current_dialogue.get_next_dialogue_line(
 			next_id,
 			[Game, EventManager, Character])
-	print(dialogue_line)
+	#print(dialogue_line)
 
 	if dialogue_line:
 		current_dialogue_line = dialogue_line
 		dialogue_changed.emit(current_dialogue_line)
 	else:
 		print("no dialogue lines")
-		#event_ended.emit()
-		pass
+		event_ended.emit( current_event )
 
 
-func _on_dialogue_mangager_title_passed(title):
-	# If a new event is here (prior event data cleared)
-	if !main_dialogue_path:
-		main_dialogue_path = title
-		#print("new main dialogue path")
-	#print(main_dialogue_path)
-	#print(title)
-	# Title is not the main dialogue title
-	if main_dialogue_path != title:
-		# Title is not being repeated
-		if current_dialogue_path != title:
-			current_dialogue_path = title
-			get_next_dialogue_line(title)
-			pass
+#func _on_dialogue_mangager_title_passed(title):
+	## If a new event is here (prior event data cleared)
+	#if !main_dialogue_path:
+		#main_dialogue_path = title
+		##print("new main dialogue path")
+	##print(main_dialogue_path)
+	##print(title)
+	## Title is not the main dialogue title
+	#if main_dialogue_path != title:
+		## Title is not being repeated
+		#if current_dialogue_path != title:
+			#current_dialogue_path = title
+			#get_next_dialogue_line(title)
+			#pass
 
 
 #func get_event(_location):
@@ -116,6 +108,7 @@ func _on_dialogue_mangager_title_passed(title):
 ## Stores temproary event data (decisions, random values, etc)
 func store(id: String, value: Variant) -> void:
 	event_data.set(id, value)
+
 
 ## Returns specified stored event data
 func retrieve(id) -> Variant:
