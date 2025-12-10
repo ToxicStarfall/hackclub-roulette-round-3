@@ -314,7 +314,6 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(600, 12)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_vivmo")
-max_value = 24.0
 show_percentage = false
 
 [node name="TimeLabel" type="Label" parent="UI/MainScreen/HBoxContainer/TravelProgress"]

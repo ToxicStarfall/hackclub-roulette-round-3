@@ -10,24 +10,28 @@ enum State {
 	MENU, ACTIVE, EVENT
 }
 
-const TOTAL_CYCLES = 10  # 1 cycle = day/night.
-const TICKS_PER_CYCLE = 24.0  # 1 tick = 1 second.
-const SECONDS_PER_TICK = 3.0 #5.0  #
+const EVENT_CHANCE_PER_TICK = 0.30  # chance that a event occurs.
+#const NOTABLE_EVENT_CHANCE = 0.25  # chance for a important event.
 
-const EVENT_CHANCE_PER_TICK = 0.40 #0.10  # chance that a event occurs.
-const NOTABLE_EVENT_CHANCE = 0.25  # chance for a important event.
+#const TOTAL_CYCLES = 10  # 1 cycle = day/night.
+const HOURS_PER_DAY = 16.0  # 16 hours per day
+const TICKS_PER_HOUR = 10.0  # 10 ticks per hour
+const SECONDS_PER_TICK = 1.0  # 1 second per tick
 
 # Game time
 var paused: bool = true
-var current_cycle: int = 0
+
+var current_day: int = 0
+var current_hour: int = 0
 var current_tick: int = 0
+
 var current_time: float = 0.0
 var elapsed_time: float = 0.0
 
 # Distance in kilometres
-const distance_total = 250.0
-var distance_required = 0.0  ## Distance required to next checkpoint
-var distance_travled = 0.0
+const distance_total := 250.0
+var distance_required := 0.0  ## Distance required to next checkpoint
+var distance_travled := 0.0
 
 #var speed_mod = 1.0
 
@@ -35,9 +39,9 @@ var distance_travled = 0.0
 var player := Character.new()
 var inventory := InventoryComponent.new()
 
-var toggles = {
-	"gamble": false
-}
+#var toggles = {
+	#"gamble": false
+#}
 
 @onready var UI: Control = get_tree().root.get_node("Main/%UI")
 @onready var World: Node2D = get_tree().root.get_node("Main/World")
@@ -50,24 +54,17 @@ func _ready() -> void:
 	EventManager.event_ended.connect( _on_event_ended )
 
 	player.stat_changed.connect( UI.get_node("%CharacterCard").update )
-
-	inventory.add(Items.GOLD, 1)
-
-	#player.apply_stat( Character.StatType.HEALTH, -10 )
-	#UI.get_node("%DistanceLabel").text = diag.text
+	#inventory.add(Items.GOLD, 1)
 
 
 func _on_game_start():
 	UI.get_node("%StartMenu").hide()
+	UI.get_node("%TravelProgress").max_value = HOURS_PER_DAY
 	UI.get_node("%CharacterCard").update()
 
 	# Game.add character
-
 	#EventManager.start_event("start")
 	EventManager.start_event("animal_attack")
-	#EventManager.start_event("a")
-	#EventManager.load_event("res://events/dialogues/new_journey.tres")
-	#EventManager.load_event("res://events/dialogues/village.tres")
 
 
 func _physics_process(delta: float) -> void:
@@ -75,38 +72,47 @@ func _physics_process(delta: float) -> void:
 		elapsed_time = snapped(elapsed_time + delta, 0.001)
 		current_time = snapped(current_time + delta, 0.01)
 
+		# Tick counter
 		if current_time >= SECONDS_PER_TICK:
+			current_time = 0.0
 			current_tick += 1
-			current_time = 0.0  # Reset tick timer
+			tick_tick()
 
-			# Every 4th tick is chance for event
-			if current_tick % 4 == 0:
-				if randf() <= EVENT_CHANCE_PER_TICK:
-					#paused = true
-					#if randf() <= notable_event_chance:
-						#EventManager.start_event(load("res://events/event_1.tres"))
-					#else:
-						#EventManager.start_event(load("res://events/event_1.tres"))
-					#EventManager.load_random_event()
-					print("new event start rand")
-			UI.get_node("%TravelProgress").value = current_tick
-		# ON DEATH
+		# Hour counter
+		if current_tick >= TICKS_PER_HOUR:
+			current_tick = 0
+			current_hour += 1
+			tick_hour()
+
+		# Day counter
+		if current_hour >= HOURS_PER_DAY:
+			current_hour = 0
+			current_day += 1
+			tick_day()
+
+		# Player daeth
 		if player.stats.health <= 0:
 			EventManager.load_event("res://events/dialogues/death.tres")
+	#print("ay%s, hour:%s, tick:%s, time:%s, total:%s" % [current_day, current_hour, current_tick, current_time, elapsed_time])
 
-	if current_tick >= TICKS_PER_CYCLE:
-		current_cycle += 1
-		current_tick = 0
-		UI.get_node("%DayLabel").text = "Day: " + str(current_cycle)
-		if current_cycle == TOTAL_CYCLES:
-			EventManager.load_event("res://events/dialogues/final.tres")
-			World.show_final_village()
-		#if current_cycle % 2 == 0:
-			#EventManager.start_event(Event.new())
-		elif current_tick == 0:
-			EventManager.load_event("res://events/dialogues/a_nights_rest.tres")
-			UI.get_node("%TravelProgress").value = 0
-	#print("cycle:%s, tick:%s, time:%s, total:%s" % [current_cycle, current_tick, current_time, elapsed_time])
+
+func tick_tick():
+	distance_travled += player.get_movment_speed() / TICKS_PER_HOUR
+	UI.get_node("%DistanceLabel").text = "%s km" % [distance_travled]
+	UI.get_node("%TravelProgress").value = current_tick
+
+	if distance_travled >= distance_total:
+		EventManager.start_event("end")
+
+
+func tick_hour():
+	pass
+
+
+func tick_day():
+	EventManager.start_event("night")
+	UI.get_node("%DayLabel").text = "Day: %s" % [current_day]
+	UI.get_node("%TravelProgress").value = 0
 
 
 # Do stuff after an event is started.
