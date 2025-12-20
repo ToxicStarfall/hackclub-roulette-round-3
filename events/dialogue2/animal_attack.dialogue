@@ -5,6 +5,13 @@
 #if world.is_plains: 
 #if world.is_mountains:
 
+~ title
+
+Animal Attack
+
+=> END
+
+
 ~ start
 
 #%Walking on through some fields,

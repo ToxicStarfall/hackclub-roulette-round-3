@@ -4,16 +4,27 @@
 As you walk through a particularly overgrown patch of brush, several armed men emerge from the undergrowth, surrounding you.
 | [br][br][wait=1] You have been ambushed by bandits!
 
-- Atempt to run away.
-	%
-		You attempt to run away, however they catch up to you and attack!
-		| [br][br][wait=1] You manage to fend them off, however, you did not remain unscathed."
-	% You sucessfully manage to escape, avoiding any potential harm!
-
 - Fight
 	You fight the bandits.
-- Pursasion
-	asd
+	%.60
+		do Game.player.apply_stat( Character.StatType.HEALTH, -5.0 )
+	%.40
+		do Game.player.apply_stat( Character.StatType.HEALTH, -10.0 )
+- Pursuade
+	You attempt to pursuade the [[bandits|harrasers]] that you're not worth the trouble.
+	%
+		They mutter in contempt, sneering, "Yeah a filthy traveler like you has nothing any way" and they leave you alone.
+	%
+		"You think you can fool us" 
+		do Game.player.apply_stat( Character.StatType.HEALTH, -5.0 )
+		#do Game.player.apply_stat( Character.StatType.HEALTH, -5.0 )
+
+- Escape
+	%.50
+		You sucessfully manage to escape, avoiding any potential harm!
+	%.50
+		You attempt to run away, however they catch up to you and attack!
+		| [br][br][wait=1] You manage to fend them off, however, you did not remain unscathed."
 
 => END
 
