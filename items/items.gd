@@ -9,6 +9,9 @@ extends Node
 	#WEAPONS,
 #}
 
+const CLOTH = "CLOTH"
 const GOLD = "GOLD"
 const MEDICINE = "MEDICINE"
-const RATIONS = "RATIONS"
+const FOOD = "FODO"
+const ROPE = "ROPE"
+#const RATIONS = "RATIONS"

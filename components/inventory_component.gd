@@ -6,7 +6,7 @@ extends Node
 #var items: Array = []
 var items: Dictionary = {
 	GOLD = 0,
-	RATIONS = 0,
+	FOOD = 0,
 }
 
 @export var size: int

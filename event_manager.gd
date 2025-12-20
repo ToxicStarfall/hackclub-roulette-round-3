@@ -42,15 +42,17 @@ func start_event(event_id: String = ""):
 	var event: Event2 = load("res://events/dialogue2/" + event_id + ".tres")
 	var dialogue: DialogueResource = load("res://events/dialogue2/" + event_id + ".dialogue")
 	if !event:
-		push_error("Cannot find an event of id: %s. Event cancled." % [event_id])
+		push_error("Cannot find an event of id \"%s\". Event cancled." % [event_id])
 
 		# Create a temproary event
-		#if dialogue:
-			#push_warning("Dialogue exists. Creating temproary event." % [event_id])
-			#event = Event2.new()
+		if dialogue:
+			push_warning("Dialogue exists. Creating temproary event." % [event_id])
+			event = Event2.new()
 			#event.title = event_id.capitalize()
+			var title = await dialogue.get_next_dialogue_line("title")
+			if title: event.title = title.text
 		#else:
-		return
+		#return
 	if !dialogue:
 		push_error("Cannot find an event dialogue of id: %s. Event cancled." % [event_id])
 		return
@@ -89,8 +91,7 @@ func get_next_dialogue_line(next_dialogue_id: String = ""):
 		dialogue_changed.emit(current_dialogue_line)
 	else:
 		print("no dialogue lines")
-		event_ended.emit( current_event )
-
+		end_event()
 
 #func _on_dialogue_mangager_title_passed(title):
 	## If a new event is here (prior event data cleared)
@@ -128,4 +129,9 @@ func retrieve(id) -> Variant:
 	return event_data.get(id)
 
 
-#func clear_dat
+#func clear_data
+
+func event_active() -> bool:
+	if !current_event:
+		return false
+	else: return true

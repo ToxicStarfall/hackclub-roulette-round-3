@@ -10,6 +10,14 @@ enum State {
 	MENU, ACTIVE, EVENT
 }
 
+const GameSpeed = {
+	#SLOW = 0.5,
+	NORMAL = 1.0,
+	FAST = 2.0,
+	FASTER = 3.0,
+	#FASTEST = 3.0
+}
+
 const EVENT_CHANCE_PER_TICK = 0.30  # chance that a event occurs.
 #const NOTABLE_EVENT_CHANCE = 0.25  # chance for a important event.
 
@@ -31,7 +39,7 @@ var current_time: float = 0.0
 var elapsed_time: float = 0.0
 
 # Distance in kilometres
-const distance_total := 250.0
+const distance_total := 50.0
 var distance_required := 0.0  ## Distance required to next checkpoint
 var distance_travled := 0.0
 
@@ -64,8 +72,8 @@ func _on_game_start():
 	UI.get_node("%CharacterCard").update()
 
 	# Game.add character
-	#EventManager.start_event("start")
 	#EventManager.start_event("night")
+	#EventManager.start_event("start")
 	EventManager.start_event("animal_attack")
 
 
@@ -75,7 +83,7 @@ func _physics_process(delta: float) -> void:
 		current_time = snapped(current_time + delta, 0.01)
 
 		# Tick counter
-		if current_time >= SECONDS_PER_TICK:
+		if current_time * game_speed >= SECONDS_PER_TICK:
 			current_time = 0.0
 			current_tick += 1
 			tick_tick()
@@ -99,14 +107,16 @@ func _physics_process(delta: float) -> void:
 
 
 func tick_tick():
-	player.apply_stat(Character.StatType.HUNGER, -0.40)
+	player.apply_stat( Character.StatType.HUNGER, -0.40 )
 
 	distance_travled += player.get_movment_speed() / TICkS_PER_DAY
 	UI.get_node("%DistanceLabel").text = "%s km" % [ snapped(distance_travled, 0.001) ]
 	UI.get_node("%TravelProgress").value = (current_hour * TICKS_PER_HOUR) + current_tick
 
-	if player.get_stat(Character.StatType.HUNGER) == 0:
-		player.apply_stat(Character.StatType.HEALTH, -0.25)
+	if player.get_stat( Character.StatType.HUNGER ) == 0:
+		player.apply_stat( Character.StatType.HEALTH, -0.25 )
+	if player.get_stat( Character.StatType.HUNGER ) == 75:
+		player.apply_stat( Character.StatType.HEALTH, +0.20 )
 
 	if distance_travled >= distance_total:
 		EventManager.start_event("end")
@@ -123,22 +133,30 @@ func tick_day():
 
 
 # Do stuff after an event is started.
-func _on_event_started(event: Event2):
-	#print("paused")
-	paused = true
-	World.deactivate_parallax()
+func _on_event_started(_event: Event2):
+	pause()
 	#if event.resource_path.split("/")[-1].split(".")[0] == "village":
 		#World.show_village()
 
 
 # Do stuff after an event is resolved.
-func _on_event_ended(event: Event2):
-	#print("unpaused")
-	paused = false
-	World.activate_parallax()
+func _on_event_ended(_event: Event2):
+	unpause()
 	#var event_file_name = event.resource_path.split("/")[-1].split(".")[0]
 	#print(event_file_name)
 	#if event_file_name == "village":
 		#World.hide_village()
 	#if event_file_name in ["death","final"]:
 		#paused = true
+
+
+func pause():
+	#print("paused")
+	paused = true
+	World.deactivate_parallax()
+
+
+func unpause():
+	#print("unpaused")
+	paused = false
+	World.activate_parallax()

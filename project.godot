@@ -40,7 +40,7 @@ enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://add
 folder_colors={
 "res://addons/": "gray",
 "res://components/": "gray",
-"res://effects/": "gray",
+"res://effects/particles/": "gray",
 "res://entities/enemies/": "gray",
 "res://entities/player/": "gray",
 "res://entities/projectiles/": "gray",

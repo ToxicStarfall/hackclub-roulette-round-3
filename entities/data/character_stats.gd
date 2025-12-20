@@ -11,11 +11,11 @@ extends Resource
 
 @export var health := 100.0
 @export var hunger := 100.0
-@export var thirst := 100.0
-@export var energy := 100.0
+#@export var thirst := 100.0
+#@export var energy := 100.0
 #@export var rest := 100.0
 
-@export var sanity := 100.0
+#@export var sanity := 100.0
 
 @export var charisma := 10.0
 @export var dexterity := 10.0

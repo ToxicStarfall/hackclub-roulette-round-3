@@ -1,16 +1,24 @@
 
+~ title
+
+The Start
+
+=> END
+
 
 ~ start
 
 Survivor...
-Survivor.
-Survivor!
-This is not your time.
+	[wait=1][br] Survivor.
+	[wait=1][br] Survivor!
+	[wait=1][br][br] Wake up!!
+	
+
 Tell me about yourself:
 #| I am
 
 
-What is your name?
+#What is your name?
 # Ask for input stuff, provide input area.
 # After entering, save info here and continue dialouge.
 # do save_input()
