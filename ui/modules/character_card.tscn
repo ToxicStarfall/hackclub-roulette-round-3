@@ -62,7 +62,8 @@ texture = ExtResource("1_3nck4")
 expand_mode = 4
 stretch_mode = 4
 
-[node name="Label" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer"]
+[node name="NameLabel" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
 text = "texte"
@@ -86,7 +87,7 @@ layout_mode = 2
 tooltip_text = "This is your hunger status."
 theme_override_constants/separation = 0
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/StatsPanel/VBoxContainer/HungerGroup"]
+[node name="HungerIcon" type="TextureRect" parent="HBoxContainer/StatsPanel/VBoxContainer/HungerGroup"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 texture = ExtResource("1_3nck4")
@@ -106,7 +107,7 @@ layout_mode = 2
 tooltip_text = "This is your health."
 theme_override_constants/separation = 0
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/StatsPanel/VBoxContainer/HealthGroup"]
+[node name="HealthIcon" type="TextureRect" parent="HBoxContainer/StatsPanel/VBoxContainer/HealthGroup"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 texture = ExtResource("1_3nck4")

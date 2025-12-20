@@ -7,6 +7,7 @@ extends PanelContainer
 @onready var DialogueOptions := %DialogueOptions
 
 
+
 func _ready() -> void:
 	EventManager.event_started.connect( _on_event_started )
 	EventManager.event_ended.connect( _on_event_ended )
@@ -42,15 +43,21 @@ func _on_dialogue_changed(dialogue_line: DialogueLine):
 	DialogueOutput.type_out()
 
 	await DialogueOutput.finished_typing
-	if dialogue_line.responses:
-		%DialogueButton.hide()
+	#if dialogue_line.responses:
+		#%DialogueButton.hide()
 	for response in dialogue_line.responses:
 		var option = Button.new()
 		option.text = response.text
 		option.pressed.connect( _on_dialogue_option_selected.bind( response.next_id ))
 		DialogueOptions.add_child(option)
 
-		await get_tree().create_timer(0.4).timeout
+		if %DialogueButton.visible == false:
+			continue
+		else:
+			await get_tree().create_timer(0.4).timeout
+	# Hide skip button if not options animation skipped
+	if dialogue_line.responses:
+		%DialogueButton.hide()
 
 
 func _on_dialogue_button_pressed() -> void:
@@ -58,8 +65,8 @@ func _on_dialogue_button_pressed() -> void:
 	if DialogueOutput.is_typing:
 		DialogueOutput.skip_typing()
 	# Skip dialogue options animaition if not already finished
-	#elif DialogueOptions.get_child_count() < EventManager.current_dialogue_line.responses.size():
-		#pass
+	elif DialogueOptions.get_child_count() < EventManager.current_dialogue_line.responses.size():
+		%DialogueButton.hide()
 	# Continue dialogue when there are no dialogue options to make.
 	elif EventManager.current_dialogue_line.responses.is_empty():
 		EventManager.get_next_dialogue_line()

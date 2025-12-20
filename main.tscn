@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cqcvewcu1865c"]
+[gd_scene load_steps=23 format=3 uid="uid://cqcvewcu1865c"]
 
 [ext_resource type="Script" uid="uid://chg4vaayt84u3" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://dgr60uub4xhi1" path="res://icon.svg" id="2_h2yge"]
@@ -46,6 +46,13 @@ gradient = SubResource("Gradient_w48qg")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2cqfq"]
 texture = SubResource("GradientTexture1D_vivmo")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w48qg"]
+bg_color = Color(0.16, 0.155467, 0.152, 1)
+border_width_left = 3
+border_width_bottom = 3
+corner_radius_bottom_left = 15
+corner_detail = 2
 
 [node name="Main" type="Node"]
 script = ExtResource("1_0xm2m")
@@ -198,6 +205,7 @@ unique_name_in_owner = true
 layout_mode = 2
 
 [node name="MarginContainer2" type="MarginContainer" parent="UI/MainScreen/BottomBar"]
+visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -212,7 +220,6 @@ grow_vertical = 0
 
 [node name="OptionsPanel" parent="UI/MainScreen/BottomBar/MarginContainer2" instance=ExtResource("6_272bh")]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 
 [node name="EventPanelWrapper" type="HBoxContainer" parent="UI/MainScreen"]
@@ -240,7 +247,6 @@ layout_mode = 2
 
 [node name="InventoryPanel" type="PanelContainer" parent="UI/MainScreen"]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(50, 300)
 layout_mode = 1
 anchors_preset = 4
@@ -250,6 +256,24 @@ offset_top = -20.0
 offset_right = 40.0
 offset_bottom = 20.0
 grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/MainScreen/InventoryPanel"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/MainScreen/InventoryPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="ItemList" type="ItemList" parent="UI/MainScreen/InventoryPanel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 1
+fixed_icon_size = Vector2i(32, 32)
+item_0/text = "56"
+item_0/icon = ExtResource("2_h2yge")
+
+[node name="FoldableContainer" type="FoldableContainer" parent="UI/MainScreen/InventoryPanel/MarginContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="UI/MainScreen"]
 layout_mode = 1
@@ -340,6 +364,48 @@ custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 texture = ExtResource("2_h2yge")
 expand_mode = 1
+
+[node name="TimePanel" type="PanelContainer" parent="UI/MainScreen"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -98.0
+offset_bottom = 50.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_w48qg")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/MainScreen/TimePanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/MainScreen/TimePanel/MarginContainer"]
+layout_mode = 2
+
+[node name="PauseButton" type="Button" parent="UI/MainScreen/TimePanel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "II"
+
+[node name="UnpauseButton" type="Button" parent="UI/MainScreen/TimePanel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = ">"
+
+[node name="DoubleSpeedButton" type="Button" parent="UI/MainScreen/TimePanel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = ">>"
+
+[node name="TripleSpeedButton" type="Button" parent="UI/MainScreen/TimePanel/MarginContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+text = ">>>"
+
+[node name="SettingsButton" type="Button" parent="UI/MainScreen/TimePanel/MarginContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+text = "Settings"
 
 [node name="Screens" type="Control" parent="UI"]
 layout_mode = 1

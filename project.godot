@@ -17,6 +17,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+SaveManager="*res://save_manager.gd"
+SettingsManager="res://settings_manager.gd"
 EventManager="*res://event_manager.gd"
 Game="*res://game.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
@@ -37,10 +39,13 @@ enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://add
 
 folder_colors={
 "res://addons/": "gray",
+"res://components/": "gray",
+"res://effects/": "gray",
 "res://entities/enemies/": "gray",
 "res://entities/player/": "gray",
 "res://entities/projectiles/": "gray",
 "res://entities/states/": "gray",
+"res://items/weapons/": "gray",
 "res://ui/": "green"
 }
 
@@ -69,7 +74,7 @@ move_down={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://events/dialogue2/start.dialogue", "res://events/dialogue2/a.dialogue", "res://events/dialogue2/snippets/ambush_keywords.dialogue", "res://events/dialogue2/snippets/encounter_keywords.dialogue", "res://events/dialogue2/snippets/sight_words.dialogue", "res://events/dialogue2/animal_attack.dialogue", "res://events/dialogue2/bandits.dialogue", "res://events/dialogue2/night.dialogue")
+locale/translations_pot_files=PackedStringArray("res://events/dialogue2/start.dialogue", "res://events/dialogue2/a.dialogue", "res://events/dialogue2/snippets/ambush_keywords.dialogue", "res://events/dialogue2/snippets/encounter_keywords.dialogue", "res://events/dialogue2/snippets/sight_words.dialogue", "res://events/dialogue2/animal_attack.dialogue", "res://events/dialogue2/bandits.dialogue", "res://events/dialogue2/night.dialogue", "res://events/dialogue2/morning.dialogue", "res://events/dialogue2/death.dialogue", "res://events/dialogue2/desert_winds.dialogue", "res://events/dialogue2/end.dialogue", "res://events/dialogue2/guards.dialogue", "res://events/dialogue2/village.dialogue")
 
 [rendering]
 

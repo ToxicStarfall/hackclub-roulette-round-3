@@ -37,14 +37,27 @@ func _ready() -> void:
 	pass
 
 
-func start_event(event_id):
+func start_event(event_id: String = ""):
 	#print("Event Started: %s" % [event.title])
 	var event: Event2 = load("res://events/dialogue2/" + event_id + ".tres")
-	#var dialogue: DialogueResource = event.dialogue
 	var dialogue: DialogueResource = load("res://events/dialogue2/" + event_id + ".dialogue")
+	if !event:
+		push_error("Cannot find an event of id: %s. Event cancled." % [event_id])
+
+		# Create a temproary event
+		#if dialogue:
+			#push_warning("Dialogue exists. Creating temproary event." % [event_id])
+			#event = Event2.new()
+			#event.title = event_id.capitalize()
+		#else:
+		return
+	if !dialogue:
+		push_error("Cannot find an event dialogue of id: %s. Event cancled." % [event_id])
+		return
+
 	current_event = event
 	current_dialogue = dialogue
-	get_next_dialogue_line()  # Retrieves the first dialogue line
+	get_next_dialogue_line("start")  # Retrieves the first dialogue line
 
 	event_started.emit(current_event)
 

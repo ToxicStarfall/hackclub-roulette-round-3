@@ -14,12 +14,14 @@ const EVENT_CHANCE_PER_TICK = 0.30  # chance that a event occurs.
 #const NOTABLE_EVENT_CHANCE = 0.25  # chance for a important event.
 
 #const TOTAL_CYCLES = 10  # 1 cycle = day/night.
-const HOURS_PER_DAY = 16.0  # 16 hours per day
-const TICKS_PER_HOUR = 10.0  # 10 ticks per hour
 const SECONDS_PER_TICK = 1.0  # 1 second per tick
+const TICKS_PER_HOUR = 10.0  # 10 ticks per hour
+const HOURS_PER_DAY = 16.0  # 16 hours per day
+const TICkS_PER_DAY = HOURS_PER_DAY * TICKS_PER_HOUR
 
 # Game time
 var paused: bool = true
+var game_speed := 1.0
 
 var current_day: int = 0
 var current_hour: int = 0
@@ -33,7 +35,6 @@ const distance_total := 250.0
 var distance_required := 0.0  ## Distance required to next checkpoint
 var distance_travled := 0.0
 
-#var speed_mod = 1.0
 
 #var party := Party.new()
 var player := Character.new()
@@ -59,11 +60,12 @@ func _ready() -> void:
 
 func _on_game_start():
 	UI.get_node("%StartMenu").hide()
-	UI.get_node("%TravelProgress").max_value = HOURS_PER_DAY
+	UI.get_node("%TravelProgress").max_value = TICkS_PER_DAY
 	UI.get_node("%CharacterCard").update()
 
 	# Game.add character
 	#EventManager.start_event("start")
+	#EventManager.start_event("night")
 	EventManager.start_event("animal_attack")
 
 
@@ -97,9 +99,14 @@ func _physics_process(delta: float) -> void:
 
 
 func tick_tick():
-	distance_travled += player.get_movment_speed() / TICKS_PER_HOUR
-	UI.get_node("%DistanceLabel").text = "%s km" % [distance_travled]
-	UI.get_node("%TravelProgress").value = current_tick
+	player.apply_stat(Character.StatType.HUNGER, -0.40)
+
+	distance_travled += player.get_movment_speed() / TICkS_PER_DAY
+	UI.get_node("%DistanceLabel").text = "%s km" % [ snapped(distance_travled, 0.001) ]
+	UI.get_node("%TravelProgress").value = (current_hour * TICKS_PER_HOUR) + current_tick
+
+	if player.get_stat(Character.StatType.HUNGER) == 0:
+		player.apply_stat(Character.StatType.HEALTH, -0.25)
 
 	if distance_travled >= distance_total:
 		EventManager.start_event("end")
