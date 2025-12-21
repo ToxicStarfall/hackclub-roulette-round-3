@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://2ylk332djbeg"]
+
+[ext_resource type="Script" uid="uid://cidyoriumnauy" path="res://effects/popups/popup_text.gd" id="1_inp81"]
+
+[node name="PopupText" type="RichTextLabel"]
+offset_right = 40.0
+offset_bottom = 23.0
+bbcode_enabled = true
+script = ExtResource("1_inp81")
