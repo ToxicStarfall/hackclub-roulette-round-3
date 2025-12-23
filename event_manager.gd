@@ -11,28 +11,18 @@ signal dialogue_changed(dialogue_line: DialogueLine)
 signal dialogue_progressed()
 @warning_ignore_restore("unused_signal")
 
+
 var event_history = []
 
 var current_event: Event2
 var current_dialogue: DialogueResource
 var current_dialogue_line: DialogueLine
 
-#var main_dialogue_path: String  ## The main dialogue path/title
-#var current_dialogue_path: String  ## The current dialogue path/title
-
+## Temproary data storage used to save temproary dialogue results.
 var event_data = {}
-
-#var dialogue_idx: int = 0
-#var dialogue_count: int = 0
-#var dialogue_list: Array = []
-#var dialogue_paths: Dictionary = {}
-#var dialogue_paths = []
-
 
 
 func _ready() -> void:
-	#dialogue_changed.connect( _on_dialogue_changed )
-	#dialogue_progressed.connect( _on_dialogue_progressed )
 	#DialogueManager.passed_title.connect( _on_dialogue_mangager_title_passed )
 	pass
 
@@ -42,17 +32,18 @@ func start_event(event_id: String = ""):
 	var event: Event2 = load("res://events/dialogue2/" + event_id + ".tres")
 	var dialogue: DialogueResource = load("res://events/dialogue2/" + event_id + ".dialogue")
 	if !event:
-		push_error("Cannot find an event of id \"%s\". Event cancled." % [event_id])
-
+		push_error("Cannot find an event of id \"%s\"." % [event_id])
 		# Create a temproary event
 		if dialogue:
-			push_warning("Dialogue exists. Creating temproary event." % [event_id])
+			push_warning("Dialogue exists. Creating temproary event.")
 			event = Event2.new()
-			#event.title = event_id.capitalize()
 			var title = await dialogue.get_next_dialogue_line("title")
-			if title: event.title = title.text
-		#else:
-		#return
+			if title: event.title = title.text  # Use the declared title within the dialogue.
+			else: event.title = event_id.capitalize()  # Fallback to event id.
+		# Cancel event if not available
+		else:
+			push_warning("No fallback dialogue. Cancelling event.")
+			return
 	if !dialogue:
 		push_error("Cannot find an event dialogue of id: %s. Event cancled." % [event_id])
 		return
@@ -69,8 +60,12 @@ func end_event():
 	current_event = null
 	current_dialogue = null
 	current_dialogue_line = null
-	#main_dialogue_path = ""
-	#current_dialogue_path = ""
+
+
+func event_active() -> bool:
+	if !current_event:
+		return false
+	else: return true
 
 
 func get_next_dialogue_line(next_dialogue_id: String = ""):
@@ -83,7 +78,7 @@ func get_next_dialogue_line(next_dialogue_id: String = ""):
 	#dialogue_line = await DialogueManager.get_next_dialogue_line(
 	dialogue_line = await current_dialogue.get_next_dialogue_line(
 			next_id,
-			[Game, EventManager, Character])
+			[Game, EventManager, Character, Items])
 	#print(dialogue_line)
 
 	if dialogue_line:
@@ -93,20 +88,9 @@ func get_next_dialogue_line(next_dialogue_id: String = ""):
 		print("no dialogue lines")
 		end_event()
 
+
 #func _on_dialogue_mangager_title_passed(title):
-	## If a new event is here (prior event data cleared)
-	#if !main_dialogue_path:
-		#main_dialogue_path = title
-		##print("new main dialogue path")
-	##print(main_dialogue_path)
-	##print(title)
-	## Title is not the main dialogue title
-	#if main_dialogue_path != title:
-		## Title is not being repeated
-		#if current_dialogue_path != title:
-			#current_dialogue_path = title
-			#get_next_dialogue_line(title)
-			#pass
+	#pass
 
 
 #func get_event(_location):
@@ -129,9 +113,6 @@ func retrieve(id) -> Variant:
 	return event_data.get(id)
 
 
-#func clear_data
-
-func event_active() -> bool:
-	if !current_event:
-		return false
-	else: return true
+## Clears temproary event data
+func clear_event_data():
+	event_data.clear()

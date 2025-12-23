@@ -9,19 +9,34 @@ The Start
 ~ start
 
 Survivor...
-	[wait=1][br] Survivor.
-	[wait=1][br] Survivor!
-	[wait=1][br][br] Wake up!!
-	
+	[wait=1]Survivor.
+	[wait=1]Survivor!
+	[wait=1][br]Wake up!
+This isn't the end of your journey.
 
-Tell me about yourself:
+#Tell me about yourself:
 #| I am
 
+Who were you before this?
+- Farmer (extra food)
+	do Game.inventory.add( Items.GOLD, 6 )
+	do Game.inventory.add( Items.FOOD, 15 )
+	do Game.inventory.add( Items.MEDICINE, 1 )
+- Soldier (balanced)
+	do Game.inventory.add( Items.GOLD, 10 )
+	do Game.inventory.add( Items.FOOD, 12 )
+	do Game.inventory.add( Items.MEDICINE, 2 )
+- Trader (extra gold)
+	do Game.inventory.add( Items.GOLD, 16 )
+	do Game.inventory.add( Items.FOOD, 10 )
+	do Game.inventory.add( Items.MEDICINE, 3 )
 
-#What is your name?
+One last thing, say.. what is your name?
 # Ask for input stuff, provide input area.
 # After entering, save info here and continue dialouge.
 # do save_input()
--
+
+
+I wish you the best of luck on your travels, survivor.
 
 => END

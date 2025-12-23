@@ -1,0 +1,59 @@
+
+~ title
+
+Shop
+
+=>
+
+
+~ start
+
+What would you like to do?
+- Buy
+	=> buy
+- Sell
+	=> sell
+- Leave
+	=> END
+
+=> END
+
+
+~ buy
+
+What would you like to buy?
+
+- Food (2x for 3 gold) [Game.inventory.has(Items.GOLD, 3)]
+	do in
+	2x Food purchased for 3 gold.
+	=> buy
+
+- Medicine (3 gold) [Game.inventory.has(Items.GOLD, 3)]
+	#do inventory.add(Items.MEDICINE, 1)
+	do inventory.add(Items.MEDICINE, 1)
+	1x Medicine purchased for 3 gold.
+	=> buy
+
+- Return
+	=> start
+
+=> END
+
+
+~ sell
+
+What would you like to sell?
+
+- Food (1x for 1 gold) [Game.inventory.has(Items.FOOD, 1)]
+	do in
+	1x Food sold for 1 gold.
+	=> sell
+
+- Medicine (1x for 2 gold) [Game.inventory.has(Items.MEDICINE, 1)]
+	1x Medicine sold for 2 gold.
+	=> sell
+
+- Return
+	=> start
+
+=> END

@@ -25,7 +25,7 @@ var items: Dictionary = {
 
 
 ## Returns the quantiy of the item
-func get_item(item: String):
+func get_item(item: String) -> int:
 	return int(items.get(item))
 
 # Returns an array of all item keys
@@ -33,21 +33,26 @@ func get_item(item: String):
 	#return items.keys()
 
 
+## Returns true if inventory has at least <quantity> of <item>.
+func has(item: String, quantity: int = 1) -> bool:
+	return get_item(item) > quantity
+
+
 func add(item: String, quantity: int, _idx: int = -1):
 	items.set(item, quantity)
 	item_added.emit(item)
-	#changed.emit()
+	changed.emit()
 
 
 func remove(item: String, quantity: int, _idx: int = -1):
 	items.set(item, items.get(item) - quantity)
 	item_removed.emit(item)
-	#changed.emit()
+	changed.emit()
 
 
 func swap(_idx: int, _idx2: int):
 	changed.emit()
-	pass
+
 
 #func add_grid(item: Item, quantity: int, grid_pos: Vector2i):
 	#pass

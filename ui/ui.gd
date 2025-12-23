@@ -20,6 +20,9 @@ func _ready() -> void:
 		if EventManager.event_active() == false:
 			Game.game_speed = Game.GameSpeed.FASTER
 			Game.unpause() )
+
+	%TimePanel/%SkipDayButton.pressed.connect( func():
+		Game.current_hour = Game.HOURS_PER_DAY )
 	pass
 
 
@@ -31,7 +34,7 @@ func _ready() -> void:
 	#pass
 
 
-func clear_event():
+#func clear_event():
 	#%EventPanel.clear()
 	#%OptionsPanel.clear()
-	pass
+	#pass

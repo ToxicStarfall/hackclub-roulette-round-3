@@ -31,8 +31,9 @@ func _on_dialogue_changed(dialogue_line: DialogueLine):
 	clear_dialogue_options()
 	%DialogueButton.show()
 
-	for concurrent_line in dialogue_line.concurrent_lines:
-		dialogue_line.text += "%s" % [concurrent_line.text]
+	# Concurrent dialogue lines used as multiline (NO LONGER NECESSARY)
+	#for concurrent_line in dialogue_line.concurrent_lines:
+		#dialogue_line.text += "%s" % [concurrent_line.text]
 
 	if dialogue_line.responses.is_empty():
 		dialogue_line.text += "[br][br][u][i]Click to continue[/i][/u]"
@@ -43,7 +44,8 @@ func _on_dialogue_changed(dialogue_line: DialogueLine):
 	DialogueOutput.type_out()
 
 	await DialogueOutput.finished_typing
-	#if dialogue_line.responses:
+	if !dialogue_line.responses.is_empty():
+		DialogueOutput.text += "[br]"  # Add spacing between options and dialogue
 		#%DialogueButton.hide()
 	for response in dialogue_line.responses:
 		var option = Button.new()

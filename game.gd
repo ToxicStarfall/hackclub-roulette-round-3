@@ -22,9 +22,9 @@ const EVENT_CHANCE_PER_TICK = 0.30  # chance that a event occurs.
 #const NOTABLE_EVENT_CHANCE = 0.25  # chance for a important event.
 
 #const TOTAL_CYCLES = 10  # 1 cycle = day/night.
-const SECONDS_PER_TICK = 1.0  # 1 second per tick
-const TICKS_PER_HOUR = 10.0  # 10 ticks per hour
-const HOURS_PER_DAY = 16.0  # 16 hours per day
+const SECONDS_PER_TICK = 1  # 1 second per tick
+const TICKS_PER_HOUR = 10  # 10 ticks per hour
+const HOURS_PER_DAY = 16  # 16 hours per day
 const TICkS_PER_DAY = HOURS_PER_DAY * TICKS_PER_HOUR
 
 # Game time
@@ -39,12 +39,12 @@ var current_time: float = 0.0
 var elapsed_time: float = 0.0
 
 # Distance in kilometres
-const distance_total := 50.0
+const distance_total := 50.0  # Approximately 10 days
 var distance_required := 0.0  ## Distance required to next checkpoint
 var distance_travled := 0.0
 
 
-#var party := Party.new()
+var party := Party.new()
 var player := Character.new()
 var inventory := InventoryComponent.new()
 
@@ -63,7 +63,8 @@ func _ready() -> void:
 	EventManager.event_ended.connect( _on_event_ended )
 
 	player.stat_changed.connect( UI.get_node("%CharacterCard").update )
-	#inventory.add(Items.GOLD, 1)
+
+	#PopupText.new()
 
 
 func _on_game_start():
@@ -73,8 +74,8 @@ func _on_game_start():
 
 	# Game.add character
 	#EventManager.start_event("night")
-	#EventManager.start_event("start")
-	EventManager.start_event("animal_attack")
+	EventManager.start_event("start")
+	#EventManager.start_event("animal_attack")
 
 
 func _physics_process(delta: float) -> void:
@@ -113,10 +114,13 @@ func tick_tick():
 	UI.get_node("%DistanceLabel").text = "%s km" % [ snapped(distance_travled, 0.001) ]
 	UI.get_node("%TravelProgress").value = (current_hour * TICKS_PER_HOUR) + current_tick
 
-	if player.get_stat( Character.StatType.HUNGER ) == 0:
+	if player.get_stat( Character.StatType.HUNGER ) <= 0:
 		player.apply_stat( Character.StatType.HEALTH, -0.25 )
-	if player.get_stat( Character.StatType.HUNGER ) == 75:
+	if player.get_stat( Character.StatType.HUNGER ) >= 75:
 		player.apply_stat( Character.StatType.HEALTH, +0.20 )
+
+	if player.get_stat( Character.StatType.HEALTH ) <= 0:
+		EventManager.start_event("death")
 
 	if distance_travled >= distance_total:
 		EventManager.start_event("end")
