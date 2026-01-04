@@ -33,20 +33,28 @@ func get_item(item: String) -> int:
 	#return items.keys()
 
 
+## Returns the difference between the owned quantity of <item> and the <value>.
+func difference(item: String, value: int) -> int:
+	return abs(get_item(item) - value)
+
+
 ## Returns true if inventory has at least <quantity> of <item>.
 func has(item: String, quantity: int = 1) -> bool:
-	return get_item(item) > quantity
+	print("item available: %s x%s. x%s needed. %s" % [item, get_item(item), quantity, get_item(item) >= quantity])
+	return get_item(item) >= quantity
 
 
 func add(item: String, quantity: int, _idx: int = -1):
-	items.set(item, quantity)
+	items.set(item, get_item(item) + quantity)
 	item_added.emit(item)
+	print("item added: %s x%s." % [item, quantity])
 	changed.emit()
 
 
 func remove(item: String, quantity: int, _idx: int = -1):
-	items.set(item, items.get(item) - quantity)
+	items.set(item, get_item(item) - quantity)
 	item_removed.emit(item)
+	print("item removed: %s x%s." % [item, quantity])
 	changed.emit()
 
 

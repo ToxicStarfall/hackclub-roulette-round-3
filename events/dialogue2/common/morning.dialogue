@@ -1,0 +1,32 @@
+
+~ title
+
+Morning
+
+=> END
+
+
+~ start
+
+You awake.
+	#You have 2 morning actions.
+#set EventManager.temp["wew"] = 10
+
+=> action
+
+
+~ action
+
+- Eat meal
+	if Game.inventory.has(Items.FOOD, 1) and EventManager.temp["eat_meal"] == false
+		set EventManager.temp["eat_meal"] = true
+		Game.inventory.remove( Items.FOOD, 1 )
+		Game.player.apply_stat( StatType.HUNGER, 40 )
+		You eat some food
+	else
+		You have no food.
+	=> action
+#- Rest => action
+- Leave => END
+
+=> END

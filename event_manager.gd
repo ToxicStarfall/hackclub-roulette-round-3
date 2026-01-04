@@ -19,7 +19,7 @@ var current_dialogue: DialogueResource
 var current_dialogue_line: DialogueLine
 
 ## Temproary data storage used to save temproary dialogue results.
-var event_data = {}
+var temp = {}
 
 
 func _ready() -> void:
@@ -32,10 +32,10 @@ func start_event(event_id: String = ""):
 	var event: Event2 = load("res://events/dialogue2/" + event_id + ".tres")
 	var dialogue: DialogueResource = load("res://events/dialogue2/" + event_id + ".dialogue")
 	if !event:
-		push_error("Cannot find an event of id \"%s\"." % [event_id])
+		push_error("[game] Cannot find an event of id \"%s\"." % [event_id])
 		# Create a temproary event
 		if dialogue:
-			push_warning("Dialogue exists. Creating temproary event.")
+			push_warning("[game] Dialogue exists. Creating temproary event.")
 			event = Event2.new()
 			var title = await dialogue.get_next_dialogue_line("title")
 			if title: event.title = title.text  # Use the declared title within the dialogue.
@@ -60,6 +60,7 @@ func end_event():
 	current_event = null
 	current_dialogue = null
 	current_dialogue_line = null
+	temp.clear()  # Clear temproary event data
 
 
 func event_active() -> bool:
@@ -105,14 +106,14 @@ func get_next_dialogue_line(next_dialogue_id: String = ""):
 
 ## Stores temproary event data (decisions, random values, etc)
 func store(id: String, value: Variant) -> void:
-	event_data.set(id, value)
+	temp.set(id, value)
 
 
 ## Returns specified stored event data
 func retrieve(id) -> Variant:
-	return event_data.get(id)
+	return temp.get(id)
 
 
 ## Clears temproary event data
-func clear_event_data():
-	event_data.clear()
+func clear_temp():
+	temp.clear()

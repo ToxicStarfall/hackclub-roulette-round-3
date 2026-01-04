@@ -2,6 +2,7 @@ class_name Entity
 extends CharacterBody2D
 #extends Node2D
 
+@warning_ignore_start("unused_signal")
 signal entity_death
 signal entity_created
 signal entity_projectile_created

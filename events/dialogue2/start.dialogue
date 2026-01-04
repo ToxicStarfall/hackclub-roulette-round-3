@@ -1,3 +1,5 @@
+import "res://events/dialogue2/common/shop.dialogue" as Shop
+
 
 ~ title
 
@@ -39,4 +41,14 @@ One last thing, say.. what is your name?
 
 I wish you the best of luck on your travels, survivor.
 
-=> END
+=> a
+
+
+~ a
+
+Depart now?
+
+- Go to the markets =>< Shop/start
+- Start the journey => END
+
+=> a

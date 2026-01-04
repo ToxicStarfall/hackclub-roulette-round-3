@@ -4,6 +4,7 @@ extends Node2D
 #extends Resource
 
 
+@warning_ignore_start("unused_signal")
 signal item_used
 signal item_equipped
 

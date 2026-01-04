@@ -73,8 +73,10 @@ func _on_game_start():
 	UI.get_node("%CharacterCard").update()
 
 	# Game.add character
-	#EventManager.start_event("night")
-	EventManager.start_event("start")
+	#EventManager.start_event("start")
+	EventManager.start_event("common/morning")
+	#EventManager.start_event("common/night")
+
 	#EventManager.start_event("animal_attack")
 
 
@@ -131,7 +133,7 @@ func tick_hour():
 
 
 func tick_day():
-	EventManager.start_event("night")
+	EventManager.start_event("common/night")
 	UI.get_node("%DayLabel").text = "Day: %s" % [current_day]
 	UI.get_node("%TravelProgress").value = 0
 
