@@ -10,7 +10,8 @@ Morning
 
 You awake.
 	#You have 2 morning actions.
-#set EventManager.temp["wew"] = 10
+
+set EventManager.temp["eat_meal"] = false
 
 => action
 
@@ -18,13 +19,13 @@ You awake.
 ~ action
 
 - Eat meal
-	if Game.inventory.has(Items.FOOD, 1) and EventManager.temp["eat_meal"] == false
-		set EventManager.temp["eat_meal"] = true
-		Game.inventory.remove( Items.FOOD, 1 )
-		Game.player.apply_stat( StatType.HUNGER, 40 )
-		You eat some food
+	if Game.inventory.has(Items.FOOD, 1) and EventManager.temp.eat_meal == false
+		set EventManager.temp.eat_meal = true
+		do Game.inventory.remove( Items.FOOD, 1 )
+		do Game.player.apply_stat( StatType.HUNGER, 40 )
+		You eat some food.
 	else
-		You have no food.
+		You have [if EventManager.temp.eat_meal]already eaten[else]no food[/if].
 	=> action
 #- Rest => action
 - Leave => END

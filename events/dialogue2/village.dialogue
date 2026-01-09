@@ -1,3 +1,5 @@
+import "events/dialogue2/common/shop.dialogue" as Shop
+
 
 ~ title
 
@@ -8,4 +10,17 @@ Village
 
 ~ start
 
-=> END
+You encounter a village.
+	[wait=1][br]They seem [[welcoming]].
+
+=> action
+
+
+~ action
+
+- Trade => Shop/start
+- Leave
+	Leaving the village behind, you continue on.
+	=> END
+
+=> action

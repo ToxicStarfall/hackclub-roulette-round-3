@@ -2,7 +2,7 @@
 ~ start
 
 As you walk through a particularly overgrown patch of brush, several armed men emerge from the undergrowth, surrounding you.
-| [br][br][wait=1] You have been ambushed by bandits!
+	[br][br][wait=1] You have been ambushed by bandits!
 
 - Fight
 	You fight the bandits.
@@ -24,7 +24,7 @@ As you walk through a particularly overgrown patch of brush, several armed men e
 		You sucessfully manage to escape, avoiding any potential harm!
 	%.50
 		You attempt to run away, however they catch up to you and attack!
-		| [br][br][wait=1] You manage to fend them off, however, you did not remain unscathed."
+			[br][br][wait=1] You manage to fend them off, however, you did not remain unscathed."
 
 => END
 

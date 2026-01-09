@@ -8,4 +8,39 @@ Desert Winds
 
 ~ start
 
+Taking a short stop, you notice the wind picking up, and the sand slowly rises with it. You are in a very dry and sandy area.
+In the distance, you see dark, sweeping clouds, swathing the land before you in darkness.
+	[br][br]A Sandstorm is approaching!
+	[br][br]You do not know how long it will last.
+
+#What will you do?
+
+set EventManager.temp["strength"] = 1
+
+=> END
+
+
+~ action
+
+- Wait it out
+	%.50
+		The sandstorm whirs away around you, growing in strength.
+		set EventManager.temp["strength"] = EventManager.temp.strength + 0.5
+		=> action
+	%.50 The fierce winds begin to weaken.
+
+#- Find shelter
+
+- Continue on
+	%.45
+		The sandstorm whirs away around you, growing in strength.
+		set EventManager.temp["strength"] = EventManager.temp.strength + 1
+		=> action
+	%.35 The fierce winds begin to weaken.
+	%.20 You manage to find some shelther.
+
+do Game.skip_hour(0.5 * EventManager.temp.strength)
+do Game.player.apply_stat(StatType.HEALTH, -3 * EventManaer.temp.strength)
+do Game.player.apply_stat(StatType.HUNGER, -1.5 * EventManager.temp.strength)
+
 => END

@@ -12,8 +12,11 @@ signal dialogue_progressed()
 @warning_ignore_restore("unused_signal")
 
 
+const DIALOGUE_PATH = "res://events/dialogue2/"
+
 var event_history = []
 
+var current_event_id: String
 var current_event: Event2
 var current_dialogue: DialogueResource
 var current_dialogue_line: DialogueLine
@@ -28,11 +31,14 @@ func _ready() -> void:
 
 
 func start_event(event_id: String = ""):
+	# Strip dialogue folders from event id
+	#var event_id = raw_event_id.split("/")[-1]
+
 	#print("Event Started: %s" % [event.title])
 	var event: Event2 = load("res://events/dialogue2/" + event_id + ".tres")
 	var dialogue: DialogueResource = load("res://events/dialogue2/" + event_id + ".dialogue")
 	if !event:
-		push_error("[game] Cannot find an event of id \"%s\"." % [event_id])
+		#push_error("[game] Cannot find an event of id \"%s\"." % [event_id])
 		# Create a temproary event
 		if dialogue:
 			push_warning("[game] Dialogue exists. Creating temproary event.")
@@ -49,6 +55,7 @@ func start_event(event_id: String = ""):
 		return
 
 	current_event = event
+	current_event.id = event_id
 	current_dialogue = dialogue
 	get_next_dialogue_line("start")  # Retrieves the first dialogue line
 
@@ -57,10 +64,13 @@ func start_event(event_id: String = ""):
 
 func end_event():
 	event_ended.emit(current_event)
-	current_event = null
-	current_dialogue = null
-	current_dialogue_line = null
-	temp.clear()  # Clear temproary event data
+	if current_event.id == "common/night":
+		EventManager.start_event("common/morning")
+	#current_event = null
+	#current_dialogue = null
+	#current_dialogue_line = null
+	#temp.clear()  # Clear temproary event data
+
 
 
 func event_active() -> bool:

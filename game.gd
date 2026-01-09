@@ -1,6 +1,7 @@
 extends Node
 
 
+@warning_ignore_start("unused_signal")
 signal game_started
 signal game_ended
 
@@ -34,9 +35,9 @@ var game_speed := 1.0
 var current_day: int = 0
 var current_hour: int = 0
 var current_tick: int = 0
+var current_time: float = 0.0  ## Time system traacking
 
-var current_time: float = 0.0
-var elapsed_time: float = 0.0
+var elapsed_time: float = 0.0  ## Internal time tracking
 
 # Distance in kilometres
 const distance_total := 50.0  # Approximately 10 days
@@ -74,7 +75,8 @@ func _on_game_start():
 
 	# Game.add character
 	#EventManager.start_event("start")
-	EventManager.start_event("common/morning")
+	EventManager.start_event("guards")
+	#EventManager.start_event("common/morning")
 	#EventManager.start_event("common/night")
 
 	#EventManager.start_event("animal_attack")
@@ -90,13 +92,11 @@ func _physics_process(delta: float) -> void:
 			current_time = 0.0
 			current_tick += 1
 			tick_tick()
-
 		# Hour counter
 		if current_tick >= TICKS_PER_HOUR:
 			current_tick = 0
 			current_hour += 1
 			tick_hour()
-
 		# Day counter
 		if current_hour >= HOURS_PER_DAY:
 			current_hour = 0
@@ -138,6 +138,30 @@ func tick_day():
 	UI.get_node("%TravelProgress").value = 0
 
 
+func skip_hour(hours: int = 1, rounded: bool = true):
+	if rounded:
+		current_time = 0.0
+		current_tick = 0
+	#else:
+	current_hour += hours
+	tick_hour()
+
+
+func skip_day(days: int = 1, rounded: bool = true):
+	if rounded:
+		current_time = 0.0
+		current_tick = 0
+		current_hour = 0
+		#current_day += days#max(days - 1, 0)
+	#else:
+	current_day += days
+	tick_day()
+
+	#current_tick = 0
+	#current_time = 0.0
+	#tick_day()
+
+
 # Do stuff after an event is started.
 func _on_event_started(_event: Event2):
 	pause()
@@ -146,8 +170,13 @@ func _on_event_started(_event: Event2):
 
 
 # Do stuff after an event is resolved.
-func _on_event_ended(_event: Event2):
+func _on_event_ended(event: Event2):
+	print(event.id)
 	unpause()
+
+	#if event.id == "common/night":
+		#EventManager.start_event("common/morning")
+
 	#var event_file_name = event.resource_path.split("/")[-1].split(".")[0]
 	#print(event_file_name)
 	#if event_file_name == "village":
