@@ -8,9 +8,10 @@ extends Resource
 #const ENERGY = "energy"
 #const REST = "rest"
 
-
-@export var health := 100.0
-@export var hunger := 100.0
+@export var max_health := 100.0
+@export var max_hunger := 100.0
+var health := max_health
+var hunger := max_hunger
 #@export var thirst := 100.0
 #@export var energy := 100.0
 #@export var rest := 100.0

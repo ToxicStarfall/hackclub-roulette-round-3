@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://dxi8qje0ghwqg"
+path="res://.godot/imported/waters_path.dialogue-65124ed71739ac3562d4e67d35075029.tres"
+
+[deps]
+
+source_file="res://events/dialogue2/waters_path.dialogue"
+dest_files=["res://.godot/imported/waters_path.dialogue-65124ed71739ac3562d4e67d35075029.tres"]
+
+[params]
+
+defaults=true

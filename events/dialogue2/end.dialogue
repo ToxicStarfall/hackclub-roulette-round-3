@@ -8,6 +8,20 @@ Journey's End
 
 ~ start
 
-The end?
+Alas you have reached your destination!
+	After many long days of traveling, you arrive at the beginnings of a new hope.
+	[br]Congratulations Survivor!
+	You have survived!
+	[br][br]
+	Continue to see stats
+
+Stats
+	Health remaining:
+	Hunger remaining:
+
+	[br]Items remaining
+	Gold:
+	Food:
+	Medicine: 
 
 => END

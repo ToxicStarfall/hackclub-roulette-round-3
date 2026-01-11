@@ -1,11 +1,18 @@
 
 ~ title
 
-Death
+Death and Despair
 
 => END
 
 
 ~ start
+
+This journey has took its toll on you. Countless days, fighting on, countless situations to fight through.
+	[wait=1]But, it has proved to be too much.
+	[wait=1]And as your remaining life wastes away, you think...
+
+Perhps I could have made it, and survived to see my hope fulfilled,
+	[wait=1]in another life...
 
 => END

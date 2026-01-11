@@ -13,6 +13,13 @@ signal dialogue_progressed()
 
 
 const DIALOGUE_PATH = "res://events/dialogue2/"
+const dialogues = [
+	"animal_attack",
+	"bandits",
+	"desert_winds",
+	"guards",
+	"village"
+]
 
 var event_history = []
 
@@ -23,6 +30,7 @@ var current_dialogue_line: DialogueLine
 
 ## Temproary data storage used to save temproary dialogue results.
 var temp = {}
+
 
 
 func _ready() -> void:

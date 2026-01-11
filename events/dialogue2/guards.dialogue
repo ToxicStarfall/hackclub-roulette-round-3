@@ -33,14 +33,14 @@ They stop you, saying that you must pay a tax to travel on this "road".
 #	%.40 
 #	%.40
 
-- Fight them (45% success)
-	%.45
+- Fight them (40% success)
+	%.40
 		You sucessfully defeat the guards.
 		do Game.skip_hour()
-		do Game.inventory.add(Items.GOLD, 1)
+		do Game.inventory.add(Items.GOLD, 3)
 		do Game.inventory.add(Items.FOOD, 2)
 		do Game.player.apply_stat(StatType.HEALTH, -5)
-	%.55
+	%.60
 		The guards promptly disarm you and beat you up. (-1 gold) #force you to pay an additional tax (-2 gold)
 		do Game.skip_hour()
 		do Game.inventory.remove(Items.GOLD, 1)

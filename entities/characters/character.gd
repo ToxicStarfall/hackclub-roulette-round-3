@@ -30,5 +30,6 @@ func get_stat(stat_type: StatType) -> float:
 
 func get_movment_speed() -> float:
 	var speed: float = stats.walk_speed
+	#speed *= stats.health
 	# speed modifiers
 	return speed

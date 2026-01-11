@@ -74,8 +74,8 @@ func _on_game_start():
 	UI.get_node("%CharacterCard").update()
 
 	# Game.add character
-	#EventManager.start_event("start")
-	EventManager.start_event("guards")
+	EventManager.start_event("start")
+	EventManager.start_event("beggar")
 	#EventManager.start_event("common/morning")
 	#EventManager.start_event("common/night")
 
@@ -152,14 +152,9 @@ func skip_day(days: int = 1, rounded: bool = true):
 		current_time = 0.0
 		current_tick = 0
 		current_hour = 0
-		#current_day += days#max(days - 1, 0)
 	#else:
 	current_day += days
 	tick_day()
-
-	#current_tick = 0
-	#current_time = 0.0
-	#tick_day()
 
 
 # Do stuff after an event is started.
@@ -174,6 +169,7 @@ func _on_event_ended(event: Event2):
 	print(event.id)
 	unpause()
 
+	# NOTE - Handled in EventManager.end_event()
 	#if event.id == "common/night":
 		#EventManager.start_event("common/morning")
 
