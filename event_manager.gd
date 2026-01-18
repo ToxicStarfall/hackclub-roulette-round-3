@@ -15,13 +15,15 @@ signal dialogue_progressed()
 const DIALOGUE_PATH = "res://events/dialogue2/"
 const dialogues = [
 	"animal_attack",
-	"bandits",
+	"bandits", "beggar",
 	"desert_winds",
 	"guards",
 	"village"
 ]
 
 var event_history = []
+
+var event_queue: Array = []
 
 var current_event_id: String
 var current_event: Event2
@@ -39,12 +41,24 @@ func _ready() -> void:
 
 
 func start_event(event_id: String = ""):
-	# Strip dialogue folders from event id
-	#var event_id = raw_event_id.split("/")[-1]
+	# If an event is currently active, add to queue
+	if current_event:
+		event_queue.append(event_id)
+		return
 
 	#print("Event Started: %s" % [event.title])
-	var event: Event2 = load("res://events/dialogue2/" + event_id + ".tres")
-	var dialogue: DialogueResource = load("res://events/dialogue2/" + event_id + ".dialogue")
+	var event_path = "res://events/dialogue2/" + event_id + ".tres"
+	var dialogue_path = "res://events/dialogue2/" + event_id + ".dialogue"
+	var event: Event2
+	var dialogue: DialogueResource
+
+	if ResourceLoader.exists(event_path):
+		event = load(event_path)
+	else: pass
+	if ResourceLoader.exists(dialogue_path):
+		dialogue = load(dialogue_path)
+	else: pass
+
 	if !event:
 		#push_error("[game] Cannot find an event of id \"%s\"." % [event_id])
 		# Create a temproary event
@@ -72,12 +86,24 @@ func start_event(event_id: String = ""):
 
 func end_event():
 	event_ended.emit(current_event)
-	if current_event.id == "common/night":
-		EventManager.start_event("common/morning")
-	#current_event = null
-	#current_dialogue = null
-	#current_dialogue_line = null
-	#temp.clear()  # Clear temproary event data
+	event_history.append(current_event)
+
+	current_event = null
+	current_dialogue = null
+	current_dialogue_line = null
+	temp.clear()  # Clear temproary event data
+
+	if event_queue.is_empty():
+		if event_history[-1].id == "common/night":
+			EventManager.start_event("common/morning")
+	else:
+		if event_history[-1].id == "common/night":
+			event_queue.append("common/morning")
+		start_event( event_queue.pop_front() )
+
+
+func start_event_random(_group: String = ""):
+	start_event( dialogues.get(randi_range(0, dialogues.size() - 1)) )
 
 
 

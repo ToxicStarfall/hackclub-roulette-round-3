@@ -40,7 +40,7 @@ var current_time: float = 0.0  ## Time system traacking
 var elapsed_time: float = 0.0  ## Internal time tracking
 
 # Distance in kilometres
-const distance_total := 50.0  # Approximately 10 days
+const distance_total := 50.0  # Diastance travled to beat the game in km. Approximately 10 days
 var distance_required := 0.0  ## Distance required to next checkpoint
 var distance_travled := 0.0
 
@@ -75,8 +75,9 @@ func _on_game_start():
 
 	# Game.add character
 	EventManager.start_event("start")
-	EventManager.start_event("beggar")
+	#EventManager.start_event("beggar")
 	#EventManager.start_event("common/morning")
+	#EventManager.start_event("common/midday")
 	#EventManager.start_event("common/night")
 
 	#EventManager.start_event("animal_attack")
@@ -111,8 +112,8 @@ func _physics_process(delta: float) -> void:
 
 func tick_tick():
 	player.apply_stat( Character.StatType.HUNGER, -0.40 )
-
 	distance_travled += player.get_movment_speed() / TICkS_PER_DAY
+	# UI updates
 	UI.get_node("%DistanceLabel").text = "%s km" % [ snapped(distance_travled, 0.001) ]
 	UI.get_node("%TravelProgress").value = (current_hour * TICKS_PER_HOUR) + current_tick
 
@@ -129,7 +130,10 @@ func tick_tick():
 
 
 func tick_hour():
-	pass
+	if current_hour == 8:
+		EventManager.start_event("common/midday")
+	if randf() < 0.25:
+		EventManager.start_event_random()
 
 
 func tick_day():
@@ -165,8 +169,8 @@ func _on_event_started(_event: Event2):
 
 
 # Do stuff after an event is resolved.
-func _on_event_ended(event: Event2):
-	print(event.id)
+func _on_event_ended(_event: Event2):
+	#print(event.id)
 	unpause()
 
 	# NOTE - Handled in EventManager.end_event()

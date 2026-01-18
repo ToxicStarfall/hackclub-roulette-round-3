@@ -1,7 +1,7 @@
 
 ~ title
 
-Morning
+Mid-day
 
 => END
 
@@ -10,18 +10,16 @@ Morning
 
 set EventManager.temp.set("actions", 1)
 set EventManager.temp.set("eat_meal", false)
+set EventManager.temp.set("healed", false)
 set EventManager.temp.set("rested", false)
-
-You awake.
-	#You have 1 morning actions.
 
 => action
 
 
 ~ action
 
-It is morning.
-	You have {{EventManager.temp.actions}} actions left.
+It is mid-day.
+	[br]You have {{EventManager.temp.actions}} actions available.
 
 - Eat meal (no actions used)
 	if Game.inventory.has(Items.FOOD, 1) and EventManager.temp.eat_meal == false
@@ -44,7 +42,7 @@ It is morning.
 		You have [if EventManager.temp.healed]already used medicine[else]no medicine[/if].
 
 - Rest (regain health)
-	if EventManager.temp.rested == false and EventManager.temp.actions >= 1
+	if EventManager.temp.rested == false
 		% You [[take a break to|rest and]] [[recover|recuperate]].
 		% You [[take a break to|rest and]] [[recover|recuperate]] your [[strength|wits]].
 		#% You take a break to [[recover|recuperate]].
@@ -58,7 +56,7 @@ It is morning.
 		do Game.player.apply_stat( StatType.HEALTH, 10 )
 	else
 		You have [if EventManager.temp.rested]already rested[else]no actions left[/if].
-	
+
 - Leave => END
 
 => action
