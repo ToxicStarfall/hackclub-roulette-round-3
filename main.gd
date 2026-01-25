@@ -4,6 +4,7 @@ extends Node
 func _ready() -> void:
 	#Game.start_game()
 	get_node("%StartMenu/HBoxContainer/VBoxContainer/PlayButton").pressed.connect( _on_play_button_pressed )
+	get_node("UI/Screens").show()
 	get_node("%StartMenu").show()
 	pass
 
