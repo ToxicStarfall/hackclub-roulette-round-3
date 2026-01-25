@@ -8,9 +8,10 @@ Morning
 
 ~ start
 
-set EventManager.temp.set("actions", 1)
-set EventManager.temp.set("eat_meal", false)
-set EventManager.temp.set("rested", false)
+set EventManager.store("actions", 1)
+set EventManager.store("eat_meal", false)
+set EventManager.store("healed", false)
+set EventManager.store("rested", false)
 
 You awake.
 	#You have 1 morning actions.

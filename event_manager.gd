@@ -7,6 +7,8 @@ signal event_ended(event: Event2)
 signal event_changed(event: Event2)
 #signal event_aborted(event: Event2)
 
+signal input_requested(prompt: String, save_id: String, default: String)
+
 signal dialogue_changed(dialogue_line: DialogueLine)
 signal dialogue_progressed()
 @warning_ignore_restore("unused_signal")
@@ -91,7 +93,7 @@ func end_event():
 	current_event = null
 	current_dialogue = null
 	current_dialogue_line = null
-	temp.clear()  # Clear temproary event data
+	clear_temp()  # Clear temproary event data
 
 	if event_queue.is_empty():
 		if event_history[-1].id == "common/night":
@@ -111,6 +113,11 @@ func event_active() -> bool:
 	if !current_event:
 		return false
 	else: return true
+
+
+#
+func request_input(prompt: String, save_id: String, default: Variant = null):
+	input_requested.emit(prompt, save_id, default)
 
 
 func get_next_dialogue_line(next_dialogue_id: String = ""):
@@ -134,6 +141,7 @@ func get_next_dialogue_line(next_dialogue_id: String = ""):
 		end_event()
 
 
+
 #func _on_dialogue_mangager_title_passed(title):
 	#pass
 
@@ -143,19 +151,19 @@ func get_next_dialogue_line(next_dialogue_id: String = ""):
 	#pass
 
 
-#func load_random_event():
-	#load_event( event_array[ randi_range(0, event_array.size() - 1) ])
-	#start_event(current_event)
-
-
 ## Stores temproary event data (decisions, random values, etc)
 func store(id: String, value: Variant) -> void:
 	temp.set(id, value)
+	print(id + " ", value)
 
 
-## Returns specified stored event data
-func retrieve(id) -> Variant:
-	return temp.get(id)
+## Returns the specified event data
+func retrieve(id, default = null) -> Variant:
+	var result: Variant = temp.get(id, default)
+	if result:  return temp.get(id)
+	else:
+		push_error("[EventManager]: Could not get temproary data of id: \"%s\"." % [id])
+		return result
 
 
 ## Clears temproary event data

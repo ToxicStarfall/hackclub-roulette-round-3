@@ -41,7 +41,8 @@ They stop you, saying that you must pay a tax to travel on this "road".
 		do Game.inventory.add(Items.FOOD, 2)
 		do Game.player.apply_stat(StatType.HEALTH, -5)
 	%.60
-		The guards promptly disarm you and beat you up. (-1 gold) #force you to pay an additional tax (-2 gold)
+		The guards promptly disarm you and beat you up. (-1 gold)
+		#force you to pay an additional tax (-2 gold)
 		do Game.skip_hour()
 		do Game.inventory.remove(Items.GOLD, 1)
 		do Game.player.apply_stat(StatType.HEALTH, -15)

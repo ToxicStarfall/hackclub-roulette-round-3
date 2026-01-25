@@ -20,26 +20,29 @@ This isn't the end of your journey.
 #| I am
 
 Who were you before this?
-- Farmer (extra food)
+- Peasant (hard)
+	do Game.inventory.add( Items.GOLD, 3 )
+	do Game.inventory.add( Items.FOOD, 6 )
+- Farmer (normal)
 	do Game.inventory.add( Items.GOLD, 6 )
-	do Game.inventory.add( Items.FOOD, 15 )
+	do Game.inventory.add( Items.FOOD, 10 )
 	do Game.inventory.add( Items.MEDICINE, 1 )
-- Soldier (balanced)
+- Soldier (easy)
+	do Game.inventory.add( Items.GOLD, 8 )
+	do Game.inventory.add( Items.FOOD, 10 )
+	do Game.inventory.add( Items.MEDICINE, 2 )
+- Trader (easiest)
 	do Game.inventory.add( Items.GOLD, 10 )
 	do Game.inventory.add( Items.FOOD, 12 )
 	do Game.inventory.add( Items.MEDICINE, 2 )
-- Trader (extra gold)
-	do Game.inventory.add( Items.GOLD, 16 )
-	do Game.inventory.add( Items.FOOD, 10 )
-	do Game.inventory.add( Items.MEDICINE, 3 )
 
+do EventManager.request_input("Survivor", "", "Survivor")
 One last thing, say.. what is your name?
-# Ask for input stuff, provide input area.
-# After entering, save info here and continue dialouge.
-# do save_input()
 
-
-I wish you the best of luck on your travels, survivor.
+set Game.player.info.name = EventManager.temp.input_result
+set Game.UI.get_node("%CharacterCard/%NameLabel").text = Game.player.info.name
+.. {{Game.player.info.name}} ...
+	I wish you the best of luck on your travels, {{Game.player.info.name}}.
 
 => a
 

@@ -67,11 +67,17 @@ seconds_per_step = 0.04
 skip_pause_at_abbreviations = PackedStringArray("Mr", "Mrs", "Ms", "Dr", "etc", "eg", "ex")
 metadata/_custom_type_script = "uid://g32um0mltv5d"
 
+[node name="DialogueInput" type="LineEdit" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
 [node name="DialogueOptions" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 
 [node name="DialogueResponsesMenu" type="Container" parent="MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 script = ExtResource("3_uyss2")
 metadata/_custom_type_script = "uid://bb52rsfwhkxbn"

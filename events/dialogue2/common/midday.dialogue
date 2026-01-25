@@ -8,10 +8,11 @@ Mid-day
 
 ~ start
 
-set EventManager.temp.set("actions", 1)
-set EventManager.temp.set("eat_meal", false)
-set EventManager.temp.set("healed", false)
-set EventManager.temp.set("rested", false)
+set EventManager.store("actions", 1)
+set EventManager.store("eat_meal", false)
+set EventManager.store("healed", false)
+set EventManager.temp["healed"] = false
+set EventManager.store("rested", false)
 
 => action
 
@@ -31,15 +32,15 @@ It is mid-day.
 	else
 		You have [if EventManager.temp.eat_meal]already eaten[else]no food[/if].
 	
-- Use Medicine (no actions used)
-	if Game.inventory.has(Items.MEDICINE, 1) and EventManager.temp.healed == false
-		You treat your wounds with the medicine.
-
-		set EventManager.temp.healed = true
-		do Game.inventory.remove( Items.MEDICINE, 1 )
-		do Game.player.apply_stat( StatType.HEALTH, 25 )
-	else
-		You have [if EventManager.temp.healed]already used medicine[else]no medicine[/if].
+#- Use Medicine (no actions used)
+#	if Game.inventory.has(Items.MEDICINE, 1) and EventManager.temp.healed == false
+#		You treat your wounds with the medicine.
+#
+#		set EventManager.temp.healed = true
+#		do Game.inventory.remove( Items.MEDICINE, 1 )
+#		do Game.player.apply_stat( StatType.HEALTH, 25 )
+#	else
+#		You have [if EventManager.temp.healed]already used medicine[else]no medicine[/if].
 
 - Rest (regain health)
 	if EventManager.temp.rested == false
@@ -52,6 +53,7 @@ It is mid-day.
 
 		set EventManager.temp.rested = true
 		do EventManager.temp.actions -= 1
+		do Game.skip_hour()
 		do Game.player.apply_stat( StatType.HUNGER, -5 )
 		do Game.player.apply_stat( StatType.HEALTH, 10 )
 	else

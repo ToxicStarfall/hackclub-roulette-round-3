@@ -6,12 +6,15 @@ extends PanelContainer
 @onready var DialogueOutput := %DialogueOutput
 @onready var DialogueOptions := %DialogueOptions
 
+var awaiting_input := false  ## Whether dialogue is waiting for text input before progressing.
 
 
 func _ready() -> void:
 	EventManager.event_started.connect( _on_event_started )
 	EventManager.event_ended.connect( _on_event_ended )
+	EventManager.input_requested.connect( _on_input_requested )
 	EventManager.dialogue_changed.connect( _on_dialogue_changed )
+	%DialogueInput.text_submitted.connect( _on_input_submitted )
 
 
 func _on_event_started(event: Event2):
@@ -26,8 +29,25 @@ func _on_event_ended(_event):
 	close()
 
 
+## Shows text input area to enter a response.
+func _on_input_requested(prompt: String, _save_id: String, default: String = ""):
+	%DialogueInput.show()
+	awaiting_input = true
+	%DialogueInput.placeholder_text = prompt
+	EventManager.store("input_default", default)
+
+
+func _on_input_submitted(_new_text: String):
+	%DialogueInput.hide()
+	awaiting_input = false
+	var input_result: String = %DialogueInput.text
+	if input_result.is_empty():
+		input_result = EventManager.retrieve("input_default")
+	EventManager.store("input_result", input_result)
+	EventManager.get_next_dialogue_line()
+
+
 func _on_dialogue_changed(dialogue_line: DialogueLine):
-	#print("dialogue changed")
 	clear_dialogue_options()
 	%DialogueButton.show()
 
@@ -35,18 +55,21 @@ func _on_dialogue_changed(dialogue_line: DialogueLine):
 	#for concurrent_line in dialogue_line.concurrent_lines:
 		#dialogue_line.text += "%s" % [concurrent_line.text]
 
-	if dialogue_line.responses.is_empty():
+	if dialogue_line.responses.is_empty() and !awaiting_input:
 		dialogue_line.text += "[br][br][u][i]Click to continue[/i][/u]"
 	else:
-		dialogue_line.text += "[br]"
+		# Add spacing between dialogue and input area or dialogue options.
+		dialogue_line.text += "[br][br]"
 
 	DialogueOutput.dialogue_line = dialogue_line
 	DialogueOutput.type_out()
 
 	await DialogueOutput.finished_typing
-	if !dialogue_line.responses.is_empty():
-		DialogueOutput.text += "[br]"  # Add spacing between options and dialogue
-		#%DialogueButton.hide()
+
+	#if awaiting_input:
+		#$%DialogueInput.show()
+
+	# Add dialogue response options if available.
 	for response in dialogue_line.responses:
 		var option = Button.new()
 		option.text = response.text
@@ -57,8 +80,8 @@ func _on_dialogue_changed(dialogue_line: DialogueLine):
 			continue
 		else:
 			await get_tree().create_timer(0.4).timeout
-	# Hide skip button if not options animation skipped
-	if dialogue_line.responses:
+	# Hide skip button if there are response options or when awaiting dialogue input.
+	if dialogue_line.responses or awaiting_input:
 		%DialogueButton.hide()
 
 
@@ -69,16 +92,23 @@ func _on_dialogue_button_pressed() -> void:
 	# Skip dialogue options animaition if not already finished
 	elif DialogueOptions.get_child_count() < EventManager.current_dialogue_line.responses.size():
 		%DialogueButton.hide()
-	# Continue dialogue when there are no dialogue options to make.
+	# Continue dialogue when there are no response options to make.
 	elif EventManager.current_dialogue_line.responses.is_empty():
 		EventManager.get_next_dialogue_line()
 
 
 func _on_dialogue_option_selected(next_dialouge_id: String):
 	EventManager.get_next_dialogue_line( next_dialouge_id )
-	pass
 
 
+## Clears and hides text input area.
+func clear_dialogue_input():
+	%DialogueInput.placeholder_text = ""
+	%DialogueInput.text = ""
+	%DialogueInput.hide()
+
+
+## Clears dialogue options.
 func clear_dialogue_options():
 	for dialogue_option in DialogueOptions.get_children():
 		DialogueOptions.remove_child(dialogue_option)
@@ -91,6 +121,7 @@ func clear():
 
 func close():
 	self.hide()
+
 
 func open():
 	self.show()

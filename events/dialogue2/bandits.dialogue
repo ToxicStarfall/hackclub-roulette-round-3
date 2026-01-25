@@ -16,8 +16,10 @@ As you walk through a particularly overgrown patch of brush, several armed men e
 
 	%.60
 		do Game.player.apply_stat( Character.StatType.HEALTH, -5.0 )
+		=> fight_sucess
 	%.40
 		do Game.player.apply_stat( Character.StatType.HEALTH, -15.0 )
+		=> fight_failure
 		
 - Pursuade
 	You attempt to pursuade the [[bandits|harrasers]] that you're not worth the trouble.
@@ -39,9 +41,15 @@ As you walk through a particularly overgrown patch of brush, several armed men e
 
 ~ fight_sucess
 
+You sucessfully defeat them.
+
 => END
 
 ~ fight_failure
-- Surrender your belongings
-- Continue fighting
+
+They best you.
+
+#- Surrender your belongings
+#- Continue fighting
+
 => END

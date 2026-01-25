@@ -40,7 +40,7 @@ var current_time: float = 0.0  ## Time system traacking
 var elapsed_time: float = 0.0  ## Internal time tracking
 
 # Distance in kilometres
-const distance_total := 50.0  # Diastance travled to beat the game in km. Approximately 10 days
+const distance_total := 25.0  # Diastance travled to beat the game in km. Approximately 5 days
 var distance_required := 0.0  ## Distance required to next checkpoint
 var distance_travled := 0.0
 
