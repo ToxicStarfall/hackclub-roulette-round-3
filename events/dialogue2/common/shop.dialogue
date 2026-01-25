@@ -1,0 +1,76 @@
+
+~ title
+
+Shop
+
+=>
+
+
+~ start
+
+What would you like to do?
+
+- Buy
+	=> buy
+- Sell
+	=> sell
+- Leave
+	=> END
+
+=> END
+
+
+~ buy
+
+What would you like to buy?
+
+- Food (2x for 3 gold)
+	if Game.inventory.has(Items.GOLD, 3)
+		do inventory.add( Items.FOOD, 2 )
+		do inventory.remove( Items.GOLD, 3 )
+		2x Food purchased for 3 gold.
+	else
+		You do not have enough gold! You need {{Game.inventory.difference(Items.GOLD, 3)}} more gold.
+	=> buy
+
+- Medicine (3 gold) 
+	if Game.inventory.has(Items.GOLD, 3)
+		do inventory.add( Items.MEDICINE, 1 )
+		do inventory.remove( Items.GOLD, 3 )
+		1x Medicine purchased for 3 gold.
+	else
+		You do not have enough gold! You need {{Game.inventory.difference(Items.GOLD, 3)}} more gold.
+	=> buy
+
+- Return
+	=> start
+
+=> END
+
+
+~ sell
+
+What would you like to sell?
+
+- Food (1x for 1 gold) 
+	if Game.inventory.has(Items.FOOD, 1)
+		do inventory.remove( Items.FOOD, 1 )
+		do inventory.add( Items.GOLD, 1 )
+		1x Food sold for 1 gold.
+	else
+		You do not have enough food! You need {{Game.inventory.difference(Items.FOOD, 1)}} more food.
+	=> sell
+
+- Medicine (1x for 2 gold) 
+	if Game.inventory.has(Items.MEDICINE, 1)
+		do inventory.remove( Items.MEDICINE, 1 )
+		do inventory.add( Items.GOLD, 2 )
+		1x Medicine sold for 2 gold.
+	else
+		You do not have enough medicine! You need {{Game.inventory.difference(Items.MEDICINE, 1)}} more medicine.
+	=> sell
+
+- Return
+	=> start
+
+=> END

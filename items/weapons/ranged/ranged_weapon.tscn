@@ -1,0 +1,35 @@
+[gd_scene load_steps=8 format=3 uid="uid://cy67vso5ivxn4"]
+
+[ext_resource type="Script" uid="uid://c2wo4wwwshjne" path="res://items/weapons/ranged/ranged_weapon.gd" id="1_mypxy"]
+[ext_resource type="Texture2D" uid="uid://dgr60uub4xhi1" path="res://icon.svg" id="2_fasj4"]
+[ext_resource type="Script" uid="uid://d2odt5s6rdu5a" path="res://events/dialogues/components/misc/projectile_spawner.gd" id="2_jkhik"]
+[ext_resource type="PackedScene" uid="uid://d4aq72g0aa264" path="res://events/dialogues/entities/projectiles/projectile.tscn" id="3_jkhik"]
+[ext_resource type="Script" uid="uid://bh6cqtnko4j6x" path="res://events/dialogues/components/attack_component.gd" id="5_hgr2d"]
+[ext_resource type="Script" uid="uid://d04s5a06kemh" path="res://events/dialogues/components/resources/damage.gd" id="6_8oynv"]
+
+[sub_resource type="Resource" id="Resource_2baca"]
+script = ExtResource("6_8oynv")
+value = 1
+source = 2
+metadata/_custom_type_script = "uid://d04s5a06kemh"
+
+[node name="RangedWeapon" type="Node2D"]
+script = ExtResource("1_mypxy")
+projectile_velocity = 150.0
+metadata/_custom_type_script = "uid://c2wo4wwwshjne"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(15, 0)
+scale = Vector2(0.4, 0.1)
+texture = ExtResource("2_fasj4")
+
+[node name="ProjectileSpawner" type="Marker2D" parent="."]
+position = Vector2(25, 0)
+script = ExtResource("2_jkhik")
+projectile_scene = ExtResource("3_jkhik")
+metadata/_custom_type_script = "uid://d2odt5s6rdu5a"
+
+[node name="AttackComponent" type="Node" parent="."]
+script = ExtResource("5_hgr2d")
+DamageComp = SubResource("Resource_2baca")
+metadata/_custom_type_script = "uid://bh6cqtnko4j6x"

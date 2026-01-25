@@ -12,22 +12,42 @@ config_version=5
 
 config/name="Hackclub Roulette Round 3"
 run/main_scene="uid://cqcvewcu1865c"
-config/features=PackedStringArray("4.4", "GL Compatibility")
+config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
+SaveManager="*res://save_manager.gd"
+SettingsManager="res://settings_manager.gd"
 EventManager="*res://event_manager.gd"
 Game="*res://game.gd"
+DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+
+[debug]
+
+gdscript/warnings/confusable_identifier=0
 
 [display]
 
-window/size/viewport_width=1280
-window/size/viewport_height=720
+window/stretch/mode="viewport"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dictionary_inspector/plugin.cfg", "res://addons/godot_super-wakatime/plugin.cfg")
+enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://addons/dictionary_inspector/plugin.cfg", "res://addons/godot_super-wakatime/plugin.cfg")
+
+[file_customization]
+
+folder_colors={
+"res://addons/": "gray",
+"res://components/": "gray",
+"res://effects/particles/": "gray",
+"res://entities/enemies/": "gray",
+"res://entities/player/": "gray",
+"res://entities/projectiles/": "gray",
+"res://entities/states/": "gray",
+"res://items/weapons/": "gray",
+"res://ui/": "green"
+}
 
 [input]
 
@@ -51,6 +71,10 @@ move_down={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":83,"key_label":0,"unicode":115,"location":0,"echo":false,"script":null)
 ]
 }
+
+[internationalization]
+
+locale/translations_pot_files=PackedStringArray("res://events/dialogue2/start.dialogue", "res://events/dialogue2/a.dialogue", "res://events/dialogue2/snippets/ambush_keywords.dialogue", "res://events/dialogue2/snippets/encounter_keywords.dialogue", "res://events/dialogue2/snippets/sight_words.dialogue", "res://events/dialogue2/animal_attack.dialogue", "res://events/dialogue2/bandits.dialogue", "res://events/dialogue2/death.dialogue", "res://events/dialogue2/desert_winds.dialogue", "res://events/dialogue2/end.dialogue", "res://events/dialogue2/guards.dialogue", "res://events/dialogue2/village.dialogue", "res://events/dialogue2/common/morning.dialogue", "res://events/dialogue2/common/night.dialogue", "res://events/dialogue2/common/shop.dialogue", "res://events/dialogue2/meadows.dialogue", "res://events/dialogue2/beggar.dialogue", "res://events/dialogue2/waters_path.dialogue", "res://events/dialogue2/common/midday.dialogue", "res://events/dialogue2/common/stats.dialogue", "res://events/dialogue2/actions/eat.dialogue", "res://events/dialogue2/actions/heal.dialogue", "res://events/dialogue2/actions/rest.dialogue")
 
 [rendering]
 

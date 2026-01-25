@@ -15,11 +15,9 @@ Ahead of you lies many challenges and difficult choices but your future is still
 This is the beginning of your journey, Survivor.
 
 [right][i]Click to continue...[/i][/right]"
-options = Array[ExtResource("2_7aco4")]([])
 metadata/_custom_type_script = "uid://dk7vmirn2sppi"
 
 [resource]
 script = ExtResource("2_gkgej")
 title = "A New Journey"
 dialogue = Array[ExtResource("1_sct7b")]([SubResource("Resource_rmjqm")])
-paths = Array[ExtResource("1_sct7b")]([])

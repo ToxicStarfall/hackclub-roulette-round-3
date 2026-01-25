@@ -11,16 +11,13 @@
 [sub_resource type="Resource" id="Resource_5qc24"]
 script = ExtResource("4_5qc24")
 item = 2
-value = 1.0
 modifier = 1
-chance = 1.0
 metadata/_custom_type_script = "uid://dsl562vyuejwt"
 
 [sub_resource type="Resource" id="Resource_ugypg"]
 script = ExtResource("1_4qhqa")
 name = "Sacrifice 1 ration"
 effects = Array[ExtResource("3_5qc24")]([SubResource("Resource_5qc24")])
-path = ""
 metadata/_custom_type_script = "uid://b3uril2uwjvfv"
 
 [sub_resource type="Resource" id="Resource_l67cf"]
@@ -28,31 +25,26 @@ script = ExtResource("4_5qc24")
 item = 2
 value = 3.0
 modifier = 1
-chance = 1.0
 metadata/_custom_type_script = "uid://dsl562vyuejwt"
 
 [sub_resource type="Resource" id="Resource_3h208"]
 script = ExtResource("1_4qhqa")
 name = "Sacrifice 3 rations"
 effects = Array[ExtResource("3_5qc24")]([SubResource("Resource_l67cf")])
-path = ""
 metadata/_custom_type_script = "uid://b3uril2uwjvfv"
 
 [sub_resource type="Resource" id="Resource_kmqkl"]
 script = ExtResource("2_sycjp")
 description = "You attempt to run away, the hungry wolves however get in a few bites, before you escape."
-options = Array[ExtResource("1_4qhqa")]([])
 metadata/_custom_type_script = "uid://dk7vmirn2sppi"
 
 [sub_resource type="Resource" id="Resource_bodu2"]
 script = ExtResource("2_sycjp")
 description = "You manage to run away, escaping the hungry jaws."
-options = Array[ExtResource("1_4qhqa")]([])
 metadata/_custom_type_script = "uid://dk7vmirn2sppi"
 
 [sub_resource type="Resource" id="Resource_a564e"]
 script = ExtResource("6_l67cf")
-stat = 0
 value = 5.0
 modifier = 1
 chance = 0.5
@@ -64,7 +56,6 @@ metadata/_custom_type_script = "uid://bk16x8mwb5shh"
 script = ExtResource("1_4qhqa")
 name = "Attempt to run away"
 effects = Array[ExtResource("3_5qc24")]([SubResource("Resource_a564e")])
-path = ""
 metadata/_custom_type_script = "uid://b3uril2uwjvfv"
 
 [sub_resource type="Resource" id="Resource_qkvgm"]
@@ -79,5 +70,4 @@ metadata/_custom_type_script = "uid://dk7vmirn2sppi"
 script = ExtResource("5_l67cf")
 title = "Animal Attack"
 dialogue = Array[ExtResource("1_v6gs0")]([SubResource("Resource_qkvgm")])
-paths = Array[ExtResource("1_v6gs0")]([])
 metadata/_custom_type_script = "uid://dk7vmirn2sppi"

@@ -1,4 +1,5 @@
 ## Base Effect class. This does NOTHING on its own.
+@abstract
 class_name Effect
 extends Resource
 
@@ -17,6 +18,10 @@ enum Modifiers {
 #@export var outcome_dialogue: Dialogue
 
 func apply():
+	pass
+
+
+func effect_add():
 	pass
 
 

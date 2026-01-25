@@ -1,0 +1,13 @@
+
+~ start
+
+Stats
+	Health remaining:{{Game.player.get_stat(StatType.HEALTH)}}
+	Hunger remaining:{{Game.player.get_stat(StatType.HUNGER)}}
+
+	[br]Items remaining
+	Gold:{{Game.inventory.get_item(Items.GOLD)}}
+	Food:{{Game.inventory.get_item(Items.FOOD)}}
+	Medicine:{{Game.inventory.get_item(Items.MEDICINE)}}
+
+=> END

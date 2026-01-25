@@ -1,129 +1,171 @@
 extends Node
 
 
-signal event_changed
-signal event_started
-signal event_ended
-signal event_aborted
+@warning_ignore_start("unused_signal")
+signal event_started(event: Event2)
+signal event_ended(event: Event2)
+signal event_changed(event: Event2)
+#signal event_aborted(event: Event2)
 
-signal dialogue_changed(new_dialogue)
-signal dialogue_requested()
+signal input_requested(prompt: String, save_id: String, default: String)
 
-var current_event: Event
-var current_dialogue: Dialogue
-#var event
-var dialogue_idx: int = 0
-var dialogue_count: int = 0
-var dialogue_list: Array = []
-#var dialogue_paths: Dictionary = {}
-var dialogue_paths = []
+signal dialogue_changed(dialogue_line: DialogueLine)
+signal dialogue_progressed()
+@warning_ignore_restore("unused_signal")
+
+
+const DIALOGUE_PATH = "res://events/dialogue2/"
+const dialogues = [
+	"animal_attack",
+	"bandits", "beggar",
+	"desert_winds",
+	"guards",
+	"village"
+]
 
 var event_history = []
 
-var event_array = [
-	"res://events/dialogues/animal_attack.tres",
-	"res://events/dialogues/bandits.tres",
-	"res://events/dialogues/desert_winds.tres",
-	"res://events/dialogues/guards.tres",
-	"res://events/dialogues/the_beggar.tres",
-	"res://events/dialogues/village.tres",
-]
+var event_queue: Array = []
+
+var current_event_id: String
+var current_event: Event2
+var current_dialogue: DialogueResource
+var current_dialogue_line: DialogueLine
+
+## Temproary data storage used to save temproary dialogue results.
+var temp = {}
+
 
 
 func _ready() -> void:
-	#dialogue_changed.connect( _on_dialogue_changed )
-	dialogue_requested.connect( _on_dialogue_requested )
-	load_event("res://events/dialogues/new_journey.tres")
-	#load_event("res://events/dialogues/village.tres")
-
-
-func get_event(location):
-	# Apply modifiers to event
+	#DialogueManager.passed_title.connect( _on_dialogue_mangager_title_passed )
 	pass
 
-func load_random_event():
-	load_event( event_array[ randi_range(0, event_array.size() - 1) ])
-	#start_event(current_event)
 
+func start_event(event_id: String = ""):
+	# If an event is currently active, add to queue
+	if current_event:
+		event_queue.append(event_id)
+		return
 
-func start_event(event):
-	print("Event Started: %s" % [event.title])
-	event_started.emit(event)
-	event_changed.emit(event)
-	dialogue_changed.emit( get_first_dialogue() )
+	#print("Event Started: %s" % [event.title])
+	var event_path = "res://events/dialogue2/" + event_id + ".tres"
+	var dialogue_path = "res://events/dialogue2/" + event_id + ".dialogue"
+	var event: Event2
+	var dialogue: DialogueResource
+
+	if ResourceLoader.exists(event_path):
+		event = load(event_path)
+	else: pass
+	if ResourceLoader.exists(dialogue_path):
+		dialogue = load(dialogue_path)
+	else: pass
+
+	if !event:
+		#push_error("[game] Cannot find an event of id \"%s\"." % [event_id])
+		# Create a temproary event
+		if dialogue:
+			push_warning("[game] Dialogue exists. Creating temproary event.")
+			event = Event2.new()
+			var title = await dialogue.get_next_dialogue_line("title")
+			if title: event.title = title.text  # Use the declared title within the dialogue.
+			else: event.title = event_id.capitalize()  # Fallback to event id.
+		# Cancel event if not available
+		else:
+			push_warning("No fallback dialogue. Cancelling event.")
+			return
+	if !dialogue:
+		push_error("Cannot find an event dialogue of id: %s. Event cancled." % [event_id])
+		return
+
+	current_event = event
+	current_event.id = event_id
+	current_dialogue = dialogue
+	get_next_dialogue_line("start")  # Retrieves the first dialogue line
+
+	event_started.emit(current_event)
 
 
 func end_event():
 	event_ended.emit(current_event)
+	event_history.append(current_event)
+
 	current_event = null
+	current_dialogue = null
+	current_dialogue_line = null
+	clear_temp()  # Clear temproary event data
 
-
-func get_dialogue(path: String = ""):
-	var new_dialogue
-	if path:
-		# Return to main dialogue branch
-		if path == "^":
-			new_dialogue = get_next_dialogue()
-		# Go to a side/alternate dialogue branch.
-		else:
-			new_dialogue =  get_path_dialogue(path)
-		current_dialogue = new_dialogue
-		return new_dialogue
-	# Get the next dialogue in the main branch.
-	else: return get_next_dialogue()
-
-
-func get_next_dialogue():
-	print(dialogue_idx)
-	dialogue_idx += 1
-	if dialogue_list.size() -1  >= dialogue_idx:
-	#if dialogue_list[dialogue_idx]:
-		var dialogue = dialogue_list[dialogue_idx]
-		#if dialogue.has("options"):
-		if dialogue.get("options"):
-			for option in dialogue.options:
-				#print(option.name)
-				pass
-		return dialogue
-	else: end_event()
-
-
-func get_first_dialogue():
-	var first_dialogue = dialogue_list[0]
-	current_dialogue = first_dialogue
-	return first_dialogue
-
-
-func get_path_dialogue(path: String):
-	var dialogue = dialogue_paths[int(path)]
-	return dialogue
-
-
-#func _on_dialogue_changed(new_dialogue):
-	#current_dialogue = new_dialogue
-	#print("new dialogue set")
-
-
-func _on_dialogue_requested(dialogue_path: String = "", alt_dialogue: Dialogue = null):
-	if alt_dialogue:
-		current_dialogue = alt_dialogue
-		dialogue_changed.emit( alt_dialogue )
+	if event_queue.is_empty():
+		if event_history[-1].id == "common/night":
+			EventManager.start_event("common/morning")
 	else:
-		var a = get_dialogue(dialogue_path)
-		if a:
-			dialogue_changed.emit( a )
+		if event_history[-1].id == "common/night":
+			event_queue.append("common/morning")
+		start_event( event_queue.pop_front() )
 
 
-func load_event(event_res):
-	#var jstr = FileAccess.open("res://events/new_journey.json", FileAccess.READ).get_as_text()
-	#var obj = JSON.parse_string(jstr)
-	#var obj = load("res://events/dialogues/new_journey.tres")
-	var obj = load(event_res)
-	#event = obj
-	current_event = obj
-	dialogue_idx = 0
-	dialogue_list = obj.dialogue
-	dialogue_paths = obj.paths
-	dialogue_count = dialogue_list.size()
-	start_event(current_event)
-	#for key in event_obj:
+func start_event_random(_group: String = ""):
+	start_event( dialogues.get(randi_range(0, dialogues.size() - 1)) )
+
+
+
+func event_active() -> bool:
+	if !current_event:
+		return false
+	else: return true
+
+
+#
+func request_input(prompt: String, save_id: String, default: Variant = null):
+	input_requested.emit(prompt, save_id, default)
+
+
+func get_next_dialogue_line(next_dialogue_id: String = ""):
+	var next_id = next_dialogue_id   # Dialogue redirect (if next_id given)
+	if !current_dialogue_line: pass  # Beginning of dialogue check
+	elif !next_id: next_id = current_dialogue_line.next_id  # Dialogue continue
+
+	#print(next_id)
+	var dialogue_line: DialogueLine
+	#dialogue_line = await DialogueManager.get_next_dialogue_line(
+	dialogue_line = await current_dialogue.get_next_dialogue_line(
+			next_id,
+			[Game, EventManager, Character, Items])
+	#print(dialogue_line)
+
+	if dialogue_line:
+		current_dialogue_line = dialogue_line
+		dialogue_changed.emit(current_dialogue_line)
+	else:
+		print("no dialogue lines")
+		end_event()
+
+
+
+#func _on_dialogue_mangager_title_passed(title):
+	#pass
+
+
+#func get_event(_location):
+	# Apply modifiers to event
+	#pass
+
+
+## Stores temproary event data (decisions, random values, etc)
+func store(id: String, value: Variant) -> void:
+	temp.set(id, value)
+	print(id + " ", value)
+
+
+## Returns the specified event data
+func retrieve(id, default = null) -> Variant:
+	var result: Variant = temp.get(id, default)
+	if result:  return temp.get(id)
+	else:
+		push_error("[EventManager]: Could not get temproary data of id: \"%s\"." % [id])
+		return result
+
+
+## Clears temproary event data
+func clear_temp():
+	temp.clear()

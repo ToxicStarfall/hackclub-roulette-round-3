@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://c50e0mp304tb1"
+path="res://.godot/imported/midday.dialogue-01205145c5ee60fd24941d6eb1d74a91.tres"
+
+[deps]
+
+source_file="res://events/dialogue2/common/midday.dialogue"
+dest_files=["res://.godot/imported/midday.dialogue-01205145c5ee60fd24941d6eb1d74a91.tres"]
+
+[params]
+
+defaults=true

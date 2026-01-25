@@ -1,0 +1,63 @@
+
+~ title
+
+Mid-day
+
+=> END
+
+
+~ start
+
+set EventManager.store("actions", 1)
+set EventManager.store("eat_meal", false)
+set EventManager.store("healed", false)
+set EventManager.store("rested", false)
+
+=> action
+
+
+~ action
+
+It is mid-day.
+	[br]You have {{EventManager.temp.actions}} actions available.
+
+- Eat meal (no actions used)
+	if Game.inventory.has(Items.FOOD, 1) and EventManager.temp.eat_meal == false
+		You eat some food.
+
+		set EventManager.temp.eat_meal = true
+		do Game.inventory.remove( Items.FOOD, 1 )
+		do Game.player.apply_stat( StatType.HUNGER, 40 )
+	else
+		You have [if EventManager.temp.eat_meal]already eaten[else]no food[/if].
+	
+- Use Medicine (no actions used)
+	if Game.inventory.has(Items.MEDICINE, 1) and EventManager.temp.healed == false
+		You treat your wounds with the medicine.
+
+		set EventManager.temp.healed = true
+		do Game.inventory.remove( Items.MEDICINE, 1 )
+		do Game.player.apply_stat( StatType.HEALTH, 25 )
+	else
+		You have [if EventManager.temp.healed]already used medicine[else]no medicine[/if].
+
+- Rest (regain health)
+	if EventManager.temp.rested == false
+		% You [[take a break to|rest and]] [[recover|recuperate]].
+		% You [[take a break to|rest and]] [[recover|recuperate]] your [[strength|wits]].
+		#% You take a break to [[recover|recuperate]].
+		#% You take a break to [[recover|recuperate]] your [[strength|wits]].
+		#% You rest and [[recover|recuperate]].
+		#% You rest and [[recover|recuperate]] your [[strength|wits]].
+
+		set EventManager.temp.rested = true
+		do EventManager.temp.actions -= 1
+		do Game.skip_hour()
+		do Game.player.apply_stat( StatType.HUNGER, -5 )
+		do Game.player.apply_stat( StatType.HEALTH, 10 )
+	else
+		You have [if EventManager.temp.rested]already rested[else]no actions left[/if].
+
+- Leave => END
+
+=> action

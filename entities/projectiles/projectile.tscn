@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://d4aq72g0aa264"]
+
+[ext_resource type="Script" uid="uid://c2u8xr0rrax7t" path="res://entities/projectiles/projectile.gd" id="1_yjiti"]
+[ext_resource type="Texture2D" uid="uid://dgr60uub4xhi1" path="res://icon.svg" id="2_4yeyn"]
+[ext_resource type="Script" uid="uid://cqnbkier15avq" path="res://events/dialogues/components/health_component.gd" id="4_eyncd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3uisd"]
+
+[node name="Projectile" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 0
+input_pickable = true
+script = ExtResource("1_yjiti")
+metadata/_custom_type_script = "uid://cet8l1dt55dva"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.125, 0.125)
+texture = ExtResource("2_4yeyn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_3uisd")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("4_eyncd")
+metadata/_custom_type_script = "uid://cqnbkier15avq"
