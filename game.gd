@@ -104,9 +104,6 @@ func _physics_process(delta: float) -> void:
 			current_day += 1
 			tick_day()
 
-		# Player daeth
-		if player.stats.health <= 0:
-			EventManager.load_event("res://events/dialogues/death.tres")
 	#print("ay%s, hour:%s, tick:%s, time:%s, total:%s" % [current_day, current_hour, current_tick, current_time, elapsed_time])
 
 
@@ -170,7 +167,6 @@ func _on_event_started(_event: Event2):
 
 # Do stuff after an event is resolved.
 func _on_event_ended(_event: Event2):
-	#print(event.id)
 	unpause()
 
 	# NOTE - Handled in EventManager.end_event()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://2i6tnn4kd1us"]
+[gd_scene format=3 uid="uid://2i6tnn4kd1us"]
 
 [sub_resource type="Curve" id="Curve_knavq"]
 _limits = [1.0, 2.5, 0.0, 1.0]
@@ -14,7 +14,7 @@ colors = PackedColorArray(1, 0.990167, 0.99, 0.713726, 1, 0.990167, 0.99, 1, 1, 
 offsets = PackedFloat32Array(0, 0.497653, 1)
 colors = PackedColorArray(1, 0.905, 0.05, 1, 1, 0.673333, 0.02, 1, 1, 0.444667, 0.02, 1)
 
-[node name="SparkParticles" type="CPUParticles2D"]
+[node name="SparkParticles" type="CPUParticles2D" unique_id=1372941502]
 emitting = false
 amount = 10
 one_shot = true

@@ -1,10 +1,8 @@
-[gd_resource type="Resource" script_class="Event2" load_steps=3 format=3 uid="uid://bop1civbv3xcs"]
+[gd_resource type="Resource" script_class="Event2" format=3 uid="uid://bop1civbv3xcs"]
 
 [ext_resource type="Script" uid="uid://dtiitgdwjkdec" path="res://events/event2.gd" id="1_8mhw3"]
-[ext_resource type="Resource" uid="uid://rv8vq1210i7y" path="res://events/dialogue2/animal_attack.dialogue" id="1_qnuxd"]
 
 [resource]
 script = ExtResource("1_8mhw3")
 title = "Animal Attack"
-dialogue = ExtResource("1_qnuxd")
 metadata/_custom_type_script = "uid://dtiitgdwjkdec"

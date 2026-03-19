@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://c5mxsx0644lm"]
+[gd_scene format=3 uid="uid://c5mxsx0644lm"]
 
 [sub_resource type="Curve" id="Curve_knavq"]
 _limits = [1.0, 2.5, 0.0, 1.0]
@@ -10,7 +10,7 @@ point_count = 2
 offsets = PackedFloat32Array(0, 0.201878, 0.704225, 1)
 colors = PackedColorArray(1, 0.990167, 0.99, 0.713726, 1, 0.990167, 0.99, 1, 1, 0.990167, 0.99, 1, 1, 1, 1, 0)
 
-[node name="BloodParticles" type="CPUParticles2D"]
+[node name="BloodParticles" type="CPUParticles2D" unique_id=843034302]
 emitting = false
 amount = 10
 one_shot = true

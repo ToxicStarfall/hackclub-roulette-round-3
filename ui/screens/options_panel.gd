@@ -62,11 +62,12 @@ func clear():
 
 
 func _on_option_pressed(option_button):
+	var option_idx = option_button.get_index()
+	var option = options[option_idx]
+	var path = ""
+
 	# Gamba option
 	if option_button.text == "Random":
-		var option_idx = option_button.get_index()
-		var option = options[option_idx]
-		var path = ""
 		for effect in option.effects:
 			if effect:  # Non empty check
 				effect.apply()
@@ -78,9 +79,6 @@ func _on_option_pressed(option_button):
 		EventManager.dialogue_requested.emit(path)
 		return
 
-	var option_idx = option_button.get_index()
-	var option = options[option_idx]
-	var path = ""
 	for effect in option.effects:
 		if effect:  # Non empty check
 			effect.apply()

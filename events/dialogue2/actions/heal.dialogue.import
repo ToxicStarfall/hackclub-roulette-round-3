@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://ck2c8p817gqv8"
+path="res://.godot/imported/heal.dialogue-5c8b563f81d5b1875fa6c3e83923275e.tres"
+
+[deps]
+
+source_file="res://events/dialogue2/actions/heal.dialogue"
+dest_files=["res://.godot/imported/heal.dialogue-5c8b563f81d5b1875fa6c3e83923275e.tres"]
+
+[params]
+
+defaults=true

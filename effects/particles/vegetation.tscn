@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://dprmjc3l75hjn"]
+[gd_scene format=3 uid="uid://dprmjc3l75hjn"]
 
 [sub_resource type="Curve" id="Curve_knavq"]
 _limits = [1.0, 2.5, 0.0, 1.0]
@@ -10,7 +10,7 @@ point_count = 2
 offsets = PackedFloat32Array(0, 0.201878, 0.704225, 1)
 colors = PackedColorArray(1, 0.990167, 0.99, 0.713726, 1, 0.990167, 0.99, 1, 1, 0.990167, 0.99, 1, 1, 1, 1, 0)
 
-[node name="VegetationParticles" type="CPUParticles2D"]
+[node name="VegetationParticles" type="CPUParticles2D" unique_id=1129511973]
 emitting = false
 amount = 10
 one_shot = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cqcvewcu1865c"]
+[gd_scene format=3 uid="uid://cqcvewcu1865c"]
 
 [ext_resource type="Script" uid="uid://chg4vaayt84u3" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://dgr60uub4xhi1" path="res://icon.svg" id="2_h2yge"]
@@ -64,8 +64,6 @@ gradient = SubResource("Gradient_w48qg")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2cqfq"]
 texture = SubResource("GradientTexture1D_vivmo")
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w48qg"]
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w48qg"]
 bg_color = Color(0.16, 0.155467, 0.152, 1)
 border_width_left = 3
@@ -79,65 +77,65 @@ border_width_left = 3
 border_width_bottom = 2
 corner_radius_bottom_left = 10
 
-[node name="Main" type="Node"]
+[node name="Main" type="Node" unique_id=1701664360]
 script = ExtResource("1_0xm2m")
 
-[node name="World" type="Node2D" parent="."]
+[node name="World" type="Node2D" parent="." unique_id=1603602043]
 script = ExtResource("3_lquwl")
 
-[node name="WorldParallax" type="Node2D" parent="World"]
+[node name="WorldParallax" type="Node2D" parent="World" unique_id=630809789]
 unique_name_in_owner = true
 
-[node name="Background" type="Parallax2D" parent="World/WorldParallax"]
+[node name="Background" type="Parallax2D" parent="World/WorldParallax" unique_id=350672720]
 repeat_size = Vector2(1152, 0)
 repeat_times = 2
 ignore_camera_scroll = true
 
-[node name="Sprite2D" type="Sprite2D" parent="World/WorldParallax/Background"]
+[node name="Sprite2D" type="Sprite2D" parent="World/WorldParallax/Background" unique_id=1558228980]
 position = Vector2(576, 324)
 scale = Vector2(2, 2)
 texture = ExtResource("3_ycdy4")
 
-[node name="Background2" type="Parallax2D" parent="World/WorldParallax"]
+[node name="Background2" type="Parallax2D" parent="World/WorldParallax" unique_id=170119869]
 unique_name_in_owner = true
 repeat_size = Vector2(1152, 0)
 repeat_times = 2
 ignore_camera_scroll = true
 
-[node name="Sprite2D" type="Sprite2D" parent="World/WorldParallax/Background2"]
+[node name="Sprite2D" type="Sprite2D" parent="World/WorldParallax/Background2" unique_id=1816247556]
 position = Vector2(576, 324)
 scale = Vector2(2, 2)
 texture = ExtResource("4_w48qg")
 
-[node name="Midground" type="Parallax2D" parent="World/WorldParallax"]
+[node name="Midground" type="Parallax2D" parent="World/WorldParallax" unique_id=271149372]
 unique_name_in_owner = true
 repeat_size = Vector2(1152, 0)
 repeat_times = 2
 ignore_camera_scroll = true
 
-[node name="Sprite2D" type="Sprite2D" parent="World/WorldParallax/Midground"]
+[node name="Sprite2D" type="Sprite2D" parent="World/WorldParallax/Midground" unique_id=498050947]
 position = Vector2(576, 324)
 scale = Vector2(2, 2)
 texture = ExtResource("4_4c57u")
 
-[node name="Foreground2" type="Parallax2D" parent="World/WorldParallax"]
+[node name="Foreground2" type="Parallax2D" parent="World/WorldParallax" unique_id=975707703]
 unique_name_in_owner = true
 repeat_size = Vector2(1152, 0)
 repeat_times = 2
 ignore_camera_scroll = true
 
-[node name="Sprite2D" type="Sprite2D" parent="World/WorldParallax/Foreground2"]
+[node name="Sprite2D" type="Sprite2D" parent="World/WorldParallax/Foreground2" unique_id=1833518258]
 position = Vector2(576, 324)
 scale = Vector2(2, 2)
 texture = ExtResource("6_vivmo")
 
-[node name="Foreground" type="Parallax2D" parent="World/WorldParallax"]
+[node name="Foreground" type="Parallax2D" parent="World/WorldParallax" unique_id=1681491378]
 unique_name_in_owner = true
 repeat_size = Vector2(1152, 0)
 repeat_times = 2
 ignore_camera_scroll = true
 
-[node name="Sprite2D" type="Sprite2D" parent="World/WorldParallax/Foreground"]
+[node name="Sprite2D" type="Sprite2D" parent="World/WorldParallax/Foreground" unique_id=439148998]
 visible = false
 position = Vector2(640, 685)
 scale = Vector2(2, 2)
@@ -145,41 +143,41 @@ texture = ExtResource("4_4c57u")
 region_enabled = true
 region_rect = Rect2(0, 280.5, 576, 43.5)
 
-[node name="Sprite2D2" type="Sprite2D" parent="World/WorldParallax/Foreground"]
+[node name="Sprite2D2" type="Sprite2D" parent="World/WorldParallax/Foreground" unique_id=290155648]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(576, 324)
 scale = Vector2(2, 2)
 texture = ExtResource("7_w48qg")
 
-[node name="Sprite2D3" type="Sprite2D" parent="World/WorldParallax/Foreground"]
+[node name="Sprite2D3" type="Sprite2D" parent="World/WorldParallax/Foreground" unique_id=1049094540]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(576, 324)
 scale = Vector2(2, 2)
 texture = ExtResource("8_vivmo")
 
-[node name="Borders" type="Node2D" parent="World"]
+[node name="Borders" type="Node2D" parent="World" unique_id=1952990698]
 visible = false
 
-[node name="StaticBody2D" type="StaticBody2D" parent="World/Borders"]
+[node name="StaticBody2D" type="StaticBody2D" parent="World/Borders" unique_id=382203712]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Borders/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Borders/StaticBody2D" unique_id=1755178539]
 shape = SubResource("WorldBoundaryShape2D_lquwl")
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="World/Borders"]
+[node name="StaticBody2D2" type="StaticBody2D" parent="World/Borders" unique_id=1048838809]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Borders/StaticBody2D2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Borders/StaticBody2D2" unique_id=885197720]
 shape = SubResource("WorldBoundaryShape2D_lquwl")
 
-[node name="Sprite2D" type="Sprite2D" parent="World"]
+[node name="Sprite2D" type="Sprite2D" parent="World" unique_id=2019115793]
 visible = false
 position = Vector2(199, 498)
 scale = Vector2(0.3, 0.5)
 texture = ExtResource("2_h2yge")
 
-[node name="HUD" type="CanvasLayer" parent="World"]
+[node name="HUD" type="CanvasLayer" parent="World" unique_id=1110516541]
 visible = false
 
-[node name="UI" type="Control" parent="."]
+[node name="UI" type="Control" parent="." unique_id=816207793]
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 15
@@ -189,7 +187,12 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("4_7mycd")
 
-[node name="MainScreen" type="Control" parent="UI"]
+[node name="StartMenu" parent="UI" unique_id=1058368607 instance=ExtResource("14_w48qg")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="MainScreen" type="Control" parent="UI" unique_id=732817869]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -198,7 +201,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="BottomBar" type="Panel" parent="UI/MainScreen"]
+[node name="BottomBar" type="Panel" parent="UI/MainScreen" unique_id=1431404705]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 1
 anchors_preset = 12
@@ -210,7 +213,7 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_7dm0k")
 
-[node name="MarginContainer" type="MarginContainer" parent="UI/MainScreen/BottomBar"]
+[node name="MarginContainer" type="MarginContainer" parent="UI/MainScreen/BottomBar" unique_id=79448072]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -222,14 +225,14 @@ theme_override_constants/margin_left = 32
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 16
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/MainScreen/BottomBar/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/MainScreen/BottomBar/MarginContainer" unique_id=131675184]
 layout_mode = 2
 
-[node name="CharacterCard" parent="UI/MainScreen/BottomBar/MarginContainer/HBoxContainer" instance=ExtResource("4_lquwl")]
+[node name="CharacterCard" parent="UI/MainScreen/BottomBar/MarginContainer/HBoxContainer" unique_id=413958721 instance=ExtResource("4_lquwl")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="MarginContainer2" type="MarginContainer" parent="UI/MainScreen/BottomBar"]
+[node name="MarginContainer2" type="MarginContainer" parent="UI/MainScreen/BottomBar" unique_id=567150780]
 visible = false
 layout_mode = 1
 anchors_preset = 7
@@ -243,11 +246,11 @@ offset_right = 150.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="OptionsPanel" parent="UI/MainScreen/BottomBar/MarginContainer2" instance=ExtResource("6_272bh")]
+[node name="OptionsPanel" parent="UI/MainScreen/BottomBar/MarginContainer2" unique_id=1793997925 instance=ExtResource("6_272bh")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="EventPanelWrapper" type="HBoxContainer" parent="UI/MainScreen"]
+[node name="EventPanelWrapper" type="HBoxContainer" parent="UI/MainScreen" unique_id=1612558197]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -257,7 +260,7 @@ grow_vertical = 2
 mouse_filter = 2
 alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="UI/MainScreen/EventPanelWrapper"]
+[node name="MarginContainer" type="MarginContainer" parent="UI/MainScreen/EventPanelWrapper" unique_id=1790651930]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 64
@@ -265,12 +268,12 @@ theme_override_constants/margin_top = 128
 theme_override_constants/margin_right = 64
 theme_override_constants/margin_bottom = 64
 
-[node name="EventPanel" parent="UI/MainScreen/EventPanelWrapper/MarginContainer" instance=ExtResource("6_7mycd")]
+[node name="EventPanel" parent="UI/MainScreen/EventPanelWrapper/MarginContainer" unique_id=1386268321 instance=ExtResource("6_7mycd")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
-[node name="InventoryPanel" type="Panel" parent="UI/MainScreen"]
+[node name="InventoryPanel" type="Panel" parent="UI/MainScreen" unique_id=182840962]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 300)
 layout_mode = 1
@@ -284,7 +287,7 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_vivmo")
 script = ExtResource("14_vivmo")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/MainScreen/InventoryPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MainScreen/InventoryPanel" unique_id=596287095]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -292,11 +295,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="UI/MainScreen/InventoryPanel/VBoxContainer"]
+[node name="Label" type="Label" parent="UI/MainScreen/InventoryPanel/VBoxContainer" unique_id=389312709]
 layout_mode = 2
 text = "Inventory"
 
-[node name="Tree" type="Tree" parent="UI/MainScreen/InventoryPanel/VBoxContainer"]
+[node name="Tree" type="Tree" parent="UI/MainScreen/InventoryPanel/VBoxContainer" unique_id=1964463562]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
@@ -325,47 +328,47 @@ allow_search = false
 hide_folding = true
 hide_root = true
 
-[node name="PanelContainer" type="PanelContainer" parent="UI/MainScreen"]
+[node name="InfoPanel" type="PanelContainer" parent="UI/MainScreen" unique_id=990837673]
 layout_mode = 1
 offset_right = 204.0
 offset_bottom = 42.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_5vw27")
 
-[node name="MarginContainer" type="MarginContainer" parent="UI/MainScreen/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="UI/MainScreen/InfoPanel" unique_id=1409279035]
 layout_mode = 2
 theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/MainScreen/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MainScreen/InfoPanel/MarginContainer" unique_id=799926809]
 layout_mode = 2
 
-[node name="LocationLabel" type="Label" parent="UI/MainScreen/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="LocationLabel" type="Label" parent="UI/MainScreen/InfoPanel/MarginContainer/VBoxContainer" unique_id=1549840704]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 text = "Location: Grasslands"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/MainScreen/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/MainScreen/InfoPanel/MarginContainer/VBoxContainer" unique_id=699310240]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="UI/MainScreen/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="UI/MainScreen/InfoPanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=28510323]
 layout_mode = 2
 text = "Distance:"
 
-[node name="DistanceLabel" type="Label" parent="UI/MainScreen/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="DistanceLabel" type="Label" parent="UI/MainScreen/InfoPanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1758394198]
 unique_name_in_owner = true
 layout_mode = 2
 text = "0 km"
 
-[node name="DayLabel" type="Label" parent="UI/MainScreen/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="DayLabel" type="Label" parent="UI/MainScreen/InfoPanel/MarginContainer/VBoxContainer" unique_id=651990312]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 text = "Day: 0"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/MainScreen"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/MainScreen" unique_id=1050653523]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -377,20 +380,20 @@ grow_horizontal = 2
 theme_override_constants/separation = 16
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="UI/MainScreen/HBoxContainer"]
+[node name="MorningIcon" type="TextureRect" parent="UI/MainScreen/HBoxContainer" unique_id=593151662]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = ExtResource("15_yaehf")
 expand_mode = 1
 
-[node name="TravelProgress" type="ProgressBar" parent="UI/MainScreen/HBoxContainer"]
+[node name="TravelProgress" type="ProgressBar" parent="UI/MainScreen/HBoxContainer" unique_id=1790495487]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(600, 12)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_vivmo")
 show_percentage = false
 
-[node name="TimeLabel" type="Label" parent="UI/MainScreen/HBoxContainer/TravelProgress"]
+[node name="TimeLabel" type="Label" parent="UI/MainScreen/HBoxContainer/TravelProgress" unique_id=1306650008]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
@@ -409,99 +412,88 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_2cqfq")
 text = "0:00 AM"
 horizontal_alignment = 1
 
-[node name="TextureRect2" type="TextureRect" parent="UI/MainScreen/HBoxContainer"]
+[node name="NightIcon" type="TextureRect" parent="UI/MainScreen/HBoxContainer" unique_id=1743671396]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = ExtResource("16_074og")
 expand_mode = 1
 
-[node name="TimePanel" type="Panel" parent="UI/MainScreen"]
-unique_name_in_owner = true
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MainScreen" unique_id=603548538]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -138.0
-offset_bottom = 48.0
-grow_horizontal = 0
-theme_override_styles/panel = SubResource("StyleBoxEmpty_w48qg")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/MainScreen/TimePanel"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -138.0
-offset_bottom = 96.0
+offset_left = -94.0
+offset_bottom = 45.0
 grow_horizontal = 0
 theme_override_constants/separation = 0
 
-[node name="PanelContainer" type="PanelContainer" parent="UI/MainScreen/TimePanel/VBoxContainer"]
+[node name="TimePanel" type="PanelContainer" parent="UI/MainScreen/VBoxContainer" unique_id=278477521]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 theme_override_styles/panel = SubResource("StyleBoxFlat_w48qg")
 
-[node name="MarginContainer" type="MarginContainer" parent="UI/MainScreen/TimePanel/VBoxContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="UI/MainScreen/VBoxContainer/TimePanel" unique_id=1596566006]
 layout_mode = 2
 theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 8
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/MainScreen/TimePanel/VBoxContainer/PanelContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/MainScreen/VBoxContainer/TimePanel/MarginContainer" unique_id=1456962561]
 layout_mode = 2
 
-[node name="PauseButton" type="Button" parent="UI/MainScreen/TimePanel/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
+[node name="PauseButton" type="Button" parent="UI/MainScreen/VBoxContainer/TimePanel/MarginContainer/HBoxContainer" unique_id=1953029964]
 unique_name_in_owner = true
 layout_mode = 2
 text = "II"
 
-[node name="NormalSpeedButton" type="Button" parent="UI/MainScreen/TimePanel/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
+[node name="NormalSpeedButton" type="Button" parent="UI/MainScreen/VBoxContainer/TimePanel/MarginContainer/HBoxContainer" unique_id=707275851]
 unique_name_in_owner = true
 layout_mode = 2
 text = ">"
 
-[node name="FastSpeedButton" type="Button" parent="UI/MainScreen/TimePanel/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
+[node name="FastSpeedButton" type="Button" parent="UI/MainScreen/VBoxContainer/TimePanel/MarginContainer/HBoxContainer" unique_id=1695463052]
 unique_name_in_owner = true
 layout_mode = 2
 text = ">>"
 
-[node name="FasterSpeedButton" type="Button" parent="UI/MainScreen/TimePanel/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
+[node name="FasterSpeedButton" type="Button" parent="UI/MainScreen/VBoxContainer/TimePanel/MarginContainer/HBoxContainer" unique_id=2005797212]
 unique_name_in_owner = true
 layout_mode = 2
 text = ">>>"
 
-[node name="SettingsButton" type="Button" parent="UI/MainScreen/TimePanel/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
+[node name="SettingsButton" type="Button" parent="UI/MainScreen/VBoxContainer/TimePanel/MarginContainer/HBoxContainer" unique_id=558171321]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 text = "Settings"
 
-[node name="PanelContainer2" type="PanelContainer" parent="UI/MainScreen/TimePanel/VBoxContainer"]
+[node name="DevPanel" type="PanelContainer" parent="UI/MainScreen/VBoxContainer" unique_id=577176005]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 size_flags_horizontal = 8
-size_flags_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_yaehf")
 
-[node name="MarginContainer" type="MarginContainer" parent="UI/MainScreen/TimePanel/VBoxContainer/PanelContainer2"]
+[node name="MarginContainer" type="MarginContainer" parent="UI/MainScreen/VBoxContainer/DevPanel" unique_id=688464635]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/MainScreen/TimePanel/VBoxContainer/PanelContainer2/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/MainScreen/VBoxContainer/DevPanel/MarginContainer" unique_id=655935859]
 layout_mode = 2
 
-[node name="SkipDayButton" type="Button" parent="UI/MainScreen/TimePanel/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer"]
+[node name="SkipDayButton" type="Button" parent="UI/MainScreen/VBoxContainer/DevPanel/MarginContainer/HBoxContainer" unique_id=1859839968]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Skip Day"
 
-[node name="Screens" type="Control" parent="UI"]
-visible = false
+[node name="Screens" type="Control" parent="UI" unique_id=1834397891]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -509,8 +501,3 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-
-[node name="StartMenu" parent="UI/Screens" instance=ExtResource("14_w48qg")]
-unique_name_in_owner = true
-visible = false
-layout_mode = 1

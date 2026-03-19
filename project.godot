@@ -10,15 +10,16 @@ config_version=5
 
 [application]
 
-config/name="Hackclub Roulette Round 3"
+config/name="A Survivor's JOURNEY"
+config/version="1.1.0"
 run/main_scene="uid://cqcvewcu1865c"
-config/features=PackedStringArray("4.5", "GL Compatibility")
+config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
 SaveManager="*res://save_manager.gd"
-SettingsManager="res://settings_manager.gd"
+SettingsManager="*res://settings_manager.gd"
 EventManager="*res://event_manager.gd"
 Game="*res://game.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
@@ -48,6 +49,10 @@ folder_colors={
 "res://items/weapons/": "gray",
 "res://ui/": "green"
 }
+
+[gui]
+
+theme/default_font_multichannel_signed_distance_field=true
 
 [input]
 

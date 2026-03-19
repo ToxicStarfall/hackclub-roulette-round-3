@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://ym254ol4g80v"]
+[gd_scene format=3 uid="uid://ym254ol4g80v"]
 
 [ext_resource type="Script" uid="uid://d4nicrvnpmdng" path="res://components/misc/entity_spawner.gd" id="1_7lg3t"]
 
-[node name="EntitySpawner" type="Marker2D"]
+[node name="EntitySpawner" type="Marker2D" unique_id=1730518723]
 script = ExtResource("1_7lg3t")
