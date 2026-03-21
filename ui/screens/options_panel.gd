@@ -1,7 +1,7 @@
 extends PanelContainer
 
 
-signal option_selected
+#signal option_selected
 
 const OptionButtonGroup = preload("res://ui/modules/options/option_button_group.tres")
 var options

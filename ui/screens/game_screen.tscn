@@ -1,0 +1,369 @@
+[gd_scene format=3 uid="uid://dt5qg1vnfjflo"]
+
+[ext_resource type="Script" uid="uid://muj6qui2llrj" path="res://ui/screens/game_screen.gd" id="1_4pkeh"]
+[ext_resource type="PackedScene" uid="uid://btcpqt1oxshp8" path="res://ui/modules/character_card.tscn" id="2_a36ut"]
+[ext_resource type="PackedScene" uid="uid://cl3toryj5f76b" path="res://ui/modules/options/options_panel.tscn" id="3_f3mdf"]
+[ext_resource type="PackedScene" uid="uid://bk4q4hhrohwl5" path="res://ui/screens/event_panel.tscn" id="4_frk5s"]
+[ext_resource type="Script" uid="uid://2p5qrso85kuq" path="res://ui/inventory_panel.gd" id="5_8tits"]
+[ext_resource type="Texture2D" uid="uid://n6nolxfvm0e" path="res://ui/icons/sunrise.svg" id="6_bpjld"]
+[ext_resource type="Texture2D" uid="uid://dyap0jb0nnppc" path="res://ui/icons/sunset.svg" id="7_645sj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7dm0k"]
+bg_color = Color(0.16, 0.155467, 0.152, 1)
+border_width_top = 4
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vivmo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2cqfq"]
+bg_color = Color(0.16, 0.155467, 0.152, 1)
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2cqfq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5vw27"]
+bg_color = Color(0.16, 0.155467, 0.152, 1)
+border_width_right = 3
+border_width_bottom = 3
+corner_radius_bottom_right = 15
+corner_detail = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vivmo"]
+bg_color = Color(0.24, 0.24, 0.24, 1)
+border_width_left = 4
+border_width_right = 4
+border_width_bottom = 2
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+corner_detail = 1
+expand_margin_left = 12.0
+expand_margin_right = 12.0
+
+[sub_resource type="Gradient" id="Gradient_w48qg"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_vivmo"]
+gradient = SubResource("Gradient_w48qg")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2cqfq"]
+texture = SubResource("GradientTexture1D_vivmo")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w48qg"]
+bg_color = Color(0.16, 0.155467, 0.152, 1)
+border_width_left = 3
+border_width_bottom = 3
+corner_radius_bottom_left = 15
+corner_detail = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yaehf"]
+bg_color = Color(0.16, 0.155467, 0.152, 1)
+border_width_left = 3
+border_width_bottom = 2
+corner_radius_bottom_left = 10
+
+[node name="GameScreen" type="Control" unique_id=596123094]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4pkeh")
+
+[node name="BottomBar" type="Panel" parent="." unique_id=1791636677]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7dm0k")
+
+[node name="MarginContainer" type="MarginContainer" parent="BottomBar" unique_id=1706537114]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BottomBar/MarginContainer" unique_id=1311035523]
+layout_mode = 2
+
+[node name="CharacterCard" parent="BottomBar/MarginContainer/HBoxContainer" unique_id=1818747066 instance=ExtResource("2_a36ut")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="BottomBar" unique_id=1947728800]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -100.0
+offset_right = 150.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="OptionsPanel" parent="BottomBar/MarginContainer2" unique_id=1202614197 instance=ExtResource("3_f3mdf")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="EventPanelWrapper" type="HBoxContainer" parent="." unique_id=586212189]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="EventPanelWrapper" unique_id=1222252219]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 128
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="EventPanel" parent="EventPanelWrapper/MarginContainer" unique_id=1602760636 instance=ExtResource("4_frk5s")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="InventoryPanel" type="Panel" parent="." unique_id=1962451190]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 300)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -150.0
+offset_right = 125.0
+offset_bottom = 150.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_vivmo")
+script = ExtResource("5_8tits")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InventoryPanel" unique_id=1482455446]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="InventoryPanel/VBoxContainer" unique_id=1591032923]
+layout_mode = 2
+text = "Inventory"
+
+[node name="Tree" type="Tree" parent="InventoryPanel/VBoxContainer" unique_id=1791256024]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.9490196, 0.9490196, 0.9490196, 1)
+theme_override_font_sizes/font_size = 14
+theme_override_styles/panel = SubResource("StyleBoxFlat_2cqfq")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2cqfq")
+theme_override_styles/hovered = SubResource("StyleBoxEmpty_2cqfq")
+theme_override_styles/hovered_dimmed = SubResource("StyleBoxEmpty_2cqfq")
+theme_override_styles/hovered_selected = SubResource("StyleBoxEmpty_2cqfq")
+theme_override_styles/hovered_selected_focus = SubResource("StyleBoxEmpty_2cqfq")
+theme_override_styles/selected = SubResource("StyleBoxEmpty_2cqfq")
+theme_override_styles/selected_focus = SubResource("StyleBoxEmpty_2cqfq")
+theme_override_styles/cursor = SubResource("StyleBoxEmpty_2cqfq")
+theme_override_styles/cursor_unfocused = SubResource("StyleBoxEmpty_2cqfq")
+theme_override_styles/button_hover = SubResource("StyleBoxEmpty_2cqfq")
+theme_override_styles/button_pressed = SubResource("StyleBoxEmpty_2cqfq")
+theme_override_styles/custom_button = SubResource("StyleBoxEmpty_2cqfq")
+theme_override_styles/custom_button_hover = SubResource("StyleBoxEmpty_2cqfq")
+theme_override_styles/custom_button_pressed = SubResource("StyleBoxEmpty_2cqfq")
+theme_override_styles/title_button_normal = SubResource("StyleBoxEmpty_2cqfq")
+theme_override_styles/title_button_pressed = SubResource("StyleBoxEmpty_2cqfq")
+theme_override_styles/title_button_hover = SubResource("StyleBoxEmpty_2cqfq")
+columns = 2
+allow_search = false
+hide_folding = true
+hide_root = true
+
+[node name="InfoPanel" type="PanelContainer" parent="." unique_id=975582180]
+layout_mode = 1
+offset_right = 204.0
+offset_bottom = 42.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_5vw27")
+
+[node name="MarginContainer" type="MarginContainer" parent="InfoPanel" unique_id=1492720525]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InfoPanel/MarginContainer" unique_id=1592606736]
+layout_mode = 2
+
+[node name="LocationLabel" type="Label" parent="InfoPanel/MarginContainer/VBoxContainer" unique_id=1981279738]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "Location: Grasslands"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="InfoPanel/MarginContainer/VBoxContainer" unique_id=1994303225]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="InfoPanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=83189552]
+layout_mode = 2
+text = "Distance:"
+
+[node name="DistanceLabel" type="Label" parent="InfoPanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=219374981]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0 km"
+
+[node name="DayLabel" type="Label" parent="InfoPanel/MarginContainer/VBoxContainer" unique_id=2143355967]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "Day: 0"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1654475339]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -333.0
+offset_right = 333.0
+offset_bottom = 12.0
+grow_horizontal = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="MorningIcon" type="TextureRect" parent="HBoxContainer" unique_id=2040512288]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("6_bpjld")
+expand_mode = 1
+
+[node name="TravelProgress" type="ProgressBar" parent="HBoxContainer" unique_id=2145065638]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(600, 12)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_vivmo")
+show_percentage = false
+
+[node name="TimeLabel" type="Label" parent="HBoxContainer/TravelProgress" unique_id=1768963889]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -31.0
+offset_top = -11.5
+offset_right = 31.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_2cqfq")
+text = "0:00 AM"
+horizontal_alignment = 1
+
+[node name="NightIcon" type="TextureRect" parent="HBoxContainer" unique_id=2133354979]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("7_645sj")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=643352914]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -94.0
+offset_bottom = 45.0
+grow_horizontal = 0
+theme_override_constants/separation = 0
+
+[node name="TimePanel" type="PanelContainer" parent="VBoxContainer" unique_id=1963697622]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_w48qg")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/TimePanel" unique_id=1581883404]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TimePanel/MarginContainer" unique_id=894537191]
+layout_mode = 2
+
+[node name="PauseButton" type="Button" parent="VBoxContainer/TimePanel/MarginContainer/HBoxContainer" unique_id=1789026182]
+unique_name_in_owner = true
+layout_mode = 2
+text = "II"
+
+[node name="NormalSpeedButton" type="Button" parent="VBoxContainer/TimePanel/MarginContainer/HBoxContainer" unique_id=1694897551]
+unique_name_in_owner = true
+layout_mode = 2
+text = ">"
+
+[node name="FastSpeedButton" type="Button" parent="VBoxContainer/TimePanel/MarginContainer/HBoxContainer" unique_id=1348134730]
+unique_name_in_owner = true
+layout_mode = 2
+text = ">>"
+
+[node name="FasterSpeedButton" type="Button" parent="VBoxContainer/TimePanel/MarginContainer/HBoxContainer" unique_id=949060231]
+unique_name_in_owner = true
+layout_mode = 2
+text = ">>>"
+
+[node name="SettingsButton" type="Button" parent="VBoxContainer/TimePanel/MarginContainer/HBoxContainer" unique_id=1373908218]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "Settings"
+
+[node name="DevPanel" type="PanelContainer" parent="VBoxContainer" unique_id=1310166701]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_yaehf")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/DevPanel" unique_id=1600208755]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/DevPanel/MarginContainer" unique_id=1858961732]
+layout_mode = 2
+
+[node name="SkipDayButton" type="Button" parent="VBoxContainer/DevPanel/MarginContainer/HBoxContainer" unique_id=1591861523]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Skip Day"
+
+[node name="RestartEventButton" type="Button" parent="VBoxContainer/DevPanel/MarginContainer/HBoxContainer" unique_id=2004119313]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Restart Event"

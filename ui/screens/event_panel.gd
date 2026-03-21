@@ -51,15 +51,11 @@ func _on_dialogue_changed(dialogue_line: DialogueLine):
 	clear_dialogue_options()
 	%DialogueButton.show()
 
-	# Concurrent dialogue lines used as multiline (NO LONGER NECESSARY)
-	#for concurrent_line in dialogue_line.concurrent_lines:
-		#dialogue_line.text += "%s" % [concurrent_line.text]
-
 	if dialogue_line.responses.is_empty() and !awaiting_input:
 		dialogue_line.text += "[br][br][u][i]Click to continue[/i][/u]"
 	else:
 		# Add spacing between dialogue and input area or dialogue options.
-		dialogue_line.text += "[br][br]"
+		dialogue_line.text += "[br][br][br]"
 
 	DialogueOutput.dialogue_line = dialogue_line
 	DialogueOutput.type_out()

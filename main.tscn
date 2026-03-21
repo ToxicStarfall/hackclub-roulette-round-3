@@ -6,76 +6,16 @@
 [ext_resource type="Texture2D" uid="uid://62lb0j00n2a4" path="res://world/background/set_1/1.png" id="3_ycdy4"]
 [ext_resource type="Texture2D" uid="uid://b4kgsovve55y5" path="res://world/background/set_1/3.png" id="4_4c57u"]
 [ext_resource type="Script" uid="uid://bjjcvc1u7oqea" path="res://ui/ui.gd" id="4_7mycd"]
-[ext_resource type="PackedScene" uid="uid://btcpqt1oxshp8" path="res://ui/modules/character_card.tscn" id="4_lquwl"]
 [ext_resource type="Texture2D" uid="uid://dqkwvkd6xdb0t" path="res://world/background/set_1/2.png" id="4_w48qg"]
-[ext_resource type="PackedScene" uid="uid://bk4q4hhrohwl5" path="res://ui/screens/event_panel.tscn" id="6_7mycd"]
-[ext_resource type="PackedScene" uid="uid://cl3toryj5f76b" path="res://ui/modules/options/options_panel.tscn" id="6_272bh"]
 [ext_resource type="Texture2D" uid="uid://cgfn5yxyk2pst" path="res://world/background/set_1/4.png" id="6_vivmo"]
 [ext_resource type="Texture2D" uid="uid://b0tk1ieqon06c" path="res://world/background/village_1.png" id="7_w48qg"]
 [ext_resource type="Texture2D" uid="uid://cyvd4cx711o6v" path="res://world/background/final_village.png" id="8_vivmo"]
-[ext_resource type="Script" uid="uid://2p5qrso85kuq" path="res://ui/inventory_panel.gd" id="14_vivmo"]
-[ext_resource type="PackedScene" uid="uid://dkpqmeu7grf3i" path="res://ui/screens/start_screen.tscn" id="14_w48qg"]
-[ext_resource type="Texture2D" uid="uid://n6nolxfvm0e" path="res://ui/icons/sunrise.svg" id="15_yaehf"]
-[ext_resource type="Texture2D" uid="uid://dyap0jb0nnppc" path="res://ui/icons/sunset.svg" id="16_074og"]
+[ext_resource type="PackedScene" uid="uid://dt5qg1vnfjflo" path="res://ui/screens/game_screen.tscn" id="12_dg77c"]
+[ext_resource type="PackedScene" uid="uid://dkpqmeu7grf3i" path="res://ui/screens/main_menu.tscn" id="14_w48qg"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lquwl"]
 normal = Vector2(0, 1)
 distance = 401.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7dm0k"]
-bg_color = Color(0.16, 0.155467, 0.152, 1)
-border_width_top = 4
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vivmo"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2cqfq"]
-bg_color = Color(0.16, 0.155467, 0.152, 1)
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2cqfq"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5vw27"]
-bg_color = Color(0.16, 0.155467, 0.152, 1)
-border_width_right = 3
-border_width_bottom = 3
-corner_radius_bottom_right = 15
-corner_detail = 2
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vivmo"]
-bg_color = Color(0.24, 0.24, 0.24, 1)
-border_width_left = 4
-border_width_right = 4
-border_width_bottom = 2
-corner_radius_bottom_right = 30
-corner_radius_bottom_left = 30
-corner_detail = 1
-expand_margin_left = 12.0
-expand_margin_right = 12.0
-
-[sub_resource type="Gradient" id="Gradient_w48qg"]
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_vivmo"]
-gradient = SubResource("Gradient_w48qg")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2cqfq"]
-texture = SubResource("GradientTexture1D_vivmo")
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w48qg"]
-bg_color = Color(0.16, 0.155467, 0.152, 1)
-border_width_left = 3
-border_width_bottom = 3
-corner_radius_bottom_left = 15
-corner_detail = 2
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yaehf"]
-bg_color = Color(0.16, 0.155467, 0.152, 1)
-border_width_left = 3
-border_width_bottom = 2
-corner_radius_bottom_left = 10
 
 [node name="Main" type="Node" unique_id=1701664360]
 script = ExtResource("1_0xm2m")
@@ -187,317 +127,23 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("4_7mycd")
 
-[node name="StartMenu" parent="UI" unique_id=1058368607 instance=ExtResource("14_w48qg")]
-unique_name_in_owner = true
+[node name="SplashScreen" type="Control" parent="UI" unique_id=42317543]
 visible = false
-layout_mode = 1
-
-[node name="MainScreen" type="Control" parent="UI" unique_id=732817869]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="BottomBar" type="Panel" parent="UI/MainScreen" unique_id=1431404705]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -40.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_7dm0k")
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/MainScreen/BottomBar" unique_id=79448072]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -40.0
+anchors_preset = 0
 offset_right = 40.0
-grow_vertical = 0
-theme_override_constants/margin_left = 32
-theme_override_constants/margin_right = 32
-theme_override_constants/margin_bottom = 16
+offset_bottom = 40.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/MainScreen/BottomBar/MarginContainer" unique_id=131675184]
-layout_mode = 2
-
-[node name="CharacterCard" parent="UI/MainScreen/BottomBar/MarginContainer/HBoxContainer" unique_id=413958721 instance=ExtResource("4_lquwl")]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="MarginContainer2" type="MarginContainer" parent="UI/MainScreen/BottomBar" unique_id=567150780]
-visible = false
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -150.0
-offset_top = -100.0
-offset_right = 150.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="OptionsPanel" parent="UI/MainScreen/BottomBar/MarginContainer2" unique_id=1793997925 instance=ExtResource("6_272bh")]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="EventPanelWrapper" type="HBoxContainer" parent="UI/MainScreen" unique_id=1612558197]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-alignment = 1
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/MainScreen/EventPanelWrapper" unique_id=1790651930]
-layout_mode = 2
-mouse_filter = 2
-theme_override_constants/margin_left = 64
-theme_override_constants/margin_top = 128
-theme_override_constants/margin_right = 64
-theme_override_constants/margin_bottom = 64
-
-[node name="EventPanel" parent="UI/MainScreen/EventPanelWrapper/MarginContainer" unique_id=1386268321 instance=ExtResource("6_7mycd")]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-
-[node name="InventoryPanel" type="Panel" parent="UI/MainScreen" unique_id=182840962]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(50, 300)
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -150.0
-offset_right = 125.0
-offset_bottom = 150.0
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_vivmo")
-script = ExtResource("14_vivmo")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/MainScreen/InventoryPanel" unique_id=596287095]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="UI/MainScreen/InventoryPanel/VBoxContainer" unique_id=389312709]
-layout_mode = 2
-text = "Inventory"
-
-[node name="Tree" type="Tree" parent="UI/MainScreen/InventoryPanel/VBoxContainer" unique_id=1964463562]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_colors/font_color = Color(0.9490196, 0.9490196, 0.9490196, 1)
-theme_override_font_sizes/font_size = 14
-theme_override_styles/panel = SubResource("StyleBoxFlat_2cqfq")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_2cqfq")
-theme_override_styles/hovered = SubResource("StyleBoxEmpty_2cqfq")
-theme_override_styles/hovered_dimmed = SubResource("StyleBoxEmpty_2cqfq")
-theme_override_styles/hovered_selected = SubResource("StyleBoxEmpty_2cqfq")
-theme_override_styles/hovered_selected_focus = SubResource("StyleBoxEmpty_2cqfq")
-theme_override_styles/selected = SubResource("StyleBoxEmpty_2cqfq")
-theme_override_styles/selected_focus = SubResource("StyleBoxEmpty_2cqfq")
-theme_override_styles/cursor = SubResource("StyleBoxEmpty_2cqfq")
-theme_override_styles/cursor_unfocused = SubResource("StyleBoxEmpty_2cqfq")
-theme_override_styles/button_hover = SubResource("StyleBoxEmpty_2cqfq")
-theme_override_styles/button_pressed = SubResource("StyleBoxEmpty_2cqfq")
-theme_override_styles/custom_button = SubResource("StyleBoxEmpty_2cqfq")
-theme_override_styles/custom_button_hover = SubResource("StyleBoxEmpty_2cqfq")
-theme_override_styles/custom_button_pressed = SubResource("StyleBoxEmpty_2cqfq")
-theme_override_styles/title_button_normal = SubResource("StyleBoxEmpty_2cqfq")
-theme_override_styles/title_button_pressed = SubResource("StyleBoxEmpty_2cqfq")
-theme_override_styles/title_button_hover = SubResource("StyleBoxEmpty_2cqfq")
-columns = 2
-allow_search = false
-hide_folding = true
-hide_root = true
-
-[node name="InfoPanel" type="PanelContainer" parent="UI/MainScreen" unique_id=990837673]
-layout_mode = 1
-offset_right = 204.0
-offset_bottom = 42.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_5vw27")
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/MainScreen/InfoPanel" unique_id=1409279035]
-layout_mode = 2
-theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 12
-theme_override_constants/margin_bottom = 8
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/MainScreen/InfoPanel/MarginContainer" unique_id=799926809]
-layout_mode = 2
-
-[node name="LocationLabel" type="Label" parent="UI/MainScreen/InfoPanel/MarginContainer/VBoxContainer" unique_id=1549840704]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-text = "Location: Grasslands"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/MainScreen/InfoPanel/MarginContainer/VBoxContainer" unique_id=699310240]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="UI/MainScreen/InfoPanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=28510323]
-layout_mode = 2
-text = "Distance:"
-
-[node name="DistanceLabel" type="Label" parent="UI/MainScreen/InfoPanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1758394198]
-unique_name_in_owner = true
-layout_mode = 2
-text = "0 km"
-
-[node name="DayLabel" type="Label" parent="UI/MainScreen/InfoPanel/MarginContainer/VBoxContainer" unique_id=651990312]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-text = "Day: 0"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/MainScreen" unique_id=1050653523]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -333.0
-offset_right = 333.0
-offset_bottom = 12.0
-grow_horizontal = 2
-theme_override_constants/separation = 16
-alignment = 1
-
-[node name="MorningIcon" type="TextureRect" parent="UI/MainScreen/HBoxContainer" unique_id=593151662]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-texture = ExtResource("15_yaehf")
-expand_mode = 1
-
-[node name="TravelProgress" type="ProgressBar" parent="UI/MainScreen/HBoxContainer" unique_id=1790495487]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(600, 12)
-layout_mode = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_vivmo")
-show_percentage = false
-
-[node name="TimeLabel" type="Label" parent="UI/MainScreen/HBoxContainer/TravelProgress" unique_id=1306650008]
+[node name="MainMenu" parent="UI" unique_id=1058368607 instance=ExtResource("14_w48qg")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -31.0
-offset_top = -11.5
-offset_right = 31.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/normal = SubResource("StyleBoxTexture_2cqfq")
-text = "0:00 AM"
-horizontal_alignment = 1
 
-[node name="NightIcon" type="TextureRect" parent="UI/MainScreen/HBoxContainer" unique_id=1743671396]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-texture = ExtResource("16_074og")
-expand_mode = 1
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/MainScreen" unique_id=603548538]
+[node name="GameScreen" parent="UI" unique_id=596123094 instance=ExtResource("12_dg77c")]
+unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -94.0
-offset_bottom = 45.0
-grow_horizontal = 0
-theme_override_constants/separation = 0
 
-[node name="TimePanel" type="PanelContainer" parent="UI/MainScreen/VBoxContainer" unique_id=278477521]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 8
-theme_override_styles/panel = SubResource("StyleBoxFlat_w48qg")
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/MainScreen/VBoxContainer/TimePanel" unique_id=1596566006]
-layout_mode = 2
-theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 12
-theme_override_constants/margin_bottom = 8
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/MainScreen/VBoxContainer/TimePanel/MarginContainer" unique_id=1456962561]
-layout_mode = 2
-
-[node name="PauseButton" type="Button" parent="UI/MainScreen/VBoxContainer/TimePanel/MarginContainer/HBoxContainer" unique_id=1953029964]
-unique_name_in_owner = true
-layout_mode = 2
-text = "II"
-
-[node name="NormalSpeedButton" type="Button" parent="UI/MainScreen/VBoxContainer/TimePanel/MarginContainer/HBoxContainer" unique_id=707275851]
-unique_name_in_owner = true
-layout_mode = 2
-text = ">"
-
-[node name="FastSpeedButton" type="Button" parent="UI/MainScreen/VBoxContainer/TimePanel/MarginContainer/HBoxContainer" unique_id=1695463052]
-unique_name_in_owner = true
-layout_mode = 2
-text = ">>"
-
-[node name="FasterSpeedButton" type="Button" parent="UI/MainScreen/VBoxContainer/TimePanel/MarginContainer/HBoxContainer" unique_id=2005797212]
-unique_name_in_owner = true
-layout_mode = 2
-text = ">>>"
-
-[node name="SettingsButton" type="Button" parent="UI/MainScreen/VBoxContainer/TimePanel/MarginContainer/HBoxContainer" unique_id=558171321]
-unique_name_in_owner = true
+[node name="PauseMenu" type="Control" parent="UI" unique_id=2037296370]
 visible = false
-layout_mode = 2
-text = "Settings"
-
-[node name="DevPanel" type="PanelContainer" parent="UI/MainScreen/VBoxContainer" unique_id=577176005]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-size_flags_horizontal = 8
-theme_override_styles/panel = SubResource("StyleBoxFlat_yaehf")
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/MainScreen/VBoxContainer/DevPanel" unique_id=688464635]
-layout_mode = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/MainScreen/VBoxContainer/DevPanel/MarginContainer" unique_id=655935859]
-layout_mode = 2
-
-[node name="SkipDayButton" type="Button" parent="UI/MainScreen/VBoxContainer/DevPanel/MarginContainer/HBoxContainer" unique_id=1859839968]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Skip Day"
-
-[node name="Screens" type="Control" parent="UI" unique_id=1834397891]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
