@@ -40,7 +40,7 @@ do EventManager.request_input("Survivor", "", "Survivor")
 One last thing, say.. what is your name?
 
 set Game.player.info.name = EventManager.temp.input_result
-set Game.UI.get_node("%CharacterCard/%NameLabel").text = Game.player.info.name
+set Game.GameScreen.get_node("%CharacterCard/%NameLabel").text = Game.player.info.name
 .. {{Game.player.info.name}} ...
 	I wish you the best of luck on your travels, {{Game.player.info.name}}.
 

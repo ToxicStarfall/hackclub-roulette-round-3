@@ -15,10 +15,10 @@ As you walk through a particularly overgrown patch of brush, several armed men e
 	You fight the bandits.
 
 	%.60
-		do Game.player.apply_stat( Character.StatType.HEALTH, -5.0 )
+		do Game.player.apply_stat( Character.Stat.HEALTH, -5.0 )
 		=> fight_sucess
 	%.40
-		do Game.player.apply_stat( Character.StatType.HEALTH, -15.0 )
+		do Game.player.apply_stat( Character.Stat.HEALTH, -15.0 )
 		=> fight_failure
 		
 - Pursuade
@@ -27,7 +27,7 @@ As you walk through a particularly overgrown patch of brush, several armed men e
 		They mutter in contempt, sneering, "Yeah a filthy traveler like you has nothing any way" and they leave you alone.
 	%
 		"You think you can fool us" 
-		do Game.player.apply_stat( Character.StatType.HEALTH, -10.0 )
+		do Game.player.apply_stat( Character.Stat.HEALTH, -10.0 )
 
 - Escape
 	%.50

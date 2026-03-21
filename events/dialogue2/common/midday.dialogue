@@ -27,7 +27,7 @@ It is mid-day.
 
 		set EventManager.temp.eat_meal = true
 		do Game.inventory.remove( Items.FOOD, 1 )
-		do Game.player.apply_stat( StatType.HUNGER, 40 )
+		do Game.player.apply_stat( Stat.HUNGER, 40 )
 	else
 		You have [if EventManager.temp.eat_meal]already eaten[else]no food[/if].
 	
@@ -37,7 +37,7 @@ It is mid-day.
 
 		set EventManager.temp.healed = true
 		do Game.inventory.remove( Items.MEDICINE, 1 )
-		do Game.player.apply_stat( StatType.HEALTH, 25 )
+		do Game.player.apply_stat( Stat.HEALTH, 25 )
 	else
 		You have [if EventManager.temp.healed]already used medicine[else]no medicine[/if].
 
@@ -53,8 +53,8 @@ It is mid-day.
 		set EventManager.temp.rested = true
 		do EventManager.temp.actions -= 1
 		do Game.skip_hour()
-		do Game.player.apply_stat( StatType.HUNGER, -5 )
-		do Game.player.apply_stat( StatType.HEALTH, 10 )
+		do Game.player.apply_stat( Stat.HUNGER, -5 )
+		do Game.player.apply_stat( Stat.HEALTH, 10 )
 	else
 		You have [if EventManager.temp.rested]already rested[else]no actions left[/if].
 

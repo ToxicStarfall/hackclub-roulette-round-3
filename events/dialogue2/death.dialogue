@@ -18,8 +18,8 @@ Perhps I could have made it, and survived to see my hope fulfilled,
 	Continue to see stats
 
 Stats
-	Health remaining:{{Game.player.get_stat(StatType.HEALTH)}}
-	Hunger remaining:{{Game.player.get_stat(StatType.HUNGER)}}
+	Health remaining:{{Game.player.get_stat(Stat.HEALTH)}}
+	Hunger remaining:{{Game.player.get_stat(Stat.HUNGER)}}
 
 	[br]Items remaining
 	Gold:{{Game.inventory.get_item(Items.GOLD)}}

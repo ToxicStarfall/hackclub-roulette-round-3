@@ -1,7 +1,7 @@
 extends Node
 
 
-var current_save
+var current_save: ConfigFile
 
 
 func save():

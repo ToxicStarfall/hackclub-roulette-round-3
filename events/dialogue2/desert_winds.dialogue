@@ -41,7 +41,7 @@ What will you do?
 	%.15 You manage to find some shelther.
 
 do Game.skip_hour(0.5 * EventManager.temp.strength)
-do Game.player.apply_stat(StatType.HEALTH, -3 * EventManager.temp.strength)
-do Game.player.apply_stat(StatType.HUNGER, -1.5 * EventManager.temp.strength)
+do Game.player.apply_stat(Stat.HEALTH, -3 * EventManager.temp.strength)
+do Game.player.apply_stat(Stat.HUNGER, -1.5 * EventManager.temp.strength)
 
 => END

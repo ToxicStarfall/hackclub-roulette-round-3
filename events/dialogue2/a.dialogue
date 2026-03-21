@@ -14,13 +14,13 @@ Nathan: For more information see the online documentation.
 => END
 
 ~ fight_success
-	#do Game.player.apply_stat(Character.StatType.HEALTH, -10.0)
-	#do Game.player.apply_stat(Character.StatType.HUNGER, -5.0)
+	#do Game.player.apply_stat(Character.Stat.HEALTH, -10.0)
+	#do Game.player.apply_stat(Character.Stat.HUNGER, -5.0)
 You sucessfully defeat them albeit not without injury.
 => END
 
 ~ fight_failure
-	#do Game.player.apply_stat(Character.StatType.HUNGER, -5.0)
+	#do Game.player.apply_stat(Character.Stat.HUNGER, -5.0)
 You sucessfully defeat them without injury.
 => END
 

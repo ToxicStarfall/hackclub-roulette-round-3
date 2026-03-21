@@ -11,7 +11,7 @@ enum Comparers {
 	SMALLER_OR_EQUAL,
 }
 
-@export var item: Game.Items
+#@export var item: Game.Items
 @export var value: int = 1
 @export var comparer: Comparers = Comparers.BIGGER_OR_EQUAL
 

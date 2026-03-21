@@ -47,7 +47,7 @@ A dirty and dishelved beggar approches you, carying with him a small rucksack.
 		The beggar suddenly becomes enraged!
 		#%
 		He starts beating you, however you manage to repel him, but not in time to avoid some bruises.
-		do Game.player.apply_stat(StatType.HEALTH, -5)
+		do Game.player.apply_stat(Stat.HEALTH, -5)
 		#% He starts to grab at your belongings and runs off.
 
 => END

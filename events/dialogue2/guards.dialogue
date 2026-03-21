@@ -39,13 +39,13 @@ They stop you, saying that you must pay a tax to travel on this "road".
 		do Game.skip_hour()
 		do Game.inventory.add(Items.GOLD, 3)
 		do Game.inventory.add(Items.FOOD, 2)
-		do Game.player.apply_stat(StatType.HEALTH, -5)
+		do Game.player.apply_stat(Stat.HEALTH, -5)
 	%.60
 		The guards promptly disarm you and beat you up. (-1 gold)
 		#force you to pay an additional tax (-2 gold)
 		do Game.skip_hour()
 		do Game.inventory.remove(Items.GOLD, 1)
-		do Game.player.apply_stat(StatType.HEALTH, -15)
+		do Game.player.apply_stat(Stat.HEALTH, -15)
 
 - Find a different path
 	Ignoring their demands, you veer off the path into the brush and away from the soldiers.

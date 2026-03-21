@@ -23,11 +23,12 @@ const dialogues = [
 	"village"
 ]
 
-var event_history = []
+var dialogue_globals = [Game, EventManager, Character, Items]
 
+var event_history: Array = []
 var event_queue: Array = []
 
-var current_event_id: String
+#var current_event_id: String
 var current_event: Event2
 var current_dialogue: DialogueResource
 var current_dialogue_line: DialogueLine
@@ -86,6 +87,10 @@ func start_event(event_id: String = ""):
 	event_started.emit(current_event)
 
 
+func start_event_random(_group: String = ""):
+	start_event( dialogues.get(randi_range(0, dialogues.size() - 1)) )
+
+
 func end_event():
 	event_ended.emit(current_event)
 	event_history.append(current_event)
@@ -104,20 +109,10 @@ func end_event():
 		start_event( event_queue.pop_front() )
 
 
-func start_event_random(_group: String = ""):
-	start_event( dialogues.get(randi_range(0, dialogues.size() - 1)) )
-
-
-
-func event_active() -> bool:
-	if !current_event:
-		return false
-	else: return true
-
-
-#
-func request_input(prompt: String, save_id: String, default: Variant = null):
-	input_requested.emit(prompt, save_id, default)
+func restart_event():
+	var event_id = current_event.id
+	end_event()
+	start_event(event_id)
 
 
 func get_next_dialogue_line(next_dialogue_id: String = ""):
@@ -130,7 +125,8 @@ func get_next_dialogue_line(next_dialogue_id: String = ""):
 	#dialogue_line = await DialogueManager.get_next_dialogue_line(
 	dialogue_line = await current_dialogue.get_next_dialogue_line(
 			next_id,
-			[Game, EventManager, Character, Items])
+			dialogue_globals
+	)
 	#print(dialogue_line)
 
 	if dialogue_line:
@@ -141,14 +137,22 @@ func get_next_dialogue_line(next_dialogue_id: String = ""):
 		end_event()
 
 
-
 #func _on_dialogue_mangager_title_passed(title):
 	#pass
-
 
 #func get_event(_location):
 	# Apply modifiers to event
 	#pass
+
+
+func event_active() -> bool:
+	if !current_event:
+		return false
+	else: return true
+
+#
+func request_input(prompt: String, save_id: String, default: Variant = null):
+	input_requested.emit(prompt, save_id, default)
 
 
 ## Stores temproary event data (decisions, random values, etc)
@@ -169,3 +173,22 @@ func retrieve(id, default = null) -> Variant:
 ## Clears temproary event data
 func clear_temp():
 	temp.clear()
+
+
+# Dialogue utility functions
+
+func chance(part: float, whole: float) -> bool:
+	return part > randf() * whole
+
+# Returns random phrase out of an array of phrases
+func d_rand_phrase(phrases: Array[String]) -> String:
+	return phrases.pick_random()
+
+func d_randf_range(from: float, to: float) -> float:
+	return randf_range(from, to)
+
+func d_randi_range(from: int, to: int) -> int:
+	return randi_range(from, to)
+
+func d_print(what: Variant) -> void:
+	print("[EventManager] - ", what)
