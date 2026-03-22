@@ -24,7 +24,7 @@ const EVENT_CHANCE_PER_TICK = 0.30  # chance that a event occurs.
 const SECONDS_PER_TICK = 1  # 1 second per tick
 const TICKS_PER_HOUR = 10  # 10 ticks per hour
 const HOURS_PER_DAY = 16  # 16 hours per day
-const TICkS_PER_DAY = HOURS_PER_DAY * TICKS_PER_HOUR
+const TICKS_PER_DAY = HOURS_PER_DAY * TICKS_PER_HOUR  # (160 ticks/seconds)
 
 # Game time
 var paused: bool = true
@@ -67,11 +67,13 @@ func _ready() -> void:
 func _on_game_start():
 	UI.get_node("%MainMenu").hide()
 	UI.get_node("%GameScreen").show()
-	GameScreen.get_node("%TravelProgress").max_value = TICkS_PER_DAY
+	GameScreen.get_node("%TravelProgress").max_value = TICKS_PER_DAY
 	GameScreen.get_node("%CharacterCard").update()
 
 	quickstart()
-	EventManager.start_event("meadows")
+	#World.sunset()
+	#World.cycle()
+	EventManager.start_event("waters_path")
 	#EventManager.start_event("start")
 
 	#EventManager.start_event("common/morning")
@@ -106,7 +108,7 @@ func _physics_process(delta: float) -> void:
 
 func tick_tick():
 	player.apply_stat( Character.Stat.HUNGER, -0.40 )
-	distance_travled += player.get_movment_speed() / TICkS_PER_DAY
+	distance_travled += player.get_movment_speed() / TICKS_PER_DAY
 	# UI updates
 	GameScreen.get_node("%DistanceLabel").text = "%s km" % [ snapped(distance_travled, 0.001) ]
 	GameScreen.get_node("%TravelProgress").value = (current_hour * TICKS_PER_HOUR) + current_tick
@@ -125,6 +127,8 @@ func tick_tick():
 func tick_hour():
 	if current_hour == 8:
 		EventManager.start_event("common/midday")
+	if current_hour == 13:
+		World.sunset()
 	if randf() < 0.25:
 		EventManager.start_event_random()
 
@@ -166,8 +170,16 @@ func _on_event_started(_event: Event2):
 
 
 # Do stuff after an event is resolved.
-func _on_event_ended(_event: Event2):
+func _on_event_ended(event: Event2):
 	unpause()
+
+	if event.id == "common/night":
+		Game.pause()
+		await Game.World.light_to_dark()
+		await get_tree().create_timer(1.0).timeout
+		await Game.World.dark_to_light()
+		EventManager.start_event("common/morning")
+	if event.id == "common/morning": World.sunrise()
 
 	# NOTE - Handled in EventManager.end_event()
 	#if event.id == "common/night":
