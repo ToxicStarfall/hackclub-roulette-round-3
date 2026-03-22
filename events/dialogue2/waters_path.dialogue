@@ -1,0 +1,69 @@
+
+~ title
+
+The Water's Path
+
+=> END
+
+
+~ start
+
+set temp.type = rand_phrase(["river","river delta"])
+set temp.amount = rand_phrase(["small","decent","large"])
+set temp.speed = rand_phrase(["slowly","steadily","quickly"])
+set temp.difficulty = temp.type.index + temp.amount.index + temp.speed.index
+set temp.follow_dir = ""
+
+As you travel, you [[find|see]] that a [b]{{temp.type.phrase}}[/b] is [[in|blocking]] your [[path|way]]!
+	There is a [b]{{temp.amount.phrase}}[/b] amount of water flowing [b]{{temp.speed.phrase}}[/b].
+
+- Follow the {{temp.type.phrase}} upstream
+	set temp.follow_dir = "up"
+	=> Follow
+
+- Follow the {{temp.type.phrase}} downstream
+	set temp.follow_dir = "down"
+	=> Follow
+
+- Try to cross the {{temp.type.phrase}}
+	=> Cross
+
+=> END
+
+
+~ Follow
+
+set temp.travel_amount = player.get_movment_speed() / Game.TICKS_PER_DAY
+set temp.travel_dist = d_randf_range(-1 * temp.travel_amount, temp.travel_amount)
+do Game.distance_travled += temp.travel_dist
+
+You follow the {{temp.type.phrase}} {{temp.follow_dir}}stream.
+	You seem to have traveled [if temp.travel_dist >= 0]towards[else]away from[/if] the direction you were heading.
+	The {{temp.type.phrase}}'s flow [[stays the same.|gets weaker!|gets stronger!]]
+	
+- Continue following {{temp.follow_dir}}stream
+- Cross the {{temp.type.phrase}}
+	=> Cross
+
+=> Follow
+
+
+~ Cross
+
+set temp.fail_result = rand_phrase(["item","health"])
+if chance(100 - (temp.difficulty*10), 100)
+	You cross the {{temp.type.phrase}} safely.
+else
+	if temp.fail_result.phrase == "item"
+		set temp.item = rand_phrase([Items.GOLD, Items.FOOD, Items.MEDICINE])
+		set temp.lost_item = ["gold","food","medicine"].get(temp.item.index)
+		do player.apply_stat(Character.Stat.HUNGER, -1 * temp.difficulty)
+		do inventory.remove(temp.lost_item, -1)
+		You cross the {{temp.type.phrase}}, but you lost 1 {{temp.lost_item}}
+	else
+		do player.apply_stat(Character.Stat.HUNGER, -1 * temp.difficulty)
+		do player.apply_stat(Character.Stat.HEALTH, -1 * temp.difficulty)
+		You cross the {{temp.type.phrase}}, but you hurt yourself while crosing.
+			[color=red]-{{temp.difficulty}}[/color] health.
+
+=> END

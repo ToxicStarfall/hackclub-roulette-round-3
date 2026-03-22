@@ -100,13 +100,21 @@ func end_event():
 	current_dialogue_line = null
 	clear_temp()  # Clear temproary event data
 
-	if event_queue.is_empty():
-		if event_history[-1].id == "common/night":
-			EventManager.start_event("common/morning")
-	else:
-		if event_history[-1].id == "common/night":
-			event_queue.append("common/morning")
-		start_event( event_queue.pop_front() )
+	#if event_queue.is_empty():
+		#if event_history[-1].id == "common/night":
+			#Game.pause()
+			#await Game.World.light_to_dark()
+			#await get_tree().create_timer(1.0).timeout
+			#await Game.World.dark_to_light()
+			#EventManager.start_event("common/morning")
+	#else:
+		#if event_history[-1].id == "common/night":
+			#event_queue.append("common/morning")
+		#Game.pause()
+		#await Game.World.light_to_dark()
+		#await get_tree().create_timer(1.0).timeout
+		#await Game.World.dark_to_light()
+		#start_event( event_queue.pop_front() )
 
 
 func restart_event():
@@ -180,9 +188,26 @@ func clear_temp():
 func chance(part: float, whole: float) -> bool:
 	return part > randf() * whole
 
+
+#func rand_item(items: Array[Items]):
+	#pass
+
 # Returns random phrase out of an array of phrases
-func d_rand_phrase(phrases: Array[String]) -> String:
-	return phrases.pick_random()
+func rand_phrase(phrases: Array[String], weights: Array[float] = [], _as_int: bool = false) -> Dictionary:
+	if weights.is_empty():
+		weights.resize( phrases.size() )
+		weights.fill( 1.0 )
+	var result = {}
+	result.set("phrase", phrases.pick_random())
+	result.set("index", phrases.find( result.phrase ))
+	#if _as_int: return phrases.find( phrases.pick_random() )  # Returns as int
+	#else: return phrases.pick_random()  # Returns as string
+	return result
+
+
+#func rand_phrase_as_int(phrases: Array[String]) -> int:
+	#return rand_phrase(phrases, true)
+
 
 func d_randf_range(from: float, to: float) -> float:
 	return randf_range(from, to)
