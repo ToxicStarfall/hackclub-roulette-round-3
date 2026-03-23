@@ -9,6 +9,28 @@ enum State {
 	MENU, ACTIVE, EVENT
 }
 
+enum TravelEffects {
+	SHELTERED,  # You are protected from the effects of the elements.
+	EXPOSED,  # You are exposed to the effects of the elements.
+	VISIBLE,  # You are visible to peering eyes.
+	HIDDEN,  # You are hidden from peering eyes.
+	URBAN,  # This area is densely populated.
+	RURAL,  # This area is sparsely populated.
+	#WILD,  # This area is heavily populated by wild creatures and insects.
+	#TAME,  # This area is barely populated by wild creatures and insects.
+
+	#DESOLATE,  # This area is devoid of plant life.
+	#DRY, HUMID, COLD
+}
+enum TravelPath {
+	TREACHEROUS, ROUGH, DECENT, SMOOTH, EASY
+}
+
+const EXCLUSIVE_EFFECTS = [
+	["SHELTERED", "EXPOSED"],
+	["VISIBLE", "HIDDEN"],
+]
+
 const GameSpeed = {
 	#SLOW = 0.5,
 	NORMAL = 1.0,
@@ -17,7 +39,7 @@ const GameSpeed = {
 	#FASTEST = 3.0
 }
 
-const EVENT_CHANCE_PER_TICK = 0.30  # chance that a event occurs.
+const EVENT_CHANCE = 0.25  # chance that a event occurs.
 #const NOTABLE_EVENT_CHANCE = 0.25  # chance for a important event.
 
 #const TOTAL_CYCLES = 10  # 1 cycle = day/night.
@@ -71,16 +93,10 @@ func _on_game_start():
 	GameScreen.get_node("%CharacterCard").update()
 
 	quickstart()
-	#World.sunset()
-	#World.cycle()
-	EventManager.start_event("waters_path")
 	#EventManager.start_event("start")
+	#EventManager.start_event("waters_path")
 
 	#EventManager.start_event("common/morning")
-	#EventManager.start_event("common/midday")
-	#EventManager.start_event("common/night")
-
-	#EventManager.start_event("animal_attack")
 
 
 func _physics_process(delta: float) -> void:
@@ -129,7 +145,7 @@ func tick_hour():
 		EventManager.start_event("common/midday")
 	if current_hour == 13:
 		World.sunset()
-	if randf() < 0.25:
+	if randf() < EVENT_CHANCE:  # 25% chance every hour
 		EventManager.start_event_random()
 
 
@@ -139,7 +155,7 @@ func tick_day():
 	GameScreen.get_node("%TravelProgress").value = 0
 
 
-func skip_ticks(_ticks: int = 1, _rounded: bool = true):
+func skip_tick(_ticks: int = 1, _rounded: bool = true):
 	pass
 
 

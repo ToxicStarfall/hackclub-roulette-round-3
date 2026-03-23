@@ -3,14 +3,94 @@
 [ext_resource type="Script" uid="uid://muj6qui2llrj" path="res://ui/screens/game_screen.gd" id="1_4pkeh"]
 [ext_resource type="PackedScene" uid="uid://btcpqt1oxshp8" path="res://ui/modules/character_card.tscn" id="2_a36ut"]
 [ext_resource type="PackedScene" uid="uid://cl3toryj5f76b" path="res://ui/modules/options/options_panel.tscn" id="3_f3mdf"]
+[ext_resource type="Script" uid="uid://b5u7yhjtjvt3r" path="res://ui/modules/action_status_container.gd" id="4_f3mdf"]
 [ext_resource type="PackedScene" uid="uid://bk4q4hhrohwl5" path="res://ui/screens/event_panel.tscn" id="4_frk5s"]
 [ext_resource type="Script" uid="uid://2p5qrso85kuq" path="res://ui/inventory_panel.gd" id="5_8tits"]
 [ext_resource type="Texture2D" uid="uid://n6nolxfvm0e" path="res://ui/icons/sunrise.svg" id="6_bpjld"]
 [ext_resource type="Texture2D" uid="uid://dyap0jb0nnppc" path="res://ui/icons/sunset.svg" id="7_645sj"]
+[ext_resource type="Script" uid="uid://gb3303l4ahfs" path="res://ui/modules/dev_panel.gd" id="8_a36ut"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7dm0k"]
 bg_color = Color(0.16, 0.155467, 0.152, 1)
 border_width_top = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bpjld"]
+bg_color = Color(0.16078432, 0.15686275, 0.15294118, 1)
+border_width_left = 5
+border_width_top = 3
+border_width_right = 5
+border_width_bottom = 3
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a36ut"]
+content_margin_left = 12.0
+content_margin_top = 4.0
+content_margin_right = 12.0
+content_margin_bottom = 4.0
+bg_color = Color(0.16078432, 0.15686275, 0.15294118, 1)
+border_width_left = 4
+border_width_top = 3
+border_width_right = 4
+border_width_bottom = 3
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f3mdf"]
+content_margin_left = 12.0
+content_margin_top = 4.0
+content_margin_right = 12.0
+content_margin_bottom = 4.0
+bg_color = Color(0.21, 0.20475, 0.1995, 1)
+border_width_left = 4
+border_width_top = 3
+border_width_right = 4
+border_width_bottom = 2
+border_color = Color(0.7, 0.7, 0.7, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_frk5s"]
+content_margin_left = 12.0
+content_margin_top = 4.0
+content_margin_right = 12.0
+content_margin_bottom = 4.0
+bg_color = Color(0.21, 0.2065, 0.1995, 1)
+border_width_left = 4
+border_width_top = 3
+border_width_right = 4
+border_width_bottom = 3
+border_color = Color(0.85, 0.85, 0.85, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8tits"]
+content_margin_left = 12.0
+content_margin_top = 4.0
+content_margin_right = 12.0
+content_margin_bottom = 4.0
+bg_color = Color(0.16078432, 0.15686275, 0.15294118, 1)
+border_width_left = 4
+border_width_top = 3
+border_width_right = 4
+border_width_bottom = 3
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 1
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vivmo"]
 
@@ -104,24 +184,86 @@ unique_name_in_owner = true
 layout_mode = 2
 
 [node name="MarginContainer2" type="MarginContainer" parent="BottomBar" unique_id=1947728800]
-visible = false
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
+anchors_preset = 12
 anchor_top = 1.0
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -150.0
-offset_top = -100.0
-offset_right = 150.0
+offset_top = -58.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_constants/margin_bottom = 18
 
 [node name="OptionsPanel" parent="BottomBar/MarginContainer2" unique_id=1202614197 instance=ExtResource("3_f3mdf")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 
+[node name="HBoxContainer" type="HBoxContainer" parent="BottomBar/MarginContainer2" unique_id=970923066]
+layout_mode = 2
+
+[node name="HSpacer" type="Control" parent="BottomBar/MarginContainer2/HBoxContainer" unique_id=347272470]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.5
+
+[node name="ActionStatusContainer" type="PanelContainer" parent="BottomBar/MarginContainer2/HBoxContainer" unique_id=1122377280]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_bpjld")
+script = ExtResource("4_f3mdf")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="BottomBar/MarginContainer2/HBoxContainer/ActionStatusContainer" unique_id=200315764]
+layout_mode = 2
+bbcode_enabled = true
+text = "Hunting... 5s left (30 min)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSpacer2" type="Control" parent="BottomBar/MarginContainer2/HBoxContainer" unique_id=1510990553]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.5
+
+[node name="MarginContainer3" type="MarginContainer" parent="BottomBar" unique_id=105934853]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BottomBar/MarginContainer3" unique_id=1292993266]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HuntButton" type="Button" parent="BottomBar/MarginContainer3/HBoxContainer" unique_id=13462068]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_a36ut")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_f3mdf")
+theme_override_styles/hover = SubResource("StyleBoxFlat_frk5s")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_8tits")
+text = "Hunt"
+
+[node name="RestButton" type="Button" parent="BottomBar/MarginContainer3/HBoxContainer" unique_id=2146427266]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_a36ut")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_f3mdf")
+theme_override_styles/hover = SubResource("StyleBoxFlat_frk5s")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_8tits")
+text = "Rest"
+
 [node name="EventPanelWrapper" type="HBoxContainer" parent="." unique_id=586212189]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -239,7 +381,7 @@ visible = false
 layout_mode = 2
 text = "Day: 0"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1654475339]
+[node name="TimeBar" type="HBoxContainer" parent="." unique_id=1654475339]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -251,20 +393,20 @@ grow_horizontal = 2
 theme_override_constants/separation = 16
 alignment = 1
 
-[node name="MorningIcon" type="TextureRect" parent="HBoxContainer" unique_id=2040512288]
+[node name="MorningIcon" type="TextureRect" parent="TimeBar" unique_id=2040512288]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = ExtResource("6_bpjld")
 expand_mode = 1
 
-[node name="TravelProgress" type="ProgressBar" parent="HBoxContainer" unique_id=2145065638]
+[node name="TravelProgress" type="ProgressBar" parent="TimeBar" unique_id=2145065638]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(600, 12)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_vivmo")
 show_percentage = false
 
-[node name="TimeLabel" type="Label" parent="HBoxContainer/TravelProgress" unique_id=1768963889]
+[node name="TimeLabel" type="Label" parent="TimeBar/TravelProgress" unique_id=1768963889]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
@@ -283,7 +425,7 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_2cqfq")
 text = "0:00 AM"
 horizontal_alignment = 1
 
-[node name="NightIcon" type="TextureRect" parent="HBoxContainer" unique_id=2133354979]
+[node name="NightIcon" type="TextureRect" parent="TimeBar" unique_id=2133354979]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = ExtResource("7_645sj")
@@ -347,6 +489,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_styles/panel = SubResource("StyleBoxFlat_yaehf")
+script = ExtResource("8_a36ut")
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/DevPanel" unique_id=1600208755]
 layout_mode = 2
@@ -355,15 +498,25 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/DevPanel/MarginContainer" unique_id=1858961732]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/DevPanel/MarginContainer" unique_id=1990997020]
 layout_mode = 2
 
-[node name="SkipDayButton" type="Button" parent="VBoxContainer/DevPanel/MarginContainer/HBoxContainer" unique_id=1591861523]
+[node name="SkipDayButton" type="Button" parent="VBoxContainer/DevPanel/MarginContainer/VBoxContainer" unique_id=1591861523]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Skip Day"
 
-[node name="RestartEventButton" type="Button" parent="VBoxContainer/DevPanel/MarginContainer/HBoxContainer" unique_id=2004119313]
+[node name="RestartEventButton" type="Button" parent="VBoxContainer/DevPanel/MarginContainer/VBoxContainer" unique_id=2004119313]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Restart Event"
+
+[node name="SkipEventButton" type="Button" parent="VBoxContainer/DevPanel/MarginContainer/VBoxContainer" unique_id=757472028]
+visible = false
+layout_mode = 2
+text = "Skip Event"
+
+[node name="IgnoreEventCheckBox" type="CheckBox" parent="VBoxContainer/DevPanel/MarginContainer/VBoxContainer" unique_id=1800252219]
+visible = false
+layout_mode = 2
+text = "Ignore Events"

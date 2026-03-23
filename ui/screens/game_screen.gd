@@ -22,13 +22,7 @@ func _ready() -> void:
 			Game.game_speed = Game.GameSpeed.FASTER
 			Game.unpause() )
 
-	%DevPanel/%SkipDayButton.pressed.connect( func():
-		Game.current_hour = Game.HOURS_PER_DAY )
-	%DevPanel/%RestartEventButton.pressed.connect( func():
-		if EventManager.event_active():
-			EventManager.restart_event()
-		)
-	pass
+	$EventPanelWrapper.show()
 
 
 

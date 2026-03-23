@@ -20,7 +20,9 @@ const dialogues = [
 	"bandits", "beggar",
 	"desert_winds",
 	"guards",
-	"village"
+	"meadows",
+	"village",
+	"waters_path"
 ]
 
 var dialogue_globals = [Game, EventManager, Character, Items]

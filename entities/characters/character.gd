@@ -10,6 +10,15 @@ enum Stat {
 	THIRST,
 	ENERGY
 }
+enum Hunger {
+	STARVING, HUNGRY, BARELY_HUNGRY, FULL, STUFFED
+}
+enum Thirst {
+	DEHYDRATED, THIRSTY, HYDRATED
+}
+enum Energy {
+	EXHAUSTED, TIRED, NEUTRAL, ENERGETIC
+}
 
 var info = CharacterInfo.new()
 var stats = CharacterStats.new()
