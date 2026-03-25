@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://3l3otmagybg"
+path="res://.godot/imported/desert_winds.dialogue-f23cad130e108c9f80146c9343c7f0bf.tres"
+
+[deps]
+
+source_file="res://events/dialogue/desert_winds.dialogue"
+dest_files=["res://.godot/imported/desert_winds.dialogue-f23cad130e108c9f80146c9343c7f0bf.tres"]
+
+[params]
+
+defaults=true

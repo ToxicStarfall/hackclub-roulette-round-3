@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://ch48jop6bbowp"
+path="res://.godot/imported/meadows.dialogue-5a8a3b4af5de295d3d7a9ecf400f3ab7.tres"
+
+[deps]
+
+source_file="res://events/dialogue/meadows.dialogue"
+dest_files=["res://.godot/imported/meadows.dialogue-5a8a3b4af5de295d3d7a9ecf400f3ab7.tres"]
+
+[params]
+
+defaults=true

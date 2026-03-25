@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://wuh2252novhc"
+path="res://.godot/imported/hunt.dialogue-3854afb492f6d0ad5d3338b5d3576f53.tres"
+
+[deps]
+
+source_file="res://events/dialogue/actions/hunt.dialogue"
+dest_files=["res://.godot/imported/hunt.dialogue-3854afb492f6d0ad5d3338b5d3576f53.tres"]
+
+[params]
+
+defaults=true

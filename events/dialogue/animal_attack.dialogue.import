@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://rv8vq1210i7y"
+path="res://.godot/imported/animal_attack.dialogue-c0adfb11a0da90f83897dd85dac14248.tres"
+
+[deps]
+
+source_file="res://events/dialogue/animal_attack.dialogue"
+dest_files=["res://.godot/imported/animal_attack.dialogue-c0adfb11a0da90f83897dd85dac14248.tres"]
+
+[params]
+
+defaults=true

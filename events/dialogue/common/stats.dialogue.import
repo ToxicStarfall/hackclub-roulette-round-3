@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://buoccuwuq4xom"
+path="res://.godot/imported/stats.dialogue-24226eb7a1a3174a67971c8321986a8b.tres"
+
+[deps]
+
+source_file="res://events/dialogue/common/stats.dialogue"
+dest_files=["res://.godot/imported/stats.dialogue-24226eb7a1a3174a67971c8321986a8b.tres"]
+
+[params]
+
+defaults=true

@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://cqysrpmv3qrqr"
+path="res://.godot/imported/encounter_keywords.dialogue-37b7c462cb51129bff78a1ce46e920b3.tres"
+
+[deps]
+
+source_file="res://events/dialogue/snippets/encounter_keywords.dialogue"
+dest_files=["res://.godot/imported/encounter_keywords.dialogue-37b7c462cb51129bff78a1ce46e920b3.tres"]
+
+[params]
+
+defaults=true

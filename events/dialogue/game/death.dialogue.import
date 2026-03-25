@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://cprrb4hbnsbhl"
+path="res://.godot/imported/death.dialogue-9bf12fdd22bae2efd6130ee6b75690e5.tres"
+
+[deps]
+
+source_file="res://events/dialogue/game/death.dialogue"
+dest_files=["res://.godot/imported/death.dialogue-9bf12fdd22bae2efd6130ee6b75690e5.tres"]
+
+[params]
+
+defaults=true
