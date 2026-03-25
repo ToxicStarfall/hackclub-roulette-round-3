@@ -2,10 +2,10 @@ extends Node
 
 
 @warning_ignore_start("unused_signal")
-signal event_started(event: Event2)
-signal event_ended(event: Event2)
-signal event_changed(event: Event2)
-#signal event_aborted(event: Event2)
+signal event_started(event: Event)
+signal event_ended(event: Event)
+signal event_changed(event: Event)
+#signal event_aborted(event: Event)
 
 signal input_requested(prompt: String, save_id: String, default: String)
 
@@ -14,7 +14,7 @@ signal dialogue_progressed()
 @warning_ignore_restore("unused_signal")
 
 
-const DIALOGUE_PATH = "res://events/dialogue2/"
+const DIALOGUE_PATH = "res://events/dialogue/"
 const dialogues = [
 	"animal_attack",
 	"bandits", "beggar",
@@ -31,7 +31,7 @@ var event_history: Array = []
 var event_queue: Array = []
 
 #var current_event_id: String
-var current_event: Event2
+var current_event: Event
 var current_dialogue: DialogueResource
 var current_dialogue_line: DialogueLine
 
@@ -52,9 +52,9 @@ func start_event(event_id: String = ""):
 		return
 
 	#print("Event Started: %s" % [event.title])
-	var event_path = "res://events/dialogue2/" + event_id + ".tres"
-	var dialogue_path = "res://events/dialogue2/" + event_id + ".dialogue"
-	var event: Event2
+	var event_path = "res://events/dialogue/" + event_id + ".tres"
+	var dialogue_path = "res://events/dialogue/" + event_id + ".dialogue"
+	var event: Event
 	var dialogue: DialogueResource
 
 	if ResourceLoader.exists(event_path):
@@ -69,7 +69,7 @@ func start_event(event_id: String = ""):
 		# Create a temproary event
 		if dialogue:
 			push_warning("[game] Dialogue exists. Creating temproary event.")
-			event = Event2.new()
+			event = Event.new()
 			var title = await dialogue.get_next_dialogue_line("title")
 			if title: event.title = title.text  # Use the declared title within the dialogue.
 			else: event.title = event_id.capitalize()  # Fallback to event id.
@@ -101,22 +101,6 @@ func end_event():
 	current_dialogue = null
 	current_dialogue_line = null
 	clear_temp()  # Clear temproary event data
-
-	#if event_queue.is_empty():
-		#if event_history[-1].id == "common/night":
-			#Game.pause()
-			#await Game.World.light_to_dark()
-			#await get_tree().create_timer(1.0).timeout
-			#await Game.World.dark_to_light()
-			#EventManager.start_event("common/morning")
-	#else:
-		#if event_history[-1].id == "common/night":
-			#event_queue.append("common/morning")
-		#Game.pause()
-		#await Game.World.light_to_dark()
-		#await get_tree().create_timer(1.0).timeout
-		#await Game.World.dark_to_light()
-		#start_event( event_queue.pop_front() )
 
 
 func restart_event():

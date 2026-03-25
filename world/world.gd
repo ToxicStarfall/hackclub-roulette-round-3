@@ -9,9 +9,9 @@ func _ready() -> void:
 
 
 func activate_parallax():
-	%Background2.autoscroll.x = -15.0
-	%Midground.autoscroll.x = -30.0
-	%Foreground2.autoscroll.x = -60.0
+	%Background2.autoscroll.x = -10.0
+	%Midground.autoscroll.x = -25.0
+	%Foreground2.autoscroll.x = -50.0
 	%Foreground.autoscroll.x = -100.0
 	if sun_tween: if sun_tween.is_valid(): sun_tween.play()
 
@@ -39,6 +39,7 @@ func light_to_dark():
 	var tween = get_tree().create_tween()
 	tween.tween_property(%Parallax, "modulate", Color(0.0, 0.0, 0.0, 1.0), 2)
 	await tween.finished
+
 
 func dark_to_light():
 	var tween = get_tree().create_tween()

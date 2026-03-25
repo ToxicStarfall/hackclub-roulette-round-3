@@ -17,7 +17,7 @@ func _ready() -> void:
 	%DialogueInput.text_submitted.connect( _on_input_submitted )
 
 
-func _on_event_started(event: Event2):
+func _on_event_started(event: Event):
 	self.show()
 	%TitleLabel.text = "[b]%s[/b]" % [event.title]
 	#%DescriptionLabel.text = "%s" % [event.description]

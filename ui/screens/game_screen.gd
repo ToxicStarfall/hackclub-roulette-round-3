@@ -7,8 +7,12 @@ extends Control
 
 
 func _ready() -> void:
-	%TimePanel/%PauseButton.pressed.connect( func():
-		Game.pause() )
+	Events.event_started.connect( _on_event_started )
+	Events.event_ended.connect( _on_event_ended )
+	Events.action_started.connect( _on_action_started )
+	Events.action_ended.connect( _on_action_ended )
+
+	%TimePanel/%PauseButton.pressed.connect( Game.pause )
 	%TimePanel/%NormalSpeedButton.pressed.connect( func():
 		if EventManager.event_active() == false:
 			Game.game_speed = Game.GameSpeed.NORMAL
@@ -22,8 +26,14 @@ func _ready() -> void:
 			Game.game_speed = Game.GameSpeed.FASTER
 			Game.unpause() )
 
-	$EventPanelWrapper.show()
+	%ForagingButton.pressed.connect( Game.action_start.bind( Game.Action.FORAGING ) )
+	%HuntingButton.pressed.connect( Game.action_start.bind( Game.Action.HUNTING ) )
+	%FishingButton.pressed.connect( Game.action_start.bind( Game.Action.FISHING ) )
+	%RestingButton.pressed.connect( Game.action_start.bind( Game.Action.RESTING ) )
+	%StoppingButton.pressed.connect( Game.action_end.bind( true ) )
 
+	$EventPanelWrapper.show()
+	%EventPanel.hide()
 
 
 #func apply_event(event: Event):
@@ -37,3 +47,41 @@ func _ready() -> void:
 	#%EventPanel.clear()
 	#%OptionsPanel.clear()
 	#pass
+
+func _on_event_started(_event: Event):
+	action_disable_all()
+
+
+func _on_event_ended(_event: Event):
+	action_enable_all()
+
+
+func _on_action_started(_action: Game.Action):
+	action_disable_all()
+
+	for button in %ActionButtonsContainer.get_children():
+		button.hide()
+	%ActionButtonsContainer/StoppingButton.show()
+
+
+func _on_action_ended(action: Game.Action):
+	action_enable_all()
+	for button in %ActionButtonsContainer.get_children():
+		var action_name = Game.Action.get(button.name.get_slice("B", 0).to_upper())
+		# Check if action_name is valid first, then check if is allowed
+		if action_name and Game.allowed_actions.has( action_name ):
+			# Shows buttons only if they're allowed
+			button.show()
+	%ActionButtonsContainer/StoppingButton.hide()
+	%ActionStatusContainer.hide()
+
+
+func action_enable_all():
+	for button in %ActionButtonsContainer.get_children():
+		button.disabled = false
+
+
+func action_disable_all():
+	for button in %ActionButtonsContainer.get_children():
+		button.disabled = true
+	%ActionButtonsContainer/StoppingButton.disabled = false

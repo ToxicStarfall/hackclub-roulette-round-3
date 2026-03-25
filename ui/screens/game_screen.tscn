@@ -242,25 +242,63 @@ theme_override_constants/margin_left = 32
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 16
 
-[node name="HBoxContainer" type="HBoxContainer" parent="BottomBar/MarginContainer3" unique_id=1292993266]
+[node name="ActionButtonsContainer" type="HBoxContainer" parent="BottomBar/MarginContainer3" unique_id=1292993266]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="HuntButton" type="Button" parent="BottomBar/MarginContainer3/HBoxContainer" unique_id=13462068]
+[node name="ForagingButton" type="Button" parent="BottomBar/MarginContainer3/ActionButtonsContainer" unique_id=209043245]
+unique_name_in_owner = true
+visible = false
 layout_mode = 2
+tooltip_text = "Forage for food (1 hr). Foraging may not always succeed."
+theme_override_styles/normal = SubResource("StyleBoxFlat_a36ut")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_f3mdf")
+theme_override_styles/hover = SubResource("StyleBoxFlat_frk5s")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_8tits")
+text = "Forage"
+
+[node name="HuntingButton" type="Button" parent="BottomBar/MarginContainer3/ActionButtonsContainer" unique_id=13462068]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Hunt for food (1 hr). Hunting may not always succeed."
 theme_override_styles/normal = SubResource("StyleBoxFlat_a36ut")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_f3mdf")
 theme_override_styles/hover = SubResource("StyleBoxFlat_frk5s")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_8tits")
 text = "Hunt"
 
-[node name="RestButton" type="Button" parent="BottomBar/MarginContainer3/HBoxContainer" unique_id=2146427266]
+[node name="FishingButton" type="Button" parent="BottomBar/MarginContainer3/ActionButtonsContainer" unique_id=925841381]
+unique_name_in_owner = true
+visible = false
 layout_mode = 2
+tooltip_text = "Fish for food (1 hr). Fishing may not always succeed."
+theme_override_styles/normal = SubResource("StyleBoxFlat_a36ut")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_f3mdf")
+theme_override_styles/hover = SubResource("StyleBoxFlat_frk5s")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_8tits")
+text = "Fish"
+
+[node name="RestingButton" type="Button" parent="BottomBar/MarginContainer3/ActionButtonsContainer" unique_id=2146427266]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Rest and recover (1 hr). This will use 1 meal. Medicine will be used if necessary."
 theme_override_styles/normal = SubResource("StyleBoxFlat_a36ut")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_f3mdf")
 theme_override_styles/hover = SubResource("StyleBoxFlat_frk5s")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_8tits")
 text = "Rest"
+
+[node name="StoppingButton" type="Button" parent="BottomBar/MarginContainer3/ActionButtonsContainer" unique_id=276029262]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+tooltip_text = "Stop the current action. This will forfeit any rewards. A temproary debuff will be inflicted."
+theme_override_styles/normal = SubResource("StyleBoxFlat_a36ut")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_f3mdf")
+theme_override_styles/hover = SubResource("StyleBoxFlat_frk5s")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_8tits")
+text = "Stop"
 
 [node name="EventPanelWrapper" type="HBoxContainer" parent="." unique_id=586212189]
 visible = false

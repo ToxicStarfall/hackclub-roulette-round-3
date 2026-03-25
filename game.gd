@@ -9,6 +9,9 @@ enum State {
 	MENU, ACTIVE, EVENT
 }
 
+enum Location {
+	GRASSLAND, FOREST, DESERT
+}
 enum TravelEffects {
 	SHELTERED,  # You are protected from the effects of the elements.
 	EXPOSED,  # You are exposed to the effects of the elements.
@@ -18,18 +21,20 @@ enum TravelEffects {
 	RURAL,  # This area is sparsely populated.
 	#WILD,  # This area is heavily populated by wild creatures and insects.
 	#TAME,  # This area is barely populated by wild creatures and insects.
-
 	#DESOLATE,  # This area is devoid of plant life.
-	#DRY, HUMID, COLD
+	#DRY, TROPICAL, COLD
 }
 enum TravelPath {
 	TREACHEROUS, ROUGH, DECENT, SMOOTH, EASY
 }
-
-const EXCLUSIVE_EFFECTS = [
+const ExclusiveEffects: PackedStringArray = [
 	["SHELTERED", "EXPOSED"],
 	["VISIBLE", "HIDDEN"],
 ]
+
+enum Action {
+	TRAVELING, FISHING, FORAGING, HUNTING, RESTING,
+}
 
 const GameSpeed = {
 	#SLOW = 0.5,
@@ -40,9 +45,7 @@ const GameSpeed = {
 }
 
 const EVENT_CHANCE = 0.25  # chance that a event occurs.
-#const NOTABLE_EVENT_CHANCE = 0.25  # chance for a important event.
 
-#const TOTAL_CYCLES = 10  # 1 cycle = day/night.
 const SECONDS_PER_TICK = 1  # 1 second per tick
 const TICKS_PER_HOUR = 10  # 10 ticks per hour
 const HOURS_PER_DAY = 16  # 16 hours per day
@@ -58,6 +61,10 @@ var current_tick: int = 0
 var current_time: float = 0.0  ## Time system traacking
 
 var elapsed_time: float = 0.0  ## Internal time tracking
+
+var allowed_actions: PackedInt32Array = [Action.TRAVELING, Action.HUNTING, Action.RESTING]
+var current_action: Action
+var action_time_remaining: float = 0.0
 
 # Distance in kilometres
 const distance_total := 25.0  # Diastance travled to beat the game in km. Approximately 5 days
@@ -93,9 +100,7 @@ func _on_game_start():
 	GameScreen.get_node("%CharacterCard").update()
 
 	quickstart()
-	#EventManager.start_event("start")
-	#EventManager.start_event("waters_path")
-
+	#EventManager.start_event("game/start")
 	#EventManager.start_event("common/morning")
 
 
@@ -135,9 +140,9 @@ func tick_tick():
 		player.apply_stat( Character.Stat.HEALTH, +0.20 )
 
 	if player.get_stat( Character.Stat.HEALTH ) <= 0:
-		EventManager.start_event("death")
+		EventManager.start_event("game/death")
 	if distance_travled >= distance_total:
-		EventManager.start_event("end")
+		EventManager.start_event("game/end")
 
 
 func tick_hour():
@@ -155,8 +160,12 @@ func tick_day():
 	GameScreen.get_node("%TravelProgress").value = 0
 
 
-func skip_tick(_ticks: int = 1, _rounded: bool = true):
-	pass
+func skip_tick(ticks: int = 1, rounded: bool = true):
+	if rounded:
+		current_time = 0.0
+		#current_tick = 0
+	current_tick += ticks
+	tick_tick()
 
 
 func skip_hour(hours: int = 1, rounded: bool = true):
@@ -179,14 +188,16 @@ func skip_day(days: int = 1, rounded: bool = true):
 
 
 # Do stuff after an event is started.
-func _on_event_started(_event: Event2):
+func _on_event_started(event: Event):
+	Events.event_started.emit( event )
 	pause()
 	#if event.resource_path.split("/")[-1].split(".")[0] == "village":
 		#World.show_village()
 
 
 # Do stuff after an event is resolved.
-func _on_event_ended(event: Event2):
+func _on_event_ended(event: Event):
+	Events.event_ended.emit( event )
 	unpause()
 
 	if event.id == "common/night":
@@ -196,10 +207,6 @@ func _on_event_ended(event: Event2):
 		await Game.World.dark_to_light()
 		EventManager.start_event("common/morning")
 	if event.id == "common/morning": World.sunrise()
-
-	# NOTE - Handled in EventManager.end_event()
-	#if event.id == "common/night":
-		#EventManager.start_event("common/morning")
 
 	#var event_file_name = event.resource_path.split("/")[-1].split(".")[0]
 	#print(event_file_name)
@@ -228,3 +235,36 @@ func unpause():
 	#print("unpaused")
 	paused = false
 	World.activate_parallax()
+
+
+func action_start(action: Action):
+	pause()
+	Events.action_started.emit( action )
+	current_action = action
+	action_time_remaining = 10.0
+
+	var ActionStatusContainer = GameScreen.get_node("%ActionStatusContainer")
+	ActionStatusContainer.get_node("RichTextLabel").text = Action.keys().get(action) + "... (10s)"
+	ActionStatusContainer.show()
+
+	var tween = get_tree().create_tween().set_loops(9)
+	tween.tween_callback( func():
+		ActionStatusContainer.get_node("RichTextLabel").text = Action.keys().get(action) + "... (%ss)" % [0 + tween.get_loops_left()]
+		skip_tick()
+		pass )
+	tween.tween_interval(1.0)
+	tween.finished.connect( action_end.bind(action) )
+	#tween.
+
+
+func action_end(forced: bool = false, action: Action = Action.TRAVELING):
+	unpause()
+	Events.action_ended.emit( action )
+	if forced:
+		pass
+	#else:
+		#match action:
+			#Action.FISHING: inventory.add(Items.FOOD)
+			#Action.FORAGING: inventory.add(Items.FOOD)
+			#Action.HUNTING: inventory.add(Items.FOOD)
+			#Action.RESTING: inventory.remove(Items.FOOD, 1)
