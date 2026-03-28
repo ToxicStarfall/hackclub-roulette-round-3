@@ -71,12 +71,12 @@ texture = ExtResource("6_vivmo")
 
 [node name="Foreground" type="Parallax2D" parent="World/Parallax" unique_id=1681491378]
 unique_name_in_owner = true
+visible = false
 repeat_size = Vector2(1152, 0)
 repeat_times = 2
 ignore_camera_scroll = true
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Parallax/Foreground" unique_id=439148998]
-visible = false
 position = Vector2(640, 685)
 scale = Vector2(2, 2)
 texture = ExtResource("4_4c57u")

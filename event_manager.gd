@@ -57,19 +57,18 @@ func start_event(event_id: String = ""):
 	var event: Event
 	var dialogue: DialogueResource
 
-	if ResourceLoader.exists(event_path):
-		event = load(event_path)
-	else: pass
-	if ResourceLoader.exists(dialogue_path):
-		dialogue = load(dialogue_path)
-	else: pass
+	if ResourceLoader.exists(event_path):  event = load(event_path)
+	else:  # Create a temproary event
+		push_warning("Missing event resource: %s.tres. Creating temproary event." % [event_id])
+		event = Event.new()
+	if ResourceLoader.exists(dialogue_path):  dialogue = load(dialogue_path)
+	else:
+		push_error("Cannot find an event dialogue of id: %s. Event cancled." % [event_id])
+		return
 
 	if !event:
-		#push_error("[game] Cannot find an event of id \"%s\"." % [event_id])
-		# Create a temproary event
 		if dialogue:
 			push_warning("[game] Dialogue exists. Creating temproary event.")
-			event = Event.new()
 			var title = await dialogue.get_next_dialogue_line("title")
 			if title: event.title = title.text  # Use the declared title within the dialogue.
 			else: event.title = event_id.capitalize()  # Fallback to event id.
@@ -77,9 +76,6 @@ func start_event(event_id: String = ""):
 		else:
 			push_warning("No fallback dialogue. Cancelling event.")
 			return
-	if !dialogue:
-		push_error("Cannot find an event dialogue of id: %s. Event cancled." % [event_id])
-		return
 
 	current_event = event
 	current_event.id = event_id
@@ -127,15 +123,16 @@ func get_next_dialogue_line(next_dialogue_id: String = ""):
 		current_dialogue_line = dialogue_line
 		dialogue_changed.emit(current_dialogue_line)
 	else:
-		print("no dialogue lines")
+		#print("no dialogue lines")
 		end_event()
 
 
 #func _on_dialogue_mangager_title_passed(title):
 	#pass
 
-#func get_event(_location):
-	# Apply modifiers to event
+#func get_event(location: ):
+	 #Apply modifiers to event
+
 	#pass
 
 
@@ -195,11 +192,20 @@ func rand_phrase(phrases: Array[String], weights: Array[float] = [], _as_int: bo
 	#return rand_phrase(phrases, true)
 
 
-func d_randf_range(from: float, to: float) -> float:
+func _max(x, y):
+	return max(x, y)
+
+func _min(x, y):
+	return min(x, y)
+
+func _fmod(x, y) -> float:
+	return fmod(x, y)
+
+func _randf_range(from: float, to: float) -> float:
 	return randf_range(from, to)
 
-func d_randi_range(from: int, to: int) -> int:
+func _randi_range(from: int, to: int) -> int:
 	return randi_range(from, to)
 
-func d_print(what: Variant) -> void:
+func _print(what: Variant) -> void:
 	print("[EventManager] - ", what)

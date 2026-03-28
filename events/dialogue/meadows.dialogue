@@ -17,13 +17,13 @@ As you travel, you [[encounter|find]] a large, [[sprawling|lush]] meadow.
 
 - Attempt to hunt cows (+ 2-4 food) ({{temp.hunt}}% success)
 	if chance(temp.hunt, 100)
-		set temp.food_amount = d_randi_range(2, 4)
+		set temp.food_amount = _randi_range(2, 4)
 		do inventory.add(Items.FOOD, temp.food_amount)
 		
 		You hunt and get [b]{{temp.food_amount}}[/b] food.
 		=> end
 	else
-		set temp.damage = -5 + d_randi_range(0, -5)
+		set temp.damage = -5 + _randi_range(0, -5)
 		do player.apply_stat(Character.Stat.HEALTH, temp.damage )
 
 		The hunt fails. You are injured.
@@ -31,7 +31,7 @@ As you travel, you [[encounter|find]] a large, [[sprawling|lush]] meadow.
 		=> end
 
 - Forage (+ 1-2 food)
-	set temp.food_amount = d_randi_range(1, 2)
+	set temp.food_amount = _randi_range(1, 2)
 	do inventory.add(Items.FOOD, temp.food_amount)
 
 	You [[forage|harvest|find|collect]] [b]{{temp.food_amount}}[/b] food.

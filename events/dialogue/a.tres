@@ -1,8 +1,0 @@
-[gd_resource type="Resource" script_class="Event2" format=3 uid="uid://1625bhee6dcw"]
-
-[ext_resource type="Script" uid="uid://dtiitgdwjkdec" path="res://events/event.gd" id="2_6hn7k"]
-
-[resource]
-script = ExtResource("2_6hn7k")
-title = "A"
-metadata/_custom_type_script = "uid://dtiitgdwjkdec"

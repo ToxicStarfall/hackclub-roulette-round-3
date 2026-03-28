@@ -31,7 +31,7 @@ func _ready() -> void:
 	%HuntingButton.pressed.connect( Game.action_start.bind( Game.Action.HUNTING ) )
 	%FishingButton.pressed.connect( Game.action_start.bind( Game.Action.FISHING ) )
 	%RestingButton.pressed.connect( Game.action_start.bind( Game.Action.RESTING ) )
-	%StoppingButton.pressed.connect( Game.action_end.bind( true ) )
+	%StoppingButton.pressed.connect( Game.action_end.bind( Game.Action.TRAVELING, true ) )
 
 	$EventPanelWrapper.show()
 	%EventPanel.hide()
@@ -69,7 +69,7 @@ func _on_action_started(_action: Game.Action):
 	%ActionButtonsContainer/StoppingButton.show()
 
 
-func _on_action_ended(action: Game.Action):
+func _on_action_ended(_action: Game.Action):
 	action_enable_all()
 	for button in %ActionButtonsContainer.get_children():
 		var action_name = Game.Action.get(button.name.get_slice("B", 0).to_upper())

@@ -52,7 +52,7 @@ const GameSpeed = {
 	NORMAL = 1.0,
 	FAST = 2.0,
 	FASTER = 3.0,
-	#FASTEST = 3.0
+	#FASTEST = 4.0
 }
 
 const EVENT_CHANCE = 0.25  # chance that a event occurs.
@@ -70,7 +70,6 @@ var current_day: int = 0
 var current_hour: int = 0
 var current_tick: int = 0
 var current_time: float = 0.0  ## Time system traacking
-
 var elapsed_time: float = 0.0  ## Internal time tracking
 
 #var current_location: Location = Location.GRASSLAND:
@@ -78,9 +77,10 @@ var current_location: Region = Regions.Woodlands:
 	set(value):
 		current_location = value
 		Events.location_changed.emit( current_location )
+var current_action: Node
+var action_tweener: Node
 var allowed_actions: PackedInt32Array = [Action.TRAVELING, Action.HUNTING, Action.RESTING]
-var current_action: Action
-var action_time_remaining: float = 0.0
+#var action_time_remaining: float = 0.0
 
 # Distance in kilometres
 const distance_total := 25.0  # Diastance travled to beat the game in km. Approximately 5 days
@@ -100,7 +100,6 @@ var inventory := InventoryComponent.new()
 
 func _ready() -> void:
 	Events.game_started.connect( _on_game_start )
-
 	EventManager.event_started.connect( _on_event_started )
 	EventManager.event_ended.connect( _on_event_ended )
 
@@ -179,9 +178,8 @@ func tick_day():
 func skip_tick(ticks: int = 1, rounded: bool = true):
 	if rounded:
 		current_time = 0.0
-		#current_tick = 0
 	current_tick += ticks
-	tick_tick()
+	#tick_tick()
 
 
 func skip_hour(hours: int = 1, rounded: bool = true):
@@ -207,7 +205,7 @@ func skip_day(days: int = 1, rounded: bool = true):
 func _on_event_started(event: Event):
 	Events.event_started.emit( event )
 	pause()
-	#if event.resource_path.split("/")[-1].split(".")[0] == "village":
+	#if event.id == "village":
 		#World.show_village()
 
 
@@ -223,12 +221,9 @@ func _on_event_ended(event: Event):
 		await Game.World.dark_to_light()
 		EventManager.start_event("common/morning")
 	if event.id == "common/morning": World.sunrise()
-
-	#var event_file_name = event.resource_path.split("/")[-1].split(".")[0]
-	#print(event_file_name)
-	#if event_file_name == "village":
+	#if event.id == "village":
 		#World.hide_village()
-	#if event_file_name in ["death","final"]:
+	#if event.id in ["death","final"]:
 		#paused = true
 
 
@@ -253,34 +248,46 @@ func unpause():
 	World.activate_parallax()
 
 
+func change_location(new_location: Region):
+	current_location = new_location
+
+
 func action_start(action: Action):
 	pause()
 	Events.action_started.emit( action )
-	current_action = action
-	action_time_remaining = 10.0
 
 	var ActionStatusContainer = GameScreen.get_node("%ActionStatusContainer")
-	ActionStatusContainer.get_node("RichTextLabel").text = Action.keys().get(action) + "... (10s)"
 	ActionStatusContainer.show()
 
-	var tween = get_tree().create_tween().set_loops(9)
+	var tween_node = Node.new()
+	tween_node.name = "ActionTweener"
+	ActionStatusContainer.add_child( tween_node )
+	current_action = tween_node
+
+	var tween = tween_node.create_tween().set_loops(1)
 	tween.tween_callback( func():
-		ActionStatusContainer.get_node("RichTextLabel").text = Action.keys().get(action) + "... (%ss)" % [0 + tween.get_loops_left()]
-		skip_tick()
+		ActionStatusContainer.get_node("RichTextLabel").text = Action.keys().get(action) + "... (%ss)" % [tween.get_loops_left() - 1]
 		pass )
 	tween.tween_interval(1.0)
 	tween.finished.connect( action_end.bind(action) )
-	#tween.
 
 
-func action_end(forced: bool = false, action: Action = Action.TRAVELING):
-	unpause()
+func action_end(action: Action = Action.TRAVELING, forced: bool = false):
 	Events.action_ended.emit( action )
+	current_action.queue_free()
 	if forced:
-		pass
-	#else:
-		#match action:
+		unpause()
+	else:
+		match action:
 			#Action.FISHING: inventory.add(Items.FOOD)
 			#Action.FORAGING: inventory.add(Items.FOOD)
-			#Action.HUNTING: inventory.add(Items.FOOD)
-			#Action.RESTING: inventory.remove(Items.FOOD, 1)
+			Action.HUNTING:
+				EventManager.start_event("actions/hunt")
+			Action.RESTING:
+				EventManager.start_event("actions/rest")
+
+
+func get_location_data() -> Dictionary:
+	var data: Dictionary = {}
+	#data.set("fauna", )
+	return data

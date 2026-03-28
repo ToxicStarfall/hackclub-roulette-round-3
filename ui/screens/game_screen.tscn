@@ -380,6 +380,7 @@ hide_folding = true
 hide_root = true
 
 [node name="InfoPanel" type="PanelContainer" parent="." unique_id=975582180]
+unique_name_in_owner = true
 layout_mode = 1
 offset_right = 204.0
 offset_bottom = 42.0

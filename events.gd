@@ -5,8 +5,10 @@ extends Node
 signal game_started
 signal game_ended
 
-signal intro_started
-signal intro_ended
+#signal intro_started
+#signal intro_ended
+
+signal location_changed (location: Game.Location)
 
 signal event_started (event: Event)
 signal event_ended (event: Event)
