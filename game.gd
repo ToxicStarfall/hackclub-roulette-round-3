@@ -12,6 +12,17 @@ enum State {
 enum Location {
 	GRASSLAND, FOREST, DESERT
 }
+const POSITIVE_LOCATION_AFFINITIES = {
+	GRASSLAND = ["meadows"],
+	FOREST = ["animal_attack", "bandits"],
+	DESERT = ["desert_winds"],
+}
+const NEGATIVE_LOCATION_AFFINITIES = {
+	"GRASSLAND": [],
+	"FOREST": [],
+	"DESERT": ["waters_path"],
+}
+
 enum TravelEffects {
 	SHELTERED,  # You are protected from the effects of the elements.
 	EXPOSED,  # You are exposed to the effects of the elements.
@@ -62,6 +73,11 @@ var current_time: float = 0.0  ## Time system traacking
 
 var elapsed_time: float = 0.0  ## Internal time tracking
 
+#var current_location: Location = Location.GRASSLAND:
+var current_location: Region = Regions.Woodlands:
+	set(value):
+		current_location = value
+		Events.location_changed.emit( current_location )
 var allowed_actions: PackedInt32Array = [Action.TRAVELING, Action.HUNTING, Action.RESTING]
 var current_action: Action
 var action_time_remaining: float = 0.0

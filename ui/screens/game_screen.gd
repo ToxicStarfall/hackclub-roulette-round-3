@@ -7,6 +7,7 @@ extends Control
 
 
 func _ready() -> void:
+	Events.location_changed.connect( _on_location_changed )
 	Events.event_started.connect( _on_event_started )
 	Events.event_ended.connect( _on_event_ended )
 	Events.action_started.connect( _on_action_started )
@@ -47,6 +48,10 @@ func _ready() -> void:
 	#%EventPanel.clear()
 	#%OptionsPanel.clear()
 	#pass
+
+func _on_location_changed(location: Game.Location):
+	%InfoPanel/%LocationLabel.text = Game.Location.keys().get(location)
+
 
 func _on_event_started(_event: Event):
 	action_disable_all()

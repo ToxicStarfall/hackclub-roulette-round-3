@@ -22,6 +22,7 @@ Events="*uid://c4bfl0qqflvof"
 SaveManager="*res://save_manager.gd"
 SettingsManager="*res://settings_manager.gd"
 EventManager="*res://event_manager.gd"
+Regions="*uid://c2tuftvuwsl6k"
 Game="*res://game.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 

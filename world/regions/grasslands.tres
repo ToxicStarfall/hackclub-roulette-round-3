@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Region" format=3 uid="uid://b0ho5ytqf6ukt"]
+
+[ext_resource type="Script" uid="uid://c5udorbysqlfg" path="res://world/regions/region.gd" id="1_unfoq"]
+
+[resource]
+script = ExtResource("1_unfoq")
+name = "Grasslands"
+rainfall = 0.4
+metadata/_custom_type_script = "uid://c5udorbysqlfg"
