@@ -13,14 +13,14 @@ enum Location {
 	GRASSLAND, FOREST, DESERT
 }
 const POSITIVE_LOCATION_AFFINITIES = {
-	GRASSLAND = ["meadows"],
+	GRASSLANDS = ["meadows"],
 	FOREST = ["animal_attack", "bandits"],
 	DESERT = ["desert_winds"],
 }
 const NEGATIVE_LOCATION_AFFINITIES = {
-	"GRASSLAND": [],
+	"GRASSLANDS": [],
 	"FOREST": [],
-	"DESERT": ["waters_path"],
+	"DESERT": ["waters_path", "village"],
 }
 
 enum TravelEffects {
@@ -72,8 +72,7 @@ var current_tick: int = 0
 var current_time: float = 0.0  ## Time system traacking
 var elapsed_time: float = 0.0  ## Internal time tracking
 
-#var current_location: Location = Location.GRASSLAND:
-var current_location: Region = Regions.Woodlands:
+var current_location: Region = Regions.Grasslands:
 	set(value):
 		current_location = value
 		Events.location_changed.emit( current_location )

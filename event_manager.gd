@@ -86,7 +86,27 @@ func start_event(event_id: String = ""):
 
 
 func start_event_random(_group: String = ""):
-	start_event( dialogues.get(randi_range(0, dialogues.size() - 1)) )
+	var weights = []
+	for dialogue in dialogues:
+		var weight = 1.0
+		var region = Game.current_location.name.to_upper()
+
+		if Game.POSITIVE_LOCATION_AFFINITIES.has(region):
+			for diag in Game.POSITIVE_LOCATION_AFFINITIES.get( region ):
+					if diag == dialogue:
+						weight *= 1.2
+		if Game.NEGATIVE_LOCATION_AFFINITIES.has(region):
+			for diag in Game.NEGATIVE_LOCATION_AFFINITIES.get( region ):
+					if diag == dialogue:
+						weight *= 0.8
+
+		weights.append( weight )
+	print(dialogues)
+	print(weights)
+
+	var index = RandomNumberGenerator.new().rand_weighted(weights)
+	start_event( dialogues.get(index) )
+	#start_event( dialogues.get(randi_range(0, dialogues.size() - 1)) )
 
 
 func end_event():
