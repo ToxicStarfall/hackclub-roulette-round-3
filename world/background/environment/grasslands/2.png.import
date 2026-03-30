@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://62lb0j00n2a4"
-path="res://.godot/imported/1.png-88554cd53cd9c22eb591135dc699495f.ctex"
+uid="uid://dqkwvkd6xdb0t"
+path="res://.godot/imported/2.png-249e9f053bd8577be7d7d52821244c49.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://world/background/environment/grassland/1.png"
-dest_files=["res://.godot/imported/1.png-88554cd53cd9c22eb591135dc699495f.ctex"]
+source_file="res://world/background/environment/grasslands/2.png"
+dest_files=["res://.godot/imported/2.png-249e9f053bd8577be7d7d52821244c49.ctex"]
 
 [params]
 

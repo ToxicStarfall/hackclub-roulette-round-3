@@ -1,11 +1,30 @@
 extends Node2D
 
 
+const BACKGROUND_DIR = "res://world/background/environment/"
+
 var sun_tween: Tween
 
 
+
 func _ready() -> void:
+	Events.location_changed.connect( _on_location_changed )
 	pass
+
+
+func _on_location_changed(location: Region):
+	apply_region_background( location.name.to_lower() )
+	pass
+
+
+func apply_region_background(region_name: String):
+	var region_dir = BACKGROUND_DIR + region_name
+	var region_files = ResourceLoader.list_directory(region_dir)
+
+	for parallax_2d in %Parallax.get_children():
+		if region_files.size() > parallax_2d.get_index():
+			var texture = ResourceLoader.load(region_dir + "/" + region_files.get( parallax_2d.get_index() ))
+			parallax_2d.get_node("Sprite2D").texture = texture
 
 
 func activate_parallax():
@@ -27,6 +46,7 @@ func sunset():
 	sun_tween = tween
 	tween.tween_property(%Parallax, "modulate", Color(0.5, 0.25, 0.25, 1.0), 30)
 	await tween.finished
+
 
 func sunrise():
 	var tween = get_tree().create_tween()

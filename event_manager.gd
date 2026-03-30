@@ -25,7 +25,7 @@ const dialogues = [
 	"waters_path"
 ]
 
-var dialogue_globals = [Game, EventManager, Character, Items]
+var dialogue_globals = [Game, EventManager, Character, Items, Regions]
 
 var event_history: Array = []
 var event_queue: Array = []
@@ -101,8 +101,8 @@ func start_event_random(_group: String = ""):
 						weight *= 0.8
 
 		weights.append( weight )
-	print(dialogues)
-	print(weights)
+	#print(dialogues)
+	#print(weights)
 
 	var index = RandomNumberGenerator.new().rand_weighted(weights)
 	start_event( dialogues.get(index) )
@@ -169,7 +169,7 @@ func request_input(prompt: String, save_id: String, default: Variant = null):
 ## Stores temproary event data (decisions, random values, etc)
 func store(id: String, value: Variant) -> void:
 	temp.set(id, value)
-	print(id + " ", value)
+	#print(id + " ", value)
 
 
 ## Returns the specified event data

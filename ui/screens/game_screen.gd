@@ -49,8 +49,8 @@ func _ready() -> void:
 	#%OptionsPanel.clear()
 	#pass
 
-func _on_location_changed(location: Game.Location):
-	%InfoPanel/%LocationLabel.text = Game.Location.keys().get(location)
+func _on_location_changed(location: Region):
+	%InfoPanel/%LocationLabel.text = "Location: " + location.name.capitalize()
 
 
 func _on_event_started(_event: Event):

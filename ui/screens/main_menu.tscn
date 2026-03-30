@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cqmcagfvvw41f" path="res://ui/screens/main_menu.gd" id="1_0qgu1"]
 [ext_resource type="Shader" uid="uid://dfcj8ypak1jh" path="res://ui/blur.gdshader" id="1_pevhg"]
-[ext_resource type="Texture2D" uid="uid://d4fqvf6rhpni0" path="res://world/background/environment/grassland/orig.png" id="2_afy8x"]
+[ext_resource type="Texture2D" uid="uid://d4fqvf6rhpni0" path="res://world/background/environment/grasslands/orig.png" id="2_afy8x"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_efxa6"]
 shader = ExtResource("1_pevhg")
