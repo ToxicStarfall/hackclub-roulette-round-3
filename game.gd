@@ -113,11 +113,10 @@ func _on_game_start():
 	GameScreen.get_node("%CharacterCard").update()
 
 	SaveManager.load_file()
-	#EventManager.start_event("game/start")
-	#EventManager.start_event("milestones/desert")
-
+	EventManager.start_event("game/start")
 	#quickstart()
-	EventManager.start_event("beggar")
+	#EventManager.start_event("beggar")
+	#EventManager.start_event("milestones/desert")
 
 
 func _physics_process(delta: float) -> void:
