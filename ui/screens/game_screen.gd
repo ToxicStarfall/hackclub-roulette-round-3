@@ -7,11 +7,15 @@ extends Control
 
 
 func _ready() -> void:
+	Events.day_changed.connect( _on_day_changed )
+	Events.distance_changed.connect( _on_distance_changed )
 	Events.location_changed.connect( _on_location_changed )
-	Events.event_started.connect( _on_event_started )
-	Events.event_ended.connect( _on_event_ended )
+
 	Events.action_started.connect( _on_action_started )
 	Events.action_ended.connect( _on_action_ended )
+
+	Events.event_started.connect( _on_event_started )
+	Events.event_ended.connect( _on_event_ended )
 
 	%TimePanel/%PauseButton.pressed.connect( Game.pause )
 	%TimePanel/%NormalSpeedButton.pressed.connect( func():
@@ -49,16 +53,14 @@ func _ready() -> void:
 	#%OptionsPanel.clear()
 	#pass
 
+func _on_day_changed(day: int):
+	%DayLabel.text = "Day %s" % [day]
+
+func _on_distance_changed(distance: float):
+	%DistanceLabel.text = "%s km" % [distance]
+
 func _on_location_changed(location: Region):
 	%InfoPanel/%LocationLabel.text = "Location: " + location.name.capitalize()
-
-
-func _on_event_started(_event: Event):
-	action_disable_all()
-
-
-func _on_event_ended(_event: Event):
-	action_enable_all()
 
 
 func _on_action_started(_action: Game.Action):
@@ -79,6 +81,14 @@ func _on_action_ended(_action: Game.Action):
 			button.show()
 	%ActionButtonsContainer/StoppingButton.hide()
 	%ActionStatusContainer.hide()
+
+
+func _on_event_started(_event: Event):
+	action_disable_all()
+
+
+func _on_event_ended(_event: Event):
+	action_enable_all()
 
 
 func action_enable_all():

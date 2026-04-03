@@ -20,6 +20,7 @@ distance = 401.0
 script = ExtResource("1_0xm2m")
 
 [node name="World" type="Node2D" parent="." unique_id=1603602043]
+z_index = -1
 script = ExtResource("3_lquwl")
 
 [node name="Parallax" type="Node2D" parent="World" unique_id=630809789]

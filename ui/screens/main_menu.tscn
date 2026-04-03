@@ -67,6 +67,20 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "PLAY"
 
+[node name="ExitButton" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=1234351598]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 36)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Exit"
+
+[node name="ResetButton" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=760658699]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 36)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Reset"
+
 [node name="VSpacer3" type="Control" parent="HBoxContainer/VBoxContainer" unique_id=776305205]
 layout_mode = 2
 size_flags_vertical = 3

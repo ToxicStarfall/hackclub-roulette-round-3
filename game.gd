@@ -114,6 +114,7 @@ func _on_game_start():
 	GameScreen.get_node("%CharacterCard").update()
 
 	quickstart()
+	SaveManager.load_file()
 	#EventManager.start_event("game/start")
 	#EventManager.start_event("common/morning")
 
@@ -219,6 +220,7 @@ func _on_event_ended(event: Event):
 		await get_tree().create_timer(1.0).timeout
 		await Game.World.dark_to_light()
 		EventManager.start_event("common/morning")
+		SaveManager.save_file()
 	if event.id == "common/morning": World.sunrise()
 	#if event.id == "village":
 		#World.hide_village()
