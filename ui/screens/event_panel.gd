@@ -18,6 +18,8 @@ func _ready() -> void:
 
 
 func _on_event_started(event: Event):
+	$EventStartAudio.play()
+	$EventStartAudio2.play()
 	self.show()
 	%TitleLabel.text = "[b]%s[/b]" % [event.title]
 	#%DescriptionLabel.text = "%s" % [event.description]
@@ -90,6 +92,7 @@ func _on_dialogue_button_pressed() -> void:
 		%DialogueButton.hide()
 	# Continue dialogue when there are no response options to make.
 	elif EventManager.current_dialogue_line.responses.is_empty():
+		$EventContinuedAudio.play()
 		EventManager.get_next_dialogue_line()
 
 

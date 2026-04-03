@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://b2wo0q8lec12e" path="res://ui/screens/event_panel.gd" id="1_hss4t"]
 [ext_resource type="Script" uid="uid://g32um0mltv5d" path="res://addons/dialogue_manager/dialogue_label.gd" id="2_l4rf7"]
 [ext_resource type="Script" uid="uid://bb52rsfwhkxbn" path="res://addons/dialogue_manager/dialogue_responses_menu.gd" id="3_uyss2"]
+[ext_resource type="AudioStream" uid="uid://bupg3sjmg853x" path="res://audio/freesound_community-paper-rustle-81855.mp3" id="4_h73tv"]
+[ext_resource type="AudioStream" uid="uid://c4jjh6806kju6" path="res://audio/makigai_maimai-paper-245786.mp3" id="5_6fvtm"]
+[ext_resource type="AudioStream" uid="uid://c0mejci1dafy8" path="res://audio/oxidvideos-paper-slide-short-478835.mp3" id="6_6fvtm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_272bh"]
 bg_color = Color(0.2, 0.188235, 0.172549, 1)
@@ -93,5 +96,17 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_w83s8")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_y4wm0")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_dwlgo")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_0cibe")
+
+[node name="EventStartAudio" type="AudioStreamPlayer" parent="." unique_id=2021283434]
+stream = ExtResource("4_h73tv")
+volume_db = -5.0
+
+[node name="EventStartAudio2" type="AudioStreamPlayer" parent="." unique_id=179672779]
+stream = ExtResource("5_6fvtm")
+bus = &"UI"
+
+[node name="EventContinuedAudio" type="AudioStreamPlayer" parent="." unique_id=1398977074]
+stream = ExtResource("6_6fvtm")
+bus = &"UI"
 
 [connection signal="pressed" from="DialogueButton" to="." method="_on_dialogue_button_pressed"]
