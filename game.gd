@@ -87,7 +87,7 @@ var distance_required := 0.0  ## Distance required to next checkpoint
 var distance_travled := 0.0
 
 
-var party := Party.new()
+#var party := Party.new()
 var player := Character.new()
 var inventory := InventoryComponent.new()
 
@@ -99,12 +99,11 @@ var inventory := InventoryComponent.new()
 
 func _ready() -> void:
 	Events.game_started.connect( _on_game_start )
+	#Events.game_ended
 	EventManager.event_started.connect( _on_event_started )
 	EventManager.event_ended.connect( _on_event_ended )
 
 	player.stat_changed.connect( GameScreen.get_node("%CharacterCard").update )
-
-	#PopupText.new()
 
 
 func _on_game_start():
@@ -113,10 +112,12 @@ func _on_game_start():
 	GameScreen.get_node("%TravelProgress").max_value = TICKS_PER_DAY
 	GameScreen.get_node("%CharacterCard").update()
 
-	quickstart()
 	SaveManager.load_file()
 	#EventManager.start_event("game/start")
-	#EventManager.start_event("common/morning")
+	#EventManager.start_event("milestones/desert")
+
+	#quickstart()
+	EventManager.start_event("beggar")
 
 
 func _physics_process(delta: float) -> void:
@@ -146,6 +147,7 @@ func tick_tick():
 	player.apply_stat( Character.Stat.HUNGER, -0.40 )
 	distance_travled += player.get_movment_speed() / TICKS_PER_DAY
 	# UI updates
+	Events.distance_changed.emit( snapped(distance_travled, 0.001) )
 	GameScreen.get_node("%DistanceLabel").text = "%s km" % [ snapped(distance_travled, 0.001) ]
 	GameScreen.get_node("%TravelProgress").value = (current_hour * TICKS_PER_HOUR) + current_tick
 
@@ -171,7 +173,7 @@ func tick_hour():
 
 func tick_day():
 	EventManager.start_event("common/night")
-	GameScreen.get_node("%DayLabel").text = "Day: %s" % [current_day]
+	#GameScreen.get_node("%DayLabel").text = "Day: %s" % [current_day]
 	GameScreen.get_node("%TravelProgress").value = 0
 
 
@@ -219,6 +221,7 @@ func _on_event_ended(event: Event):
 		await Game.World.light_to_dark()
 		await get_tree().create_timer(1.0).timeout
 		await Game.World.dark_to_light()
+		Events.day_changed.emit( current_day )
 		EventManager.start_event("common/morning")
 		SaveManager.save_file()
 	if event.id == "common/morning": World.sunrise()

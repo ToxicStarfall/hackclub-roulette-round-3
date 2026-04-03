@@ -150,9 +150,9 @@ func get_next_dialogue_line(next_dialogue_id: String = ""):
 #func _on_dialogue_mangager_title_passed(title):
 	#pass
 
+
 #func get_event(location: ):
 	 #Apply modifiers to event
-
 	#pass
 
 
@@ -186,7 +186,7 @@ func clear_temp():
 	temp.clear()
 
 
-# Dialogue utility functions
+# - - - Dialogue utility functions - - - #
 
 func chance(part: float, whole: float) -> bool:
 	return part > randf() * whole
@@ -229,3 +229,12 @@ func _randi_range(from: int, to: int) -> int:
 
 func _print(what: Variant) -> void:
 	print("[EventManager] - ", what)
+
+
+# - - String Variables - - #
+
+func _to_lower(string: String) -> String:
+	return string.to_lower()
+
+func _to_upper(string: String) -> String:
+	return string.to_upper()

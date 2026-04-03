@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://ccsasxgd61k8d"
+path="res://.godot/imported/oasis.dialogue-6cebc8fdd0f03ac72145c24729b5bf6b.tres"
+
+[deps]
+
+source_file="res://events/dialogue/oasis.dialogue"
+dest_files=["res://.godot/imported/oasis.dialogue-6cebc8fdd0f03ac72145c24729b5bf6b.tres"]
+
+[params]
+
+defaults=true

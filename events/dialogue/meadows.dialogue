@@ -21,23 +21,26 @@ As you travel, you [[encounter|find]] a large, [[sprawling|lush]] meadow.
 		do inventory.add(Items.FOOD, temp.food_amount)
 		
 		You hunt and get [b]{{temp.food_amount}}[/b] food.
-		=> end
 	else
 		set temp.damage = -5 + _randi_range(0, -5)
 		do player.apply_stat(Character.Stat.HEALTH, temp.damage )
 
 		The hunt fails. You are injured.
 			[color=red]{{temp.damage}}[/color] health.
-		=> end
 
 - Forage (+ 1-2 food)
 	set temp.food_amount = _randi_range(1, 2)
 	do inventory.add(Items.FOOD, temp.food_amount)
 
 	You [[forage|harvest|find|collect]] [b]{{temp.food_amount}}[/b] food.
-	=> end
 
 - Ignore
+	=> END
+
+=> end
+
+
+~ desert
 
 => END
 
