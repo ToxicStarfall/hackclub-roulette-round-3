@@ -1,16 +1,18 @@
 class_name Event
 extends Resource
 
-
-#signal event_entered
-#signal event_exited
+#signal dialogue_progressed
 
 #@export var type: Types = EventTypes.NORMAL
+
+var id: String
 @export var title: String = ""
-@export var dialogue: Array[BaseDialogue] = []
-#@export var dialogues: Array[Dialogue] = []
-#@export var paths: Dictionary[String, BaseDialogue] = {}
-@export var paths: Array[BaseDialogue] = []
+#@export var texture: Texture2D
+#@export var description: String = ""
+#@export var dialogue: DialogueResource
+
+@export_category("Configuration")
+#@export var regions: Array[Region]
 
 
 #func exit():

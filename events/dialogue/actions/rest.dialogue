@@ -1,0 +1,22 @@
+
+~ title
+
+Rest
+
+=> END
+
+
+~ start
+
+set temp.heal_amount = _randi_range(4, 8)
+
+if player.stats.health < player.stats.max_health
+	set temp.heal_amount += _randi_range(12, 20)
+	do inventory.remove(Items.MEDICINE, 1)
+
+You stop and take a rest.
+	1x Food used. [color=orange]+20 hunger[/color][do inventory.remove(Items.FOOD, 1)][do player.apply_stat(Character.Stat.HUNGER, 20)]
+	[if player.stats.health < player.stats.max_health]1x Medicine used. [/if][color=red]+{{temp.heal_amount}} health[/color]
+	[do player.apply_stat(Character.Stat.HEALTH, temp.heal_amount)]
+
+=> END

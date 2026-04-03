@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://b4co8102854c1"
+path="res://.godot/imported/fish.dialogue-af9daca78a99981d5b403cb295038808.tres"
+
+[deps]
+
+source_file="res://events/dialogue/actions/fish.dialogue"
+dest_files=["res://.godot/imported/fish.dialogue-af9daca78a99981d5b403cb295038808.tres"]
+
+[params]
+
+defaults=true

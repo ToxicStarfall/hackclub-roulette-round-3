@@ -1,185 +1,117 @@
-[gd_scene load_steps=31 format=3 uid="uid://cqcvewcu1865c"]
+[gd_scene format=3 uid="uid://cqcvewcu1865c"]
 
 [ext_resource type="Script" uid="uid://chg4vaayt84u3" path="res://main.gd" id="1_0xm2m"]
-[ext_resource type="Texture2D" uid="uid://dgr60uub4xhi1" path="res://icon.svg" id="2_h2yge"]
 [ext_resource type="Script" uid="uid://spgiq2pdi4kh" path="res://world/world.gd" id="3_lquwl"]
-[ext_resource type="Texture2D" uid="uid://62lb0j00n2a4" path="res://world/background/set_1/1.png" id="3_ycdy4"]
-[ext_resource type="Texture2D" uid="uid://b4kgsovve55y5" path="res://world/background/set_1/3.png" id="4_4c57u"]
+[ext_resource type="Texture2D" uid="uid://62lb0j00n2a4" path="res://world/background/environment/grasslands/1.png" id="3_ycdy4"]
+[ext_resource type="Texture2D" uid="uid://b4kgsovve55y5" path="res://world/background/environment/grasslands/3.png" id="4_4c57u"]
 [ext_resource type="Script" uid="uid://bjjcvc1u7oqea" path="res://ui/ui.gd" id="4_7mycd"]
-[ext_resource type="PackedScene" uid="uid://btcpqt1oxshp8" path="res://ui/modules/character_card.tscn" id="4_lquwl"]
-[ext_resource type="Texture2D" uid="uid://dqkwvkd6xdb0t" path="res://world/background/set_1/2.png" id="4_w48qg"]
-[ext_resource type="PackedScene" uid="uid://bk4q4hhrohwl5" path="res://ui/screens/event_panel.tscn" id="6_7mycd"]
-[ext_resource type="PackedScene" uid="uid://cl3toryj5f76b" path="res://ui/modules/options/options_panel.tscn" id="6_272bh"]
-[ext_resource type="Texture2D" uid="uid://cgfn5yxyk2pst" path="res://world/background/set_1/4.png" id="6_vivmo"]
+[ext_resource type="Texture2D" uid="uid://dqkwvkd6xdb0t" path="res://world/background/environment/grasslands/2.png" id="4_w48qg"]
+[ext_resource type="Texture2D" uid="uid://cgfn5yxyk2pst" path="res://world/background/environment/grasslands/4.png" id="6_vivmo"]
 [ext_resource type="Texture2D" uid="uid://b0tk1ieqon06c" path="res://world/background/village_1.png" id="7_w48qg"]
 [ext_resource type="Texture2D" uid="uid://cyvd4cx711o6v" path="res://world/background/final_village.png" id="8_vivmo"]
-[ext_resource type="Script" uid="uid://2p5qrso85kuq" path="res://ui/inventory_panel.gd" id="14_vivmo"]
-[ext_resource type="PackedScene" uid="uid://dkpqmeu7grf3i" path="res://ui/screens/start_screen.tscn" id="14_w48qg"]
-[ext_resource type="Texture2D" uid="uid://n6nolxfvm0e" path="res://ui/icons/sunrise.svg" id="15_yaehf"]
-[ext_resource type="Texture2D" uid="uid://dyap0jb0nnppc" path="res://ui/icons/sunset.svg" id="16_074og"]
+[ext_resource type="PackedScene" uid="uid://dt5qg1vnfjflo" path="res://ui/screens/game_screen.tscn" id="12_dg77c"]
+[ext_resource type="PackedScene" uid="uid://dkpqmeu7grf3i" path="res://ui/screens/main_menu.tscn" id="14_w48qg"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lquwl"]
 normal = Vector2(0, 1)
 distance = 401.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7dm0k"]
-bg_color = Color(0.16, 0.155467, 0.152, 1)
-border_width_top = 4
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vivmo"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2cqfq"]
-bg_color = Color(0.16, 0.155467, 0.152, 1)
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2cqfq"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5vw27"]
-bg_color = Color(0.16, 0.155467, 0.152, 1)
-border_width_right = 3
-border_width_bottom = 3
-corner_radius_bottom_right = 15
-corner_detail = 2
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vivmo"]
-bg_color = Color(0.24, 0.24, 0.24, 1)
-border_width_left = 4
-border_width_right = 4
-border_width_bottom = 2
-corner_radius_bottom_right = 30
-corner_radius_bottom_left = 30
-corner_detail = 1
-expand_margin_left = 12.0
-expand_margin_right = 12.0
-
-[sub_resource type="Gradient" id="Gradient_w48qg"]
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_vivmo"]
-gradient = SubResource("Gradient_w48qg")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2cqfq"]
-texture = SubResource("GradientTexture1D_vivmo")
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w48qg"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w48qg"]
-bg_color = Color(0.16, 0.155467, 0.152, 1)
-border_width_left = 3
-border_width_bottom = 3
-corner_radius_bottom_left = 15
-corner_detail = 2
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yaehf"]
-bg_color = Color(0.16, 0.155467, 0.152, 1)
-border_width_left = 3
-border_width_bottom = 2
-corner_radius_bottom_left = 10
-
-[node name="Main" type="Node"]
+[node name="Main" type="Node" unique_id=1701664360]
 script = ExtResource("1_0xm2m")
 
-[node name="World" type="Node2D" parent="."]
+[node name="World" type="Node2D" parent="." unique_id=1603602043]
+z_index = -1
 script = ExtResource("3_lquwl")
 
-[node name="WorldParallax" type="Node2D" parent="World"]
+[node name="Parallax" type="Node2D" parent="World" unique_id=630809789]
 unique_name_in_owner = true
 
-[node name="Background" type="Parallax2D" parent="World/WorldParallax"]
+[node name="Background" type="Parallax2D" parent="World/Parallax" unique_id=350672720]
 repeat_size = Vector2(1152, 0)
 repeat_times = 2
 ignore_camera_scroll = true
 
-[node name="Sprite2D" type="Sprite2D" parent="World/WorldParallax/Background"]
+[node name="Sprite2D" type="Sprite2D" parent="World/Parallax/Background" unique_id=1558228980]
 position = Vector2(576, 324)
 scale = Vector2(2, 2)
 texture = ExtResource("3_ycdy4")
 
-[node name="Background2" type="Parallax2D" parent="World/WorldParallax"]
+[node name="Background2" type="Parallax2D" parent="World/Parallax" unique_id=170119869]
 unique_name_in_owner = true
 repeat_size = Vector2(1152, 0)
 repeat_times = 2
 ignore_camera_scroll = true
 
-[node name="Sprite2D" type="Sprite2D" parent="World/WorldParallax/Background2"]
+[node name="Sprite2D" type="Sprite2D" parent="World/Parallax/Background2" unique_id=1816247556]
 position = Vector2(576, 324)
 scale = Vector2(2, 2)
 texture = ExtResource("4_w48qg")
 
-[node name="Midground" type="Parallax2D" parent="World/WorldParallax"]
+[node name="Midground" type="Parallax2D" parent="World/Parallax" unique_id=271149372]
 unique_name_in_owner = true
 repeat_size = Vector2(1152, 0)
 repeat_times = 2
 ignore_camera_scroll = true
 
-[node name="Sprite2D" type="Sprite2D" parent="World/WorldParallax/Midground"]
+[node name="Sprite2D" type="Sprite2D" parent="World/Parallax/Midground" unique_id=498050947]
 position = Vector2(576, 324)
 scale = Vector2(2, 2)
 texture = ExtResource("4_4c57u")
 
-[node name="Foreground2" type="Parallax2D" parent="World/WorldParallax"]
+[node name="Foreground2" type="Parallax2D" parent="World/Parallax" unique_id=975707703]
 unique_name_in_owner = true
 repeat_size = Vector2(1152, 0)
 repeat_times = 2
 ignore_camera_scroll = true
 
-[node name="Sprite2D" type="Sprite2D" parent="World/WorldParallax/Foreground2"]
+[node name="Sprite2D" type="Sprite2D" parent="World/Parallax/Foreground2" unique_id=1833518258]
 position = Vector2(576, 324)
 scale = Vector2(2, 2)
 texture = ExtResource("6_vivmo")
 
-[node name="Foreground" type="Parallax2D" parent="World/WorldParallax"]
+[node name="Foreground" type="Parallax2D" parent="World/Parallax" unique_id=1681491378]
 unique_name_in_owner = true
+visible = false
 repeat_size = Vector2(1152, 0)
 repeat_times = 2
 ignore_camera_scroll = true
 
-[node name="Sprite2D" type="Sprite2D" parent="World/WorldParallax/Foreground"]
-visible = false
+[node name="Sprite2D" type="Sprite2D" parent="World/Parallax/Foreground" unique_id=439148998]
 position = Vector2(640, 685)
 scale = Vector2(2, 2)
 texture = ExtResource("4_4c57u")
 region_enabled = true
 region_rect = Rect2(0, 280.5, 576, 43.5)
 
-[node name="Sprite2D2" type="Sprite2D" parent="World/WorldParallax/Foreground"]
+[node name="Sprite2D2" type="Sprite2D" parent="World/Parallax/Foreground" unique_id=290155648]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(576, 324)
 scale = Vector2(2, 2)
 texture = ExtResource("7_w48qg")
 
-[node name="Sprite2D3" type="Sprite2D" parent="World/WorldParallax/Foreground"]
+[node name="Sprite2D3" type="Sprite2D" parent="World/Parallax/Foreground" unique_id=1049094540]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(576, 324)
 scale = Vector2(2, 2)
 texture = ExtResource("8_vivmo")
 
-[node name="Borders" type="Node2D" parent="World"]
+[node name="Borders" type="Node2D" parent="World" unique_id=1952990698]
 visible = false
 
-[node name="StaticBody2D" type="StaticBody2D" parent="World/Borders"]
+[node name="StaticBody2D" type="StaticBody2D" parent="World/Borders" unique_id=382203712]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Borders/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Borders/StaticBody2D" unique_id=1755178539]
 shape = SubResource("WorldBoundaryShape2D_lquwl")
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="World/Borders"]
+[node name="StaticBody2D2" type="StaticBody2D" parent="World/Borders" unique_id=1048838809]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Borders/StaticBody2D2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Borders/StaticBody2D2" unique_id=885197720]
 shape = SubResource("WorldBoundaryShape2D_lquwl")
 
-[node name="Sprite2D" type="Sprite2D" parent="World"]
-visible = false
-position = Vector2(199, 498)
-scale = Vector2(0.3, 0.5)
-texture = ExtResource("2_h2yge")
-
-[node name="HUD" type="CanvasLayer" parent="World"]
+[node name="HUD" type="CanvasLayer" parent="World" unique_id=1110516541]
 visible = false
 
-[node name="UI" type="Control" parent="."]
+[node name="UI" type="Control" parent="." unique_id=816207793]
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 15
@@ -189,328 +121,23 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("4_7mycd")
 
-[node name="MainScreen" type="Control" parent="UI"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="BottomBar" type="Panel" parent="UI/MainScreen"]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -40.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_7dm0k")
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/MainScreen/BottomBar"]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -40.0
+[node name="SplashScreen" type="Control" parent="UI" unique_id=42317543]
+visible = false
+anchors_preset = 0
 offset_right = 40.0
-grow_vertical = 0
-theme_override_constants/margin_left = 32
-theme_override_constants/margin_right = 32
-theme_override_constants/margin_bottom = 16
+offset_bottom = 40.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/MainScreen/BottomBar/MarginContainer"]
-layout_mode = 2
-
-[node name="CharacterCard" parent="UI/MainScreen/BottomBar/MarginContainer/HBoxContainer" instance=ExtResource("4_lquwl")]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="MarginContainer2" type="MarginContainer" parent="UI/MainScreen/BottomBar"]
-visible = false
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -150.0
-offset_top = -100.0
-offset_right = 150.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="OptionsPanel" parent="UI/MainScreen/BottomBar/MarginContainer2" instance=ExtResource("6_272bh")]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="EventPanelWrapper" type="HBoxContainer" parent="UI/MainScreen"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-alignment = 1
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/MainScreen/EventPanelWrapper"]
-layout_mode = 2
-mouse_filter = 2
-theme_override_constants/margin_left = 64
-theme_override_constants/margin_top = 128
-theme_override_constants/margin_right = 64
-theme_override_constants/margin_bottom = 64
-
-[node name="EventPanel" parent="UI/MainScreen/EventPanelWrapper/MarginContainer" instance=ExtResource("6_7mycd")]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-
-[node name="InventoryPanel" type="Panel" parent="UI/MainScreen"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(50, 300)
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -150.0
-offset_right = 125.0
-offset_bottom = 150.0
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_vivmo")
-script = ExtResource("14_vivmo")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/MainScreen/InventoryPanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="UI/MainScreen/InventoryPanel/VBoxContainer"]
-layout_mode = 2
-text = "Inventory"
-
-[node name="Tree" type="Tree" parent="UI/MainScreen/InventoryPanel/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_colors/font_color = Color(0.9490196, 0.9490196, 0.9490196, 1)
-theme_override_font_sizes/font_size = 14
-theme_override_styles/panel = SubResource("StyleBoxFlat_2cqfq")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_2cqfq")
-theme_override_styles/hovered = SubResource("StyleBoxEmpty_2cqfq")
-theme_override_styles/hovered_dimmed = SubResource("StyleBoxEmpty_2cqfq")
-theme_override_styles/hovered_selected = SubResource("StyleBoxEmpty_2cqfq")
-theme_override_styles/hovered_selected_focus = SubResource("StyleBoxEmpty_2cqfq")
-theme_override_styles/selected = SubResource("StyleBoxEmpty_2cqfq")
-theme_override_styles/selected_focus = SubResource("StyleBoxEmpty_2cqfq")
-theme_override_styles/cursor = SubResource("StyleBoxEmpty_2cqfq")
-theme_override_styles/cursor_unfocused = SubResource("StyleBoxEmpty_2cqfq")
-theme_override_styles/button_hover = SubResource("StyleBoxEmpty_2cqfq")
-theme_override_styles/button_pressed = SubResource("StyleBoxEmpty_2cqfq")
-theme_override_styles/custom_button = SubResource("StyleBoxEmpty_2cqfq")
-theme_override_styles/custom_button_hover = SubResource("StyleBoxEmpty_2cqfq")
-theme_override_styles/custom_button_pressed = SubResource("StyleBoxEmpty_2cqfq")
-theme_override_styles/title_button_normal = SubResource("StyleBoxEmpty_2cqfq")
-theme_override_styles/title_button_pressed = SubResource("StyleBoxEmpty_2cqfq")
-theme_override_styles/title_button_hover = SubResource("StyleBoxEmpty_2cqfq")
-columns = 2
-allow_search = false
-hide_folding = true
-hide_root = true
-
-[node name="PanelContainer" type="PanelContainer" parent="UI/MainScreen"]
-layout_mode = 1
-offset_right = 204.0
-offset_bottom = 42.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_5vw27")
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/MainScreen/PanelContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 12
-theme_override_constants/margin_bottom = 8
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/MainScreen/PanelContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="LocationLabel" type="Label" parent="UI/MainScreen/PanelContainer/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-text = "Location: Grasslands"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/MainScreen/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="UI/MainScreen/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "Distance:"
-
-[node name="DistanceLabel" type="Label" parent="UI/MainScreen/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "0 km"
-
-[node name="DayLabel" type="Label" parent="UI/MainScreen/PanelContainer/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-text = "Day: 0"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/MainScreen"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -333.0
-offset_right = 333.0
-offset_bottom = 12.0
-grow_horizontal = 2
-theme_override_constants/separation = 16
-alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="UI/MainScreen/HBoxContainer"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-texture = ExtResource("15_yaehf")
-expand_mode = 1
-
-[node name="TravelProgress" type="ProgressBar" parent="UI/MainScreen/HBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(600, 12)
-layout_mode = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_vivmo")
-show_percentage = false
-
-[node name="TimeLabel" type="Label" parent="UI/MainScreen/HBoxContainer/TravelProgress"]
+[node name="MainMenu" parent="UI" unique_id=1058368607 instance=ExtResource("14_w48qg")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -31.0
-offset_top = -11.5
-offset_right = 31.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/normal = SubResource("StyleBoxTexture_2cqfq")
-text = "0:00 AM"
-horizontal_alignment = 1
 
-[node name="TextureRect2" type="TextureRect" parent="UI/MainScreen/HBoxContainer"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-texture = ExtResource("16_074og")
-expand_mode = 1
-
-[node name="TimePanel" type="Panel" parent="UI/MainScreen"]
+[node name="GameScreen" parent="UI" unique_id=596123094 instance=ExtResource("12_dg77c")]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -138.0
-offset_bottom = 48.0
-grow_horizontal = 0
-theme_override_styles/panel = SubResource("StyleBoxEmpty_w48qg")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/MainScreen/TimePanel"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -138.0
-offset_bottom = 96.0
-grow_horizontal = 0
-theme_override_constants/separation = 0
-
-[node name="PanelContainer" type="PanelContainer" parent="UI/MainScreen/TimePanel/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 8
-theme_override_styles/panel = SubResource("StyleBoxFlat_w48qg")
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/MainScreen/TimePanel/VBoxContainer/PanelContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 12
-theme_override_constants/margin_bottom = 8
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/MainScreen/TimePanel/VBoxContainer/PanelContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="PauseButton" type="Button" parent="UI/MainScreen/TimePanel/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "II"
-
-[node name="NormalSpeedButton" type="Button" parent="UI/MainScreen/TimePanel/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = ">"
-
-[node name="FastSpeedButton" type="Button" parent="UI/MainScreen/TimePanel/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = ">>"
-
-[node name="FasterSpeedButton" type="Button" parent="UI/MainScreen/TimePanel/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = ">>>"
-
-[node name="SettingsButton" type="Button" parent="UI/MainScreen/TimePanel/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
-unique_name_in_owner = true
+[node name="PauseMenu" type="Control" parent="UI" unique_id=2037296370]
 visible = false
-layout_mode = 2
-text = "Settings"
-
-[node name="PanelContainer2" type="PanelContainer" parent="UI/MainScreen/TimePanel/VBoxContainer"]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_yaehf")
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/MainScreen/TimePanel/VBoxContainer/PanelContainer2"]
-layout_mode = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/MainScreen/TimePanel/VBoxContainer/PanelContainer2/MarginContainer"]
-layout_mode = 2
-
-[node name="SkipDayButton" type="Button" parent="UI/MainScreen/TimePanel/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Skip Day"
-
-[node name="Screens" type="Control" parent="UI"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="StartMenu" parent="UI/Screens" instance=ExtResource("14_w48qg")]
-unique_name_in_owner = true
-visible = false
-layout_mode = 1
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0

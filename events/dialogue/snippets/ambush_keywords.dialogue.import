@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://c1vyic40cdfud"
+path="res://.godot/imported/ambush_keywords.dialogue-e477f9f99efdf7b16bc783b7102fd407.tres"
+
+[deps]
+
+source_file="res://events/dialogue/snippets/ambush_keywords.dialogue"
+dest_files=["res://.godot/imported/ambush_keywords.dialogue-e477f9f99efdf7b16bc783b7102fd407.tres"]
+
+[params]
+
+defaults=true

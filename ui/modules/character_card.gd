@@ -2,7 +2,7 @@
 extends Control
 
 
-#var character: Character
+var character: Character
 
 
 func set_character_name(character_name: String):

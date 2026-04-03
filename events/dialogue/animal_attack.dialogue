@@ -1,0 +1,75 @@
+# Import World Region data  
+#import
+
+#if world.is_forest: 
+#if world.is_plains: 
+#if world.is_mountains:
+
+~ title
+
+Animal Attack
+
+=> END
+
+
+~ start
+
+if Regions.is_in(Regions.Grasslands) or Regions.is_in(Regions.Forest)
+	% 
+		Walking on through some fields, you notice some dark shapes around you, moving in sync with your pacing.
+			[wait=1][br]A pack of wild wolves have surrounded you!
+			[wait=1][br][br] What will you do?
+	%
+		Walking on through some fields, you notice a large hulking shape, moving towards you from the distance.
+			[wait=1][br]Its a grizzly bear!
+			[wait=1][br][br] What will you do?
+elif Regions.is_in(Regions.Desert)
+	Walking on through some fields, you notice some light shapes around you, moving in sync with your pacing.
+		[wait=1][br]A pack of wild hyenas have surrounded you!
+		[wait=1][br][br] What will you do?
+
+
+- Run away
+	You attempt to run away from the [[wild|rabid|hostile]] [[animals|creatures|beasts]].
+	%
+		You escape from the hungry [[animals|creatures|beasts]].
+	%
+		They catch up to you and attack you.
+		% => fight_failure
+		% => fight_success
+
+#- Lure away with food - sacrifice 1 ration.
+#	%2 => fight_failure
+#	%1 => fight_success
+#- Lure away with food - sacrifice 2 rations.
+#	%1 => fight_failure
+#	%3.5 => fight_success
+
+- Fight
+	You attempt to fight the [[wild|rabid|hostile]] [[animals|creatures|beasts]].
+	% => fight_success
+	% => fight_failure
+
+=> END
+
+
+~ fight_success
+
+do Game.player.apply_stat(Character.Stat.HEALTH, -10.0)
+do Game.player.apply_stat(Character.Stat.HUNGER, -5.0)
+#do Game.inventory.add( Items.FOOD, 2 )
+You sucessfully defeat them albeit not without injury.
+	#[wait=1][br] Food obtained
+
+=> END
+
+
+~ fight_failure
+
+do Game.player.apply_stat(Character.Stat.HUNGER, -5.0)
+#do Game.inventory.add( Items.FOOD, 2 )
+You sucessfully defeat them without injury.
+	#[wait=1][br]2x Food obtained
+
+=> END
+

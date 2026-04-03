@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://dkpqmeu7grf3i"]
+
+[ext_resource type="Script" uid="uid://cqmcagfvvw41f" path="res://ui/screens/main_menu.gd" id="1_0qgu1"]
+[ext_resource type="Shader" uid="uid://dfcj8ypak1jh" path="res://ui/blur.gdshader" id="1_pevhg"]
+[ext_resource type="Texture2D" uid="uid://d4fqvf6rhpni0" path="res://world/background/environment/grasslands/orig.png" id="2_afy8x"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_efxa6"]
+shader = ExtResource("1_pevhg")
+shader_parameter/strength = 2
+
+[node name="MainMenu" type="Control" unique_id=1848671389]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0qgu1")
+
+[node name="MainMenuParallax" type="Node2D" parent="." unique_id=540411334]
+visible = false
+
+[node name="Parallax2D" type="Parallax2D" parent="MainMenuParallax" unique_id=1132349284]
+
+[node name="BackgroundTexture" type="TextureRect" parent="." unique_id=1425113279]
+material = SubResource("ShaderMaterial_efxa6")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_afy8x")
+stretch_mode = 6
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1294284191]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=944368485]
+layout_mode = 2
+
+[node name="VSpacer" type="Control" parent="HBoxContainer/VBoxContainer" unique_id=1491376852]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TitleLabel" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=2087631169]
+layout_mode = 2
+theme_override_constants/outline_size = 64
+theme_override_font_sizes/font_size = 72
+text = "A  Survivor's  JOURNEY"
+
+[node name="VSpacer2" type="Control" parent="HBoxContainer/VBoxContainer" unique_id=902474772]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="PlayButton" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=1837043717]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "PLAY"
+
+[node name="ExitButton" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=1234351598]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 36)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Exit"
+
+[node name="ResetButton" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=760658699]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 36)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Reset"
+
+[node name="VSpacer3" type="Control" parent="HBoxContainer/VBoxContainer" unique_id=776305205]
+layout_mode = 2
+size_flags_vertical = 3

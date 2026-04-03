@@ -10,16 +10,23 @@ config_version=5
 
 [application]
 
-config/name="Hackclub Roulette Round 3"
+config/name="A Survivor's JOURNEY"
+config/version="0.2.0"
 run/main_scene="uid://cqcvewcu1865c"
-config/features=PackedStringArray("4.5", "GL Compatibility")
+config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[audio]
+
+buses/default_bus_layout="uid://cc5h766eka1np"
 
 [autoload]
 
+Events="*uid://c4bfl0qqflvof"
 SaveManager="*res://save_manager.gd"
-SettingsManager="res://settings_manager.gd"
+SettingsManager="*res://settings_manager.gd"
 EventManager="*res://event_manager.gd"
+Regions="*uid://c2tuftvuwsl6k"
 Game="*res://game.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 
@@ -27,13 +34,17 @@ DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 
 gdscript/warnings/confusable_identifier=0
 
+[dialogue_manager]
+
+runtime/state_autoload_shortcuts=["Game", "EventManager"]
+
 [display]
 
 window/stretch/mode="viewport"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://addons/dictionary_inspector/plugin.cfg", "res://addons/godot_super-wakatime/plugin.cfg")
+enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://addons/godot_super-wakatime/plugin.cfg")
 
 [file_customization]
 
@@ -45,9 +56,14 @@ folder_colors={
 "res://entities/player/": "gray",
 "res://entities/projectiles/": "gray",
 "res://entities/states/": "gray",
+"res://events/comps/": "gray",
 "res://items/weapons/": "gray",
 "res://ui/": "green"
 }
+
+[gui]
+
+theme/default_font_multichannel_signed_distance_field=true
 
 [input]
 
@@ -74,7 +90,7 @@ move_down={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://events/dialogue2/start.dialogue", "res://events/dialogue2/a.dialogue", "res://events/dialogue2/snippets/ambush_keywords.dialogue", "res://events/dialogue2/snippets/encounter_keywords.dialogue", "res://events/dialogue2/snippets/sight_words.dialogue", "res://events/dialogue2/animal_attack.dialogue", "res://events/dialogue2/bandits.dialogue", "res://events/dialogue2/death.dialogue", "res://events/dialogue2/desert_winds.dialogue", "res://events/dialogue2/end.dialogue", "res://events/dialogue2/guards.dialogue", "res://events/dialogue2/village.dialogue", "res://events/dialogue2/common/morning.dialogue", "res://events/dialogue2/common/night.dialogue", "res://events/dialogue2/common/shop.dialogue", "res://events/dialogue2/meadows.dialogue", "res://events/dialogue2/beggar.dialogue", "res://events/dialogue2/waters_path.dialogue", "res://events/dialogue2/common/midday.dialogue", "res://events/dialogue2/common/stats.dialogue", "res://events/dialogue2/actions/eat.dialogue", "res://events/dialogue2/actions/heal.dialogue", "res://events/dialogue2/actions/rest.dialogue")
+locale/translations_pot_files=PackedStringArray("res://events/dialogue/actions/rest.dialogue", "res://events/dialogue/common/midday.dialogue", "res://events/dialogue/common/morning.dialogue", "res://events/dialogue/common/night.dialogue", "res://events/dialogue/common/shop.dialogue", "res://events/dialogue/common/stats.dialogue", "res://events/dialogue/snippets/ambush_keywords.dialogue", "res://events/dialogue/snippets/encounter_keywords.dialogue", "res://events/dialogue/snippets/sight_words.dialogue", "res://events/dialogue/animal_attack.dialogue", "res://events/dialogue/bandits.dialogue", "res://events/dialogue/beggar.dialogue", "res://events/dialogue/desert_winds.dialogue", "res://events/dialogue/guards.dialogue", "res://events/dialogue/meadows.dialogue", "res://events/dialogue/village.dialogue", "res://events/dialogue/waters_path.dialogue", "res://events/dialogue/actions/hunt.dialogue", "res://events/dialogue/game/end.dialogue", "res://events/dialogue/game/start.dialogue", "res://events/dialogue/game/tutorial.dialogue", "res://events/dialogue/actions/fish.dialogue", "res://events/dialogue/actions/forage.dialogue", "res://events/dialogue/game/death.dialogue", "res://events/dialogue/caravan.dialogue", "res://events/dialogue/milestones/desert.dialogue", "res://events/dialogue/oasis.dialogue", "res://events/dialogue/trader.dialogue")
 
 [rendering]
 

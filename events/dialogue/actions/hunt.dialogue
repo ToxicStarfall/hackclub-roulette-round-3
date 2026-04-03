@@ -1,0 +1,37 @@
+
+~ title
+
+The Hunt
+
+=> END
+
+
+~ start
+
+set temp.hunt_found = false
+set temp.food_amount = 0
+set temp.efficiency = player.get_efficiency()
+
+do _print( current_location.rainfall * (temp.efficiency * 1.5) )
+
+
+# Chance to find huntable creatures
+if chance(current_location.rainfall * (temp.efficiency * 1.5), 100)
+	do temp.hunt_found = true
+
+	# Chance to sucessfully hunt
+	if chance(temp.efficiency, 100)
+		set temp.food_amount = 1
+
+	# Bonus food based on rainfall
+	if chance(current_location.rainfall / 2, 1)
+		set temp.food_amount += 1
+
+do _print( temp.hunt_found )
+
+The hunt has ended.
+	[if temp.food_amount == 0]Unfortunately, the hunt has yielded no food.[else]You have found {{temp.food_amount}} food![/if]
+	[do inventory.add(Items.FOOD, temp.food_amount)][do player.apply_stat(Character.Stat.HUNGER, -10)]
+
+
+=> END

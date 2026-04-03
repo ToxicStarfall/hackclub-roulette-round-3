@@ -1,0 +1,18 @@
+
+~ title
+
+The Desert
+
+=> END
+
+
+~ start
+
+You've reached the [b]Desert[/b].
+	Ahead of you is a wide expanse of sand, pock marked by small tufts of grass and cacti.
+	This land before you will be tough to travel across.
+
+- Cross the Desert
+	do Game.change_location(Regions.Desert)
+
+=> END

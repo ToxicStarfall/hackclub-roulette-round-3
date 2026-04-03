@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://d16c6cb718yhv"
+path="res://.godot/imported/desert.dialogue-aa72a247a0719e6f333c8c7bf27ba6ae.tres"
+
+[deps]
+
+source_file="res://events/dialogue/milestones/desert.dialogue"
+dest_files=["res://.godot/imported/desert.dialogue-aa72a247a0719e6f333c8c7bf27ba6ae.tres"]
+
+[params]
+
+defaults=true

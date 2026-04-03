@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://b0b6m2hetiwkx"
+path="res://.godot/imported/caravan.dialogue-8c78735b6c2d95483928d25c4a208f84.tres"
+
+[deps]
+
+source_file="res://events/dialogue/caravan.dialogue"
+dest_files=["res://.godot/imported/caravan.dialogue-8c78735b6c2d95483928d25c4a208f84.tres"]
+
+[params]
+
+defaults=true

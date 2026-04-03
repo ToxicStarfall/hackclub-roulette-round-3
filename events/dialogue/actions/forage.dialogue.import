@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://cwoasrtjm1qjg"
+path="res://.godot/imported/forage.dialogue-e605a99f2cc58186b930d5b9dfb7bc05.tres"
+
+[deps]
+
+source_file="res://events/dialogue/actions/forage.dialogue"
+dest_files=["res://.godot/imported/forage.dialogue-e605a99f2cc58186b930d5b9dfb7bc05.tres"]
+
+[params]
+
+defaults=true

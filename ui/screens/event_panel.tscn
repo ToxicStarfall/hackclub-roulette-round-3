@@ -1,8 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://bk4q4hhrohwl5"]
+[gd_scene format=3 uid="uid://bk4q4hhrohwl5"]
 
 [ext_resource type="Script" uid="uid://b2wo0q8lec12e" path="res://ui/screens/event_panel.gd" id="1_hss4t"]
 [ext_resource type="Script" uid="uid://g32um0mltv5d" path="res://addons/dialogue_manager/dialogue_label.gd" id="2_l4rf7"]
 [ext_resource type="Script" uid="uid://bb52rsfwhkxbn" path="res://addons/dialogue_manager/dialogue_responses_menu.gd" id="3_uyss2"]
+[ext_resource type="AudioStream" uid="uid://bupg3sjmg853x" path="res://audio/freesound_community-paper-rustle-81855.mp3" id="4_h73tv"]
+[ext_resource type="AudioStream" uid="uid://c4jjh6806kju6" path="res://audio/makigai_maimai-paper-245786.mp3" id="5_6fvtm"]
+[ext_resource type="AudioStream" uid="uid://c0mejci1dafy8" path="res://audio/oxidvideos-paper-slide-short-478835.mp3" id="6_6fvtm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_272bh"]
 bg_color = Color(0.2, 0.188235, 0.172549, 1)
@@ -17,35 +20,35 @@ border_width_bottom = 4
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0cibe"]
 
-[node name="EventPanel" type="PanelContainer"]
+[node name="EventPanel" type="PanelContainer" unique_id=1602760636]
 custom_minimum_size = Vector2(500, 0)
 size_flags_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_272bh")
 script = ExtResource("1_hss4t")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1401775315]
 layout_mode = 2
 theme_override_constants/margin_left = 32
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 16
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=467790844]
 layout_mode = 2
 
-[node name="TitleLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+[node name="TitleLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer" unique_id=707168494]
 unique_name_in_owner = true
 layout_mode = 2
 bbcode_enabled = true
-text = "EVENT TITLE"
+text = "[b]EVENT TITLE"
 fit_content = true
 horizontal_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer" unique_id=1690547072]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="DescriptionLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+[node name="DescriptionLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer" unique_id=819041914]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -55,7 +58,7 @@ text = "event content text stuff"
 fit_content = true
 horizontal_alignment = 1
 
-[node name="DialogueOutput" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+[node name="DialogueOutput" type="RichTextLabel" parent="MarginContainer/VBoxContainer" unique_id=239324011]
 unique_name_in_owner = true
 layout_mode = 2
 bbcode_enabled = true
@@ -67,27 +70,43 @@ seconds_per_step = 0.04
 skip_pause_at_abbreviations = PackedStringArray("Mr", "Mrs", "Ms", "Dr", "etc", "eg", "ex")
 metadata/_custom_type_script = "uid://g32um0mltv5d"
 
-[node name="DialogueInput" type="LineEdit" parent="MarginContainer/VBoxContainer"]
+[node name="DialogueInput" type="LineEdit" parent="MarginContainer/VBoxContainer" unique_id=413277838]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
-[node name="DialogueOptions" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=1728214845]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="DialogueOptions" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=2135227939]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="DialogueResponsesMenu" type="Container" parent="MarginContainer/VBoxContainer"]
+[node name="DialogueResponsesMenu" type="Container" parent="MarginContainer/VBoxContainer" unique_id=1719297002]
 visible = false
 layout_mode = 2
 script = ExtResource("3_uyss2")
 metadata/_custom_type_script = "uid://bb52rsfwhkxbn"
 
-[node name="DialogueButton" type="Button" parent="."]
+[node name="DialogueButton" type="Button" parent="." unique_id=669723408]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxEmpty_w83s8")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_y4wm0")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_dwlgo")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_0cibe")
+
+[node name="EventStartAudio" type="AudioStreamPlayer" parent="." unique_id=2021283434]
+stream = ExtResource("4_h73tv")
+volume_db = -5.0
+
+[node name="EventStartAudio2" type="AudioStreamPlayer" parent="." unique_id=179672779]
+stream = ExtResource("5_6fvtm")
+bus = &"UI"
+
+[node name="EventContinuedAudio" type="AudioStreamPlayer" parent="." unique_id=1398977074]
+stream = ExtResource("6_6fvtm")
+bus = &"UI"
 
 [connection signal="pressed" from="DialogueButton" to="." method="_on_dialogue_button_pressed"]

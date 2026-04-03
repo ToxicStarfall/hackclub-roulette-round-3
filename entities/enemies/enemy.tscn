@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bthtdyn4amn1d"]
+[gd_scene format=3 uid="uid://bthtdyn4amn1d"]
 
 [ext_resource type="Script" uid="uid://ci4du2v0sne0a" path="res://entities/enemies/enemy.gd" id="1_uvc0s"]
 [ext_resource type="Texture2D" uid="uid://dgr60uub4xhi1" path="res://icon.svg" id="2_3udgd"]
@@ -20,10 +20,9 @@ size = Vector2(16, 32)
 [sub_resource type="Resource" id="Resource_x8e4v"]
 script = ExtResource("4_uvc0s")
 value = 0
-source = 0
 metadata/_custom_type_script = "uid://d04s5a06kemh"
 
-[node name="Enemy" type="CharacterBody2D" groups=["enemies"]]
+[node name="Enemy" type="CharacterBody2D" unique_id=1607067302 groups=["enemies"]]
 light_mask = 4
 collision_layer = 4
 collision_mask = 0
@@ -33,43 +32,43 @@ script = ExtResource("1_uvc0s")
 faction = 2
 metadata/_custom_type_script = "uid://ci4du2v0sne0a"
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1727849933]
 scale = Vector2(0.125, 0.25)
 texture = ExtResource("2_3udgd")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1780747010]
 visible = false
 shape = SubResource("CapsuleShape2D_rrp0o")
 
-[node name="HitboxComponent" type="Area2D" parent="."]
+[node name="HitboxComponent" type="Area2D" parent="." unique_id=1038917495]
 collision_layer = 0
 collision_mask = 10
 script = ExtResource("5_gj3y3")
 metadata/_custom_type_script = "uid://d0y3o51r8gh1i"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=1815663771]
 shape = SubResource("RectangleShape2D_56i32")
 
-[node name="HealthComponent" type="Node" parent="."]
+[node name="HealthComponent" type="Node" parent="." unique_id=66624858]
 script = ExtResource("4_56i32")
 max_health = 5
 metadata/_custom_type_script = "uid://cqnbkier15avq"
 
-[node name="AttackComponent" type="Node" parent="."]
+[node name="AttackComponent" type="Node" parent="." unique_id=1239888426]
 script = ExtResource("3_x8e4v")
 DamageComp = SubResource("Resource_x8e4v")
 metadata/_custom_type_script = "uid://bh6cqtnko4j6x"
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" type="Node" parent="." unique_id=410466635 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("5_ipr6v")
 initial_state = NodePath("Chase")
 metadata/_custom_type_script = "uid://ccd6qsohrm1y6"
 
-[node name="Idle" type="Node" parent="StateMachine"]
+[node name="Idle" type="Node" parent="StateMachine" unique_id=1561308263]
 script = ExtResource("6_gj3y3")
 metadata/_custom_type_script = "uid://cgdsggfwiqw3h"
 
-[node name="Chase" type="Node" parent="StateMachine"]
+[node name="Chase" type="Node" parent="StateMachine" unique_id=266246935]
 script = ExtResource("7_56i32")
 always_chase = true
 metadata/_custom_type_script = "uid://cg6jx40ledvf4"

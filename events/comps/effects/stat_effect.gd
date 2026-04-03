@@ -2,7 +2,7 @@ class_name StatEffect
 extends Effect
 
 #@export var stat: Game.Stats
-@export var stat: Character.StatType
+@export var stat: Character.Stat
 @export var value: float = 1.0  ##
 #@export var value_min: float = 1.0
 @export var modifier: Modifiers = Modifiers.ADD
@@ -12,7 +12,7 @@ func apply():
 	if chance_check():
 		#var stat_key = Game.stats.keys()[stat]
 		#var current_value = Game.stats.get(stat_key)
-		var stat_key = Character.StatType.keys()[stat]
+		var stat_key = Character.Stat.keys()[stat]
 		var current_value = Game.player.stats.get(stat_key)
 		var new_value
 

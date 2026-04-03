@@ -37,6 +37,11 @@ enum Faction {
 @export var killable: bool = true
 #@export var imunities
 
+@export_group("Settings")
+@export var overhealable: bool = true
+@export var overshieldable: bool = true
+
+
 var HitboxComp: HitboxComponent
 var HealthComp: HealthComponent
 var AttackComp: AttackComponent

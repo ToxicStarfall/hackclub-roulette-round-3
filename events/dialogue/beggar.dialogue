@@ -1,0 +1,100 @@
+
+~ title
+
+The Beggar
+
+=>
+
+
+~ start
+
+set temp.item = rand_phrase([Items.GOLD, Items.FOOD])
+set temp.item_name = temp.item.phrase.to_lower()
+
+A dirty and dishelved beggar approches you, carying with him a small rucksack.
+if temp.item_name == "gold"
+	He waves his hand around, and [[gestures|points]] [[to|at|towards]] your gold [[pouch|purse]]
+		[wait=1][br]He looks hopeful.
+	=> gold
+else
+	He waves his hand around, and [[gestures|points]] [[to|at|towards]] your food pouch.
+		[wait=1][br]He looks hopeful.
+	=> food
+
+=> END
+
+
+~ gold
+
+- Give 3 gold
+	if Game.inventory.has(Items.GOLD, 3)
+		do Game.inventory.remove(Items.GOLD, 3)
+		%
+			You give the beggar some gold, and he thanks you, with much gratitude and happiness, bidding you farewell.
+		%
+			He reveals himself as a [[wealthy|rich]] [[prince|aristocrat|merchant]], and in payment for your generosity pays you back thrice in return!
+			do Game.inventory.add(Items.GOLD, 9)
+	else
+		You do not have enough gold.
+		=> gold
+
+- Give 1 gold
+	if Game.inventory.has(Items.GOLD, 1)
+		do Game.inventory.remove(Items.GOLD, 1)
+		%
+			You give the beggar some gold, and he thanks you, with much gratitude and happiness, bidding you farewell.
+		%
+			He reveals himself as a [[rich]] [[aristocrat|merchant]], and in payment for your generosity pays you back twice in return!
+			do Game.inventory.add(Items.GOLD, 3)
+	else
+		You do not have enough gold.
+		=> gold
+
+- Ignore
+	% The beggar becomes saddened, the hope bleeding away from his face, and he walks quietly away into the distance.
+	%
+		The beggar suddenly becomes enraged!
+		#%
+		He starts beating you, however you manage to repel him, but not in time to avoid some bruises.
+		do Game.player.apply_stat(Stat.HEALTH, -5)
+		#% He starts to grab at your belongings and runs off.
+
+=> END
+
+
+~ food
+
+- Give 2 Food
+	if Game.inventory.has(Items.FOOD, 2)
+		do Game.inventory.remove(Items.FOOD, 2)
+		%
+			You give the beggar some food, and he thanks you, with much gratitude and happiness, bidding you farewell.
+		#%
+		#	He reveals himself as a [[wealthy|rich]] [[prince|aristocrat|merchant]], and in payment for your generosity pays you back thrice in return!
+		#	do Game.inventory.add(Items.FOOD, 9)
+	else
+		You do not have enough food.
+		=> food
+
+- Give 1 Food
+	if Game.inventory.has(Items.FOOD, 1)
+		do Game.inventory.remove(Items.FOOD, 1)
+		%
+			You give the beggar some food, and he thanks you, with much gratitude and happiness, bidding you farewell.
+		#%
+		#	He reveals himself as a [[rich]] [[aristocrat|merchant]], and in payment for your generosity pays you back twice in return!
+		#	do Game.inventory.add(Items.GOLD, 3)
+	else
+		You do not have enough food.
+		=> food
+
+- Ignore
+	%2 The beggar becomes saddened, the hope bleeding away from his face, and he walks quietly away into the distance.
+	%
+		The beggar suddenly becomes enraged!
+		#%
+		He starts beating you, however you manage to repel him, but not in time to avoid some bruises.
+		do Game.player.apply_stat(Stat.HEALTH, -5)
+		#% He starts to grab at your belongings and runs off.
+
+=> END
