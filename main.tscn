@@ -21,28 +21,30 @@ script = ExtResource("1_0xm2m")
 
 [node name="World" type="Node2D" parent="." unique_id=1603602043]
 z_index = -1
+texture_filter = 1
 script = ExtResource("3_lquwl")
 
 [node name="Parallax" type="Node2D" parent="World" unique_id=630809789]
 unique_name_in_owner = true
 
-[node name="Background" type="Parallax2D" parent="World/Parallax" unique_id=350672720]
-repeat_size = Vector2(1152, 0)
-repeat_times = 2
-ignore_camera_scroll = true
-
-[node name="Sprite2D" type="Sprite2D" parent="World/Parallax/Background" unique_id=1558228980]
-position = Vector2(576, 324)
-scale = Vector2(2, 2)
-texture = ExtResource("3_ycdy4")
-
-[node name="Background2" type="Parallax2D" parent="World/Parallax" unique_id=170119869]
+[node name="Sky" type="Parallax2D" parent="World/Parallax" unique_id=350672720]
 unique_name_in_owner = true
 repeat_size = Vector2(1152, 0)
 repeat_times = 2
 ignore_camera_scroll = true
 
-[node name="Sprite2D" type="Sprite2D" parent="World/Parallax/Background2" unique_id=1816247556]
+[node name="Sprite2D" type="Sprite2D" parent="World/Parallax/Sky" unique_id=1558228980]
+position = Vector2(576, 324)
+scale = Vector2(2, 2)
+texture = ExtResource("3_ycdy4")
+
+[node name="Clouds" type="Parallax2D" parent="World/Parallax" unique_id=170119869]
+unique_name_in_owner = true
+repeat_size = Vector2(1152, 0)
+repeat_times = 2
+ignore_camera_scroll = true
+
+[node name="Sprite2D" type="Sprite2D" parent="World/Parallax/Clouds" unique_id=1816247556]
 position = Vector2(576, 324)
 scale = Vector2(2, 2)
 texture = ExtResource("4_w48qg")
@@ -58,42 +60,51 @@ position = Vector2(576, 324)
 scale = Vector2(2, 2)
 texture = ExtResource("4_4c57u")
 
-[node name="Foreground2" type="Parallax2D" parent="World/Parallax" unique_id=975707703]
+[node name="Foreground" type="Parallax2D" parent="World/Parallax" unique_id=975707703]
 unique_name_in_owner = true
 repeat_size = Vector2(1152, 0)
 repeat_times = 2
 ignore_camera_scroll = true
 
-[node name="Sprite2D" type="Sprite2D" parent="World/Parallax/Foreground2" unique_id=1833518258]
+[node name="Sprite2D" type="Sprite2D" parent="World/Parallax/Foreground" unique_id=1833518258]
 position = Vector2(576, 324)
 scale = Vector2(2, 2)
 texture = ExtResource("6_vivmo")
 
-[node name="Foreground" type="Parallax2D" parent="World/Parallax" unique_id=1681491378]
+[node name="Event" type="Parallax2D" parent="World/Parallax" unique_id=593928715]
+unique_name_in_owner = true
+repeat_size = Vector2(1152, 0)
+repeat_times = 2
+ignore_camera_scroll = true
+
+[node name="Sprite2D" type="Sprite2D" parent="World/Parallax/Event" unique_id=439148998]
+position = Vector2(576, 324)
+scale = Vector2(2, 2)
+
+[node name="Sprite2D2" type="Sprite2D" parent="World/Parallax/Event" unique_id=290155648]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(576, 324)
+scale = Vector2(2, 2)
+texture = ExtResource("7_w48qg")
+
+[node name="Sprite2D3" type="Sprite2D" parent="World/Parallax/Event" unique_id=1049094540]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(576, 324)
+scale = Vector2(2, 2)
+texture = ExtResource("8_vivmo")
+
+[node name="Front" type="Parallax2D" parent="World/Parallax" unique_id=1681491378]
 unique_name_in_owner = true
 visible = false
 repeat_size = Vector2(1152, 0)
 repeat_times = 2
 ignore_camera_scroll = true
 
-[node name="Sprite2D" type="Sprite2D" parent="World/Parallax/Foreground" unique_id=439148998]
-position = Vector2(640, 685)
-scale = Vector2(2, 2)
-texture = ExtResource("4_4c57u")
-region_enabled = true
-region_rect = Rect2(0, 280.5, 576, 43.5)
-
-[node name="Sprite2D2" type="Sprite2D" parent="World/Parallax/Foreground" unique_id=290155648]
-modulate = Color(1, 1, 1, 0)
-position = Vector2(576, 324)
-scale = Vector2(2, 2)
-texture = ExtResource("7_w48qg")
-
-[node name="Sprite2D3" type="Sprite2D" parent="World/Parallax/Foreground" unique_id=1049094540]
-modulate = Color(1, 1, 1, 0)
-position = Vector2(576, 324)
-scale = Vector2(2, 2)
-texture = ExtResource("8_vivmo")
+[node name="Sprite2D" type="Sprite2D" parent="World/Parallax/Front" unique_id=1758641831]
+material = SubResource("ShaderMaterial_w48qg")
+position = Vector2(992, 256)
+scale = Vector2(4, 4)
+texture = ExtResource("9_dg77c")
 
 [node name="Borders" type="Node2D" parent="World" unique_id=1952990698]
 visible = false

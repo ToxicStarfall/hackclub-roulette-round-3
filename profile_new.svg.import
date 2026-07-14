@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cyvd4cx711o6v"
-path="res://.godot/imported/final_village.png-efafa65c3d8d299d28b09a610d4973f2.ctex"
+uid="uid://cobexubaal17a"
+path="res://.godot/imported/profile_new.svg-c8424b977ec5f2c2b6a5f492a6385678.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://world/background/final_village.png"
-dest_files=["res://.godot/imported/final_village.png-efafa65c3d8d299d28b09a610d4973f2.ctex"]
+source_file="res://profile_new.svg"
+dest_files=["res://.godot/imported/profile_new.svg-c8424b977ec5f2c2b6a5f492a6385678.ctex"]
 
 [params]
 
@@ -38,3 +38,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false
