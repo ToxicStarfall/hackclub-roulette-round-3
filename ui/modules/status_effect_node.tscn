@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://cobh8lbclt0kg"]
+
+[ext_resource type="Texture2D" uid="uid://dgr60uub4xhi1" path="res://icon.svg" id="1_kq33m"]
+[ext_resource type="Script" uid="uid://lgeu5ffdyvuq" path="res://ui/modules/status_effect_node.gd" id="1_m2jtk"]
+
+[node name="StatusNode" type="PanelContainer" unique_id=1273927536]
+custom_minimum_size = Vector2(16, 16)
+tooltip_text = "A Status"
+script = ExtResource("1_m2jtk")
+
+[node name="StatusIcon" type="TextureRect" parent="." unique_id=1643803430]
+layout_mode = 2
+texture = ExtResource("1_kq33m")
+expand_mode = 1

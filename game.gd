@@ -103,20 +103,24 @@ func _ready() -> void:
 	EventManager.event_started.connect( _on_event_started )
 	EventManager.event_ended.connect( _on_event_ended )
 
-	player.stat_changed.connect( GameScreen.get_node("%CharacterCard").update )
+	#player.stat_changed.connect( GameScreen.get_node("%CharacterCard").update )
 
 
 func _on_game_start():
 	UI.get_node("%MainMenu").hide()
 	UI.get_node("%GameScreen").show()
 	GameScreen.get_node("%TravelProgress").max_value = TICKS_PER_DAY
-	GameScreen.get_node("%CharacterCard").update()
+	
+	GameScreen.get_node("%CharacterCard").set_character(player)
+	#GameScreen.get_node("%CharacterCard").update()
 
 	SaveManager.load_file()
-	EventManager.start_event("game/start")
-	#quickstart()
+	#EventManager.start_event("game/start")
+	quickstart()
 	#EventManager.start_event("beggar")
 	#EventManager.start_event("milestones/desert")
+	
+	#CombatManager.initiate( Character.new() )
 
 
 func _physics_process(delta: float) -> void:
@@ -230,11 +234,13 @@ func _on_event_ended(event: Event):
 		#paused = true
 
 
+## Skips character setup.
 func quickstart():
 	inventory.add( Items.GOLD, 10 )
 	inventory.add( Items.FOOD, 12 )
 	inventory.add( Items.MEDICINE, 2 )
 	player.info.name = "Survivor"
+	#GameScreen.get_node("%CharacterCard/%NameLabel").text = player.info.name
 	GameScreen.get_node("%CharacterCard/%NameLabel").text = player.info.name
 	unpause()
 

@@ -1,0 +1,198 @@
+[gd_scene format=3 uid="uid://drgx137s48c3o"]
+
+[ext_resource type="Script" uid="uid://bou0wif8bx3bk" path="res://ui/modules/character_card.gd" id="1_k8yxd"]
+[ext_resource type="Texture2D" uid="uid://dgr60uub4xhi1" path="res://icon.svg" id="2_7afue"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1bvp3"]
+bg_color = Color(0.2, 0.187, 0.174, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="Gradient" id="Gradient_eo6kg"]
+offsets = PackedFloat32Array(0, 0.82222223)
+colors = PackedColorArray(0.51, 0.49011, 0.46409997, 1, 0.24, 0.23584, 0.2304, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_k8yxd"]
+gradient = SubResource("Gradient_eo6kg")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ykb2m"]
+bg_color = Color(0.2, 0.1882353, 0.17254902, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fo2ve"]
+bg_color = Color(0.37, 0.19733335, 0.11100001, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_01jac"]
+bg_color = Color(0.78, 0.416, 0.234, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_k8yxd"]
+font_size = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eo6kg"]
+bg_color = Color(0.3, 0.14100002, 0.14100002, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ypn16"]
+bg_color = Color(0.76, 0.228, 0.228, 1)
+
+[node name="CharacterCardEnemy" type="Panel" unique_id=1818747066]
+custom_minimum_size = Vector2(68, 90)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -68.0
+offset_bottom = 90.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_1bvp3")
+script = ExtResource("1_k8yxd")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1264702581]
+layout_direction = 3
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 206.0
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer" unique_id=1958842604]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer" unique_id=1572079984]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+tooltip_text = "This is you."
+theme_override_constants/separation = 2
+
+[node name="ProfileBackground" type="TextureRect" parent="HBoxContainer/MarginContainer/VBoxContainer" unique_id=1981746768]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = SubResource("GradientTexture2D_k8yxd")
+
+[node name="ProfileIcon" type="TextureRect" parent="HBoxContainer/MarginContainer/VBoxContainer/ProfileBackground" unique_id=1610981941]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(56, 56)
+layout_mode = 0
+offset_left = 4.0
+offset_top = 8.0
+offset_right = 60.0
+offset_bottom = 64.0
+texture = ExtResource("2_7afue")
+expand_mode = 4
+stretch_mode = 4
+flip_h = true
+
+[node name="ColorRect" type="ColorRect" parent="HBoxContainer/MarginContainer/VBoxContainer" unique_id=1826846286]
+visible = false
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+color = Color(0.25, 0.23158333, 0.2075, 1)
+
+[node name="NameLabel" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer" unique_id=1521511028]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Enemy"
+horizontal_alignment = 1
+
+[node name="StatsPanel" type="PanelContainer" parent="HBoxContainer" unique_id=319906711]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_ykb2m")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/StatsPanel" unique_id=1614417382]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 2
+
+[node name="HungerGroup" type="HBoxContainer" parent="HBoxContainer/StatsPanel/VBoxContainer" unique_id=926498589]
+visible = false
+layout_direction = 2
+layout_mode = 2
+tooltip_text = "This is your hunger status."
+theme_override_constants/separation = 0
+
+[node name="HungerIcon" type="TextureRect" parent="HBoxContainer/StatsPanel/VBoxContainer/HungerGroup" unique_id=1091387871]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+texture = ExtResource("2_7afue")
+expand_mode = 1
+
+[node name="HungerBar" type="ProgressBar" parent="HBoxContainer/StatsPanel/VBoxContainer/HungerGroup" unique_id=12857312]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Your hunger level. This effects your efficiency at doing things."
+theme_override_font_sizes/font_size = 12
+theme_override_styles/background = SubResource("StyleBoxFlat_fo2ve")
+theme_override_styles/fill = SubResource("StyleBoxFlat_01jac")
+show_percentage = false
+
+[node name="Label" type="Label" parent="HBoxContainer/StatsPanel/VBoxContainer/HungerGroup/HungerBar" unique_id=1158896339]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "0 / 0"
+label_settings = SubResource("LabelSettings_k8yxd")
+vertical_alignment = 1
+
+[node name="HealthGroup" type="HBoxContainer" parent="HBoxContainer/StatsPanel/VBoxContainer" unique_id=1161550382]
+layout_direction = 2
+layout_mode = 2
+tooltip_text = "This is your health."
+theme_override_constants/separation = 0
+
+[node name="HealthIcon" type="TextureRect" parent="HBoxContainer/StatsPanel/VBoxContainer/HealthGroup" unique_id=1710849870]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+texture = ExtResource("2_7afue")
+expand_mode = 1
+
+[node name="HealthBar" type="ProgressBar" parent="HBoxContainer/StatsPanel/VBoxContainer/HealthGroup" unique_id=1871494755]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Your health level. This greatly effects your efficiency at doing things."
+theme_override_font_sizes/font_size = 12
+theme_override_styles/background = SubResource("StyleBoxFlat_eo6kg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ypn16")
+step = 1.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="HBoxContainer/StatsPanel/VBoxContainer/HealthGroup/HealthBar" unique_id=515013020]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "0 / 0"
+label_settings = SubResource("LabelSettings_k8yxd")
+vertical_alignment = 1

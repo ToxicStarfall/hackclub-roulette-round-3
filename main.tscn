@@ -7,10 +7,16 @@
 [ext_resource type="Script" uid="uid://bjjcvc1u7oqea" path="res://ui/ui.gd" id="4_7mycd"]
 [ext_resource type="Texture2D" uid="uid://dqkwvkd6xdb0t" path="res://world/background/environment/grasslands/2.png" id="4_w48qg"]
 [ext_resource type="Texture2D" uid="uid://cgfn5yxyk2pst" path="res://world/background/environment/grasslands/4.png" id="6_vivmo"]
-[ext_resource type="Texture2D" uid="uid://b0tk1ieqon06c" path="res://world/background/village_1.png" id="7_w48qg"]
-[ext_resource type="Texture2D" uid="uid://cyvd4cx711o6v" path="res://world/background/final_village.png" id="8_vivmo"]
+[ext_resource type="Texture2D" uid="uid://b0tk1ieqon06c" path="res://world/background/event/village/village_1.png" id="7_w48qg"]
+[ext_resource type="Texture2D" uid="uid://cyvd4cx711o6v" path="res://world/background/event/village/final_village.png" id="8_vivmo"]
+[ext_resource type="Texture2D" uid="uid://c658gyspo2wec" path="res://world/background/environment/grasslands/tree.png" id="9_dg77c"]
+[ext_resource type="Shader" uid="uid://dfcj8ypak1jh" path="res://ui/blur.gdshader" id="9_ycdy4"]
 [ext_resource type="PackedScene" uid="uid://dt5qg1vnfjflo" path="res://ui/screens/game_screen.tscn" id="12_dg77c"]
 [ext_resource type="PackedScene" uid="uid://dkpqmeu7grf3i" path="res://ui/screens/main_menu.tscn" id="14_w48qg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w48qg"]
+shader = ExtResource("9_ycdy4")
+shader_parameter/strength = 2
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lquwl"]
 normal = Vector2(0, 1)

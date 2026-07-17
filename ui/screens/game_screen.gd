@@ -17,16 +17,16 @@ func _ready() -> void:
 	Events.event_started.connect( _on_event_started )
 	Events.event_ended.connect( _on_event_ended )
 
-	%TimePanel/%PauseButton.pressed.connect( Game.pause )
-	%TimePanel/%NormalSpeedButton.pressed.connect( func():
+	%SpeedControlPanel/%PauseButton.pressed.connect( Game.pause )
+	%SpeedControlPanel/%NormalSpeedButton.pressed.connect( func():
 		if EventManager.event_active() == false:
 			Game.game_speed = Game.GameSpeed.NORMAL
 			Game.unpause() )
-	%TimePanel/%FastSpeedButton.pressed.connect( func():
+	%SpeedControlPanel/%FastSpeedButton.pressed.connect( func():
 		if EventManager.event_active() == false:
 			Game.game_speed = Game.GameSpeed.FAST
 			Game.unpause() )
-	%TimePanel/%FasterSpeedButton.pressed.connect( func():
+	%SpeedControlPanel/%FasterSpeedButton.pressed.connect( func():
 		if EventManager.event_active() == false:
 			Game.game_speed = Game.GameSpeed.FASTER
 			Game.unpause() )
@@ -64,7 +64,7 @@ func _on_location_changed(location: Region):
 
 
 func _on_action_started(_action: Game.Action):
-	action_disable_all()
+	toggle_travel_actions(false)
 
 	for button in %ActionButtonsContainer.get_children():
 		button.hide()
@@ -72,7 +72,8 @@ func _on_action_started(_action: Game.Action):
 
 
 func _on_action_ended(_action: Game.Action):
-	action_enable_all()
+	toggle_travel_actions(true)
+	
 	for button in %ActionButtonsContainer.get_children():
 		var action_name = Game.Action.get(button.name.get_slice("B", 0).to_upper())
 		# Check if action_name is valid first, then check if is allowed
@@ -84,19 +85,16 @@ func _on_action_ended(_action: Game.Action):
 
 
 func _on_event_started(_event: Event):
-	action_disable_all()
+	toggle_travel_actions(false)
 
 
 func _on_event_ended(_event: Event):
-	action_enable_all()
+	toggle_travel_actions(true)
 
 
-func action_enable_all():
+## Enables/Disabled travel actions.
+func toggle_travel_actions(enabled: bool):
 	for button in %ActionButtonsContainer.get_children():
-		button.disabled = false
-
-
-func action_disable_all():
-	for button in %ActionButtonsContainer.get_children():
-		button.disabled = true
-	%ActionButtonsContainer/StoppingButton.disabled = false
+		button.disabled = !enabled
+	if !enabled:
+		%ActionButtonsContainer/StoppingButton.disabled = false
