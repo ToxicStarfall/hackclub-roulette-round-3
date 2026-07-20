@@ -1,0 +1,35 @@
+{
+	"entries": [
+		{
+			"id": "TEMPLATE",
+			"name": "Template",
+			"description": "An item description.",
+			"weight": 0.01,
+			"value": 1
+		},
+		{
+			"name": "Gold Coin",
+			"description": "The common currency of this land.",
+			"weight": 0.025,
+			"value": 1
+		},
+		{
+			"name": "Ration",
+			"description": "A hard, dense, packaged meal.",
+			"weight": 0.5,
+			"value": 1,
+			"effects": {
+				"hunger": 60
+			}
+		},
+		{
+			"name": "Medicine",
+			"description": "",
+			"weight": 0.5,
+			"value": 3,
+			"effects": {
+				"health": 60
+			}
+		}
+	]
+}

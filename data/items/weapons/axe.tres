@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://ccmv6q10w8okx"]
+
+[ext_resource type="Script" uid="uid://qitehljiq5sn" path="res://data/items/types/weapon_data.gd" id="1_bhlvg"]
+
+[resource]
+script = ExtResource("1_bhlvg")
+enabled = false
+weight = 2.0
+value = 6.0
+slot_type = "Primary"
+metadata/_custom_type_script = "uid://qitehljiq5sn"

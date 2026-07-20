@@ -21,7 +21,6 @@ extends Resource
 @export_group("")
 #@export_group("Items")
 #@export var items: Dictionary[ItemData, int]
-#@export var items: Array[ItemSet]
 @export_custom(Registry.PROPERTY_HINT_CUSTOM, "res://data/registries/items.tres,true,true") var items: Array[StringName]
-#@export var quantities: Array[int]
-@export_range(0, 100) var quantities: Array[int]
+@export var quantities: Array[int]
+#@export_range(0, 100) var quantities: Array[int]

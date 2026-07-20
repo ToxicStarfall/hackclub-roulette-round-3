@@ -1,0 +1,47 @@
+[gd_resource type="Resource" script_class="Registry" format=3 uid="uid://b2tpyaemqwq33"]
+
+[ext_resource type="Script" uid="uid://dqtv77mng5dyh" path="res://addons/yard/registry.gd" id="1_nc8p2"]
+
+[resource]
+script = ExtResource("1_nc8p2")
+_version = 2
+_scan_rulesets = Array[Dictionary]([{
+&"allowed_file_extensions": Array[String]([".tres"]),
+&"class_restrictions": Array[StringName]([&"ItemData"]),
+&"recursive_scan": true,
+&"scan_directories": Array[String](["res://data"]),
+&"scan_regex_exclude": "",
+&"scan_regex_include": ""
+}])
+_uids_to_string_ids = Dictionary[StringName, StringName]({
+&"uid://5fmar1qnh4j4": &"bandage",
+&"uid://81hp4ye5b7px": &"healing salve",
+&"uid://b13sw6yhf4k5u": &"buckler",
+&"uid://brirffj6vdcha": &"template",
+&"uid://btn80irurcwi1": &"kite_shield",
+&"uid://c5pg6njcae8eu": &"gambeson",
+&"uid://cbutl2imtwhil": &"chainmail",
+&"uid://ccmv6q10w8okx": &"axe",
+&"uid://chd0j6swv1fel": &"template_weapon",
+&"uid://ctyerxxnfwnbh": &"hatchet",
+&"uid://cu4i1644a3acc": &"gold_coin",
+&"uid://dfm3bjsryhbfn": &"ration",
+&"uid://ti5t8xoy5g7f": &"sword",
+&"uid://yjsicgpi6mnc": &"knife"
+})
+_string_ids_to_uids = Dictionary[StringName, StringName]({
+&"axe": &"uid://ccmv6q10w8okx",
+&"bandage": &"uid://5fmar1qnh4j4",
+&"buckler": &"uid://b13sw6yhf4k5u",
+&"chainmail": &"uid://cbutl2imtwhil",
+&"gambeson": &"uid://c5pg6njcae8eu",
+&"gold_coin": &"uid://cu4i1644a3acc",
+&"hatchet": &"uid://ctyerxxnfwnbh",
+&"healing salve": &"uid://81hp4ye5b7px",
+&"kite_shield": &"uid://btn80irurcwi1",
+&"knife": &"uid://yjsicgpi6mnc",
+&"ration": &"uid://dfm3bjsryhbfn",
+&"sword": &"uid://ti5t8xoy5g7f",
+&"template": &"uid://brirffj6vdcha",
+&"template_weapon": &"uid://chd0j6swv1fel"
+})

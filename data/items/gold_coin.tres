@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://cu4i1644a3acc"]
+
+[ext_resource type="Script" uid="uid://dmoxv4v3sqv6v" path="res://data/items/types/item_data.gd" id="1_tqhf0"]
+
+[resource]
+script = ExtResource("1_tqhf0")
+name = "Gold Coin"
+description = "The common coin of this land."
+weight = 0.025
+stack = 50
+metadata/_custom_type_script = "uid://dmoxv4v3sqv6v"

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://yjsicgpi6mnc"]
+
+[ext_resource type="Script" uid="uid://qitehljiq5sn" path="res://data/items/types/weapon_data.gd" id="1_p7y2s"]
+
+[resource]
+script = ExtResource("1_p7y2s")
+name = "Knife"
+weight = 0.25
+value = 3.0
+slot_type = "Primary"
+metadata/_custom_type_script = "uid://qitehljiq5sn"
