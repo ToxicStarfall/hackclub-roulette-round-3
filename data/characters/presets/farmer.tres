@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CharacterPreset" format=3 uid="uid://y1bhse2hi7oh"]
+
+[ext_resource type="Script" uid="uid://rg4gdar6l5py" path="res://data/characters/character_preset.gd" id="1_og4yx"]
+
+[resource]
+script = ExtResource("1_og4yx")
+name = "Farmer"
+description = "A farm worker.
+(Difficulty - Normal/Hard)"
+agility = 2
+charisma = 2
+intelligence = 2
+metadata/_custom_type_script = "uid://rg4gdar6l5py"

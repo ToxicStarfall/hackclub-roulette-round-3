@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CharacterPreset" format=3 uid="uid://ka142qd6ne4o"]
+
+[ext_resource type="Script" uid="uid://rg4gdar6l5py" path="res://data/characters/character_preset.gd" id="1_nein4"]
+
+[resource]
+script = ExtResource("1_nein4")
+name = "Amnesiac"
+agility = 0
+charisma = 0
+dexterity = 0
+endurance = 0
+intelligence = 0
+strength = 0
+metadata/_custom_type_script = "uid://rg4gdar6l5py"
