@@ -9,4 +9,5 @@ name = "Healing Salve"
 weight = 0.2
 value = 2.0
 stack = 5
+tier = 1.0
 metadata/_custom_type_script = "uid://bpy56hlcsoeha"

@@ -8,5 +8,6 @@ enabled = false
 name = "Kite Shield"
 weight = 4.0
 value = 10.0
+tier = 2.0
 slot_type = "Secondary"
 metadata/_custom_type_script = "uid://qitehljiq5sn"

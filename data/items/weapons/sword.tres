@@ -8,5 +8,6 @@ damage = 5.0
 name = "Sword"
 weight = 1.5
 value = 8.0
+tier = 1.0
 slot_type = "Primary"
 metadata/_custom_type_script = "uid://qitehljiq5sn"

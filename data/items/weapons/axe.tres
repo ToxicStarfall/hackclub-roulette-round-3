@@ -5,7 +5,10 @@
 [resource]
 script = ExtResource("1_bhlvg")
 enabled = false
+name = "Axe"
 weight = 2.0
 value = 6.0
+tier = 1.0
+tags = Array[int]([1, 0])
 slot_type = "Primary"
 metadata/_custom_type_script = "uid://qitehljiq5sn"

@@ -18,5 +18,4 @@ var user: Entity
 
 
 func _ready() -> void:
-	#user = get_parent()
 	pass

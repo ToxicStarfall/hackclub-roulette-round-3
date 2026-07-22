@@ -2,10 +2,13 @@ class_name ItemData
 extends Resource
 
 
-@warning_ignore_start("unused_signal")
-signal item_used
-signal item_equipped
-signal item_unequipped
+enum Tags { NONE, ONE_HANDED, TWO_HANDED, CURRENCY, MATERIAL, SWORD, AXE, KNIFE, BOW, SHIELD, MAKESHIFT }
+
+
+#@warning_ignore_start("unused_signal")
+#signal item_used
+#signal item_equipped
+#signal item_unequipped
 
 
 @export var enabled: bool = true  ## If false, this item will be hidden and unavailable.
@@ -16,6 +19,8 @@ signal item_unequipped
 @export var weight: float = 1.0  ## Weight in kg.
 @export var value: float = 1.0  ## Value in gold coins (for selling).
 @export var stack: int = 1  ## Maximum stack size of this item.
+@export_range(0,3) var tier: int = 0  ## 
+@export var tags: Array[Tags]  ## 
 
 @export_enum("None", "Primary", "Secondary", "Tertiary", "Head", "Body", "Arms", "Legs", "Hands", "Feet")
 var slot_type: String = "None"

@@ -7,5 +7,6 @@ script = ExtResource("1_s6ati")
 name = "Buckler"
 weight = 2.0
 value = 5.0
+tier = 1.0
 slot_type = "Secondary"
 metadata/_custom_type_script = "uid://qitehljiq5sn"
