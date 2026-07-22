@@ -1,8 +1,12 @@
 class_name Character
-extends Entity
+#extends Entity
+extends Resource
 
 
+@warning_ignore_start("unused_signal")
 signal stat_changed
+signal status_changed
+
 
 enum Stat {
 	HEALTH,
@@ -31,6 +35,14 @@ func apply_stat(stat_type: Stat, value: float) -> void:
 	stat_changed.emit() # send ui update request after changing
 
 
+func add_status():
+	pass
+
+
+func remove_status():
+	pass
+
+
 func get_stat(stat_type: Stat) -> float:
 	var stat = Stat.keys().get(stat_type).to_lower()
 	return stats.get(stat)
@@ -39,7 +51,7 @@ func get_stat(stat_type: Stat) -> float:
 func get_efficiency(rounding_step: float = 0.1) -> float:
 	var efficiency = 100
 	# Efficiency debuff for health
-	efficiency -= max((stats.max_health - stats.health)- 5, 0)  # Efficiency debuff for health
+	efficiency -= max((stats.max_health - stats.health)- 5, 0)  # Difference to max_health with +5 margin
 	# Efficiency debuff for hunger
 	efficiency -=max(((stats.max_hunger - stats.hunger)- 40) / 2, 0)  # Difference to max_hunger with +40 margin
 	#print("hunger debuff", max(((stats.max_hunger - stats.hunger)- 40) / 2, 0))
@@ -61,3 +73,8 @@ func get_movment_speed() -> float:
 	#speed *= stats.health
 	# speed modifiers
 	return speed
+
+
+func get_print():
+	var text = ""
+	return text
