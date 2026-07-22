@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CharGenTemplate" format=3 uid="uid://b1t4dk4co4bfs"]
+
+[ext_resource type="Script" uid="uid://cmcds5tjhv6rc" path="res://data/characters/generator/char_gen_template.gd" id="1_p4oxj"]
+
+[sub_resource type="GDScript" id="GDScript_p4oxj"]
+
+[resource]
+script = ExtResource("1_p4oxj")
+agility = 1.0
+charisma = 0.5
+dexterity = 1.0
+endurance = 1.5
+intelligence = 0.5
+strength = 2.0
+metadata/_custom_type_script = "uid://cmcds5tjhv6rc"
