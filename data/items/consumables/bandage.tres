@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ConsumableData" format=3 uid="uid://5fmar1qnh4j4"]
 
-[ext_resource type="Script" uid="uid://bpy56hlcsoeha" path="res://data/items/types/consumable_data.gd" id="1_iimeu"]
+[ext_resource type="Script" uid="uid://bpy56hlcsoeha" path="res://data/items/_types/consumable_data.gd" id="1_iimeu"]
 [ext_resource type="Script" uid="uid://b2i7flqx2qgc1" path="res://data/characters/status_effects/status_effect.gd" id="2_axih6"]
 
 [resource]

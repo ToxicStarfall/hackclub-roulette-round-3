@@ -26,7 +26,7 @@ resources_spreadsheet_view/freeze_first_column=true
 config/name="A Survivor's JOURNEY"
 config/version="0.2.0"
 run/main_scene="uid://cqcvewcu1865c"
-config/features=PackedStringArray("4.6", "GL Compatibility")
+config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [audio]
@@ -43,6 +43,7 @@ CombatManager="*uid://b5ibpfs2o6g6l"
 Regions="*uid://c2tuftvuwsl6k"
 Game="*res://game.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+Registries="*uid://y10j1gw6u4sx"
 
 [debug]
 
@@ -59,7 +60,7 @@ window/vsync/vsync_mode=0
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://addons/godot_super-wakatime/plugin.cfg")
+enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://addons/godot_super-wakatime/plugin.cfg", "res://addons/yard/plugin.cfg")
 
 [file_customization]
 

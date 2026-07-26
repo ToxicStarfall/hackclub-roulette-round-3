@@ -2,7 +2,9 @@ class_name ItemData
 extends Resource
 
 
-enum Tags { NONE, ONE_HANDED, TWO_HANDED, CURRENCY, MATERIAL, SWORD, AXE, KNIFE, BOW, SHIELD, MAKESHIFT }
+enum Tags { NONE, ONE_HANDED, TWO_HANDED, CURRENCY, MATERIAL, SWORD, AXE, KNIFE, BOW, SHIELD }
+#enum Quality { NORMAL, DAMAGED, WORN, REINFORCED, ORNATE }
+#enum Slots { DEFAULT, PRIMARY, SECONDARY, TERTIARY }
 
 
 #@warning_ignore_start("unused_signal")
@@ -21,6 +23,7 @@ enum Tags { NONE, ONE_HANDED, TWO_HANDED, CURRENCY, MATERIAL, SWORD, AXE, KNIFE,
 @export var stack: int = 1  ## Maximum stack size of this item.
 @export_range(0,3) var tier: int = 0  ## 
 @export var tags: Array[Tags]  ## 
+#@export var mods: Array[Tags]  ## 
 
 @export_enum("None", "Primary", "Secondary", "Tertiary", "Head", "Body", "Arms", "Legs", "Hands", "Feet")
 var slot_type: String = "None"
@@ -29,3 +32,9 @@ var slot_type: String = "None"
 
 func _ready() -> void:
 	pass
+
+
+#func get_text() -> String:
+	#var text: String
+	#
+	#return text

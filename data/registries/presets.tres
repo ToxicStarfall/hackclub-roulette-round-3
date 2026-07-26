@@ -8,8 +8,8 @@ _version = 2
 _scan_rulesets = Array[Dictionary]([{
 &"allowed_file_extensions": Array[String]([".tres"]),
 &"class_restrictions": Array[StringName]([&"CharacterPreset"]),
-&"recursive_scan": false,
-&"scan_directories": Array[String](["res://data/characters/presets"]),
+&"recursive_scan": true,
+&"scan_directories": Array[String](["res://data/"]),
 &"scan_regex_exclude": "",
 &"scan_regex_include": ""
 }])

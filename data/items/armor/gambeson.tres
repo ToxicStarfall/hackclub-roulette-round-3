@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ArmorData" format=3 uid="uid://c5pg6njcae8eu"]
 
-[ext_resource type="Script" uid="uid://ldom587yxasc" path="res://data/items/types/armor_data.gd" id="1_aplif"]
+[ext_resource type="Script" uid="uid://ldom587yxasc" path="res://data/items/_types/armor_data.gd" id="1_aplif"]
 
 [resource]
 script = ExtResource("1_aplif")

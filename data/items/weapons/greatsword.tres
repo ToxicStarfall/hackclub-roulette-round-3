@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://blk2tkffnmmc"]
+
+[ext_resource type="Script" uid="uid://qitehljiq5sn" path="res://data/items/_types/weapon_data.gd" id="1_inj2g"]
+
+[resource]
+script = ExtResource("1_inj2g")
+enabled = false
+name = "Greatsword"
+tier = 2.0
+metadata/_custom_type_script = "uid://qitehljiq5sn"

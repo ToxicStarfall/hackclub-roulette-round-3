@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://btn80irurcwi1"]
 
-[ext_resource type="Script" uid="uid://qitehljiq5sn" path="res://data/items/types/weapon_data.gd" id="1_c8gvx"]
+[ext_resource type="Script" uid="uid://qitehljiq5sn" path="res://data/items/_types/weapon_data.gd" id="1_c8gvx"]
 
 [resource]
 script = ExtResource("1_c8gvx")
@@ -9,5 +9,6 @@ name = "Kite Shield"
 weight = 4.0
 value = 10.0
 tier = 2.0
+tags = Array[int]([1, 9])
 slot_type = "Secondary"
 metadata/_custom_type_script = "uid://qitehljiq5sn"

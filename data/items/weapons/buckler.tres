@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://b13sw6yhf4k5u"]
 
-[ext_resource type="Script" uid="uid://qitehljiq5sn" path="res://data/items/types/weapon_data.gd" id="1_s6ati"]
+[ext_resource type="Script" uid="uid://qitehljiq5sn" path="res://data/items/_types/weapon_data.gd" id="1_s6ati"]
 
 [resource]
 script = ExtResource("1_s6ati")
@@ -8,5 +8,6 @@ name = "Buckler"
 weight = 2.0
 value = 5.0
 tier = 1.0
+tags = Array[int]([1, 9])
 slot_type = "Secondary"
 metadata/_custom_type_script = "uid://qitehljiq5sn"
