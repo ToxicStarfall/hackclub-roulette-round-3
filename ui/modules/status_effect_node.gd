@@ -10,4 +10,7 @@ func _ready() -> void:
 
 
 func update():
+	# Change icon texture
+	# Change duration text
+	# Change tooltip content
 	pass
