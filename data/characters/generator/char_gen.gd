@@ -6,29 +6,26 @@ extends Node
 
 @export var sample_template: CharGenTemplate
 @export var sample_tier: int = 0
-@export_tool_button("Sample") var sample = _sample
+@export_tool_button("Sample") var sample_button = _sample
+
 
 
 ## Generate semi-randomized character based on a preset.
 func generate_character(from: CharGenTemplate, char_tier: int):
-	var template = from
-	var total_attr_points = template.attr_points + (template.attr_points_per_level * char_tier)
+	var template: CharGenTemplate = from
+	var attribute_points: int = template.attr_points + (template.attr_points_per_level * char_tier)
+	var character: CharacterData = CharacterData.new()
 	
-	var new_char = CharacterData.new()
-	fill_attributes(new_char, template.get_attr_weights(), total_attr_points)
-	
-	print( new_char.get_print() )
-	pass
-	
-
-func fill_attributes(character: CharacterData, attr_weights: Array, attr_points: int):
-	#var total_weight: float
 	var attr_list = ["agility", "charisma", "dexterity", "endurance", "intelligence", "strength"]
-	#attr_weights.map( func(value): total_weight += value)
 	
+	# Fill base attributes.
+	for attribute in attr_list:
+		character.set(attribute, character.get(attribute) + template.get_base_attributes()[attr_list.find(attribute)])
+	
+	# Fill attributes from available attribute points.
 	var rng := RandomNumberGenerator.new()
-	for i in attr_points:
-		var sample = rng.rand_weighted(attr_weights)
+	for i in attribute_points:
+		var sample = rng.rand_weighted( template.get_attr_weights() )
 		var attribute = attr_list[sample]
 		character.set(attribute, character.get(attribute) + 1)
 	
@@ -41,6 +38,7 @@ func fill_attributes(character: CharacterData, attr_weights: Array, attr_points:
 			#prev_weights += weight
 	
 	pass
+
 
 
 func _sample():

@@ -24,7 +24,7 @@ enum Energy {
 #const EMPTY = 
 
 
-@export var name: String = "Unknown Survivor"
+var name: String = "Unknown Survivor"
 #@export_range(20, 60) var age: int = 20
 #@export var background: Backgrounds
 #@export var traits: Array = []
@@ -40,10 +40,10 @@ var hunger := max_hunger
 #var mood := 100.0
 
 # Average movement speed in kilometres(km)
-@export var walk_speed := 5.0  # (~3.0 mph)
-#@export var run_speed := 12.5  # (~7.5 mph)
+var walk_speed := 5.0  # (~3.0 mph)
+#var run_speed := 12.5  # (~7.5 mph)
 
-#@export_group("Attributes")
+# - - Attributes - - #
 var agility: int = 0  ## Affects travel speed, hunting.
 var charisma: int = 0
 var dexterity: int = 0
@@ -52,7 +52,7 @@ var intelligence: int = 0
 var strength: int = 0
 var social: int = 0
 
-#@export_group("Skills")
+# - - - SKILLS - - - #
 #@export_range(0, 3) var animals: float = 0.0  ## Affects ability to hunt and interact with ranimals
 #@export_range(0, 3) var crafting: float = 0.0  ## Affects ability to create things from various materials.
 #@export_range(0, 3) var combat: float = 0.0  ## Affects ability to fight and use combat gear.
@@ -67,8 +67,11 @@ var social: int = 0
 #@export_range(0, 3) var spears: float = 0.0  ##
 #@export_range(0, 3) var swords: float = 0.0  ##
 
-#var info = CharacterInfo.new()
-var stats = CharacterStats.new()
+#var info := CharacterInfo.new()
+var stats := CharacterStats.new()
+
+var inventory := InventoryComponent.new()
+
 
 
 
@@ -131,15 +134,15 @@ func get_movment_speed() -> float:
 func get_print():
 	var text = \
 		"Name: %s \
-		\n%s/%s health, %s/%s hunger \
+		\nHealth %s/%s, Hunger %s/%s \
 		\nAttributes \
-		\n\tagility: %s \
-		\n\tcharisma: %s \
-		\n\tdexterity: %s \
-		\n\tendurance: %s \
-		\n\tintelligence: %s \
-		\n\tstrength: %s \
-		\n\t social: %s \
+			\n\tagility: %s \
+			\n\tcharisma: %s \
+			\n\tdexterity: %s \
+			\n\tendurance: %s \
+			\n\tintelligence: %s \
+			\n\tstrength: %s \
+		\n%s \
 		\n" % \
 		[name,
 		health, max_health, hunger, max_hunger,
@@ -149,7 +152,7 @@ func get_print():
 			endurance,
 			intelligence,
 			strength,
-			social]
+		inventory.get_print()]
 	return text
 
 

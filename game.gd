@@ -92,9 +92,9 @@ var player := Character.new()
 var inventory := InventoryComponent.new()
 
 
-@onready var UI: Control = get_tree().root.get_node("Main/%UI")
-@onready var World: Node2D = get_tree().root.get_node("Main/World")
-@onready var GameScreen = UI.get_node("%GameScreen")
+var UI: Control
+var GameScreen: Control
+var World: Node2D
 
 
 func _ready() -> void:
@@ -104,6 +104,10 @@ func _ready() -> void:
 	EventManager.event_ended.connect( _on_event_ended )
 
 	#player.stat_changed.connect( GameScreen.get_node("%CharacterCard").update )
+	if get_tree().current_scene.name == "main":
+		UI = get_tree().root.get_node("Main/%UI")
+		World = get_tree().root.get_node("Main/World")
+		GameScreen = UI.get_node("%GameScreen")
 
 
 func _on_game_start():

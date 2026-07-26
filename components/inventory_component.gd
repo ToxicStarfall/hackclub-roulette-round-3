@@ -6,22 +6,20 @@ extends Node
 signal item_added ( item: String )
 signal item_removed ( item: String )
 signal changed
-@warning_ignore_restore("unused_signal")
+signal weight_changed ( weight: float, overweight: bool )
 
-#var items: Array[Item] = []
-#var items: Array = []
 
-# Items
-var items: Dictionary = {
-	GOLD = 0,
-	FOOD = 0,
-	MEDICINE = 0,
-	#CLOTH = 0,
-	#ROPE = 0,
-}
+#var weight_enabled
 
 @export var size: int
 @export var size_grid: Vector2
+
+#var a: InventorySlot
+#var items: Array[Item] = []
+#@export_custom(Registry.PROPERTY_HINT_CUSTOM, "res://data/registries/items.tres,true,true") var items: Array[StringName]
+
+var items: Dictionary[StringName, int] = {}
+
 
 
 ## Returns the quantiy of the item
