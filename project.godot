@@ -72,7 +72,6 @@ folder_colors={
 "res://entities/player/": "gray",
 "res://entities/projectiles/": "gray",
 "res://entities/states/": "gray",
-"res://events/comps/": "gray",
 "res://items/weapons/": "gray",
 "res://ui/": "green"
 }
