@@ -3,8 +3,9 @@ extends Resource
 
 
 enum Tags { NONE, ONE_HANDED, TWO_HANDED, CURRENCY, MATERIAL, SWORD, AXE, KNIFE, BOW, SHIELD }
-#enum Quality { NORMAL, DAMAGED, WORN, REINFORCED, ORNATE }
-#enum Slots { DEFAULT, PRIMARY, SECONDARY, TERTIARY }
+#enum Quality { NORMAL, DAMAGED, WORN, REINFORCED, HIGH_QUALITY, ORNATE }
+#enum WeaponType { GENERIC, SWORD, SPEAR, AXE, KNIFE, BOW, CROSSBOW, SHIELD }
+#enum SlotTypes { NONE, PRIMARY, SECONDARY, TERTIARY }
 
 
 #@warning_ignore_start("unused_signal")

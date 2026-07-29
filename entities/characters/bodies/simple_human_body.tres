@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="Body" format=3 uid="uid://dx1ppq6wvb42"]
+
+[ext_resource type="Script" uid="uid://brygmyklkocc2" path="res://entities/characters/bodies/body_part.gd" id="1_eb8rk"]
+[ext_resource type="Script" uid="uid://du17apprsea0w" path="res://entities/characters/bodies/body_function.gd" id="2_qhh00"]
+[ext_resource type="Script" uid="uid://bby3gsqefkq5o" path="res://entities/characters/bodies/body.gd" id="2_xujo5"]
+
+[sub_resource type="Resource" id="Resource_qhh00"]
+script = ExtResource("1_eb8rk")
+name = "Arms"
+metadata/_custom_type_script = "uid://brygmyklkocc2"
+
+[sub_resource type="Resource" id="Resource_ycdy4"]
+script = ExtResource("2_qhh00")
+function = 6
+metadata/_custom_type_script = "uid://du17apprsea0w"
+
+[sub_resource type="Resource" id="Resource_xujo5"]
+script = ExtResource("1_eb8rk")
+name = "Body"
+functions = Array[ExtResource("2_qhh00")]([SubResource("Resource_ycdy4")])
+metadata/_custom_type_script = "uid://brygmyklkocc2"
+
+[sub_resource type="Resource" id="Resource_eb8rk"]
+script = ExtResource("1_eb8rk")
+name = "Head"
+metadata/_custom_type_script = "uid://brygmyklkocc2"
+
+[sub_resource type="Resource" id="Resource_ipmbi"]
+script = ExtResource("1_eb8rk")
+name = "Legs"
+metadata/_custom_type_script = "uid://brygmyklkocc2"
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("2_xujo5")
+function_mode = 1
+parts = Dictionary[StringName, ExtResource("1_eb8rk")]({
+&"a": null,
+&"arms": SubResource("Resource_qhh00"),
+&"body": SubResource("Resource_xujo5"),
+&"head": SubResource("Resource_eb8rk"),
+&"legs": SubResource("Resource_ipmbi")
+})
+metadata/_custom_type_script = "uid://bby3gsqefkq5o"

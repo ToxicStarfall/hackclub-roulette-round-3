@@ -1,4 +1,3 @@
-@tool
 class_name Event
 extends Resource
 
@@ -7,7 +6,7 @@ extends Resource
 
 #@export var type: Types = EventTypes.NORMAL
 
-#var id: String
+var id: String
 @export var title: String = ""
 #@export var texture: Texture2D
 #@export var description: String = ""
