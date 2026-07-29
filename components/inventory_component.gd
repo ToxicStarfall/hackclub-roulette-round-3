@@ -3,8 +3,8 @@ extends Node
 
 
 @warning_ignore_start("unused_signal")
-signal item_added ( item: String )
-signal item_removed ( item: String )
+signal item_added ( item: StringName )
+signal item_removed ( item: StringName )
 signal changed
 signal weight_changed ( weight: float, overweight: bool )
 
@@ -23,12 +23,11 @@ var items: Dictionary[StringName, int] = {}
 
 
 ## Returns the quantiy of the item
-func get_item(item: String) -> int:
-	return int(items.get(item))
-
-# Returns an array of all item keys
-#static func get_items() -> Array:
-	#return items.keys()
+func get_item(item: StringName) -> int:
+	if items.has(item):
+		return items.get(item)
+	else:
+		return 0
 
 
 ## Returns the difference between the owned quantity of <item> and the <value>.
@@ -37,22 +36,22 @@ func difference(item: String, value: int) -> int:
 
 
 ## Returns true if inventory has at least <quantity> of <item>.
-func has(item: String, quantity: int = 1) -> bool:
-	print("item available: %s x%s. x%s needed. %s" % [item, get_item(item), quantity, get_item(item) >= quantity])
+func has(item: StringName, quantity: int = 1) -> bool:
+	#print("item available: %s x%s. x%s needed. %s" % [item, get_item(item), quantity, get_item(item) >= quantity])
 	return get_item(item) >= quantity
 
 
-func add(item: String, quantity: int, _idx: int = -1):
+func add(item: StringName, quantity: int, _idx: int = -1):
 	items.set(item, get_item(item) + quantity)
 	item_added.emit(item)
-	print("item added: %s x%s." % [item, quantity])
+	#print("item added: %s x%s." % [item, quantity])
 	changed.emit()
 
 
-func remove(item: String, quantity: int, _idx: int = -1):
+func remove(item: StringName, quantity: int, _idx: int = -1):
 	items.set(item, get_item(item) - quantity)
 	item_removed.emit(item)
-	print("item removed: %s x%s." % [item, quantity])
+	#print("item removed: %s x%s." % [item, quantity])
 	changed.emit()
 
 
@@ -68,3 +67,32 @@ func swap(_idx: int, _idx2: int):
 #
 #func swap_grid(grid_pos: Vector2i, grid_pos_2: Vector2i):
 	#pass
+	
+
+#func filter(filter):
+	#pass
+
+
+## Returns an array of all item keys in this inventory.
+func get_items() -> Array[StringName]:
+	return items.keys()
+
+
+func get_total_weight():
+	pass
+
+
+func get_slot_weight():
+	pass
+	
+
+func get_print() -> String:
+	const ITEMS = Registries.ITEMS
+	var text: String = "Inventory\n"
+	
+	for key in items.keys():
+		var item = ITEMS.load_entry(key)
+		text += "\t%s" % [item.name]
+		text += " - "
+		text += "%sx\n" % [items.get(key)]
+	return text

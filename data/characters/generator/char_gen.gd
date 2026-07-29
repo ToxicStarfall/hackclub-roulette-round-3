@@ -1,7 +1,6 @@
 @tool
 class_name CharGen
-extends Node
-
+#extends Node
 
 
 @export var sample_template: CharGenTemplate
@@ -11,7 +10,7 @@ extends Node
 
 
 ## Generate semi-randomized character based on a preset.
-func generate_character(from: CharGenTemplate, char_tier: int):
+static func generate_character(from: CharGenTemplate, char_tier: int) -> CharacterData:
 	var template: CharGenTemplate = from
 	var attribute_points: int = template.attr_points + (template.attr_points_per_level * char_tier)
 	var character: CharacterData = CharacterData.new()
@@ -28,17 +27,22 @@ func generate_character(from: CharGenTemplate, char_tier: int):
 		var sample = rng.rand_weighted( template.get_attr_weights() )
 		var attribute = attr_list[sample]
 		character.set(attribute, character.get(attribute) + 1)
-	
-	#var sample = randf_range(0, total_weight)
-	#var prev_weights = 0.0
-	#for weight in attr_weights:
-		#if sample < weight + prev_weights:
-			#pass
-		#else:
-			#prev_weights += weight
-	
+		
+	# Fill items
+	for item_selector in template.items:
+		if item_selector and item_selector.is_valid():
+			#character.inventory.add(item_selector.item, item_selector.get_quantity())
+			character.inventory.add(item_selector.get_item(), item_selector.get_quantity())
+			
+	#print( character.get_print() )
+	return character
+
+
+func _fill_attributes(character: CharacterData):
 	pass
 
+func _generate_items():
+	pass
 
 
 func _sample():

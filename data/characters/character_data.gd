@@ -21,29 +21,13 @@ enum Energy {
 	EXHAUSTED, TIRED, NEUTRAL, ENERGETIC
 }
 
-#const EMPTY = 
 
-
-var name: String = "Unknown Survivor"
+var name: String = "Character"
 #@export_range(20, 60) var age: int = 20
 #@export var background: Backgrounds
 #@export var traits: Array = []
 
-var max_health := 100.0
-var max_hunger := 100.0
-var health := max_health
-var hunger := max_hunger
-#var thirst := 100.0
-#var energy := 100.0
-#var rest := 100.0  # Redundent with energy?
-
-#var mood := 100.0
-
-# Average movement speed in kilometres(km)
-var walk_speed := 5.0  # (~3.0 mph)
-#var run_speed := 12.5  # (~7.5 mph)
-
-# - - Attributes - - #
+# - - ATTRIBUTES - - #
 var agility: int = 0  ## Affects travel speed, hunting.
 var charisma: int = 0
 var dexterity: int = 0
@@ -67,11 +51,34 @@ var social: int = 0
 #@export_range(0, 3) var spears: float = 0.0  ##
 #@export_range(0, 3) var swords: float = 0.0  ##
 
-#var info := CharacterInfo.new()
+# - - - CHARACTER FUNCTIONS - - - #
+var max_health := 100.0
+var max_hunger := 100.0
+var health := max_health
+var hunger := max_hunger
+#var thirst := 100.0
+#var energy := 100.0
+#var rest := 100.0  # Redundent with energy?
+#var mood := 100.0
+
+var action_efficiency := 100.0
+var carry_efficiency := 100.0
+var movement_efficiency := 100.0
+
+
+# Average movement speed in kilometres(km)
+var walk_speed := 5.0  # (~3.0 mph)
+#var run_speed := 12.5  # (~7.5 mph)
+
+var carry_weight_base = 25.0
+var carry_weight = 25.0
+#var underweight_threshold = 10.0  ## Margin for lightweight status. 
+#var overweight_threshold = 10.0  ## Margin for overweight status.
+#var overweight_maximum = 20.0  ## Margin for overweight
+
+
 var stats := CharacterStats.new()
-
 var inventory := InventoryComponent.new()
-
 
 
 
@@ -81,9 +88,10 @@ func _init() -> void:
 
 
 func apply_stat(stat_type: Stat, value: float) -> void:
-	var stat = Stat.keys().get(stat_type).to_lower()
-	var new_value = min(max( stats.get(stat) + value, 0), 100)
-	stats.set(stat, new_value)
+	var stat = Stat.keys().get(stat_type).to_lower()  # Get stat type from enum keys.
+	#var new_value = min(max( get(stat) + value, 0), 100)
+	var new_value = clamp( get(stat) + value, 0, 100 )
+	set(stat, new_value)
 	stat_changed.emit() # send ui update request after changing
 
 
@@ -97,7 +105,7 @@ func remove_status():
 
 func get_stat(stat_type: Stat) -> float:
 	var stat = Stat.keys().get(stat_type).to_lower()
-	return stats.get(stat)
+	return get(stat)
 
 
 func get_efficiency(rounding_step: float = 0.1) -> float:
@@ -131,6 +139,7 @@ func get_movment_speed() -> float:
 	return speed
 
 
+## Returns the character data in a printable text format.
 func get_print():
 	var text = \
 		"Name: %s \
@@ -154,9 +163,5 @@ func get_print():
 			strength,
 		inventory.get_print()]
 	return text
-
-
-#static func empty() -> CharacterData:
-	#var empty_char := CharacterData.new()
-	#empty_char.
-	#return empty_char
+	
+	

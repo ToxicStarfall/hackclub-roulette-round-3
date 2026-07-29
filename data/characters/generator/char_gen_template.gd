@@ -29,11 +29,10 @@ extends Resource
 @export_group("")
 #@export var items: Array[ItemFilter]
 @export var items: Array[ItemSelector]
-#@export_custom(Registry.PROPERTY_HINT_CUSTOM, "res://data/registries/items.tres,true,true") var items: Array[StringName]
-#@export var quantities: Array[int]
 
 
 
+## Returns an array of base attribute levels.
 func get_base_attributes() -> Array[int]:
 	var attributes: Array = []
 	attributes.append(base_agility)
@@ -45,6 +44,7 @@ func get_base_attributes() -> Array[int]:
 	return attributes
 
 
+## Returns an array of weights for attribute generation.
 func get_attr_weights() -> Array[float]:
 	var weights: Array = []
 	weights.append(agility)

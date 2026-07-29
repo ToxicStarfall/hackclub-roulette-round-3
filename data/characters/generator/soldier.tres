@@ -7,28 +7,27 @@
 [sub_resource type="Resource" id="Resource_vlkn6"]
 script = ExtResource("1_vlkn6")
 item = &"bandage"
-quantity = 1
-quantity_min = null
-quantity_max = null
+quantity_min = 1
+quantity_max = 1
 metadata/_custom_type_script = "uid://wswarbf1xkj6"
 
 [sub_resource type="Resource" id="Resource_pkw1x"]
 script = ExtResource("1_vlkn6")
 item = &"ration"
-quantity = 1
-quantity_min = null
-quantity_max = null
+quantity_min = 1
+quantity_max = 1
 metadata/_custom_type_script = "uid://wswarbf1xkj6"
 
-[sub_resource type="Resource" id="Resource_yfod2"]
+[sub_resource type="Resource" id="Resource_hknto"]
 script = ExtResource("2_qbh4p")
-required_tags = Array[int]([1, 6])
+required_tags = Array[int]([1])
 metadata/_custom_type_script = "uid://d1r3bp0pl1kp3"
 
 [sub_resource type="Resource" id="Resource_lxyu0"]
 script = ExtResource("1_vlkn6")
-group = SubResource("Resource_yfod2")
-quantity_min = null
+filter = SubResource("Resource_hknto")
+quantity_min = 1
+quantity_max = 1
 metadata/_custom_type_script = "uid://wswarbf1xkj6"
 
 [resource]
