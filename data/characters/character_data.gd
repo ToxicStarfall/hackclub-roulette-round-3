@@ -6,13 +6,10 @@ signal stat_changed
 #signal status_changed
 
 enum Stat {
-	HEALTH,
-	HUNGER,
-	THIRST,
-	ENERGY
+	HEALTH, HUNGER, THIRST, ENERGY
 }
 enum Hunger {
-	STARVING, HUNGRY, BARELY_HUNGRY, FULL, STUFFED
+	STARVING, HUNGRY, SLIGHTLY_HUNGRY, FULL, STUFFED
 }
 enum Thirst {
 	DEHYDRATED, THIRSTY, HYDRATED
@@ -77,7 +74,9 @@ var carry_weight = 25.0
 #var overweight_maximum = 20.0  ## Margin for overweight
 
 
-var stats := CharacterStats.new()
+#var stats := CharacterStats.new()
+#var slots: Array
+var statuses: Array[StatusEffect] = []
 var inventory := InventoryComponent.new()
 
 
@@ -92,14 +91,14 @@ func apply_stat(stat_type: Stat, value: float) -> void:
 	#var new_value = min(max( get(stat) + value, 0), 100)
 	var new_value = clamp( get(stat) + value, 0, 100 )
 	set(stat, new_value)
-	stat_changed.emit() # send ui update request after changing
+	stat_changed.emit()  # Send ui update request after changing
 
 
-func add_status():
+func add_status(status: StatusEffect):
 	pass
 
 
-func remove_status():
+func remove_status(status: StatusEffect):
 	pass
 
 
@@ -108,21 +107,22 @@ func get_stat(stat_type: Stat) -> float:
 	return get(stat)
 
 
+#TODO Add more efficiency modifiers.
 func get_efficiency(rounding_step: float = 0.1) -> float:
 	const min_eff = 20
 	const max_eff = 110
 	var efficiency = 100
 	
 	# Efficiency debuff for health
-	efficiency -= max((stats.max_health - stats.health)- 5, 0)  # Difference to max_health with +5 margin
+	efficiency -= max((max_health - health)- 5, 0)  # Difference to max_health with +5 margin
 	# Efficiency debuff for hunger
-	efficiency -=max(((stats.max_hunger - stats.hunger)- 40) / 2, 0)  # Difference to max_hunger with +40 margin
+	efficiency -=max(((max_hunger - hunger)- 40) / 2, 0)  # Difference to max_hunger with +40 margin
 	#print("hunger debuff", max(((stats.max_hunger - stats.hunger)- 40) / 2, 0))
 
 	# Efficiency bonuses for high health and hunger.
-	if stats.health == (stats.max_health * 1.0): efficiency += 10
-	elif stats.health >= (stats.max_health * .95): efficiency += 5
-	if stats.hunger >= (stats.max_hunger * 0.9): efficiency += 5
+	if health == (max_health * 1.0): efficiency += 10
+	elif health >= (max_health * .95): efficiency += 5
+	if hunger >= (max_hunger * 0.9): efficiency += 5
 
 	return clamp( snapped(efficiency, rounding_step), min_eff, max_eff)
 
@@ -132,8 +132,9 @@ func get_hunger_rate() -> float:
 	return hunger_rate
 
 
+#TODO Apply body part efficiency
 func get_movment_speed() -> float:
-	var speed: float = stats.walk_speed
+	var speed: float = walk_speed
 	#speed *= stats.health
 	# speed modifiers
 	return speed

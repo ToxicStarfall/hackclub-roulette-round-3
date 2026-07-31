@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cyvd4cx711o6v" path="res://world/background/event/village/final_village.png" id="8_vivmo"]
 [ext_resource type="Texture2D" uid="uid://c658gyspo2wec" path="res://world/background/environment/grasslands/tree.png" id="9_dg77c"]
 [ext_resource type="Shader" uid="uid://dfcj8ypak1jh" path="res://ui/blur.gdshader" id="9_ycdy4"]
-[ext_resource type="PackedScene" uid="uid://dt5qg1vnfjflo" path="res://ui/screens/game_screen.tscn" id="12_dg77c"]
+[ext_resource type="PackedScene" uid="uid://dt5qg1vnfjflo" path="res://ui/screens/game/game_screen.tscn" id="12_dg77c"]
 [ext_resource type="PackedScene" uid="uid://dkpqmeu7grf3i" path="res://ui/screens/main_menu.tscn" id="14_w48qg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w48qg"]

@@ -88,8 +88,8 @@ var distance_travled := 0.0
 
 
 #var party := Party.new()
-var player := Character.new()
-var inventory := InventoryComponent.new()
+var player := CharacterData.new()
+var inventory := player.inventory
 
 
 var UI: Control
@@ -104,10 +104,10 @@ func _ready() -> void:
 	EventManager.event_ended.connect( _on_event_ended )
 
 	#player.stat_changed.connect( GameScreen.get_node("%CharacterCard").update )
-	if get_tree().current_scene.name == "main":
-		UI = get_tree().root.get_node("Main/%UI")
-		World = get_tree().root.get_node("Main/World")
-		GameScreen = UI.get_node("%GameScreen")
+	#if get_tree().current_scene.name == "main":
+	UI = get_tree().root.get_node("Main/%UI")
+	World = get_tree().root.get_node("Main/World")
+	GameScreen = UI.get_node("%GameScreen")
 
 
 func _on_game_start():
@@ -115,16 +115,21 @@ func _on_game_start():
 	UI.get_node("%GameScreen").show()
 	GameScreen.get_node("%TravelProgress").max_value = TICKS_PER_DAY
 	
-	GameScreen.get_node("%CharacterCard").set_character(player)
+	#GameScreen.get_node("%CharacterCard").set_character(player)
 	#GameScreen.get_node("%CharacterCard").update()
 
+	# - - Default Game Start Config - - #
 	SaveManager.load_file()
 	#EventManager.start_event("game/start")
+	
+	# - - Testing Configs - - #
 	quickstart()
+	player.apply_stat(CharacterData.Stat.HEALTH, -10)
 	#EventManager.start_event("beggar")
 	#EventManager.start_event("milestones/desert")
 	
-	#CombatManager.initiate( Character.new() )
+	var soldier = CharGen.generate_character(preload("res://data/characters/generator/soldier.tres"), 0)
+	CombatManager.start( [soldier] )
 
 
 func _physics_process(delta: float) -> void:
@@ -151,19 +156,19 @@ func _physics_process(delta: float) -> void:
 
 
 func tick_tick():
-	player.apply_stat( Character.Stat.HUNGER, -0.40 )
+	player.apply_stat( CharacterData.Stat.HUNGER, -0.40 )
 	distance_travled += player.get_movment_speed() / TICKS_PER_DAY
 	# UI updates
 	Events.distance_changed.emit( snapped(distance_travled, 0.001) )
 	GameScreen.get_node("%DistanceLabel").text = "%s km" % [ snapped(distance_travled, 0.001) ]
 	GameScreen.get_node("%TravelProgress").value = (current_hour * TICKS_PER_HOUR) + current_tick
 
-	if player.get_stat( Character.Stat.HUNGER ) <= 0:
-		player.apply_stat( Character.Stat.HEALTH, -0.25 )
-	if player.get_stat( Character.Stat.HUNGER ) >= 75:
-		player.apply_stat( Character.Stat.HEALTH, +0.20 )
+	if player.get_stat( CharacterData.Stat.HUNGER ) <= 0:
+		player.apply_stat( CharacterData.Stat.HEALTH, -0.25 )
+	if player.get_stat( CharacterData.Stat.HUNGER ) >= 75:
+		player.apply_stat( CharacterData.Stat.HEALTH, +0.20 )
 
-	if player.get_stat( Character.Stat.HEALTH ) <= 0:
+	if player.get_stat( CharacterData.Stat.HEALTH ) <= 0:
 		EventManager.start_event("game/death")
 	if distance_travled >= distance_total:
 		EventManager.start_event("game/end")
@@ -224,7 +229,7 @@ func _on_event_ended(event: Event):
 	unpause()
 
 	if event.id == "common/night":
-		Game.pause()
+		pause()
 		await Game.World.light_to_dark()
 		await get_tree().create_timer(1.0).timeout
 		await Game.World.dark_to_light()
@@ -243,9 +248,10 @@ func quickstart():
 	inventory.add( Items.GOLD, 10 )
 	inventory.add( Items.FOOD, 12 )
 	inventory.add( Items.MEDICINE, 2 )
-	player.info.name = "Survivor"
+	player.name = "Survivor"
 	#GameScreen.get_node("%CharacterCard/%NameLabel").text = player.info.name
-	GameScreen.get_node("%CharacterCard/%NameLabel").text = player.info.name
+	#GameScreen.get_node("%CharacterCard/%NameLabel").text = player.name
+	GameScreen.get_node("%CharacterCard").set_character(player)
 	unpause()
 
 
