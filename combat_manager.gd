@@ -1,22 +1,26 @@
 extends Node
 
 
-var enemies: Array[Character]
+var enemies: Array[CharacterData]
 
 
-func initiate(opponents: Array[Character]):
-	self.enemies = opponents
+
+func start(opponents: Array[CharacterData]):
+	Game.pause()
+	
+	enemies = opponents
 	_populate()
-	pass
+	
+	Events.combat_started.emit()
+
+
+func end():
+	Game.unpause()
+	Events.combat_ended.emit()
 
 
 func _populate():
 	for enemy in enemies:
-		var enemy_card = preload("res://ui/modules/character_card_enemy.tscn").instantiate()
-		enemy_card.set_character(enemy)
-	
-	await get_tree().create_timer(1.0).timeout
-	for enemy in enemies:
-		enemy.apply_stat(Character.Stat.HEALTH, randi_range(0, -10))
+		enemy.apply_stat(CharacterData.Stat.HEALTH, randi_range(-1, -10))
 		
 		

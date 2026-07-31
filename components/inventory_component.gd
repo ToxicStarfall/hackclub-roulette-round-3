@@ -5,7 +5,7 @@ extends Node
 @warning_ignore_start("unused_signal")
 signal item_added ( item: StringName )
 signal item_removed ( item: StringName )
-signal changed
+signal changed ()
 signal weight_changed ( weight: float, overweight: bool )
 
 

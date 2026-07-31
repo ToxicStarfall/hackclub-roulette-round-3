@@ -36,14 +36,14 @@ buses/default_bus_layout="uid://cc5h766eka1np"
 [autoload]
 
 Events="*uid://c4bfl0qqflvof"
+Regions="*uid://c2tuftvuwsl6k"
+Registries="*uid://y10j1gw6u4sx"
 SaveManager="*res://save_manager.gd"
 SettingsManager="*res://settings_manager.gd"
 EventManager="*res://event_manager.gd"
-CombatManager="*uid://b5ibpfs2o6g6l"
-Regions="*uid://c2tuftvuwsl6k"
 Game="*res://game.gd"
+CombatManager="*uid://b5ibpfs2o6g6l"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
-Registries="*uid://y10j1gw6u4sx"
 
 [debug]
 
