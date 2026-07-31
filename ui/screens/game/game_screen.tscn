@@ -1,16 +1,16 @@
 [gd_scene format=3 uid="uid://dt5qg1vnfjflo"]
 
-[ext_resource type="Script" uid="uid://muj6qui2llrj" path="res://ui/screens/game_screen.gd" id="1_4pkeh"]
-[ext_resource type="PackedScene" uid="uid://ok0seq216nrl" path="res://ui/modules/character_card.tscn" id="2_a36ut"]
-[ext_resource type="PackedScene" uid="uid://cl3toryj5f76b" path="res://ui/modules/options/options_panel.tscn" id="3_f3mdf"]
-[ext_resource type="ButtonGroup" uid="uid://bfc6lvgskx4bn" path="res://ui/time_speed_button_group.tres" id="4_8tits"]
-[ext_resource type="Script" uid="uid://b5u7yhjtjvt3r" path="res://ui/modules/action_status_container.gd" id="4_f3mdf"]
-[ext_resource type="PackedScene" uid="uid://bk4q4hhrohwl5" path="res://ui/screens/event_panel.tscn" id="4_frk5s"]
-[ext_resource type="Script" uid="uid://2p5qrso85kuq" path="res://ui/inventory_panel.gd" id="5_8tits"]
-[ext_resource type="Texture2D" uid="uid://n6nolxfvm0e" path="res://ui/icons/sunrise.svg" id="6_bpjld"]
-[ext_resource type="Texture2D" uid="uid://dyap0jb0nnppc" path="res://ui/icons/sunset.svg" id="7_645sj"]
-[ext_resource type="Script" uid="uid://gb3303l4ahfs" path="res://ui/modules/dev_panel.gd" id="8_a36ut"]
-[ext_resource type="PackedScene" uid="uid://drgx137s48c3o" path="res://ui/modules/character_card_enemy.tscn" id="9_frk5s"]
+[ext_resource type="Script" uid="uid://muj6qui2llrj" path="res://ui/screens/game/game_screen.gd" id="1_4pkeh"]
+[ext_resource type="PackedScene" uid="uid://ok0seq216nrl" path="res://ui/components/character_card.tscn" id="2_a36ut"]
+[ext_resource type="PackedScene" uid="uid://cl3toryj5f76b" path="res://ui/screens/options/options_panel.tscn" id="3_f3mdf"]
+[ext_resource type="ButtonGroup" uid="uid://bfc6lvgskx4bn" path="res://ui/screens/game/time_speed_button_group.tres" id="4_8tits"]
+[ext_resource type="Script" uid="uid://b5u7yhjtjvt3r" path="res://ui/screens/game/action_status_container.gd" id="4_f3mdf"]
+[ext_resource type="PackedScene" uid="uid://bk4q4hhrohwl5" path="res://ui/screens/game/event_panel.tscn" id="4_frk5s"]
+[ext_resource type="Script" uid="uid://2p5qrso85kuq" path="res://ui/components/inventory/inventory_panel.gd" id="5_8tits"]
+[ext_resource type="Texture2D" uid="uid://n6nolxfvm0e" path="res://assets/textures/misc/sunrise.svg" id="6_bpjld"]
+[ext_resource type="Texture2D" uid="uid://dyap0jb0nnppc" path="res://assets/textures/misc/sunset.svg" id="7_645sj"]
+[ext_resource type="Script" uid="uid://gb3303l4ahfs" path="res://ui/screens/game/dev_panel.gd" id="8_a36ut"]
+[ext_resource type="PackedScene" uid="uid://drgx137s48c3o" path="res://ui/components/character_card_enemy.tscn" id="9_frk5s"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5vw27"]
 bg_color = Color(0.16, 0.155467, 0.152, 1)
@@ -71,6 +71,7 @@ border_width_right = 3
 border_width_bottom = 3
 corner_radius_top_right = 15
 corner_radius_bottom_right = 15
+corner_detail = 2
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2cqfq"]
 
@@ -581,7 +582,6 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_8tits")
 text = "Stop"
 
 [node name="MarginContainer4" type="MarginContainer" parent="BottomBar" unique_id=500837825]
-visible = false
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -598,12 +598,14 @@ theme_override_constants/margin_bottom = 16
 
 [node name="EnemyCharacters" type="HBoxContainer" parent="BottomBar/MarginContainer4" unique_id=1313263693]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_constants/separation = 136
 alignment = 2
 
 [node name="CharacterCardEnemy" parent="BottomBar/MarginContainer4/EnemyCharacters" unique_id=1058424911 instance=ExtResource("9_frk5s")]
+visible = false
 layout_mode = 2
 
 [node name="EventPanelWrapper" type="HBoxContainer" parent="." unique_id=586212189]

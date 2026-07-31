@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cl3toryj5f76b"]
 
-[ext_resource type="Script" uid="uid://c8whk77vdxka6" path="res://ui/screens/options_panel.gd" id="1_yvw0u"]
+[ext_resource type="Script" uid="uid://c8whk77vdxka6" path="res://ui/screens/options/options_panel.gd" id="1_an68i"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7mycd"]
 bg_color = Color(0.2, 0.188235, 0.172549, 1)
@@ -11,7 +11,7 @@ border_width_right = 3
 [node name="OptionsPanel" type="PanelContainer" unique_id=1202614197]
 custom_minimum_size = Vector2(300, 100)
 theme_override_styles/panel = SubResource("StyleBoxFlat_7mycd")
-script = ExtResource("1_yvw0u")
+script = ExtResource("1_an68i")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=34626763]
 layout_mode = 2

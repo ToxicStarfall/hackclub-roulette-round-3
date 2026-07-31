@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://bk4q4hhrohwl5"]
 
-[ext_resource type="Script" uid="uid://b2wo0q8lec12e" path="res://ui/screens/event_panel.gd" id="1_hss4t"]
+[ext_resource type="Script" uid="uid://b2wo0q8lec12e" path="res://ui/screens/game/event_panel.gd" id="1_hss4t"]
 [ext_resource type="FontFile" uid="uid://qf8dx46n7dd6" path="res://assets/fonts/Texturina-VariableFont_opsz,wght.ttf" id="2_4pvfk"]
 [ext_resource type="Script" uid="uid://g32um0mltv5d" path="res://addons/dialogue_manager/dialogue_label.gd" id="2_l4rf7"]
 [ext_resource type="Script" uid="uid://bb52rsfwhkxbn" path="res://addons/dialogue_manager/dialogue_responses_menu.gd" id="3_uyss2"]
-[ext_resource type="AudioStream" uid="uid://bupg3sjmg853x" path="res://audio/sounds/freesound_community-paper-rustle-81855.mp3" id="4_h73tv"]
-[ext_resource type="AudioStream" uid="uid://c4jjh6806kju6" path="res://audio/sounds/makigai_maimai-paper-245786.mp3" id="5_6fvtm"]
-[ext_resource type="AudioStream" uid="uid://c0mejci1dafy8" path="res://audio/sounds/oxidvideos-paper-slide-short-478835.mp3" id="6_6fvtm"]
+[ext_resource type="AudioStream" uid="uid://bupg3sjmg853x" path="res://assets/audio/sounds/freesound_community-paper-rustle-81855.mp3" id="4_h73tv"]
+[ext_resource type="AudioStream" uid="uid://c4jjh6806kju6" path="res://assets/audio/sounds/makigai_maimai-paper-245786.mp3" id="5_6fvtm"]
+[ext_resource type="AudioStream" uid="uid://c0mejci1dafy8" path="res://assets/audio/sounds/oxidvideos-paper-slide-short-478835.mp3" id="6_6fvtm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_272bh"]
 bg_color = Color(0.2, 0.18786667, 0.172, 0)
