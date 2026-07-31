@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://drgx137s48c3o"]
 
-[ext_resource type="Script" uid="uid://bou0wif8bx3bk" path="res://ui/modules/character_card.gd" id="1_k8yxd"]
+[ext_resource type="Script" uid="uid://bou0wif8bx3bk" path="res://ui/components/character_card.gd" id="1_k8yxd"]
 [ext_resource type="Texture2D" uid="uid://dgr60uub4xhi1" path="res://icon.svg" id="2_7afue"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1bvp3"]
@@ -42,7 +42,6 @@ bg_color = Color(0.76, 0.228, 0.228, 1)
 
 [node name="CharacterCardEnemy" type="Panel" unique_id=1818747066]
 custom_minimum_size = Vector2(68, 90)
-anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -68.0
@@ -52,12 +51,12 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_1bvp3")
 script = ExtResource("1_k8yxd")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1264702581]
-layout_direction = 3
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
 offset_right = 206.0
 grow_vertical = 2
+layout_direction = 3
 theme_override_constants/separation = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer" unique_id=1958842604]
@@ -117,8 +116,8 @@ alignment = 2
 
 [node name="HungerGroup" type="HBoxContainer" parent="HBoxContainer/StatsPanel/VBoxContainer" unique_id=926498589]
 visible = false
-layout_direction = 2
 layout_mode = 2
+layout_direction = 2
 tooltip_text = "This is your hunger status."
 theme_override_constants/separation = 0
 
@@ -157,8 +156,8 @@ label_settings = SubResource("LabelSettings_k8yxd")
 vertical_alignment = 1
 
 [node name="HealthGroup" type="HBoxContainer" parent="HBoxContainer/StatsPanel/VBoxContainer" unique_id=1161550382]
-layout_direction = 2
 layout_mode = 2
+layout_direction = 2
 tooltip_text = "This is your health."
 theme_override_constants/separation = 0
 

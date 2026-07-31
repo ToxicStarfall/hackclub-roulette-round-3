@@ -16,6 +16,9 @@ func _ready() -> void:
 
 	Events.event_started.connect( _on_event_started )
 	Events.event_ended.connect( _on_event_ended )
+	
+	Events.combat_started.connect( _on_combat_started )
+	Events.combat_ended.connect( _on_combat_ended )
 
 	%SpeedControlPanel/%PauseButton.pressed.connect( Game.pause )
 	%SpeedControlPanel/%NormalSpeedButton.pressed.connect( func():
@@ -90,6 +93,20 @@ func _on_event_started(_event: Event):
 
 func _on_event_ended(_event: Event):
 	toggle_travel_actions(true)
+
+
+func _on_combat_started():
+	%EnemyCharacters.show()
+	%ActionButtonsContainer.hide()
+	for enemy in CombatManager.enemies:
+		var enemy_card = preload("res://ui/components/character_card_enemy.tscn").instantiate()
+		enemy_card.set_character(enemy)
+		%EnemyCharacters.add_child(enemy_card)
+
+
+func _on_combat_ended():
+	%EnemyCharacters.hide()
+	%ActionButtonsContainer.show()
 
 
 ## Enables/Disabled travel actions.
