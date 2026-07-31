@@ -1,5 +1,5 @@
 class_name CharacterEffect
-#extends Effect
+extends Effect
 
 
 #enum {

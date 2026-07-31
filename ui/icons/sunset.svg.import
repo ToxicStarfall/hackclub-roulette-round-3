@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://n6nolxfvm0e"
-path="res://.godot/imported/sunrise.svg-22c708929b85ba792bd87e25a7c6048d.ctex"
+uid="uid://dyap0jb0nnppc"
+path="res://.godot/imported/sunset.svg-8b39455335e337907f67c13343fdbec6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/misc/sunrise.svg"
-dest_files=["res://.godot/imported/sunrise.svg-22c708929b85ba792bd87e25a7c6048d.ctex"]
+source_file="res://ui/icons/sunset.svg"
+dest_files=["res://.godot/imported/sunset.svg-8b39455335e337907f67c13343fdbec6.ctex"]
 
 [params]
 

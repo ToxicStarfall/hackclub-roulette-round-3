@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cobh8lbclt0kg"]
 
 [ext_resource type="Texture2D" uid="uid://dgr60uub4xhi1" path="res://icon.svg" id="1_kq33m"]
-[ext_resource type="Script" uid="uid://lgeu5ffdyvuq" path="res://ui/components/status_effect_node.gd" id="1_m2jtk"]
+[ext_resource type="Script" uid="uid://lgeu5ffdyvuq" path="res://ui/modules/status_effect_node.gd" id="1_m2jtk"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_8msyy"]
 font_size = 8
