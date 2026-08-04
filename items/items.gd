@@ -9,9 +9,9 @@ extends Node
 	#WEAPONS,
 #}
 
-const GOLD = "GOLD"
-const FOOD = "FOOD"
-const MEDICINE = "MEDICINE"
+const GOLD = &"gold_coin"
+const FOOD = &"ration"
+const BANDAGE = &"bandage"
 #const CLOTH = "CLOTH"
 #const ROPE = "ROPE"
 

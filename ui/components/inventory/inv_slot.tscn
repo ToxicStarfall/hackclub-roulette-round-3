@@ -14,7 +14,7 @@ border_width_bottom = 1
 font_size = 12
 
 [node name="CharInvSlot" type="PanelContainer" unique_id=433829358]
-custom_minimum_size = Vector2(32, 32)
+custom_minimum_size = Vector2(28, 28)
 size_flags_horizontal = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_d0pf5")
 script = ExtResource("1_d0pf5")

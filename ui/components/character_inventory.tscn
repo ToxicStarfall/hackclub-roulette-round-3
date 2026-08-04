@@ -50,15 +50,8 @@ bg_color = Color(0.3, 0.14100002, 0.14100002, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ypn16"]
 bg_color = Color(0.76, 0.228, 0.228, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ouac8"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-
 [node name="CharacterInventory" type="PanelContainer" unique_id=2046769854]
-custom_minimum_size = Vector2(68, 90)
+custom_minimum_size = Vector2(100, 90)
 offset_right = 72.0
 offset_bottom = 92.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_1bvp3")
@@ -87,7 +80,7 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 8
 theme_override_styles/panel = SubResource("StyleBoxEmpty_ouac8")
-current_tab = 1
+current_tab = 2
 tabs_visible = false
 
 [node name="Overview" type="PanelContainer" parent="VBoxContainer/TabContainer" unique_id=2000197163]
@@ -274,6 +267,7 @@ layout_mode = 2
 
 [node name="Health" type="PanelContainer" parent="VBoxContainer/TabContainer" unique_id=791069172]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 metadata/_tab_index = 1
@@ -425,8 +419,7 @@ layout_mode = 2
 
 [node name="Inventory" type="PanelContainer" parent="VBoxContainer/TabContainer" unique_id=1349594498]
 unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(220, 0)
 layout_mode = 2
 metadata/_tab_index = 2
 
@@ -483,6 +476,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/Inventory/MarginContainer/HBoxContainer/VBoxContainer" unique_id=29028533]
+visible = false
 layout_mode = 2
 alignment = 2
 
@@ -493,17 +487,17 @@ text = "Character"
 
 [node name="Button2" type="Button" parent="VBoxContainer/TabContainer/Inventory/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=2091718540]
 layout_mode = 2
-
-[node name="ItemList" type="ItemList" parent="VBoxContainer/TabContainer/Inventory/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1807111284]
-visible = false
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 8
-theme_override_styles/panel = SubResource("StyleBoxFlat_ouac8")
-item_count = 2
-item_0/text = "jhjjj"
-item_1/text = "njkn"
+text = "All"
 
 [node name="Tree" type="Tree" parent="VBoxContainer/TabContainer/Inventory/MarginContainer/HBoxContainer/VBoxContainer" unique_id=612196137]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 8
+theme_override_font_sizes/title_button_font_size = 10
+columns = 2
+allow_search = false
+hide_folding = true
+hide_root = true
+scroll_horizontal_enabled = false

@@ -56,11 +56,14 @@ func _ready() -> void:
 	#%OptionsPanel.clear()
 	#pass
 
+
 func _on_day_changed(day: int):
 	%DayLabel.text = "Day %s" % [day]
 
+
 func _on_distance_changed(distance: float):
 	%DistanceLabel.text = "%s km" % [distance]
+
 
 func _on_location_changed(location: Region):
 	%InfoPanel/%LocationLabel.text = "Location: " + location.name.capitalize()

@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://n6nolxfvm0e" path="res://assets/textures/misc/sunrise.svg" id="6_bpjld"]
 [ext_resource type="Texture2D" uid="uid://dyap0jb0nnppc" path="res://assets/textures/misc/sunset.svg" id="7_645sj"]
 [ext_resource type="Script" uid="uid://gb3303l4ahfs" path="res://ui/screens/game/dev_panel.gd" id="8_a36ut"]
+[ext_resource type="PackedScene" uid="uid://bw66udbsfqsuf" path="res://ui/components/character_inventory.tscn" id="8_r5e40"]
 [ext_resource type="PackedScene" uid="uid://drgx137s48c3o" path="res://ui/components/character_card_enemy.tscn" id="9_frk5s"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5vw27"]
@@ -463,6 +464,14 @@ theme_override_constants/separation = 136
 [node name="CharacterCard" parent="BottomBar/MarginContainer/PlayerCharacters" unique_id=1818747066 instance=ExtResource("2_a36ut")]
 unique_name_in_owner = true
 layout_mode = 2
+
+[node name="CharacterInventory" parent="BottomBar/MarginContainer/PlayerCharacters/CharacterCard" unique_id=2046769854 instance=ExtResource("8_r5e40")]
+layout_mode = 0
+offset_left = 136.0
+offset_right = 340.0
+offset_bottom = 172.0
+grow_horizontal = 2
+grow_vertical = 0
 
 [node name="MarginContainer2" type="MarginContainer" parent="BottomBar" unique_id=1947728800]
 layout_mode = 1
