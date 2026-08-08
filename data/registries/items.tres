@@ -51,29 +51,53 @@ _string_ids_to_uids = Dictionary[StringName, StringName]({
 })
 _property_index = Dictionary[StringName, Dictionary]({
 &"slot_type": {
-"Body": {
-&"chainmail": true,
-&"gambeson": true
-},
-"None": {
+0: {
 &"bandage": true,
 &"gold_coin": true,
-&"greatsword": true,
 &"healing_salve": true,
 &"ration": true,
 &"template": true
 },
-"Primary": {
+1: {
 &"axe": true,
+&"greatsword": true,
 &"hatchet": true,
 &"knife": true,
 &"short_sword": true,
 &"sword": true,
 &"template_weapon": true
 },
-"Secondary": {
+2: {
 &"buckler": true,
 &"kite_shield": true
+},
+5: {
+&"chainmail": true,
+&"gambeson": true
+}
+},
+&"stack": {
+1: {
+&"axe": true,
+&"buckler": true,
+&"chainmail": true,
+&"gambeson": true,
+&"greatsword": true,
+&"hatchet": true,
+&"kite_shield": true,
+&"knife": true,
+&"short_sword": true,
+&"sword": true,
+&"template": true,
+&"template_weapon": true
+},
+5: {
+&"bandage": true,
+&"healing_salve": true,
+&"ration": true
+},
+50: {
+&"gold_coin": true
 }
 },
 &"tags": {
@@ -82,7 +106,6 @@ Array[int]([]): {
 &"chainmail": true,
 &"gambeson": true,
 &"gold_coin": true,
-&"greatsword": true,
 &"healing_salve": true,
 &"ration": true,
 &"template": true
@@ -104,12 +127,16 @@ Array[int]([1, 7]): {
 Array[int]([1, 9]): {
 &"buckler": true,
 &"kite_shield": true
+},
+Array[int]([2]): {
+&"greatsword": true
 }
 },
 &"tier": {
 0: {
 &"bandage": true,
 &"gold_coin": true,
+&"greatsword": true,
 &"hatchet": true,
 &"knife": true,
 &"ration": true,
@@ -128,7 +155,6 @@ Array[int]([1, 9]): {
 },
 2.0: {
 &"chainmail": true,
-&"greatsword": true,
 &"kite_shield": true
 }
 },

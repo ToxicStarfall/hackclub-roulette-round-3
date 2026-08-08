@@ -10,5 +10,5 @@ name = "Chainmail Armor"
 weight = 10.0
 value = 15.0
 tier = 2.0
-slot_type = "Body"
+slot_type = 5
 metadata/_custom_type_script = "uid://ldom587yxasc"

@@ -9,5 +9,5 @@ name = "Knife"
 weight = 0.25
 value = 3.0
 tags = Array[int]([1, 7])
-slot_type = "Primary"
+slot_type = 1
 metadata/_custom_type_script = "uid://qitehljiq5sn"

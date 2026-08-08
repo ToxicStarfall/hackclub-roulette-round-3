@@ -8,5 +8,5 @@ enabled = false
 name = "Template Weapon"
 description = "This is a template weapon."
 tags = Array[int]([1])
-slot_type = "Primary"
+slot_type = 1
 metadata/_custom_type_script = "uid://qitehljiq5sn"

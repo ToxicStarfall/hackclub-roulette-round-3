@@ -8,5 +8,5 @@ name = "Gambeson"
 weight = 2.5
 value = 5.0
 tier = 1
-slot_type = "Body"
+slot_type = 5
 metadata/_custom_type_script = "uid://ldom587yxasc"

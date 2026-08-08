@@ -7,5 +7,5 @@ script = ExtResource("1_jgbt4")
 damage = 3.0
 name = "Short Sword"
 tags = Array[int]([1, 5])
-slot_type = "Primary"
+slot_type = 1
 metadata/_custom_type_script = "uid://qitehljiq5sn"

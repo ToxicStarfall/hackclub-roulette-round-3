@@ -6,5 +6,6 @@
 script = ExtResource("1_inj2g")
 enabled = false
 name = "Greatsword"
-tier = 2.0
+tags = Array[int]([2])
+slot_type = 1
 metadata/_custom_type_script = "uid://qitehljiq5sn"

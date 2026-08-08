@@ -8,5 +8,5 @@ name = "Hatchet"
 weight = 0.5
 value = 4.0
 tags = Array[int]([1, 6])
-slot_type = "Primary"
+slot_type = 1
 metadata/_custom_type_script = "uid://qitehljiq5sn"

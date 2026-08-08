@@ -9,5 +9,5 @@ weight = 2.0
 value = 5.0
 tier = 1.0
 tags = Array[int]([1, 9])
-slot_type = "Secondary"
+slot_type = 2
 metadata/_custom_type_script = "uid://qitehljiq5sn"

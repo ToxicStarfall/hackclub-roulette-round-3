@@ -2,10 +2,10 @@ class_name ItemData
 extends Resource
 
 
-enum Tags { NONE, ONE_HANDED, TWO_HANDED, CURRENCY, MATERIAL, SWORD, AXE, KNIFE, BOW, SHIELD }
+enum Tags { NONE, ONE_HANDED, TWO_HANDED, CURRENCY, MATERIAL, SWORD, AXE, KNIFE, BOW, SHIELD, FOOD, HEALING }
 #enum Quality { NORMAL, DAMAGED, WORN, REINFORCED, HIGH_QUALITY, ORNATE }
 #enum WeaponType { GENERIC, SWORD, SPEAR, AXE, KNIFE, BOW, CROSSBOW, SHIELD }
-#enum SlotTypes { NONE, PRIMARY, SECONDARY, TERTIARY }
+enum SlotType { NONE, PRIMARY, SECONDARY, TERTIARY, HEAD, BODY, ARMS, LEGS, HANDS, FEET, NECK, BELT, WRIST, ANKLE, BACK }
 
 
 #@warning_ignore_start("unused_signal")
@@ -26,8 +26,9 @@ enum Tags { NONE, ONE_HANDED, TWO_HANDED, CURRENCY, MATERIAL, SWORD, AXE, KNIFE,
 @export var tags: Array[Tags]  ## 
 #@export var mods: Array[Tags]  ## 
 
-@export_enum("None", "Primary", "Secondary", "Tertiary", "Head", "Body", "Arms", "Legs", "Hands", "Feet")
-var slot_type: String = "None"
+#@export_enum("None", "Primary", "Secondary", "Tertiary", "Head", "Body", "Arms", "Legs", "Hands", "Feet")
+#var slot_type: String = "None"
+@export var slot_type: SlotType = SlotType.NONE
 
 
 
