@@ -38,8 +38,9 @@ static func generate_character(from: CharGenTemplate, char_tier: int) -> Charact
 	return character
 
 
-func _fill_attributes(character: CharacterData):
+func _fill_attributes(_character: CharacterData):
 	pass
+
 
 func _generate_items():
 	pass

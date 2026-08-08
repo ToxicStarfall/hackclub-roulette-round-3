@@ -1,0 +1,49 @@
+[gd_resource type="Resource" script_class="InventorySlotConfig" format=3 uid="uid://b5anr0yv1upen"]
+
+[ext_resource type="Script" uid="uid://hq762y04x4bd" path="res://components/inventory_slot_config.gd" id="1_qq3a6"]
+[ext_resource type="Script" uid="uid://ccmdfh8rut7ma" path="res://components/inventory_slot.gd" id="2_gs6s7"]
+[ext_resource type="Texture2D" uid="uid://cfjwblkduycsc" path="res://assets/textures/ui/Body.svg" id="3_18s3d"]
+[ext_resource type="Script" uid="uid://d1r3bp0pl1kp3" path="res://data/items/_util/item_filter.gd" id="3_gs6s7"]
+[ext_resource type="Texture2D" uid="uid://bfawlds3t6bni" path="res://assets/textures/ui/Primary.svg" id="5_j2q4n"]
+
+[sub_resource type="Resource" id="Resource_gs6s7"]
+script = ExtResource("3_gs6s7")
+required_slot_type = 5
+metadata/_custom_type_script = "uid://d1r3bp0pl1kp3"
+
+[sub_resource type="Resource" id="Resource_18s3d"]
+script = ExtResource("2_gs6s7")
+icon_hint = ExtResource("3_18s3d")
+slot_filter = SubResource("Resource_gs6s7")
+metadata/_custom_type_script = "uid://ccmdfh8rut7ma"
+
+[sub_resource type="Resource" id="Resource_mb5jc"]
+script = ExtResource("3_gs6s7")
+required_slot_type = 1
+required_tags = Array[int]([1])
+metadata/_custom_type_script = "uid://d1r3bp0pl1kp3"
+
+[sub_resource type="Resource" id="Resource_yk7rn"]
+script = ExtResource("2_gs6s7")
+icon_hint = ExtResource("5_j2q4n")
+slot_filter = SubResource("Resource_mb5jc")
+metadata/_custom_type_script = "uid://ccmdfh8rut7ma"
+
+[sub_resource type="Resource" id="Resource_j2q4n"]
+script = ExtResource("3_gs6s7")
+required_slot_type = 2
+metadata/_custom_type_script = "uid://d1r3bp0pl1kp3"
+
+[sub_resource type="Resource" id="Resource_dmrl1"]
+script = ExtResource("2_gs6s7")
+slot_filter = SubResource("Resource_j2q4n")
+metadata/_custom_type_script = "uid://ccmdfh8rut7ma"
+
+[resource]
+script = ExtResource("1_qq3a6")
+slots = Dictionary[StringName, ExtResource("2_gs6s7")]({
+&"body": SubResource("Resource_18s3d"),
+&"primary": SubResource("Resource_yk7rn"),
+&"secondary": SubResource("Resource_dmrl1")
+})
+metadata/_custom_type_script = "uid://hq762y04x4bd"

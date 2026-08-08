@@ -132,6 +132,17 @@ func _on_game_start():
 	CombatManager.start( [soldier] )
 
 
+## Skips character setup.
+func quickstart():
+	player.inventory.set_slot_config(preload("res://data/characters/inventory/slot_configs/human_config.tres"))
+	player.apply_preset( Registries.PRESETS.load_entry("soldier") )
+	player.name = "Survivor"
+	
+	
+	GameScreen.get_node("%CharacterCard").set_character(player)
+	unpause()
+
+
 func _physics_process(delta: float) -> void:
 	if !paused:
 		elapsed_time = snapped(elapsed_time + delta, 0.001)
@@ -241,18 +252,6 @@ func _on_event_ended(event: Event):
 		#World.hide_village()
 	#if event.id in ["death","final"]:
 		#paused = true
-
-
-## Skips character setup.
-func quickstart():
-	inventory.add( Items.GOLD, 10 )
-	inventory.add( Items.FOOD, 12 )
-	inventory.add( Items.MEDICINE, 2 )
-	player.name = "Survivor"
-	#GameScreen.get_node("%CharacterCard/%NameLabel").text = player.info.name
-	#GameScreen.get_node("%CharacterCard/%NameLabel").text = player.name
-	GameScreen.get_node("%CharacterCard").set_character(player)
-	unpause()
 
 
 func pause():

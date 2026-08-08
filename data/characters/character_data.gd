@@ -77,13 +77,28 @@ var carry_weight = 25.0
 #var stats := CharacterStats.new()
 #var slots: Array
 var statuses: Array[StatusEffect] = []
-var inventory := InventoryComponent.new()
+var inventory: InventoryComponent
 
 
 
 func _init() -> void:
+	inventory = InventoryComponent.new()
 	pass
 
+
+func apply_preset(preset: CharacterPreset):
+	name = preset.name
+	
+	agility = preset.agility
+	charisma = preset.charisma
+	dexterity = preset.dexterity
+	endurance = preset.endurance
+	intelligence = preset.intelligence
+	strength = preset.strength
+	#social = preset.social
+	
+	for i in preset.items.size():
+		inventory.add(preset.items[i], preset.quantities[i])
 
 
 func apply_stat(stat_type: Stat, value: float) -> void:
