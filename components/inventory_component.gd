@@ -11,7 +11,6 @@ signal item_unequipped ( item: StringName )
 #signal weight_changed ( weight: float, overweight: bool )  ## Emitted when the total weight of the inventory changes.
 
 
-
 @export var size: int  ## Maximum inventory length.
 @export var size_grid: Vector2
 
@@ -31,11 +30,15 @@ var items: Dictionary[StringName, int] = {}
 
 
 ## Returns true if inventory has at least <quantity> of <item>.
-func has(item: StringName, quantity: int = 1) -> bool:
+func has(item: StringName, quantity: int = 1, exact: bool = false) -> bool:
 	#print("item available: %s x%s. x%s needed. %s" % [item, get_item(item), quantity, get_item(item) >= quantity])
-	return get_item(item) >= quantity
+	if exact:
+		return get_item(item) == quantity
+	else:
+		return get_item(item) >= quantity
 
 
+##
 func add(item: StringName, quantity: int, _idx: int = -1):
 	items.set(item, get_item(item) + quantity)
 	item_added.emit(item)
@@ -77,12 +80,21 @@ func difference(item: String, value: int) -> int:
 
 func equip_item(item: StringName):
 	var item_data: ItemData = Registries.ITEMS.load_entry(item)
-	#print(slots)
+	#print(slots["body"].slot_filter.find())
 	#print(item_data.slot_type.to_lower())
-	if slots.keys().has( item_data.slot_type.to_lower() ):
+	#if slots.keys().has( item_data.slot_type.to_lower() ):
 	#if slots.keys().filter( func(key): key ==  )#.has( item_data.slot_type.to_lower() ):
-		pass
+		#pass
 	item_equipped.emit(item)
+
+
+func equip_all():
+	for key in slots:
+		var slot: InventorySlot = slots[key]
+		var equippable_items = slot.slot_filter.find()
+		slot.item = equippable_items[0]
+		#item_equipped.emit(item)
+	pass
 
 
 func unequip_item(item: StringName):

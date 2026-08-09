@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="64"
+   height="64"
+   viewBox="0 0 16.933333 16.933333"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.4 (dcaf3e7, 2026-05-05)"
+   sodipodi:docname="icons.svg"
+   inkscape:export-batch-name=""
+   inkscape:export-batch-path="C:\Users\mrdum\Documents\Godot Projects\hackclub-roulette-round-3\assets\textures"
+   inkscape:export-filename="head.svg"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="false"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     showgrid="true"
+     inkscape:zoom="13.73334"
+     inkscape:cx="30.691733"
+     inkscape:cy="39.648039"
+     inkscape:window-width="2560"
+     inkscape:window-height="1494"
+     inkscape:window-x="-11"
+     inkscape:window-y="-11"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer4">
+    <inkscape:grid
+       id="grid1"
+       units="px"
+       originx="0"
+       originy="0"
+       spacingx="0.52916666"
+       spacingy="0.52916666"
+       empcolor="#0099e5"
+       empopacity="0.30196078"
+       color="#0099e5"
+       opacity="0.14901961"
+       empspacing="4"
+       enabled="true"
+       visible="true" />
+  </sodipodi:namedview>
+  <defs
+     id="defs1" />
+  <g
+     inkscape:groupmode="layer"
+     id="layer6"
+     inkscape:label="Primary"
+     style="display:none">
+    <path
+       style="opacity:1;fill:#000000;fill-opacity:1;stroke-width:0.264583"
+       d="M 8.4666665,1.5772251 7.4186078,4.2333331 7.9374995,11.641666 H 6.3499996 L 5.2916662,12.170833 6.3499995,12.7 h 1.5874999 l 1e-7,2.116666 0.5291667,0.529167 0.5291667,-0.529167 -10e-8,-2.116666 h 1.5875002 l 1.058333,-0.529167 -1.058333,-0.529167 H 8.9958328 L 9.5249995,4.2333331 Z"
+       id="path5"
+       sodipodi:nodetypes="ccccccccccccccccc" />
+  </g>
+  <g
+     inkscape:label="Body"
+     inkscape:groupmode="layer"
+     id="layer1"
+     style="display:none;opacity:1">
+    <path
+       style="opacity:1;fill:#000000;stroke-width:0.264583"
+       d="M 4.2333332,11.377084 3.1749999,6.0854168 c 0,0 1.0583332,-0.7937504 1.0583332,-1.8520837 l 10e-8,-1.0583333 1.5874998,-0.5291667 c 0,0 0.5291666,1.5875 2.6458332,1.5875 2.1166668,-1e-7 2.6458328,-1.5875 2.6458328,-1.5875 l 1.5875,0.5291667 v 1.0583333 c 0,1.0583333 1.058334,1.8520837 1.058334,1.8520837 l -1.058334,5.2916672 1.058334,2.910415 c 0,0 -1.5875,1.058334 -5.2916668,1.058334 -3.7041665,0 -5.2916664,-1.058334 -5.2916664,-1.058334 z"
+       id="path1"
+       sodipodi:nodetypes="cczcczcczccczcc" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer4"
+     inkscape:label="Head"
+     style="display:inline">
+    <path
+       style="display:inline;opacity:1;fill:#333333;fill-opacity:1;stroke-width:0.264583"
+       d="m 4.7624997,13.758333 c 0,0 1.5875,-1.058334 3.7041665,-1.058334 2.1166668,0 3.7041668,1.058334 3.7041668,1.058334 v -6.35 H 4.7624997 Z"
+       id="path4"
+       sodipodi:nodetypes="czcccc" />
+    <path
+       style="fill:#000000;stroke-width:0.264583"
+       d="m 8.4666663,2.6458332 c 0,0 -3.3825945,0.5291666 -4.2333332,3.7041665 L 3.7041665,12.699999 4.7920404,14.816666 5.2916664,8.4666662 7.4083329,7.9374996 7.9374996,10.054166 8.4666662,10.583333 8.9958329,10.054166 9.5249995,7.9374996 11.641666,8.4666662 12.170833,14.816666 13.229166,12.699999 12.699999,6.3499997 C 11.849261,3.1749998 8.4666663,2.6458332 8.4666663,2.6458332 Z"
+       id="path2"
+       sodipodi:nodetypes="ccccccccccccccc" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer7"
+     inkscape:label="Arms"
+     style="display:none" />
+  <g
+     inkscape:groupmode="layer"
+     id="layer8"
+     inkscape:label="Boots"
+     style="display:none" />
+</svg>

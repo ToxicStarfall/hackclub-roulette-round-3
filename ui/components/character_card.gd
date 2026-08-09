@@ -1,12 +1,12 @@
 extends Control
 
 
-#var character: Character
 var character: CharacterData
 
 
 func _ready() -> void:
-	pass
+	if has_node("CharacterInventory") and character:
+		$CharacterInventory.linked_inventory = character.inventory
 
 
 func _on_character_stat_changed():

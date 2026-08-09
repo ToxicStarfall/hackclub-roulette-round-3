@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://boqffdpcykjmp" path="res://ui/components/inventory/inv_slot.tscn" id="2_kpbie"]
 [ext_resource type="PackedScene" uid="uid://cobh8lbclt0kg" path="res://ui/components/status_effect_node.tscn" id="3_1et0t"]
 
+[sub_resource type="Theme" id="Theme_ouac8"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1bvp3"]
 bg_color = Color(0.2, 0.187, 0.174, 1)
 border_width_left = 2
@@ -50,10 +52,14 @@ bg_color = Color(0.3, 0.14100002, 0.14100002, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ypn16"]
 bg_color = Color(0.76, 0.228, 0.228, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ouac8"]
+bg_color = Color(0.078431375, 0.07450981, 0.07058824, 1)
+
 [node name="CharacterInventory" type="PanelContainer" unique_id=2046769854]
 custom_minimum_size = Vector2(100, 90)
 offset_right = 72.0
 offset_bottom = 92.0
+theme = SubResource("Theme_ouac8")
 theme_override_styles/panel = SubResource("StyleBoxFlat_1bvp3")
 script = ExtResource("1_e5wxb")
 
@@ -457,46 +463,79 @@ texture = ExtResource("1_kpbie")
 expand_mode = 1
 
 [node name="CharInvSlots" type="FlowContainer" parent="VBoxContainer/TabContainer/Inventory/MarginContainer/HBoxContainer" unique_id=627060375]
+unique_name_in_owner = true
+visible = false
 layout_mode = 2
 
 [node name="CharInvSlot" parent="VBoxContainer/TabContainer/Inventory/MarginContainer/HBoxContainer/CharInvSlots" unique_id=433829358 instance=ExtResource("2_kpbie")]
 layout_mode = 2
 
 [node name="CharInvSlot2" parent="VBoxContainer/TabContainer/Inventory/MarginContainer/HBoxContainer/CharInvSlots" unique_id=1757267599 instance=ExtResource("2_kpbie")]
+visible = false
 layout_mode = 2
 
 [node name="CharInvSlot3" parent="VBoxContainer/TabContainer/Inventory/MarginContainer/HBoxContainer/CharInvSlots" unique_id=646516409 instance=ExtResource("2_kpbie")]
+visible = false
 layout_mode = 2
 
 [node name="CharInvSlot4" parent="VBoxContainer/TabContainer/Inventory/MarginContainer/HBoxContainer/CharInvSlots" unique_id=1120785022 instance=ExtResource("2_kpbie")]
+visible = false
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/Inventory/MarginContainer/HBoxContainer" unique_id=1226836376]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/Inventory/MarginContainer/HBoxContainer/VBoxContainer" unique_id=29028533]
-visible = false
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/Inventory/MarginContainer/HBoxContainer/VBoxContainer" unique_id=77874192]
 layout_mode = 2
-alignment = 2
+theme_override_font_sizes/font_size = 10
+text = "Equipped"
+horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="VBoxContainer/TabContainer/Inventory/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=603012131]
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/TabContainer/Inventory/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1560032875]
 layout_mode = 2
-theme_override_font_sizes/font_size = 8
-text = "Character"
 
-[node name="Button2" type="Button" parent="VBoxContainer/TabContainer/Inventory/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=2091718540]
-layout_mode = 2
-text = "All"
-
-[node name="Tree" type="Tree" parent="VBoxContainer/TabContainer/Inventory/MarginContainer/HBoxContainer/VBoxContainer" unique_id=612196137]
+[node name="EquipmentTree" type="Tree" parent="VBoxContainer/TabContainer/Inventory/MarginContainer/HBoxContainer/VBoxContainer" unique_id=104266205]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 8
 theme_override_font_sizes/title_button_font_size = 10
+theme_override_styles/panel = SubResource("StyleBoxFlat_ouac8")
+allow_rmb_select = true
+allow_search = false
+hide_folding = true
+hide_root = true
+scroll_horizontal_enabled = false
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/TabContainer/Inventory/MarginContainer/HBoxContainer" unique_id=1476552595]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/Inventory/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=1367975266]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Inventory"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/TabContainer/Inventory/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=1672282150]
+layout_mode = 2
+
+[node name="InventoryTree" type="Tree" parent="VBoxContainer/TabContainer/Inventory/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=612196137]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 8
+theme_override_font_sizes/title_button_font_size = 10
+theme_override_styles/panel = SubResource("StyleBoxFlat_ouac8")
 columns = 2
+allow_rmb_select = true
 allow_search = false
 hide_folding = true
 hide_root = true

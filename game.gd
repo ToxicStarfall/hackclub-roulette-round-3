@@ -103,7 +103,6 @@ func _ready() -> void:
 	EventManager.event_started.connect( _on_event_started )
 	EventManager.event_ended.connect( _on_event_ended )
 
-	#player.stat_changed.connect( GameScreen.get_node("%CharacterCard").update )
 	#if get_tree().current_scene.name == "main":
 	UI = get_tree().root.get_node("Main/%UI")
 	World = get_tree().root.get_node("Main/World")
@@ -138,6 +137,8 @@ func quickstart():
 	player.apply_preset( Registries.PRESETS.load_entry("soldier") )
 	player.name = "Survivor"
 	
+	#player.inventory.equip_item("sword")
+	player.inventory.equip_all()
 	
 	GameScreen.get_node("%CharacterCard").set_character(player)
 	unpause()
