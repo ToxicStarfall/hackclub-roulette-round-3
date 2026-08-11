@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://b74wxctimkpdm"]
+
+[ext_resource type="Script" uid="uid://dpphns141857l" path="res://ui/item_tooltip.gd" id="1_8wsvs"]
+[ext_resource type="Texture2D" uid="uid://dgr60uub4xhi1" path="res://icon.svg" id="2_e2fe4"]
+
+[node name="ItemTooltip" type="PanelContainer" unique_id=270300017]
+custom_minimum_size = Vector2(100, 100)
+offset_right = 40.0
+offset_bottom = 40.0
+theme_type_variation = &"PanelBorder"
+script = ExtResource("1_8wsvs")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=852517050]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=525025478]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=891234766]
+layout_mode = 2
+
+[node name="ItemLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=814788626]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Item Label"
+
+[node name="CloseButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=739757094]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_horizontal = 10
+icon = ExtResource("2_e2fe4")
+icon_alignment = 1
+expand_icon = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=659138561]
+layout_mode = 2
+
+[node name="ItemDescription" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=2093025917]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/normal_font_size = 10
+theme_override_font_sizes/bold_font_size = 10
+theme_override_font_sizes/bold_italics_font_size = 10
+theme_override_font_sizes/italics_font_size = 10
+theme_override_font_sizes/mono_font_size = 10
+bbcode_enabled = true
+text = "Item description"
+fit_content = true
+
+[node name="ItemValue" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1262042452]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="ItemWeight" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1156575028]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="ItemOwned" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=927660616]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="ItemStatus" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=865854802]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=904207824]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2

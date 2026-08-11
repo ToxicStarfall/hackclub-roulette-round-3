@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://dmbpfrfosywo4"]
+
+[ext_resource type="Script" uid="uid://dpm3t4r2nwi36" path="res://ui/context_menu.gd" id="1_ambon"]
+
+[sub_resource type="Theme" id="Theme_ambon"]
+
+[node name="ContextMenu" type="PanelContainer" unique_id=831955341]
+custom_minimum_size = Vector2(80, 40)
+offset_right = 40.0
+offset_bottom = 40.0
+theme = SubResource("Theme_ambon")
+theme_type_variation = &"PanelVBorder"
+script = ExtResource("1_ambon")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=441477439]
+layout_mode = 2
+
+[node name="Tree" type="Tree" parent="MarginContainer" unique_id=457438061]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+hide_folding = true
+hide_root = true
+auto_tooltip = false
+
+[node name="OptionsContainer" type="VBoxContainer" parent="MarginContainer" unique_id=40877334]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="ItemList" type="ItemList" parent="MarginContainer" unique_id=779888920]
+unique_name_in_owner = true
+layout_mode = 2
+auto_width = true
+auto_height = true
+item_count = 1
