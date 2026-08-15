@@ -44,6 +44,7 @@ EventManager="*res://event_manager.gd"
 Game="*res://game.gd"
 CombatManager="*uid://b5ibpfs2o6g6l"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+UI="*uid://toybhdfhdkmu"
 
 [debug]
 
@@ -60,7 +61,7 @@ window/vsync/vsync_mode=0
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://addons/godot_super-wakatime/plugin.cfg", "res://addons/yard/plugin.cfg")
+enabled=PackedStringArray("res://addons/_a/plugin.cfg", "res://addons/dialogue_manager/plugin.cfg", "res://addons/godot_super-wakatime/plugin.cfg", "res://addons/yard/plugin.cfg")
 
 [file_customization]
 
@@ -79,6 +80,7 @@ folder_colors={
 [gui]
 
 theme/default_font_multichannel_signed_distance_field=true
+theme/custom="uid://bcg7m71ac3a7u"
 
 [input]
 
