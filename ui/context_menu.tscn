@@ -9,7 +9,7 @@ custom_minimum_size = Vector2(80, 40)
 offset_right = 40.0
 offset_bottom = 40.0
 theme = SubResource("Theme_ambon")
-theme_type_variation = &"PanelVBorder"
+theme_type_variation = &"PanelBorderV"
 script = ExtResource("1_ambon")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=441477439]
