@@ -3,12 +3,13 @@
 [ext_resource type="Script" uid="uid://dpphns141857l" path="res://ui/item_tooltip.gd" id="1_8wsvs"]
 [ext_resource type="Texture2D" uid="uid://dgr60uub4xhi1" path="res://icon.svg" id="2_e2fe4"]
 
-[node name="ItemTooltip" type="PanelContainer" unique_id=270300017]
-custom_minimum_size = Vector2(100, 100)
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="ItemTooltip" type="PanelContainer" unique_id=1363407282]
+custom_minimum_size = Vector2(120, 60)
+offset_right = 100.0
+offset_bottom = 60.0
 theme_type_variation = &"PanelBorder"
 script = ExtResource("1_8wsvs")
+metadata/_custom_type_script = "uid://bcxpxxhv1rej3"
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=852517050]
 layout_mode = 2
