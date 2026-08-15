@@ -7,8 +7,11 @@ signal item_added ( item: StringName )
 signal item_removed ( item: StringName )
 signal item_equipped ( item: StringName )
 signal item_unequipped ( item: StringName )
+signal item_viewed ( item: StringName )
 #signal changed ()  ## Emitted when an item is used or changes slots.
 #signal weight_changed ( weight: float, overweight: bool )  ## Emitted when the total weight of the inventory changes.
+
+enum ContextMenuOptions { VIEW, INSPECT, USE, EQUIP, UNEQUIP, PICKUP, DROP, SUBMIT, TRANSFER }
 
 
 @export var size: int  ## Maximum inventory length.
@@ -78,31 +81,54 @@ func difference(item: String, value: int) -> int:
 	#pass
 
 
-func equip_item(item: StringName):
+func equip(item: StringName):
 	var item_data: ItemData = Registries.ITEMS.load_entry(item)
-	#print(slots["body"].slot_filter.find())
-	#print(item_data.slot_type.to_lower())
-	#if slots.keys().has( item_data.slot_type.to_lower() ):
-	#if slots.keys().filter( func(key): key ==  )#.has( item_data.slot_type.to_lower() ):
-		#pass
-	item_equipped.emit(item)
+	
+	var slot_type = ItemData.SlotType.find_key(item_data.slot_type).to_lower()
+	if slots.keys().has( slot_type ):
+		slots[ slot_type ].item = item 
+		
+	#item_equipped.emit(item)
+	changed.emit()
 
 
 func equip_all():
 	for key in slots:
-		var slot: InventorySlot = slots[key]
-		var equippable_items = slot.slot_filter.find()
-		slot.item = equippable_items[0]
-		#item_equipped.emit(item)
-	pass
+		#var slot: InventorySlot = slots[key]
+		#var equippable_items = slot.slot_filter.find()
+		#slot.item = equippable_items[0]
+		##item_equipped.emit(item)
+		pass
+	changed.emit()
 
 
-func unequip_item(item: StringName):
-	item_unequipped.emit(item)
+func unequip(item: StringName):
+	for key in slots:
+		var slot = slots[key]
+		if slot.item == item:
+			slot.item = ""
+	#item_unequipped.emit(item)
+	changed.emit()
+
+
+func unequip_all():
+	for key in slots:
+		var slot = slots[key]
+		slot.item = ""
+		#item_unequipped.emit(item)
+	changed.emit()
+
+
+func view(id: StringName):
+	item_viewed.emit( Registries.ITEMS.load_entry(id) )
 
 
 func _find_slot(item: StringName):
 	pass
+
+
+#func _on_context_menu_item_selected():
+	#pass
 
 
 # - - - - SETTERS - - - - #
@@ -110,11 +136,31 @@ func _find_slot(item: StringName):
 ## Applies a slot configuration
 func set_slot_config(slot_config: InventorySlotConfig):
 	#print(slot_config.slots)
-	slots = slot_config.slots
+	slots = slot_config.slots.duplicate()
 	#slots.assign(slot_config.slots)
 
 
 # - - - - GETTERS - - - - #
+
+func get_context_menu_options(item_id: StringName) -> Array:
+	var options: Array = ContextMenuOptions.keys()
+	var item = Registries.ITEMS.load_entry(item_id)
+	
+	#print(item_id)
+	#print(item)
+	if !item is ConsumableData:
+		options.erase("USE")
+	if !item is ArmorData and !item is WeaponData:
+		options.erase("EQUIP")
+		options.erase("UNEQUIP")
+	# TODO - Check against inventory type to remove options "PICKUP" and or "DROP"
+	# You should not be able to drop loot from a lootable inventory or pickup items from a active character's inventory.
+	options.erase("PICKUP")
+	options.erase("INSPECT")
+	options.erase("SUBMIT")
+	options.erase("TRANSFER")
+	return options
+
 
 ## Returns the quantiy of the item.
 func get_item(item: StringName) -> int:
@@ -127,6 +173,9 @@ func get_item(item: StringName) -> int:
 ## Returns an array of all item keys in this inventory.
 func get_items() -> Array[StringName]:
 	return items.keys()
+
+
+#func get_tooltip(item: StringName)
 
 
 ## Returns the total weight of all items in this inventory.
