@@ -6,10 +6,12 @@ const Scenes = {
 	CHARACTER_CARD = preload("res://ui/components/character_card.tscn"),
 	CHARACTER_CARD_ENEMY = preload("res://ui/components/character_card_enemy.tscn"),
 	# Inventory
-	CONTEXT_MENU = preload("res://ui/context_menu.tscn"),
+	CONTEXT_MENU = preload("res://ui/popups/context_menu.tscn"),
 	INVENTORY_SLOT = preload("res://ui/components/inventory/inv_slot.tscn"),
-	ITEM_TOOLTIP = preload("res://ui/item_tooltip.tscn"),
+	ITEM_TOOLTIP = preload("res://ui/popups/item_tooltip.tscn"),
 	#STATUS_TOOLTIP = preload(""),
+	
+	OPTIONS_POPUP = preload("res://ui/popups/options_popup.tscn"),
 }
 
 
@@ -49,6 +51,7 @@ func add_popup(node: Control):
 
 func clear_popups():
 	for popup in popups:
-		popups.erase(popup)
-		if !popup is FloatingPanelContainer:
-			popup.queue_free()
+		if popup:
+			popups.erase(popup)
+			if !popup is FloatingPanelContainer:
+				popup.queue_free()

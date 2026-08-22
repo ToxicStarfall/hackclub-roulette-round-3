@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dmbpfrfosywo4"]
 
-[ext_resource type="Script" uid="uid://dpm3t4r2nwi36" path="res://ui/context_menu.gd" id="1_ambon"]
+[ext_resource type="Script" uid="uid://dpm3t4r2nwi36" path="res://ui/popups/context_menu.gd" id="1_ambon"]
 
 [sub_resource type="Theme" id="Theme_ambon"]
 
