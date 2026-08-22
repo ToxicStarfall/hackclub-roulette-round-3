@@ -14,6 +14,7 @@ func _setup():
 	inventory_tree.set_column_expand(1, true)
 	inventory_tree.set_column_expand_ratio(0, 8)
 	inventory_tree.set_column_expand_ratio(1, 2)
+	#root.set_text(0, "ROOT")
 	
 	equipment_tree.item_mouse_selected.connect( _on_item_mouse_selected.bind(equipment_tree) )
 	equipment_tree.create_item()

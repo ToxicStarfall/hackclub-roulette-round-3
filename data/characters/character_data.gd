@@ -2,8 +2,10 @@ class_name CharacterData
 extends Resource
 
 
-signal stat_changed
+signal stat_changed (stat: Stat)
 #signal status_changed
+signal killed (character: CharacterData)
+
 
 enum Stat {
 	HEALTH, HUNGER, THIRST, ENERGY
@@ -16,6 +18,20 @@ enum Thirst {
 }
 enum Energy {
 	EXHAUSTED, TIRED, NEUTRAL, ENERGETIC
+}
+
+enum Attribute {
+	NONE,
+	AGILITY,
+	CHARISMA,
+	DEXTERITY,
+	ENDURANCE,
+	INTELLIGENCE,
+	STRENGTH,
+	#SOCIAL,
+}
+enum Efficiency {
+	NONE, ACTION, CARRY, MOVEMENT, HEALING
 }
 
 
@@ -49,7 +65,7 @@ var social: int = 0
 #@export_range(0, 3) var swords: float = 0.0  ##
 
 # - - - CHARACTER FUNCTIONS - - - #
-var max_health := 100.0
+var max_health := 30.0
 var max_hunger := 100.0
 var health := max_health
 var hunger := max_hunger
@@ -83,6 +99,8 @@ var inventory: InventoryComponent
 
 func _init() -> void:
 	inventory = InventoryComponent.new()
+
+	stat_changed.connect( _on_stat_changed )
 	pass
 
 
@@ -106,15 +124,31 @@ func apply_stat(stat_type: Stat, value: float) -> void:
 	#var new_value = min(max( get(stat) + value, 0), 100)
 	var new_value = clamp( get(stat) + value, 0, 100 )
 	set(stat, new_value)
-	stat_changed.emit()  # Send ui update request after changing
+	stat_changed.emit(stat_type)  # Send ui update request after changing
 
 
 func add_status(status: StatusEffect):
-	pass
+	statuses.append(status)
 
 
 func remove_status(status: StatusEffect):
-	pass
+	statuses.erase(status)
+
+
+func _on_stat_changed(stat_type: Stat):
+	match stat_type:
+		Stat.HEALTH:
+			if get_stat(stat_type) <= 0:
+				killed.emit(self)
+			pass
+		Stat.HUNGER:
+			pass
+
+
+## Returns attribute value
+func get_attribute(attr: Attribute):
+	var attribute = get( Attribute.keys().get(attr).to_lower() )
+	return attribute
 
 
 func get_stat(stat_type: Stat) -> float:
@@ -123,23 +157,39 @@ func get_stat(stat_type: Stat) -> float:
 
 
 #TODO Add more efficiency modifiers.
-func get_efficiency(rounding_step: float = 0.1) -> float:
-	const min_eff = 20
-	const max_eff = 110
-	var efficiency = 100
+#func get_efficiency(rounding_step: float = 0.1) -> float:
+	#const min_eff = 20
+	#const max_eff = 110
+	#var efficiency = 100
+	#
+	## Efficiency debuff for health
+	#efficiency -= max((max_health - health)- 5, 0)  # Difference to max_health with +5 margin
+	## Efficiency debuff for hunger
+	#efficiency -=max(((max_hunger - hunger)- 40) / 2, 0)  # Difference to max_hunger with +40 margin
+	##print("hunger debuff", max(((stats.max_hunger - stats.hunger)- 40) / 2, 0))
+#
+	## Efficiency bonuses for high health and hunger.
+	#if health == (max_health * 1.0): efficiency += 10
+	#elif health >= (max_health * .95): efficiency += 5
+	#if hunger >= (max_hunger * 0.9): efficiency += 5
+#
+	#return clamp( snapped(efficiency, rounding_step), min_eff, max_eff)
 	
-	# Efficiency debuff for health
-	efficiency -= max((max_health - health)- 5, 0)  # Difference to max_health with +5 margin
-	# Efficiency debuff for hunger
-	efficiency -=max(((max_hunger - hunger)- 40) / 2, 0)  # Difference to max_hunger with +40 margin
-	#print("hunger debuff", max(((stats.max_hunger - stats.hunger)- 40) / 2, 0))
+func get_efficiency(eff_type: Efficiency) -> float:
+	var value = get( Efficiency.keys().get(eff_type).to_lower() + "_efficiency")
+	return value
 
-	# Efficiency bonuses for high health and hunger.
-	if health == (max_health * 1.0): efficiency += 10
-	elif health >= (max_health * .95): efficiency += 5
-	if hunger >= (max_hunger * 0.9): efficiency += 5
 
-	return clamp( snapped(efficiency, rounding_step), min_eff, max_eff)
+func get_item_comp(item_id: StringName):
+	#print(item_id)
+	var item = Registries.ITEMS.load_entry(item_id).duplicate()
+	if item is WeaponData or item is ArmorData:
+		var attribute = CharacterData.Attribute.keys()[item.primary_attribute].to_lower()
+		# TODO - Item strength requirements?
+		# +1 bonus damage per extra strength over item tier
+		# Max bonus damage capped to (item tier + 2)
+		item.damage += min(get(attribute) - item.tier, 2 + item.tier)
+	return item
 
 
 func get_hunger_rate() -> float:

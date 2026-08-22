@@ -9,7 +9,7 @@ func _ready() -> void:
 		$CharacterInventory.linked_inventory = character.inventory
 
 
-func _on_character_stat_changed():
+func _on_character_stat_changed(_stat):
 	update()
 
 
@@ -21,6 +21,8 @@ func set_character(new_character: CharacterData):
 
 
 func update():
+	%HungerBar.max_value = character.get("max_hunger")
+	%HealthBar.max_value = character.get("max_health")
 	%HungerBar.value = character.get("hunger")
 	%HealthBar.value = character.get("health")
 	%HungerBar/Label.text = "%s / %s" % [snapped(character.get("hunger"), 0.1), snapped(character.get("max_hunger"), 1)]
