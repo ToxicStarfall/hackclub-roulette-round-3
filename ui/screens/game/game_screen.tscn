@@ -12,7 +12,7 @@
 [ext_resource type="Script" uid="uid://gb3303l4ahfs" path="res://ui/screens/game/dev_panel.gd" id="8_a36ut"]
 [ext_resource type="PackedScene" uid="uid://bw66udbsfqsuf" path="res://ui/components/character_inventory.tscn" id="8_r5e40"]
 [ext_resource type="PackedScene" uid="uid://drgx137s48c3o" path="res://ui/components/character_card_enemy.tscn" id="9_frk5s"]
-[ext_resource type="Script" uid="uid://cimix0xap52o8" path="res://ui/screens/game/combat_options.gd" id="11_ci8ry"]
+[ext_resource type="PackedScene" uid="uid://b5lmluhdjyshd" path="res://ui/screens/game/combat_panel.tscn" id="11_ci8ry"]
 [ext_resource type="Script" uid="uid://bcxpxxhv1rej3" path="res://_common/nodes/floating_panel_container.gd" id="13_uubqb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5vw27"]
@@ -116,8 +116,6 @@ corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 corner_detail = 1
-
-[sub_resource type="Theme" id="Theme_sjbic"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a36ut"]
 content_margin_left = 12.0
@@ -590,6 +588,7 @@ anchor_bottom = 1.0
 offset_top = -58.0
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 2
 theme_override_constants/margin_bottom = 18
 
 [node name="OptionsPanel" parent="BottomBar/MarginContainer2" unique_id=1202614197 instance=ExtResource("3_f3mdf")]
@@ -599,11 +598,13 @@ layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="BottomBar/MarginContainer2" unique_id=970923066]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="HSpacer" type="Control" parent="BottomBar/MarginContainer2/HBoxContainer" unique_id=347272470]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 1.5
+mouse_filter = 2
 
 [node name="ActionStatusContainer" type="PanelContainer" parent="BottomBar/MarginContainer2/HBoxContainer" unique_id=1122377280]
 unique_name_in_owner = true
@@ -620,33 +621,14 @@ text = "Hunting... 5s left (30 min)"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CombatOptions" type="PanelContainer" parent="BottomBar/MarginContainer2/HBoxContainer" unique_id=1850386997]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = SubResource("Theme_sjbic")
-theme_type_variation = &"PanelBorder"
-script = ExtResource("11_ci8ry")
-
-[node name="MarginContainer" type="MarginContainer" parent="BottomBar/MarginContainer2/HBoxContainer/CombatOptions" unique_id=411962562]
-layout_mode = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
-
-[node name="Label" type="Label" parent="BottomBar/MarginContainer2/HBoxContainer/CombatOptions/MarginContainer" unique_id=14805938]
-visible = false
-layout_mode = 2
-text = "WAITING . . ."
-
-[node name="OptionsContainer" type="VBoxContainer" parent="BottomBar/MarginContainer2/HBoxContainer/CombatOptions/MarginContainer" unique_id=1606461091]
-unique_name_in_owner = true
+[node name="CombatPanel" parent="BottomBar/MarginContainer2/HBoxContainer" unique_id=1987360936 instance=ExtResource("11_ci8ry")]
 layout_mode = 2
 
 [node name="HSpacer2" type="Control" parent="BottomBar/MarginContainer2/HBoxContainer" unique_id=1510990553]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 1.5
+mouse_filter = 2
 
 [node name="ActionsMargin" type="MarginContainer" parent="BottomBar" unique_id=105934853]
 layout_mode = 1

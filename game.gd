@@ -87,7 +87,7 @@ var distance_required := 0.0  ## Distance required to next checkpoint
 var distance_travled := 0.0
 
 
-#var party := Party.new()
+var party := Party.new()
 var player := CharacterData.new()
 var inventory := player.inventory
 
@@ -118,12 +118,14 @@ func _on_game_start():
 	#GameScreen.get_node("%CharacterCard").update()
 
 	# - - Default Game Start Config - - #
+	party.add_member(player)
+	party.party_defeated.connect( _on_player_party_defeated )
 	SaveManager.load_file()
 	#EventManager.start_event("game/start")
 	
 	# - - Testing Configs - - #
 	quickstart()
-	player.apply_stat(CharacterData.Stat.HEALTH, -10)
+	#player.apply_stat(CharacterData.Stat.HEALTH, -10)
 	#EventManager.start_event("beggar")
 	#EventManager.start_event("milestones/desert")
 	
@@ -136,9 +138,7 @@ func quickstart():
 	player.inventory.set_slot_config(preload("res://data/characters/inventory/slot_configs/human_config.tres"))
 	player.apply_preset( Registries.PRESETS.load_entry("soldier") )
 	player.name = "Survivor"
-	
-	#player.inventory.equip_item("sword")
-	player.inventory.equip_all()
+	#player.inventory.equip_all()
 	
 	GameScreen.get_node("%CharacterCard").set_character(player)
 	unpause()
@@ -255,6 +255,12 @@ func _on_event_ended(event: Event):
 		#paused = true
 
 
+
+func _on_player_party_defeated():
+	pass
+
+
+
 func pause():
 	#print("paused")
 	paused = true
@@ -306,7 +312,7 @@ func action_end(action: Action = Action.TRAVELING, forced: bool = false):
 				EventManager.start_event("actions/rest")
 
 
-func get_location_data() -> Dictionary:
-	var data: Dictionary = {}
-	#data.set("fauna", )
-	return data
+#func get_location_data() -> Dictionary:
+	#var data: Dictionary = {}
+	##data.set("fauna", )
+	#return data

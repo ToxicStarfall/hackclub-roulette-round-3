@@ -101,7 +101,7 @@ func _on_event_ended(_event: Event):
 func _on_combat_started():
 	%EnemyCharacters.show()
 	%ActionButtonsContainer.hide()
-	for enemy in CombatManager.enemies:
+	for enemy in CombatManager.enemy_party.get_members():
 		var enemy_card = preload("res://ui/components/character_card_enemy.tscn").instantiate()
 		enemy_card.set_character(enemy)
 		%EnemyCharacters.add_child(enemy_card)
@@ -109,6 +109,8 @@ func _on_combat_started():
 
 func _on_combat_ended():
 	%EnemyCharacters.hide()
+	for child in %EnemyCharacters.get_children():
+		child.queue_free()
 	%ActionButtonsContainer.show()
 
 
