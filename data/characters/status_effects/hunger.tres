@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="StatusEffect" format=3 uid="uid://bclr180hkwwce"]
+
+[ext_resource type="Texture2D" uid="uid://dgr60uub4xhi1" path="res://icon.svg" id="1_sch17"]
+[ext_resource type="Script" uid="uid://c3pd5dvqc3sta" path="res://data/characters/status_effects/status_effect_level.gd" id="2_s5iqh"]
+[ext_resource type="Script" uid="uid://b2i7flqx2qgc1" path="res://data/characters/status_effects/status_effect.gd" id="3_uykt2"]
+
+[sub_resource type="Resource" id="Resource_sch17"]
+script = ExtResource("2_s5iqh")
+name = "Stuffed"
+metadata/_custom_type_script = "uid://c3pd5dvqc3sta"
+
+[sub_resource type="Resource" id="Resource_s5iqh"]
+script = ExtResource("2_s5iqh")
+name = "Full"
+metadata/_custom_type_script = "uid://c3pd5dvqc3sta"
+
+[sub_resource type="Resource" id="Resource_ci8ry"]
+script = ExtResource("2_s5iqh")
+name = "Satiated"
+metadata/_custom_type_script = "uid://c3pd5dvqc3sta"
+
+[sub_resource type="Resource" id="Resource_pkw1x"]
+script = ExtResource("2_s5iqh")
+name = "Slightly Hungry"
+metadata/_custom_type_script = "uid://c3pd5dvqc3sta"
+
+[sub_resource type="Resource" id="Resource_uykt2"]
+script = ExtResource("2_s5iqh")
+name = "Hungry"
+metadata/_custom_type_script = "uid://c3pd5dvqc3sta"
+
+[sub_resource type="Resource" id="Resource_hknto"]
+script = ExtResource("2_s5iqh")
+name = "Starving"
+metadata/_custom_type_script = "uid://c3pd5dvqc3sta"
+
+[resource]
+script = ExtResource("3_uykt2")
+icon = ExtResource("1_sch17")
+name = "Hunger"
+levels = Array[ExtResource("2_s5iqh")]([SubResource("Resource_sch17"), SubResource("Resource_s5iqh"), SubResource("Resource_ci8ry"), SubResource("Resource_pkw1x"), SubResource("Resource_uykt2"), SubResource("Resource_hknto")])
+metadata/_custom_type_script = "uid://b2i7flqx2qgc1"
