@@ -31,9 +31,9 @@ enum SlotType { NONE, PRIMARY, SECONDARY, TERTIARY, HEAD, BODY, ARMS, LEGS, HAND
 @export var slot_type: SlotType = SlotType.NONE
 
 
-
-func _ready() -> void:
-	pass
+func _init() -> void:
+	if !icon:
+		icon = preload("res://icon.svg")
 
 
 #func get_text() -> String:

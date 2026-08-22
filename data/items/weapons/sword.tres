@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_mn025")
 damage = 5.0
+primary_attribute = 3
 name = "Sword"
 weight = 1.5
 value = 8.0

@@ -4,6 +4,8 @@
 
 [resource]
 script = ExtResource("1_bhlvg")
+damage = 6.0
+primary_attribute = 6
 enabled = false
 name = "Axe"
 weight = 2.0
