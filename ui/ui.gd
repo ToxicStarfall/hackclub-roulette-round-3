@@ -46,13 +46,44 @@ func _ready() -> void:
 	add_child(input_mask)
 	
 	input_mask.gui_input.connect( _on_input_mask_gui_input )
-		
+
+
+func _on_game_started():
+	tween_fade()
+	pass
+
+
+func _on_game_ended():
+	pass
+
 
 
 func _on_input_mask_gui_input(event: InputEvent):
 	if event is InputEventMouseButton:
 		clear_popups()
 
+
+
+func tween_fade(enabled: bool = true):
+	var tween = get_tree().create_tween().set_parallel()
+	tween.tween_property(Game.World, "modulate", Color(Color.BLACK, 0.9), 2.0)
+	tween.tween_property(ui, "modulate", Color(Color.BLACK, 0.9), 2.0)
+	#tween.set_parallel(false)
+	await tween.finished
+	#tween.set_parallel()
+	tween = get_tree().create_tween()
+	if enabled:
+		ui.get_node("%MainMenu").hide()
+		ui.get_node("%GameScreen").show()
+		ui.get_node("%GameScreen/EventPanelWrapper").top_level = true
+	else:
+		tween.tween_property(Game.World, "modulate", Color(1,1,1, 1.0), 2.0)
+		tween.tween_property(ui, "modulate", Color(1,1,1, 1.0), 2.0)
+	#else:
+		#ui.get_node("%MainMenu").show()
+		#ui.get_node("%GameScreen").show()
+		#print("Ads")
+		#ui.get_node("%GameScreen/EventPanelWrapper").top_level = true
 
 
 func add_popup(node: Control):
