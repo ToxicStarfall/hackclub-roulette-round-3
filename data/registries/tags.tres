@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="Registry" format=3 uid="uid://cjkd5uod0137n"]
+
+[ext_resource type="Script" uid="uid://dqtv77mng5dyh" path="res://addons/yard/registry.gd" id="1_wwqql"]
+
+[resource]
+script = ExtResource("1_wwqql")
+_version = 2
+_scan_rulesets = Array[Dictionary]([{
+&"allowed_file_extensions": Array[String]([".tres"]),
+&"class_restrictions": Array[StringName]([&"Tag"]),
+&"recursive_scan": true,
+&"scan_directories": Array[String](["res://data"]),
+&"scan_regex_exclude": "",
+&"scan_regex_include": ""
+}])
+_uids_to_string_ids = Dictionary[StringName, StringName]({
+&"uid://5vtsmfn47d7n": &"shield",
+&"uid://b7rpudsuw4mkr": &"sword",
+&"uid://blm3ny4kaw6f4": &"knife",
+&"uid://bxl7ggs6qrd13": &"two_handed",
+&"uid://cpgpaisdmvbq7": &"food",
+&"uid://cqop8myspa0yn": &"bow",
+&"uid://d3dowmcsr8roa": &"one_handed",
+&"uid://drnelas3fr12o": &"axe",
+&"uid://dvf0xklegb81o": &"healing",
+&"uid://i735utqmup3g": &"crossbow",
+&"uid://pnaqnueiwkno": &"none"
+})
+_string_ids_to_uids = Dictionary[StringName, StringName]({
+&"axe": &"uid://drnelas3fr12o",
+&"bow": &"uid://cqop8myspa0yn",
+&"crossbow": &"uid://i735utqmup3g",
+&"food": &"uid://cpgpaisdmvbq7",
+&"healing": &"uid://dvf0xklegb81o",
+&"knife": &"uid://blm3ny4kaw6f4",
+&"none": &"uid://pnaqnueiwkno",
+&"one_handed": &"uid://d3dowmcsr8roa",
+&"shield": &"uid://5vtsmfn47d7n",
+&"sword": &"uid://b7rpudsuw4mkr",
+&"two_handed": &"uid://bxl7ggs6qrd13"
+})

@@ -31,15 +31,25 @@ It is mid-day.
 	else
 		You have [if EventManager.temp.eat_meal]already eaten[else]no food[/if].
 	
-- Use Medicine (no actions used)
+- Use Bandage (no actions used)
 	if Game.inventory.has(Items.MEDICINE, 1) and EventManager.temp.healed == false
-		You treat your wounds with the medicine.
+		You treat your wounds with the bandage.
 
 		set EventManager.temp.healed = true
 		do Game.inventory.remove( Items.MEDICINE, 1 )
+		do Game.player.apply_stat( Stat.HEALTH, 15 )
+	else
+		You have [if EventManager.temp.healed]already used a bandage[else]no bandages[/if].
+
+- Use Healing Salve (no actions used)
+	if Game.inventory.has(&"healing_salve", 1) and EventManager.temp.healed == false
+		You treat your wounds with the healing salve.
+
+		set EventManager.temp.healed = true
+		do Game.inventory.remove( &"healing_salve", 1 )
 		do Game.player.apply_stat( Stat.HEALTH, 25 )
 	else
-		You have [if EventManager.temp.healed]already used medicine[else]no medicine[/if].
+		You have [if EventManager.temp.healed]already used a healing salve[else]no healing salves[/if].
 
 - Rest (regain health)
 	if EventManager.temp.rested == false

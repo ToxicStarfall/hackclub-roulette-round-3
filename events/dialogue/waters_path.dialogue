@@ -55,14 +55,15 @@ if chance(100 - (temp.difficulty*10), 100)
 	You cross the {{temp.type.phrase}} safely.
 else
 	if temp.fail_result.phrase == "item"
-		set temp.item = rand_phrase(Items.keys())
-		set temp.lost_item = Items.keys().get(temp.item.index)
-		do player.apply_stat(Character.Stat.HUNGER, -1 * temp.difficulty)
+		#set temp.item = rand_phrase(Items.keys())
+		#set temp.lost_item = Items.keys().get(temp.item.index)
+		set temp.lost_item = Items.keys().pick_random()
+		do player.apply_stat(CharacterData.Stat.HUNGER, -1 * temp.difficulty)
 		do inventory.remove(temp.lost_item, -1)
 		You cross the {{temp.type.phrase}}, but you lost 1 {{temp.lost_item}}
 	else
-		do player.apply_stat(Character.Stat.HUNGER, -1 * temp.difficulty)
-		do player.apply_stat(Character.Stat.HEALTH, -1 * temp.difficulty)
+		do player.apply_stat(CharacterData.Stat.HUNGER, -1 * temp.difficulty)
+		do player.apply_stat(CharacterData.Stat.HEALTH, -1 * temp.difficulty)
 		You cross the {{temp.type.phrase}}, but you hurt yourself while crosing.
 			[color=red]-{{temp.difficulty}}[/color] health.
 

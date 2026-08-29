@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://clkrnmiaf0qp8"]
+
+[ext_resource type="Script" uid="uid://0wvs8bghujq4" path="res://addons/_shared/number_range_editor.gd" id="1_srebr"]
+
+[node name="EditorProperty" type="EditorProperty" unique_id=168527830]
+offset_right = 192.0
+offset_bottom = 31.0
+name_split_ratio = 0.25
+script = ExtResource("1_srebr")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1143138044]
+layout_mode = 2
+
+[node name="MinSlider" type="EditorSpinSlider" parent="HBoxContainer" unique_id=1060261140]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+step = 0.1
+allow_greater = true
+allow_lesser = true
+label = "Min"
+
+[node name="MaxSlider" type="EditorSpinSlider" parent="HBoxContainer" unique_id=2021908046]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+step = 0.1
+allow_greater = true
+allow_lesser = true
+label = "Max"

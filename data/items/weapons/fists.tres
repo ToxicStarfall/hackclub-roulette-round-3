@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://b4rei52idlunf"]
+
+[ext_resource type="Script" uid="uid://qitehljiq5sn" path="res://data/items/_types/weapon_data.gd" id="1_ufsx1"]
+
+[resource]
+script = ExtResource("1_ufsx1")
+damage = 2.0
+primary_attribute = 6
+enabled = false
+name = "Fists"
+weight = 0.0
+value = 0.0
+tags = Array[int]([1, 12])
+slot_type = 1
+metadata/_custom_type_script = "uid://qitehljiq5sn"

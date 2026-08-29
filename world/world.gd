@@ -12,6 +12,10 @@ func _ready() -> void:
 	pass
 
 
+#func _process(delta: float) -> void:
+	#pass
+
+
 func _on_location_changed(location: Region):
 	apply_region_background( location.name.to_lower() )
 	pass
@@ -28,10 +32,11 @@ func apply_region_background(region_name: String):
 
 
 func activate_parallax():
-	%Background2.autoscroll.x = -10.0
-	%Midground.autoscroll.x = -25.0
-	%Foreground2.autoscroll.x = -50.0
-	%Foreground.autoscroll.x = -100.0
+	%Clouds.autoscroll.x = -5.0  # -10.0
+	%Midground.autoscroll.x = -15.0  # -25.0
+	%Foreground.autoscroll.x = -40.0  # -50.0
+	%Event.autoscroll.x = -100.0  # -100.0
+	%Front.autoscroll.x = -80.0  # -100.0
 	if sun_tween: if sun_tween.is_valid(): sun_tween.play()
 
 

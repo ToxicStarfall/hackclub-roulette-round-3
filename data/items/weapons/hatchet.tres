@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://ctyerxxnfwnbh"]
+
+[ext_resource type="Script" uid="uid://qitehljiq5sn" path="res://data/items/_types/weapon_data.gd" id="1_d77f5"]
+
+[resource]
+script = ExtResource("1_d77f5")
+damage = 3.5
+primary_attribute = 6
+name = "Hatchet"
+weight = 0.5
+value = 4.0
+tags = Array[int]([1, 6])
+slot_type = 1
+metadata/_custom_type_script = "uid://qitehljiq5sn"

@@ -10,7 +10,7 @@ The Hunt
 
 set temp.hunt_found = false
 set temp.food_amount = 0
-set temp.efficiency = player.get_efficiency()
+set temp.efficiency = player.get_efficiency(CharacterData.Efficiency.ACTION)
 
 do _print( current_location.rainfall * (temp.efficiency * 1.5) )
 
@@ -31,7 +31,7 @@ do _print( temp.hunt_found )
 
 The hunt has ended.
 	[if temp.food_amount == 0]Unfortunately, the hunt has yielded no food.[else]You have found {{temp.food_amount}} food![/if]
-	[do inventory.add(Items.FOOD, temp.food_amount)][do player.apply_stat(Character.Stat.HUNGER, -10)]
+	[do inventory.add(Items.FOOD, temp.food_amount)][do player.apply_stat(CharacterData.Stat.HUNGER, -10)]
 
 
 => END

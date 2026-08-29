@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="EditorPropertyTester" format=3 uid="uid://c5gmdxbwdgr26"]
+
+[ext_resource type="Script" uid="uid://cpqn18f73tnlf" path="res://addons/_shared/editor_property_tester.gd" id="2_frg4r"]
+
+[resource]
+script = ExtResource("2_frg4r")
+metadata/_custom_type_script = "uid://cpqn18f73tnlf"

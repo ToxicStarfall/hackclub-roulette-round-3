@@ -33,21 +33,33 @@ They stop you, saying that you must pay a tax to travel on this "road".
 #	%.40 
 #	%.40
 
-- Fight them (40% success)
-	%.40
-		You sucessfully defeat the guards.
-		do Game.skip_hour()
-		do Game.inventory.add(Items.GOLD, 3)
-		do Game.inventory.add(Items.FOOD, 2)
-		do Game.player.apply_stat(Stat.HEALTH, -5)
-	%.60
-		The guards promptly disarm you and beat you up. (-1 gold)
-		#force you to pay an additional tax (-2 gold)
-		do Game.skip_hour()
-		do Game.inventory.remove(Items.GOLD, 1)
-		do Game.player.apply_stat(Stat.HEALTH, -15)
+- Fight them #(40% success)
+    You decide to fight the soldiers
+    => fight
+	#%.40
+	#	You sucessfully defeat the guards.
+	#	do Game.skip_hour()
+	#	do Game.inventory.add(Items.GOLD, 3)
+	#	do Game.inventory.add(Items.FOOD, 2)
+	#	do Game.player.apply_stat(Stat.HEALTH, -5)
+	#%.60
+	#	The guards promptly disarm you and beat you up. (-1 gold)
+	#	#force you to pay an additional tax (-2 gold)
+	#	do Game.skip_hour()
+	#	do Game.inventory.remove(Items.GOLD, 1)
+	#	do Game.player.apply_stat(Stat.HEALTH, -15)
 
 - Find a different path
 	Ignoring their demands, you veer off the path into the brush and away from the soldiers.
 
+=> END
+
+
+~ fight
+set temp["char"] = CharGen.generate_character_from_id( "soldier", 1 )
+do temp.char.name = "Guard"
+do temp.char.inventory.set_slot_config_from("human_config")
+do temp.char.inventory.equip_all()
+do CombatManager.start( temp.char )
+_ #
 => END

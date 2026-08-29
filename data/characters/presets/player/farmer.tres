@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CharacterPreset" format=3 uid="uid://y1bhse2hi7oh"]
+
+[ext_resource type="Script" uid="uid://rg4gdar6l5py" path="res://data/characters/character_preset.gd" id="1_og4yx"]
+
+[resource]
+script = ExtResource("1_og4yx")
+name = "Farmer"
+description = "A farm worker.
+(Difficulty - Normal/Hard)"
+agility = 1
+charisma = 2
+dexterity = 2
+intelligence = 1
+strength = 2
+items = Array[StringName]([&"gold_coin", &"ration", &"bandage", &"healing_salve", &"hatchet"])
+quantities = Array[int]([12, 6, 2, 2, 1])
+metadata/_custom_type_script = "uid://rg4gdar6l5py"

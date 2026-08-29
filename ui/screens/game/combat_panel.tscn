@@ -1,0 +1,123 @@
+[gd_scene format=3 uid="uid://b5lmluhdjyshd"]
+
+[ext_resource type="Script" uid="uid://cimix0xap52o8" path="res://ui/screens/game/combat_options.gd" id="1_3xiir"]
+[ext_resource type="Script" uid="uid://c1sipoustsc1e" path="res://ui/components/inventory/inventory_tree.gd" id="2_oy35d"]
+
+[sub_resource type="Theme" id="Theme_sjbic"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ouac8"]
+
+[node name="CombatPanel" type="PanelContainer" unique_id=1987360936]
+custom_minimum_size = Vector2(200, 80)
+size_flags_horizontal = 3
+theme = SubResource("Theme_sjbic")
+theme_type_variation = &"PanelBorder"
+script = ExtResource("1_3xiir")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=246515377]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="WaitingLabel" type="Label" parent="MarginContainer" unique_id=1344608079]
+unique_name_in_owner = true
+layout_mode = 2
+text = "WAITING . . ."
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1488916309]
+layout_mode = 2
+
+[node name="OptionsContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=376650042]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 5.0
+
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/HBoxContainer" unique_id=637426142]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="ConfirmButton" type="Button" parent="MarginContainer/HBoxContainer" unique_id=52182885]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+offset_transform_enabled = true
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/ConfirmButton" unique_id=532911611]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_rotation = -1.5707964
+theme_override_font_sizes/font_size = 10
+text = "CONFIRM"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CombatResultsPanel" type="PanelContainer" parent="MarginContainer" unique_id=342833007]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ouac8")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CombatResultsPanel" unique_id=1005565111]
+layout_mode = 2
+
+[node name="ResultLabel" type="Label" parent="MarginContainer/CombatResultsPanel/VBoxContainer" unique_id=1862907275]
+unique_name_in_owner = true
+layout_mode = 2
+offset_transform_enabled = true
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5)
+text = "Results - "
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/CombatResultsPanel/VBoxContainer" unique_id=1184820840]
+layout_mode = 2
+
+[node name="InventoryLabel" type="Label" parent="MarginContainer/CombatResultsPanel/VBoxContainer" unique_id=1383534677]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Loot"
+horizontal_alignment = 1
+
+[node name="LootInventoryTree" type="Tree" parent="MarginContainer/CombatResultsPanel/VBoxContainer" unique_id=54820980]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+columns = 2
+allow_search = false
+hide_folding = true
+enable_recursive_folding = false
+enable_drag_unfolding = false
+hide_root = true
+auto_tooltip = false
+script = ExtResource("2_oy35d")
+metadata/_custom_type_script = "uid://c1sipoustsc1e"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/CombatResultsPanel/VBoxContainer" unique_id=684117452]
+layout_mode = 2
+
+[node name="TakeButton" type="Button" parent="MarginContainer/CombatResultsPanel/VBoxContainer/HBoxContainer" unique_id=135896463]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "TAKE"
+
+[node name="TakeAllButton" type="Button" parent="MarginContainer/CombatResultsPanel/VBoxContainer/HBoxContainer" unique_id=644151217]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "TAKE ALL"
+
+[node name="LeaveButton" type="Button" parent="MarginContainer/CombatResultsPanel/VBoxContainer/HBoxContainer" unique_id=523364531]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+text = "LEAVE"

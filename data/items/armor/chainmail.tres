@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ArmorData" format=3 uid="uid://cbutl2imtwhil"]
+
+[ext_resource type="Script" uid="uid://ldom587yxasc" path="res://data/items/_types/armor_data.gd" id="1_jqiok"]
+
+[resource]
+script = ExtResource("1_jqiok")
+defense = 2.0
+enabled = false
+name = "Chainmail Armor"
+weight = 10.0
+value = 15.0
+tier = 2.0
+slot_type = 5
+metadata/_custom_type_script = "uid://ldom587yxasc"

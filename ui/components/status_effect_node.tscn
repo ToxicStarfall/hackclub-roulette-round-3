@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://cobh8lbclt0kg"]
+
+[ext_resource type="Texture2D" uid="uid://dgr60uub4xhi1" path="res://icon.svg" id="1_kq33m"]
+[ext_resource type="Script" uid="uid://lgeu5ffdyvuq" path="res://ui/components/status_effect_node.gd" id="1_m2jtk"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8msyy"]
+font_size = 8
+
+[node name="StatusNode" type="PanelContainer" unique_id=1273927536]
+custom_minimum_size = Vector2(16, 16)
+tooltip_text = "A Status"
+script = ExtResource("1_m2jtk")
+
+[node name="Icon" type="TextureRect" parent="." unique_id=1643803430]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("1_kq33m")
+expand_mode = 1
+
+[node name="DurationLabel" type="Label" parent="Icon" unique_id=1347430261]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 18.0
+offset_bottom = 19.166668
+text = "0"
+label_settings = SubResource("LabelSettings_8msyy")
+horizontal_alignment = 2
+vertical_alignment = 2

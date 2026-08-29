@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://boqffdpcykjmp"]
+
+[ext_resource type="Script" uid="uid://d2ghc12ac31nf" path="res://ui/components/inventory/inv_slot_node.gd" id="1_d0pf5"]
+[ext_resource type="Texture2D" uid="uid://dgr60uub4xhi1" path="res://icon.svg" id="1_ybuvb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d0pf5"]
+bg_color = Color(0.2, 0.187, 0.174, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+
+[sub_resource type="LabelSettings" id="LabelSettings_kd5t4"]
+font_size = 12
+
+[node name="CharInvSlot" type="PanelContainer" unique_id=433829358]
+custom_minimum_size = Vector2(28, 28)
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_d0pf5")
+script = ExtResource("1_d0pf5")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=466662806]
+layout_mode = 2
+
+[node name="ItemIcon" type="TextureRect" parent="MarginContainer" unique_id=574039162]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("1_ybuvb")
+expand_mode = 1
+
+[node name="NameLabel" type="Label" parent="MarginContainer/ItemIcon" unique_id=882262808]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_kd5t4")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Label2" type="Label" parent="MarginContainer/ItemIcon" unique_id=1189308022]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_kd5t4")
+horizontal_alignment = 1
+vertical_alignment = 2

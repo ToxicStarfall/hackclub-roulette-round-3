@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CharacterPreset" format=3 uid="uid://ynyvfkgvqe3c"]
+
+[ext_resource type="Script" uid="uid://rg4gdar6l5py" path="res://data/characters/character_preset.gd" id="1_32xun"]
+
+[resource]
+script = ExtResource("1_32xun")
+enabled = false
+name = "Conscript"
+description = "(Difficulty - Hard)"
+metadata/_custom_type_script = "uid://rg4gdar6l5py"

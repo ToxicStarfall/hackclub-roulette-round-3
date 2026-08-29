@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Region" format=3 uid="uid://dmukp86wl3hnn"]
+
+[ext_resource type="Script" uid="uid://c5udorbysqlfg" path="res://data/world/regions/region.gd" id="1_nd0sx"]
+
+[resource]
+script = ExtResource("1_nd0sx")
+name = "Meadows"
+metadata/_custom_type_script = "uid://c5udorbysqlfg"

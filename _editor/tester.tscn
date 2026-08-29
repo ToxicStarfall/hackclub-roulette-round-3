@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://0i4s5rns7fcf"]
+
+[ext_resource type="Script" uid="uid://h6olmgdr6nud" path="res://_editor/tester.gd" id="1_hknto"]
+[ext_resource type="Script" uid="uid://bh1xpgepj8l38" path="res://data/characters/generator/char_gen.gd" id="2_d1qdy"]
+[ext_resource type="Resource" uid="uid://b1t4dk4co4bfs" path="res://data/characters/generator/soldier.tres" id="3_uokyg"]
+
+[node name="Tester" type="Node" unique_id=1201995969]
+script = ExtResource("1_hknto")
+
+[node name="CharGen" type="Node" parent="." unique_id=1882400108]
+unique_name_in_owner = true
+script = ExtResource("2_d1qdy")
+sample_template = ExtResource("3_uokyg")
+metadata/_custom_type_script = "uid://bh1xpgepj8l38"
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=491496831]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="CharGenSampleButton" type="Button" parent="MarginContainer" unique_id=1431983052]
+unique_name_in_owner = true
+layout_mode = 2
+text = "SAMPLE"

@@ -13,10 +13,12 @@ func save_file():
 	current_save.set_value("", "current_ticks", Game.current_day)
 	current_save.set_value("", "location", Game.Location)
 	current_save.set_value("", "distance_travled", Game.distance_travled)
+	
+	current_save.set_value("", "party", Game.party)
 	current_save.set_value("", "player", Game.player)
 	current_save.set_value("", "inventory", Game.inventory)
 
-	current_save.set_value("", "current_event", EventManager.current_event.id)
+	#current_save.set_value("", "current_event", EventManager.current_event.id)
 
 	current_save.save(SAVE_PATH)
 
@@ -29,7 +31,18 @@ func load_file():
 		Game.set("current_ticks", current_save.get_value("", "current_ticks"))
 		Game.set("location", current_save.get_value("", "location"))
 		Game.set("distance_travled", current_save.get_value("", "distance_travled"))
+		
+		Game.set("party", current_save.get_value("", "party"))
 		Game.set("player", current_save.get_value("", "player"))
 		Game.set("inventory", current_save.get_value("", "inventory"))
 
-		EventManager.start_event( current_save.get_value("", "current_event") )
+		#EventManager.start_event( current_save.get_value("", "current_event") )
+
+
+func reset():
+	current_save.clear()
+	save_file()
+	#current_save.save(SAVE_PATH)
+	load_file()
+	Events.game_reset.emit()
+	pass

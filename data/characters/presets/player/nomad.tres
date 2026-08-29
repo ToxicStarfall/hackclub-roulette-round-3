@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="CharacterPreset" format=3 uid="uid://bluu6srfs6bej"]
+
+[ext_resource type="Script" uid="uid://rg4gdar6l5py" path="res://data/characters/character_preset.gd" id="1_fpxod"]
+
+[resource]
+script = ExtResource("1_fpxod")
+enabled = false
+metadata/_custom_type_script = "uid://rg4gdar6l5py"

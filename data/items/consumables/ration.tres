@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ConsumableData" format=3 uid="uid://dfm3bjsryhbfn"]
+
+[ext_resource type="Script" uid="uid://bpy56hlcsoeha" path="res://data/items/_types/consumable_data.gd" id="1_3ykpc"]
+[ext_resource type="Script" uid="uid://b2i7flqx2qgc1" path="res://data/characters/status_effects/status_effect.gd" id="2_5nd4e"]
+
+[resource]
+script = ExtResource("1_3ykpc")
+name = "Ration"
+description = "A simple preserved meal intended for travelers.
+Less effective if used while actively traveling."
+weight = 0.5
+stack = 5
+metadata/_custom_type_script = "uid://bpy56hlcsoeha"

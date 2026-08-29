@@ -1,0 +1,57 @@
+[gd_resource type="Resource" script_class="Registry" format=3 uid="uid://6nsk4rvx417q"]
+
+[ext_resource type="Script" uid="uid://dqtv77mng5dyh" path="res://addons/yard/registry.gd" id="1_3obaw"]
+
+[resource]
+script = ExtResource("1_3obaw")
+_version = 2
+_scan_rulesets = Array[Dictionary]([{
+&"allowed_file_extensions": Array[String]([".tres"]),
+&"class_restrictions": Array[StringName]([&"CharacterPreset"]),
+&"recursive_scan": true,
+&"scan_directories": Array[String](["res://data/"]),
+&"scan_regex_exclude": "",
+&"scan_regex_include": ""
+}])
+_uids_to_string_ids = Dictionary[StringName, StringName]({
+&"uid://bb27a6cuvn4kr": &"peasant",
+&"uid://bluu6srfs6bej": &"nomad",
+&"uid://bmcmptbt4wowp": &"soldier",
+&"uid://c0srlt3ne70dy": &"general",
+&"uid://dj0wme07c6lur": &"foreigner",
+&"uid://dqdd4wf8q06s6": &"hunter",
+&"uid://ka142qd6ne4o": &"amnesiac",
+&"uid://rx200mme6178": &"merchant",
+&"uid://y1bhse2hi7oh": &"farmer",
+&"uid://ynyvfkgvqe3c": &"conscript"
+})
+_string_ids_to_uids = Dictionary[StringName, StringName]({
+&"amnesiac": &"uid://ka142qd6ne4o",
+&"conscript": &"uid://ynyvfkgvqe3c",
+&"farmer": &"uid://y1bhse2hi7oh",
+&"foreigner": &"uid://dj0wme07c6lur",
+&"general": &"uid://c0srlt3ne70dy",
+&"hunter": &"uid://dqdd4wf8q06s6",
+&"merchant": &"uid://rx200mme6178",
+&"nomad": &"uid://bluu6srfs6bej",
+&"peasant": &"uid://bb27a6cuvn4kr",
+&"soldier": &"uid://bmcmptbt4wowp"
+})
+_property_index = Dictionary[StringName, Dictionary]({
+&"enabled": {
+false: {
+&"amnesiac": true,
+&"conscript": true,
+&"foreigner": true,
+&"general": true,
+&"nomad": true
+},
+true: {
+&"farmer": true,
+&"hunter": true,
+&"merchant": true,
+&"peasant": true,
+&"soldier": true
+}
+}
+})

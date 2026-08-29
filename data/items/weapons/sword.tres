@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://ti5t8xoy5g7f"]
+
+[ext_resource type="Script" uid="uid://qitehljiq5sn" path="res://data/items/_types/weapon_data.gd" id="1_mn025"]
+
+[resource]
+script = ExtResource("1_mn025")
+damage = 5.0
+primary_attribute = 3
+name = "Sword"
+weight = 1.5
+value = 8.0
+tier = 1.0
+tags = Array[int]([1, 5])
+slot_type = 1
+metadata/_custom_type_script = "uid://qitehljiq5sn"

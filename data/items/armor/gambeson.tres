@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ArmorData" format=3 uid="uid://c5pg6njcae8eu"]
+
+[ext_resource type="Script" uid="uid://ldom587yxasc" path="res://data/items/_types/armor_data.gd" id="1_aplif"]
+
+[resource]
+script = ExtResource("1_aplif")
+name = "Gambeson"
+weight = 2.5
+value = 5.0
+tier = 1
+slot_type = 5
+metadata/_custom_type_script = "uid://ldom587yxasc"

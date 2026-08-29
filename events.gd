@@ -16,3 +16,6 @@ signal action_aborted (action: Game.Action)
 
 signal event_started (event: Event)
 signal event_ended (event: Event)
+
+signal combat_started ()
+signal combat_ended ()

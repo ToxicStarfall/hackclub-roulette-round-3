@@ -1,0 +1,576 @@
+[gd_scene format=3 uid="uid://bw66udbsfqsuf"]
+
+[ext_resource type="Script" uid="uid://ltsiqwodt8o0" path="res://ui/components/character_info.gd" id="1_3ools"]
+[ext_resource type="Texture2D" uid="uid://dgr60uub4xhi1" path="res://icon.svg" id="2_dwixf"]
+[ext_resource type="PackedScene" uid="uid://cobh8lbclt0kg" path="res://ui/components/status_effect_node.tscn" id="3_lqgvv"]
+[ext_resource type="PackedScene" uid="uid://boqffdpcykjmp" path="res://ui/components/inventory/inv_slot.tscn" id="4_3ue2b"]
+
+[sub_resource type="Theme" id="Theme_ouac8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1bvp3"]
+bg_color = Color(0.2, 0.187, 0.174, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1et0t"]
+content_margin_left = 10.0
+content_margin_top = 4.0
+content_margin_right = 10.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+border_width_top = 2
+corner_detail = 1
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ouac8"]
+
+[sub_resource type="Gradient" id="Gradient_eo6kg"]
+offsets = PackedFloat32Array(0, 0.82222223)
+colors = PackedColorArray(0.51, 0.49011, 0.46409997, 1, 0.24, 0.23584, 0.2304, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ypn16"]
+gradient = SubResource("Gradient_eo6kg")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="LabelSettings" id="LabelSettings_vydbi"]
+font_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fo2ve"]
+bg_color = Color(0.37, 0.19733335, 0.11100001, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_01jac"]
+bg_color = Color(0.78, 0.416, 0.234, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_w5ulb"]
+font_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eo6kg"]
+bg_color = Color(0.3, 0.14100002, 0.14100002, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ypn16"]
+bg_color = Color(0.76, 0.228, 0.228, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ouac8"]
+bg_color = Color(0.078431375, 0.07450981, 0.07058824, 1)
+
+[node name="CharacterInfo" type="PanelContainer" unique_id=2046769854]
+custom_minimum_size = Vector2(100, 140)
+offset_right = 72.0
+offset_bottom = 92.0
+theme = SubResource("Theme_ouac8")
+theme_override_styles/panel = SubResource("StyleBoxFlat_1bvp3")
+script = ExtResource("1_3ools")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1572079984]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+tooltip_text = "This is you."
+theme_override_constants/separation = 0
+
+[node name="TabBar" type="TabBar" parent="VBoxContainer" unique_id=798640608]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+theme_override_styles/tab_selected = SubResource("StyleBoxFlat_1et0t")
+current_tab = 0
+tab_count = 3
+tab_0/title = "Overview"
+tab_1/title = "Health"
+tab_1/disabled = true
+tab_2/title = "Inventory"
+
+[node name="TabContainer" type="TabContainer" parent="VBoxContainer" unique_id=575161602]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 8
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ouac8")
+current_tab = 0
+tabs_visible = false
+
+[node name="Overview" type="PanelContainer" parent="VBoxContainer/TabContainer" unique_id=2000197163]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/TabContainer/Overview" unique_id=1958842604]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/Overview/MarginContainer" unique_id=859741757]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="ProfileBackground" type="TextureRect" parent="VBoxContainer/TabContainer/Overview/MarginContainer/HBoxContainer" unique_id=1971682503]
+visible = false
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_vertical = 0
+texture = SubResource("GradientTexture2D_ypn16")
+
+[node name="ProfileIcon" type="TextureRect" parent="VBoxContainer/TabContainer/Overview/MarginContainer/HBoxContainer/ProfileBackground" unique_id=1830905446]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(56, 56)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -28.0
+offset_top = -56.0
+offset_right = 28.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("2_dwixf")
+expand_mode = 4
+stretch_mode = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/Overview/MarginContainer/HBoxContainer" unique_id=1011943993]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="NameLabel" type="Label" parent="VBoxContainer/TabContainer/Overview/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1521511028]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Character Name"
+
+[node name="BackstoryLabel" type="Label" parent="VBoxContainer/TabContainer/Overview/MarginContainer/HBoxContainer/VBoxContainer" unique_id=934875450]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "Backstory"
+label_settings = SubResource("LabelSettings_vydbi")
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/TabContainer/Overview/MarginContainer/HBoxContainer/VBoxContainer" unique_id=676987865]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/Overview/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1196854616]
+layout_mode = 2
+alignment = 2
+
+[node name="StatsPanel" type="PanelContainer" parent="VBoxContainer/TabContainer/Overview/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" unique_id=319906711]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/Overview/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/StatsPanel" unique_id=1614417382]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+alignment = 2
+
+[node name="HungerGroup" type="HBoxContainer" parent="VBoxContainer/TabContainer/Overview/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/StatsPanel/VBoxContainer" unique_id=926498589]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+tooltip_text = "This is your hunger status."
+theme_override_constants/separation = 0
+
+[node name="HungerIcon" type="TextureRect" parent="VBoxContainer/TabContainer/Overview/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/StatsPanel/VBoxContainer/HungerGroup" unique_id=1091387871]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("2_dwixf")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="HungerBar" type="ProgressBar" parent="VBoxContainer/TabContainer/Overview/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/StatsPanel/VBoxContainer/HungerGroup" unique_id=12857312]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+tooltip_text = "Your hunger level. This effects your efficiency at doing things."
+theme_override_font_sizes/font_size = 12
+theme_override_styles/background = SubResource("StyleBoxFlat_fo2ve")
+theme_override_styles/fill = SubResource("StyleBoxFlat_01jac")
+show_percentage = false
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/Overview/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/StatsPanel/VBoxContainer/HungerGroup/HungerBar" unique_id=1006007509]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "0 / 0"
+label_settings = SubResource("LabelSettings_w5ulb")
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/TabContainer/Overview/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/StatsPanel/VBoxContainer" unique_id=356489820]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="HealthGroup" type="HBoxContainer" parent="VBoxContainer/TabContainer/Overview/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/StatsPanel/VBoxContainer" unique_id=1161550382]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+tooltip_text = "This is your health."
+theme_override_constants/separation = 0
+
+[node name="HealthIcon" type="TextureRect" parent="VBoxContainer/TabContainer/Overview/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/StatsPanel/VBoxContainer/HealthGroup" unique_id=1710849870]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("2_dwixf")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="HealthBar" type="ProgressBar" parent="VBoxContainer/TabContainer/Overview/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/StatsPanel/VBoxContainer/HealthGroup" unique_id=1871494755]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+tooltip_text = "Your health level. This greatly effects your efficiency at doing things."
+theme_override_font_sizes/font_size = 12
+theme_override_styles/background = SubResource("StyleBoxFlat_eo6kg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ypn16")
+step = 1.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/Overview/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/StatsPanel/VBoxContainer/HealthGroup/HealthBar" unique_id=1197207968]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "0 / 0"
+label_settings = SubResource("LabelSettings_w5ulb")
+vertical_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer/TabContainer/Overview/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/StatsPanel/VBoxContainer" unique_id=1749987127]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/TabContainer/Overview/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" unique_id=374590775]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="StatusContainer" type="FlowContainer" parent="VBoxContainer/TabContainer/Overview/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" unique_id=471549645]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Health" type="PanelContainer" parent="VBoxContainer/TabContainer" unique_id=791069172]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/TabContainer/Health" unique_id=2063736158]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/Health/MarginContainer" unique_id=2143477958]
+layout_mode = 2
+
+[node name="ProfileBackground" type="TextureRect" parent="VBoxContainer/TabContainer/Health/MarginContainer/HBoxContainer" unique_id=815802252]
+visible = false
+custom_minimum_size = Vector2(64, 128)
+layout_mode = 2
+size_flags_vertical = 0
+texture = SubResource("GradientTexture2D_ypn16")
+
+[node name="ProfileIcon" type="TextureRect" parent="VBoxContainer/TabContainer/Health/MarginContainer/HBoxContainer/ProfileBackground" unique_id=2026288801]
+custom_minimum_size = Vector2(56, 84)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -28.0
+offset_top = -42.0
+offset_right = 28.0
+offset_bottom = 42.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_dwixf")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/Health/MarginContainer/HBoxContainer" unique_id=1704737033]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/TabContainer/Health/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1961139122]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="StatsPanel" type="PanelContainer" parent="VBoxContainer/TabContainer/Health/MarginContainer/HBoxContainer/VBoxContainer" unique_id=4410560]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/Health/MarginContainer/HBoxContainer/VBoxContainer/StatsPanel" unique_id=259650975]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+alignment = 2
+
+[node name="HungerGroup" type="HBoxContainer" parent="VBoxContainer/TabContainer/Health/MarginContainer/HBoxContainer/VBoxContainer/StatsPanel/VBoxContainer" unique_id=62447068]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+tooltip_text = "This is your hunger status."
+theme_override_constants/separation = 0
+
+[node name="HungerIcon" type="TextureRect" parent="VBoxContainer/TabContainer/Health/MarginContainer/HBoxContainer/VBoxContainer/StatsPanel/VBoxContainer/HungerGroup" unique_id=863783409]
+layout_mode = 2
+texture = ExtResource("2_dwixf")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="HungerBar" type="ProgressBar" parent="VBoxContainer/TabContainer/Health/MarginContainer/HBoxContainer/VBoxContainer/StatsPanel/VBoxContainer/HungerGroup" unique_id=1863626562]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+tooltip_text = "Your hunger level. This effects your efficiency at doing things."
+theme_override_font_sizes/font_size = 12
+theme_override_styles/background = SubResource("StyleBoxFlat_fo2ve")
+theme_override_styles/fill = SubResource("StyleBoxFlat_01jac")
+show_percentage = false
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/Health/MarginContainer/HBoxContainer/VBoxContainer/StatsPanel/VBoxContainer/HungerGroup/HungerBar" unique_id=829347372]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "0 / 0"
+label_settings = SubResource("LabelSettings_w5ulb")
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/TabContainer/Health/MarginContainer/HBoxContainer/VBoxContainer/StatsPanel/VBoxContainer" unique_id=1026443328]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="HealthGroup" type="HBoxContainer" parent="VBoxContainer/TabContainer/Health/MarginContainer/HBoxContainer/VBoxContainer/StatsPanel/VBoxContainer" unique_id=501071634]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+tooltip_text = "This is your health."
+theme_override_constants/separation = 0
+
+[node name="HealthIcon" type="TextureRect" parent="VBoxContainer/TabContainer/Health/MarginContainer/HBoxContainer/VBoxContainer/StatsPanel/VBoxContainer/HealthGroup" unique_id=1232081341]
+layout_mode = 2
+texture = ExtResource("2_dwixf")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="HealthBar" type="ProgressBar" parent="VBoxContainer/TabContainer/Health/MarginContainer/HBoxContainer/VBoxContainer/StatsPanel/VBoxContainer/HealthGroup" unique_id=1214854658]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+tooltip_text = "Your health level. This greatly effects your efficiency at doing things."
+theme_override_font_sizes/font_size = 12
+theme_override_styles/background = SubResource("StyleBoxFlat_eo6kg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ypn16")
+step = 1.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/Health/MarginContainer/HBoxContainer/VBoxContainer/StatsPanel/VBoxContainer/HealthGroup/HealthBar" unique_id=211139032]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "0 / 0"
+label_settings = SubResource("LabelSettings_w5ulb")
+vertical_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer/TabContainer/Health/MarginContainer/HBoxContainer/VBoxContainer/StatsPanel/VBoxContainer" unique_id=774875050]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="StatusContainer" type="FlowContainer" parent="VBoxContainer/TabContainer/Health/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1383264486]
+layout_mode = 2
+
+[node name="StatusNode" parent="VBoxContainer/TabContainer/Health/MarginContainer/HBoxContainer/VBoxContainer/StatusContainer" unique_id=1273927536 instance=ExtResource("3_lqgvv")]
+visible = false
+layout_mode = 2
+
+[node name="HealthTree" type="Tree" parent="VBoxContainer/TabContainer/Health/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1996345514]
+unique_name_in_owner = true
+layout_mode = 2
+columns = 2
+hide_folding = true
+hide_root = true
+auto_tooltip = false
+
+[node name="Inventory" type="PanelContainer" parent="VBoxContainer/TabContainer" unique_id=1349594498]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/TabContainer/Inventory" unique_id=2040064882]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/Inventory/MarginContainer" unique_id=1031896047]
+layout_mode = 2
+
+[node name="ProfileBackground" type="TextureRect" parent="VBoxContainer/TabContainer/Inventory/MarginContainer/HBoxContainer" unique_id=1283351746]
+visible = false
+custom_minimum_size = Vector2(64, 128)
+layout_mode = 2
+size_flags_vertical = 0
+texture = SubResource("GradientTexture2D_ypn16")
+
+[node name="ProfileIcon" type="TextureRect" parent="VBoxContainer/TabContainer/Inventory/MarginContainer/HBoxContainer/ProfileBackground" unique_id=1336280144]
+custom_minimum_size = Vector2(56, 84)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -28.0
+offset_top = -42.0
+offset_right = 28.0
+offset_bottom = 42.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_dwixf")
+expand_mode = 1
+
+[node name="CharInvSlots" type="FlowContainer" parent="VBoxContainer/TabContainer/Inventory/MarginContainer/HBoxContainer" unique_id=627060375]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="CharInvSlot" parent="VBoxContainer/TabContainer/Inventory/MarginContainer/HBoxContainer/CharInvSlots" unique_id=433829358 instance=ExtResource("4_3ue2b")]
+layout_mode = 2
+
+[node name="CharInvSlot2" parent="VBoxContainer/TabContainer/Inventory/MarginContainer/HBoxContainer/CharInvSlots" unique_id=1757267599 instance=ExtResource("4_3ue2b")]
+visible = false
+layout_mode = 2
+
+[node name="CharInvSlot3" parent="VBoxContainer/TabContainer/Inventory/MarginContainer/HBoxContainer/CharInvSlots" unique_id=646516409 instance=ExtResource("4_3ue2b")]
+visible = false
+layout_mode = 2
+
+[node name="CharInvSlot4" parent="VBoxContainer/TabContainer/Inventory/MarginContainer/HBoxContainer/CharInvSlots" unique_id=1120785022 instance=ExtResource("4_3ue2b")]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/Inventory/MarginContainer/HBoxContainer" unique_id=1226836376]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/Inventory/MarginContainer/HBoxContainer/VBoxContainer" unique_id=77874192]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Equipped"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/TabContainer/Inventory/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1560032875]
+layout_mode = 2
+
+[node name="EquipmentTree" type="Tree" parent="VBoxContainer/TabContainer/Inventory/MarginContainer/HBoxContainer/VBoxContainer" unique_id=104266205]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 8
+theme_override_font_sizes/title_button_font_size = 10
+theme_override_styles/panel = SubResource("StyleBoxFlat_ouac8")
+allow_rmb_select = true
+hide_folding = true
+hide_root = true
+scroll_horizontal_enabled = false
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/TabContainer/Inventory/MarginContainer/HBoxContainer" unique_id=1476552595]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/Inventory/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=1367975266]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Inventory"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/TabContainer/Inventory/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=1672282150]
+layout_mode = 2
+
+[node name="InventoryTree" type="Tree" parent="VBoxContainer/TabContainer/Inventory/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=612196137]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 8
+theme_override_font_sizes/title_button_font_size = 10
+theme_override_styles/panel = SubResource("StyleBoxFlat_ouac8")
+columns = 2
+allow_rmb_select = true
+hide_folding = true
+hide_root = true
+scroll_horizontal_enabled = false
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=309170272]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="CloseButton" type="Button" parent="MarginContainer" unique_id=1037207311]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+mouse_default_cursor_shape = 2
+icon = ExtResource("2_dwixf")
+icon_alignment = 1
+expand_icon = true

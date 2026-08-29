@@ -22,8 +22,9 @@ Stats
 	Hunger remaining:{{Game.player.get_stat(Stat.HUNGER)}}
 
 	[br]Items remaining
-	Gold:{{Game.inventory.get_item(Items.GOLD)}}
-	Food:{{Game.inventory.get_item(Items.FOOD)}}
-	Medicine:{{Game.inventory.get_item(Items.MEDICINE)}}
+	{{Game.inventory.get_print()}}
+#	Gold:{{Game.inventory.get_item(Items.GOLD)}}
+#	Food:{{Game.inventory.get_item(Items.FOOD)}}
+#	Medicine:{{Game.inventory.get_item(Items.MEDICINE)}}
 
 => END
