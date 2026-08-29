@@ -27,10 +27,7 @@ func _ready() -> void:
 		if reset_confirmed:
 			%ResetButton.text = "SAVE RESET."
 			reset_confirmed = false
-			Game.save_data.config.clear()
-			Game.save_data.save()
-			Game.save_data.load_data()
-			Events.game_reset.emit()
+			SaveManager.reset()
 
 			await get_tree().create_timer(3.0).timeout
 			%ResetButton.text = "RESET"
