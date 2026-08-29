@@ -6,8 +6,10 @@ extends Resource
 signal item_added ( item: StringName )
 signal item_removed ( item: StringName )
 signal item_transferred ( item: StringName )  ## Emitted when an item is moved from one inventory to another.
+signal item_dropped ( item: StringName )  ##
 signal item_equipped ( item: StringName )
 signal item_unequipped ( item: StringName )
+signal item_used ( item: StringName )
 signal item_viewed ( item: StringName )
 #signal changed ()  ## Emitted when an item is used or changes slots.
 #signal weight_changed ( weight: float, overweight: bool )  ## Emitted when the total weight of the inventory changes.
@@ -51,18 +53,24 @@ func has(item: StringName, quantity: int = 1, exact: bool = false) -> bool:
 
 
 ##
-func add(item: StringName, quantity: int, _idx: int = -1):
-	items.set(item, get_item(item) + quantity)
-	item_added.emit(item)
-	#print("item added: %s x%s." % [item, quantity])
+func add(item_id: StringName, quantity: int = 1, _idx: int = -1):
+	#print("add")
+	#print(get_item(item_id))
+	item_id = item_id.replace(" ", "_")  #
+	items.set(item_id, get_item(item_id) + quantity)
+	item_added.emit(item_id)
+	#print("item added: %s x%s." % [item_id, quantity])
 	changed.emit()
 
 
-func remove(item: StringName, quantity: int, _idx: int = -1):
-	items.set(item, get_item(item) - quantity)
-	item_removed.emit(item)
+func remove(item_id: StringName, quantity: int = 1, _idx: int = -1):	
+	item_id = item_id.replace(" ", "_")  #
+	items.set(item_id, get_item(item_id) - quantity)
+	if get_item(item_id) <= 0:  # Unequip items if quantity is 0.
+		unequip(item_id)
+	item_removed.emit(item_id)
 	changed.emit()
-	#print("item removed: %s x%s." % [item, quantity])
+	#print("item removed: %s x%s." % [item_id, quantity])
 
 
 func swap(_idx: int, _idx2: int):
@@ -79,19 +87,26 @@ func swap(_idx: int, _idx2: int):
 
 #func swap_grid(grid_pos: Vector2i, grid_pos_2: Vector2i):
 	#pass
+	
+
+## Alias for trasnfer().
+func pickup(item: StringName,  inventory: InventoryComponent, quantity: int = 1):
+	transfer(item, inventory, quantity)
 
 
-func transfer(item: StringName,  inventory: InventoryComponent, quantity: int = 1,):
+func transfer(item: StringName,  inventory: InventoryComponent, quantity: int = 1):
 	remove(item, quantity)
 	inventory.add(item, quantity)
 	item_transferred.emit(item)
 
 
-func transfer_all(item: StringName,  inventory: InventoryComponent):
+func transfer_all(_item: StringName,  _inventory: InventoryComponent):
 	pass
 
 
-func drop():
+func drop(item: StringName):
+	remove(item)
+	item_dropped.emit(item)
 	pass
 
 
@@ -115,13 +130,17 @@ func equip(item: StringName):
 	changed.emit()
 
 
+#
 func equip_all():
 	for key in slots:
-		#var slot: InventorySlot = slots[key]
-		#var equippable_items = slot.slot_filter.find()
-		#slot.item = equippable_items[0]
-		##item_equipped.emit(item)
-		pass
+		var slot: InventorySlot = slots[key]
+		var equippable_items = slot.slot_filter.find()
+		equippable_items = equippable_items.filter( func(item_id): return has(item_id) )  # Filters for owned items.
+		
+		# TODO - Filter equippable items for highest tier
+		if equippable_items.size() > 0:
+			slot.item = equippable_items.pick_random()
+		#item_equipped.emit(item)
 	changed.emit()
 
 
@@ -142,21 +161,36 @@ func unequip_all():
 	changed.emit()
 
 
-func view(id: StringName):
+func use(item_id: StringName):
+	if has(item_id):
+		match item_id:
+			&"ration":
+				Game.player.apply_stat(CharacterData.Stat.HUNGER, 30)
+				pass
+			&"bandage":
+				Game.player.apply_stat(CharacterData.Stat.HEALTH, 10)
+				pass
+			&"healing_salve":
+				Game.player.apply_stat(CharacterData.Stat.HUNGER, 15)
+				pass
+		remove(item_id)
+	pass
+
+
+func view(item_id: StringName):
 	# NOTE - Fixes spaces in item names.
-	id = id.replace(" ", "_")
-	item_viewed.emit( Registries.ITEMS.load_entry(id) )
+	item_id = item_id.replace(" ", "_")
+	item_viewed.emit( Registries.ITEMS.load_entry(item_id) )
 
 
 
-# If item is equipped, returns true.
-func is_equipped(item: StringName) -> bool:
-	#return if slots.
+# If item is equipped anywhere, returns true.
+# TODO - Check if item is equipped in specified slot
+func is_equipped(item: StringName, slot = "") -> bool:
+	slot.to_lower() #NOTE - this does noething but removes unused param warning.
 	for key in slots.keys():
 		if slots[key].item == item:
 			return true
-		#else:
-			#return false
 	return false
 
 
@@ -178,10 +212,17 @@ func set_slot_config(slot_config: InventorySlotConfig):
 	#slots.assign(slot_config.slots)
 
 
+func set_slot_config_from(slot_config_id: String):
+	var path: String = "res://data/characters/inventory/slot_configs/" + slot_config_id + "tres"
+	if ResourceLoader.exists(path):
+		set_slot_config( ResourceLoader.load(path) )
+
+
 # - - - - GETTERS - - - - #
 
 func get_context_menu_options(item_id: StringName) -> Array:
 	var options: Array = ContextMenuOptions.keys()
+	item_id.replace(" ", "_")
 	var item = Registries.ITEMS.load_entry(item_id)
 	
 	#print(item_id)
@@ -230,9 +271,9 @@ func get_context_menu_options(item_id: StringName) -> Array:
 
 
 ## Returns the quantiy of the item.
-func get_item(item: StringName) -> int:
-	if items.has(item):
-		return items.get(item)
+func get_item(item_id: StringName) -> int:
+	if items.has(item_id):
+		return items.get(item_id)
 	else:
 		return 0
 
