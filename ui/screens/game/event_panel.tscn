@@ -86,7 +86,6 @@ layout_mode = 2
 bbcode_enabled = true
 text = "event content text stuff"
 fit_content = true
-horizontal_alignment = 1
 script = ExtResource("2_l4rf7")
 seconds_per_step = 0.04
 skip_pause_at_abbreviations = PackedStringArray("Mr", "Mrs", "Ms", "Dr", "etc", "eg", "ex")

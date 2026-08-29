@@ -92,45 +92,43 @@ var player := CharacterData.new()
 var inventory := player.inventory
 
 
-var UI: Control
-var GameScreen: Control
-var World: Node2D
+@onready var Main: Node = get_tree().root.get_node("Main")
+@onready var World: Node2D = Main.get_node("World")
+@onready var ui: Control = Main.get_node("UI")
+@onready var GameScreen: Control = ui.get_node("GameScreen")
+
 
 
 func _ready() -> void:
+	World = get_tree().root.get_node("Main/World")
+	
 	Events.game_started.connect( _on_game_start )
 	#Events.game_ended
 	EventManager.event_started.connect( _on_event_started )
 	EventManager.event_ended.connect( _on_event_ended )
 
-	#if get_tree().current_scene.name == "main":
-	UI = get_tree().root.get_node("Main/%UI")
-	World = get_tree().root.get_node("Main/World")
-	GameScreen = UI.get_node("%GameScreen")
 
 
 func _on_game_start():
-	UI.get_node("%MainMenu").hide()
-	UI.get_node("%GameScreen").show()
 	GameScreen.get_node("%TravelProgress").max_value = TICKS_PER_DAY
-	
-	#GameScreen.get_node("%CharacterCard").set_character(player)
-	#GameScreen.get_node("%CharacterCard").update()
 
 	# - - Default Game Start Config - - #
 	party.add_member(player)
 	party.party_defeated.connect( _on_player_party_defeated )
 	SaveManager.load_file()
-	#EventManager.start_event("game/start")
+	EventManager.start_event("game/start")
 	
 	# - - Testing Configs - - #
-	quickstart()
-	#player.apply_stat(CharacterData.Stat.HEALTH, -10)
-	#EventManager.start_event("beggar")
+	#quickstart()
 	#EventManager.start_event("milestones/desert")
+	#EventManager.start_event("animal_attack")
+	#EventManager.start_event("bandits")
 	
-	var soldier = CharGen.generate_character(preload("res://data/characters/generator/soldier.tres"), 0)
-	CombatManager.start( [soldier] )
+	#var soldier = CharGen.generate_character(preload("res://data/characters/generator/soldier.tres"), 0)
+	#CombatManager.start( [soldier] )
+	
+	GameScreen.get_node("%CharacterCard").set_character(player)
+	#GameScreen.get_node("%CharacterCard").update()
 
 
 ## Skips character setup.
@@ -138,10 +136,9 @@ func quickstart():
 	player.inventory.set_slot_config(preload("res://data/characters/inventory/slot_configs/human_config.tres"))
 	player.apply_preset( Registries.PRESETS.load_entry("soldier") )
 	player.name = "Survivor"
-	#player.inventory.equip_all()
-	
-	GameScreen.get_node("%CharacterCard").set_character(player)
+	player.inventory.equip_all()
 	unpause()
+	UI.tween_fade(false)
 
 
 func _physics_process(delta: float) -> void:
@@ -167,10 +164,78 @@ func _physics_process(delta: float) -> void:
 	#print("ay%s, hour:%s, tick:%s, time:%s, total:%s" % [current_day, current_hour, current_tick, current_time, elapsed_time])
 
 
+# Do stuff after an event is started.
+func _on_event_started(event: Event):
+	Events.event_started.emit( event )
+	pause()
+	
+	match event.id:
+		"common/night":
+			for child in ui.get_children():
+				child.modulate = Color.BLACK
+				pass
+			pass
+		#"village":
+			#World.show_village()
+
+
+# Do stuff after an event is resolved.
+func _on_event_ended(event: Event):
+	Events.event_ended.emit( event )
+	unpause()
+
+	match event.id:
+		"common/night":
+			pause()
+			await Game.World.light_to_dark()
+			await get_tree().create_timer(1.0).timeout
+			await Game.World.dark_to_light()
+			Events.day_changed.emit( current_day )
+			EventManager.start_event("common/morning")
+			SaveManager.save_file()
+
+		"common/morning":
+			World.sunrise()
+			
+		#"village":
+			#World.hide_village()
+		"game/start":
+			var tween = get_tree().create_tween().set_parallel()
+			tween.tween_property(self.World, "modulate", Color(1,1,1, 0.9), 2.0)
+			tween.tween_property(self.ui, "modulate", Color(1,1,1, 0.9), 2.0)
+		"game/death", "game/end":
+			pause()
+			var tween = get_tree().create_tween().set_parallel()
+			tween.tween_property(self.World, "modulate", Color(Color.BLACK, 0.9), 3.0)
+			tween.tween_property(self.ui, "modulate", Color(Color.BLACK, 0.9), 3.0)
+			await tween.finished
+			
+			# Automatically reset when game ends
+			SaveManager.reset()
+			
+			tween.tween_property(Game.World, "modulate", Color(1,1,1, 0.9), 2.0)
+			tween.tween_property(Game.ui, "modulate", Color(1,1,1, 0.9), 2.0)
+
+
+
+func _on_player_party_defeated():
+	pass
+
+
+
+func tick_hour():
+	if current_hour == 8:
+		EventManager.start_event("common/midday")
+	if current_hour == 13:
+		World.sunset()
+	if randf() < EVENT_CHANCE:  # 25% chance every hour
+		EventManager.start_event_random()
+
+
 func tick_tick():
 	player.apply_stat( CharacterData.Stat.HUNGER, -0.40 )
 	distance_travled += player.get_movment_speed() / TICKS_PER_DAY
-	# UI updates
+	# ui updates
 	Events.distance_changed.emit( snapped(distance_travled, 0.001) )
 	GameScreen.get_node("%DistanceLabel").text = "%s km" % [ snapped(distance_travled, 0.001) ]
 	GameScreen.get_node("%TravelProgress").value = (current_hour * TICKS_PER_HOUR) + current_tick
@@ -184,15 +249,6 @@ func tick_tick():
 		EventManager.start_event("game/death")
 	if distance_travled >= distance_total:
 		EventManager.start_event("game/end")
-
-
-func tick_hour():
-	if current_hour == 8:
-		EventManager.start_event("common/midday")
-	if current_hour == 13:
-		World.sunset()
-	if randf() < EVENT_CHANCE:  # 25% chance every hour
-		EventManager.start_event_random()
 
 
 func tick_day():
@@ -225,39 +281,6 @@ func skip_day(days: int = 1, rounded: bool = true):
 	#else:
 	current_day += days
 	tick_day()
-
-
-# Do stuff after an event is started.
-func _on_event_started(event: Event):
-	Events.event_started.emit( event )
-	pause()
-	#if event.id == "village":
-		#World.show_village()
-
-
-# Do stuff after an event is resolved.
-func _on_event_ended(event: Event):
-	Events.event_ended.emit( event )
-	unpause()
-
-	if event.id == "common/night":
-		pause()
-		await Game.World.light_to_dark()
-		await get_tree().create_timer(1.0).timeout
-		await Game.World.dark_to_light()
-		Events.day_changed.emit( current_day )
-		EventManager.start_event("common/morning")
-		SaveManager.save_file()
-	if event.id == "common/morning": World.sunrise()
-	#if event.id == "village":
-		#World.hide_village()
-	#if event.id in ["death","final"]:
-		#paused = true
-
-
-
-func _on_player_party_defeated():
-	pass
 
 
 

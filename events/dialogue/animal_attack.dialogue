@@ -15,11 +15,13 @@ Animal Attack
 ~ start
 
 if Regions.is_in(Regions.Grasslands) or Regions.is_in(Regions.Forest)
-	% 
+	%3 
+        set temp["variation"] = "wolf"
 		Walking on through some fields, you notice some dark shapes around you, moving in sync with your pacing.
 			[wait=1][br]A pack of wild wolves have surrounded you!
 			[wait=1][br][br] What will you do?
 	%
+        set temp["variation"] = "bear"
 		Walking on through some fields, you notice a large hulking shape, moving towards you from the distance.
 			[wait=1][br]Its a grizzly bear!
 			[wait=1][br][br] What will you do?
@@ -46,17 +48,27 @@ elif Regions.is_in(Regions.Desert)
 #	%3.5 => fight_success
 
 - Fight
-	You attempt to fight the [[wild|rabid|hostile]] [[animals|creatures|beasts]].
-	% => fight_success
-	% => fight_failure
+	You attempt to fight the [[wild,|rabid|hostile]] [[animals|creatures|beasts]].
 
+    set temp["char"] = CharGen.generate_character_from_id( temp.variation, 0 )
+    do temp.char.name = temp.variation.capitalize()
+    do temp.char.inventory.set_slot_config_from("animal")
+    do temp.char.inventory.equip_all()
+    do EventManager._print(temp.variation)
+    do EventManager._print(temp.char)
+    do CombatManager.start( temp.char )
+
+    _  # Blank dialogue line to trigger code ^
+
+	#% => fight_success
+	#% => fight_failure
 => END
 
 
 ~ fight_success
 
-do Game.player.apply_stat(Character.Stat.HEALTH, -10.0)
-do Game.player.apply_stat(Character.Stat.HUNGER, -5.0)
+do Game.player.apply_stat(CharacterData.Stat.HEALTH, -10.0)
+do Game.player.apply_stat(CharacterData.Stat.HUNGER, -5.0)
 #do Game.inventory.add( Items.FOOD, 2 )
 You sucessfully defeat them albeit not without injury.
 	#[wait=1][br] Food obtained
@@ -66,7 +78,7 @@ You sucessfully defeat them albeit not without injury.
 
 ~ fight_failure
 
-do Game.player.apply_stat(Character.Stat.HUNGER, -5.0)
+do Game.player.apply_stat(CharacterData.Stat.HUNGER, -5.0)
 #do Game.inventory.add( Items.FOOD, 2 )
 You sucessfully defeat them without injury.
 	#[wait=1][br]2x Food obtained

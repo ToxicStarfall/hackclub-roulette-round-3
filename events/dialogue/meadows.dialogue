@@ -23,7 +23,7 @@ As you travel, you [[encounter|find]] a large, [[sprawling|lush]] meadow.
 		You hunt and get [b]{{temp.food_amount}}[/b] food.
 	else
 		set temp.damage = -5 + _randi_range(0, -5)
-		do player.apply_stat(Character.Stat.HEALTH, temp.damage )
+		do player.apply_stat(CharacterData.Stat.HEALTH, temp.damage )
 
 		The hunt fails. You are injured.
 			[color=red]{{temp.damage}}[/color] health.

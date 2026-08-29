@@ -2,6 +2,8 @@
 ~ start
 
 After a long day of traveling, you decide to get some rest.
+do Game.player.apply_stat( Stat.HEALTH, _randi_range(2, 5))
+
 - Sleep
 
 => END

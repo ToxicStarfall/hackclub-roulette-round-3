@@ -24,20 +24,29 @@ What would you like to do?
 
 What would you like to buy?
 
-- Food (2x for 3 gold)
-	if Game.inventory.has(Items.GOLD, 3)
-		do inventory.add( Items.FOOD, 2 )
-		do inventory.remove( Items.GOLD, 3 )
-		2x Food purchased for 3 gold.
+- Ration (1x for 1 gold)
+	if Game.inventory.has(Items.GOLD, 1)
+		do inventory.add( Items.FOOD, 1 )
+		do inventory.remove( Items.GOLD, 1 )
+		1x Food purchased for 1 gold.
 	else
-		You do not have enough gold! You need {{Game.inventory.difference(Items.GOLD, 3)}} more gold.
+		You do not have enough gold! You need {{Game.inventory.difference(Items.GOLD, 1)}} more gold.
 	=> buy
 
-- Medicine (3 gold) 
+- Bandage (2 gold) 
+	if Game.inventory.has(Items.GOLD, 2)
+		do inventory.add( Items.MEDICINE, 1 )
+		do inventory.remove( Items.GOLD, 2 )
+		1x Bandage purchased for 2 gold.
+	else
+		You do not have enough gold! You need {{Game.inventory.difference(Items.GOLD, 2)}} more gold.
+	=> buy
+
+- Healing Salve (3 gold) 
 	if Game.inventory.has(Items.GOLD, 3)
 		do inventory.add( Items.MEDICINE, 1 )
 		do inventory.remove( Items.GOLD, 3 )
-		1x Medicine purchased for 3 gold.
+		1x Healing Salve purchased for 3 gold.
 	else
 		You do not have enough gold! You need {{Game.inventory.difference(Items.GOLD, 3)}} more gold.
 	=> buy
@@ -52,7 +61,7 @@ What would you like to buy?
 
 What would you like to sell?
 
-- Food (1x for 1 gold) 
+- Ration (1x for 1 gold) 
 	if Game.inventory.has(Items.FOOD, 1)
 		do inventory.remove( Items.FOOD, 1 )
 		do inventory.add( Items.GOLD, 1 )
@@ -61,13 +70,13 @@ What would you like to sell?
 		You do not have enough food! You need {{Game.inventory.difference(Items.FOOD, 1)}} more food.
 	=> sell
 
-- Medicine (1x for 2 gold) 
+- Bandage (1x for 1 gold) 
 	if Game.inventory.has(Items.MEDICINE, 1)
 		do inventory.remove( Items.MEDICINE, 1 )
-		do inventory.add( Items.GOLD, 2 )
-		1x Medicine sold for 2 gold.
+		do inventory.add( Items.GOLD, 1 )
+		1x Bandage sold for 1 gold.
 	else
-		You do not have enough medicine! You need {{Game.inventory.difference(Items.MEDICINE, 1)}} more medicine.
+		You do not have enough Bandages! You need {{Game.inventory.difference(Items.MEDICINE, 1)}} more bandages.
 	=> sell
 
 - Return

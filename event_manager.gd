@@ -2,15 +2,16 @@ extends Node
 
 
 @warning_ignore_start("unused_signal")
-signal event_started(event: Event)
-signal event_ended(event: Event)
-signal event_changed(event: Event)
-#signal event_aborted(event: Event)
+signal event_started (event: Event)
+signal event_ended (event: Event)
+signal event_changed (event: Event)
+#signal event_aborted (event: Event)
 
-signal input_requested(prompt: String, save_id: String, default: String)
+signal input_requested (prompt: String, save_id: String, default: String)
 
-signal dialogue_changed(dialogue_line: DialogueLine)
-signal dialogue_progressed()
+signal dialogue_changed (dialogue_line: DialogueLine)
+signal dialogue_progressed ()
+signal dialogue_options_overrided (new_options, jump_id)
 @warning_ignore_restore("unused_signal")
 
 
@@ -25,7 +26,7 @@ const dialogues = [
 	"waters_path"
 ]
 
-var dialogue_globals = [Game, EventManager, Character, Items, Regions]
+var dialogue_globals = [Game, UI, EventManager, CombatManager, CharGen, CharacterData, Items, Regions, Registries]
 
 var event_history: Array = []
 var event_queue: Array = []
@@ -105,6 +106,7 @@ func start_event_random(_group: String = ""):
 	#print(weights)
 
 	var index = RandomNumberGenerator.new().rand_weighted(weights)
+	#print(dialogues.get(index))
 	start_event( dialogues.get(index) )
 	#start_event( dialogues.get(randi_range(0, dialogues.size() - 1)) )
 
@@ -132,10 +134,9 @@ func get_next_dialogue_line(next_dialogue_id: String = ""):
 
 	#print(next_id)
 	var dialogue_line: DialogueLine
-	#dialogue_line = await DialogueManager.get_next_dialogue_line(
 	dialogue_line = await current_dialogue.get_next_dialogue_line(
-			next_id,
-			dialogue_globals
+		next_id,
+		dialogue_globals
 	)
 	#print(dialogue_line)
 
@@ -161,9 +162,19 @@ func event_active() -> bool:
 		return false
 	else: return true
 
+
 #
 func request_input(prompt: String, save_id: String, default: Variant = null):
 	input_requested.emit(prompt, save_id, default)
+
+
+func request_input_popup(popup_scene: PackedScene, options: Array[String], _values: Array = []):
+	#prompt, save_id, default)
+	var popup = popup_scene.instantiate()
+	popup.set_options(options)
+	popup.option_selected.connect( func(option: String): pass )
+	UI.add_popup(popup)
+	pass
 
 
 ## Stores temproary event data (decisions, random values, etc)
@@ -186,14 +197,14 @@ func clear_temp():
 	temp.clear()
 
 
-# - - - Dialogue utility functions - - - #
+# - - - - Dialogue utility functions - - - - #
 
 func chance(part: float, whole: float) -> bool:
 	return part > randf() * whole
 
 
-#func rand_item(items: Array[Items]):
-	#pass
+func rand_item(items: Array[StringName]):
+	return items.pick_random()
 
 # Returns random phrase out of an array of phrases
 func rand_phrase(phrases: Array[String], weights: Array[float] = [], _as_int: bool = false) -> Dictionary:
@@ -206,6 +217,11 @@ func rand_phrase(phrases: Array[String], weights: Array[float] = [], _as_int: bo
 	#if _as_int: return phrases.find( phrases.pick_random() )  # Returns as int
 	#else: return phrases.pick_random()  # Returns as string
 	return result
+
+
+#func get_preset(preset: String):
+	#return Registries.PRESETS.loadEntry
+
 
 
 #func rand_phrase_as_int(phrases: Array[String]) -> int:
