@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://b65ikixpo6ani"]
+
+[ext_resource type="Script" uid="uid://bglcfrwk3miru" path="res://ui/popups/help_popup.gd" id="1_pfi3k"]
+[ext_resource type="Texture2D" uid="uid://dgr60uub4xhi1" path="res://icon.svg" id="2_4stxp"]
+
+[node name="HelpPopup" type="PanelContainer" unique_id=1363407282]
+custom_minimum_size = Vector2(300, 100)
+offset_right = 100.0
+offset_bottom = 60.0
+theme_type_variation = &"PanelBorder"
+script = ExtResource("1_pfi3k")
+metadata/_custom_type_script = "uid://bcxpxxhv1rej3"
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=852517050]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=525025478]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=891234766]
+layout_mode = 2
+
+[node name="PopupLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=814788626]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Help"
+horizontal_alignment = 1
+
+[node name="CloseButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=739757094]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+icon = ExtResource("2_4stxp")
+icon_alignment = 1
+expand_icon = true
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=1721589490]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=659138561]
+layout_mode = 2
+
+[node name="HelpDescription" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=2093025917]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/normal_font_size = 10
+theme_override_font_sizes/bold_font_size = 10
+theme_override_font_sizes/bold_italics_font_size = 10
+theme_override_font_sizes/italics_font_size = 10
+theme_override_font_sizes/mono_font_size = 10
+bbcode_enabled = true
+text = "[i]Click the help button in the top right to open this panel again.
+You can close this panel by clicking the button in the top right of this panel.[/i]
+
+Time can be sped up, slowed down, or stopped by using the time control buttons in the top right. Time of day displayed by the progress bar at the top.
+
+Your character's info can be viewed by pressing their icon in the bottom left of the screen. Their inventory can be viewed with the inventory tab.
+Right-clicking an item will show a context menu with options to interact with your items."
+fit_content = true

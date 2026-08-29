@@ -12,8 +12,9 @@ const Scenes = {
 	#STATUS_TOOLTIP = preload(""),
 	
 	#TEXT_POPUP = preload(""),
-	OPTIONS_POPUP = preload("res://ui/popups/options_popup.tscn")
+	OPTIONS_POPUP = preload("res://ui/popups/options_popup.tscn"),
 	#PLAIN_TEXT_POPUP = preload(""),
+	HELP_POPUP = preload("res://ui/popups/help_popup.tscn"),
 }
 
 

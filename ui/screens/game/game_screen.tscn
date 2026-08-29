@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bk4q4hhrohwl5" path="res://ui/screens/game/event_panel.tscn" id="4_frk5s"]
 [ext_resource type="Script" uid="uid://2p5qrso85kuq" path="res://ui/components/inventory/inventory_panel.gd" id="5_8tits"]
 [ext_resource type="Texture2D" uid="uid://n6nolxfvm0e" path="res://assets/textures/misc/sunrise.svg" id="6_bpjld"]
+[ext_resource type="Script" uid="uid://e2cx6uwgc8mu" path="res://ui/screens/game/help_panel.gd" id="6_ci8ry"]
 [ext_resource type="Texture2D" uid="uid://dyap0jb0nnppc" path="res://assets/textures/misc/sunset.svg" id="7_645sj"]
 [ext_resource type="Script" uid="uid://gb3303l4ahfs" path="res://ui/screens/game/dev_panel.gd" id="8_a36ut"]
 [ext_resource type="PackedScene" uid="uid://bw66udbsfqsuf" path="res://ui/components/character_info.tscn" id="8_r5e40"]
@@ -449,6 +450,25 @@ visible = false
 layout_mode = 2
 text = "Ignore Events"
 
+[node name="HelpPanel" type="PanelContainer" parent="VBoxContainer" unique_id=1497350301]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_yaehf")
+script = ExtResource("6_ci8ry")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HelpPanel" unique_id=1909987836]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HelpButton" type="Button" parent="VBoxContainer/HelpPanel/MarginContainer" unique_id=1317278391]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Help"
+
 [node name="InventoryPanel" type="Panel" parent="." unique_id=1962451190]
 unique_name_in_owner = true
 visible = false
@@ -714,6 +734,7 @@ offset_left = -132.0
 offset_top = -106.0
 grow_horizontal = 0
 grow_vertical = 0
+mouse_filter = 2
 theme_override_constants/margin_left = 32
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 16

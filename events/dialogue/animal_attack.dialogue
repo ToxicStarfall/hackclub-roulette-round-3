@@ -54,8 +54,6 @@ elif Regions.is_in(Regions.Desert)
     do temp.char.name = temp.variation.capitalize()
     do temp.char.inventory.set_slot_config_from("animal")
     do temp.char.inventory.equip_all()
-    do EventManager._print(temp.variation)
-    do EventManager._print(temp.char)
     do CombatManager.start( temp.char )
 
     _  # Blank dialogue line to trigger code ^

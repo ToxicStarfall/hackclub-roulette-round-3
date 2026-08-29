@@ -96,7 +96,7 @@ func _on_dialogue_button_pressed() -> void:
 	elif DialogueOptions.get_child_count() < EventManager.current_dialogue_line.responses.size():
 		%DialogueButton.hide()
 	# Continue dialogue when there are no response options to make.
-	elif EventManager.current_dialogue_line.responses.is_empty():
+	elif EventManager.current_dialogue_line.responses.is_empty() and !awaiting_option:
 		$EventContinuedAudio.play()
 		EventManager.get_next_dialogue_line()
 

@@ -115,7 +115,7 @@ func _on_game_start():
 	# - - Default Game Start Config - - #
 	party.add_member(player)
 	party.party_defeated.connect( _on_player_party_defeated )
-	SaveManager.load_file()
+	#SaveManager.load_file()
 	EventManager.start_event("game/start")
 	
 	# - - Testing Configs - - #
