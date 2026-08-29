@@ -11,7 +11,9 @@ const Scenes = {
 	ITEM_TOOLTIP = preload("res://ui/popups/item_tooltip.tscn"),
 	#STATUS_TOOLTIP = preload(""),
 	
-	OPTIONS_POPUP = preload("res://ui/popups/options_popup.tscn"),
+	#TEXT_POPUP = preload(""),
+	OPTIONS_POPUP = preload("res://ui/popups/options_popup.tscn")
+	#PLAIN_TEXT_POPUP = preload(""),
 }
 
 
@@ -20,12 +22,21 @@ var popups: Array[Control]
 
 
 func _ready() -> void:
+	Events.game_started.connect( _on_game_started )
+	Events.game_ended.connect( _on_game_ended )
 	
 	# Initial screen setup
 	ui.get_node("SplashScreen").hide()
 	ui.get_node("MainMenu").show()
 	ui.get_node("GameScreen").hide()
 	ui.get_node("PauseMenu").hide()
+
+	#tween.tween_property(Game.World, "modulate", Color(Color.BLACK, 0.9), 3.0)
+	#tween.tween_property(Game.UI, "modulate", Color(Color.BLACK, 0.9), 3.0)
+	#await tween.finished
+	#
+	#tween.tween_property(Game.World, "modulate", Color(1,1,1, 0.9), 2.0)
+	#tween.tween_property(Game.UI, "modulate", Color(1,1,1, 0.9), 2.0)
 	
 	
 	var input_mask = Control.new()

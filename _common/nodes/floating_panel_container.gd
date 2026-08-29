@@ -8,7 +8,6 @@ extends PanelContainer
 @export var limit_to_screen_bounds: bool = true
 
 var dragging: bool = false
-#var drag_start: Vector2
 var drag_offset: Vector2
 
 
@@ -16,9 +15,9 @@ func _ready() -> void:
 	pass
 
 
-func _input(event: InputEvent) -> void:
+#func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	# TODO - Fix input not propagating to both CloseButton and drag input.
-	
 	
 	if event is InputEventMouse:
 		if dragging:
@@ -36,9 +35,9 @@ func _input(event: InputEvent) -> void:
 					if event is InputEventMouseButton:
 						if event.pressed:
 							dragging = true
-							#drag_start = get_local_mouse_position()
 							drag_offset = get_local_mouse_position()
 							mouse_default_cursor_shape = Control.CURSOR_DRAG
 						else:
 							dragging = false
 							mouse_default_cursor_shape = Control.CURSOR_ARROW
+						move_to_front()

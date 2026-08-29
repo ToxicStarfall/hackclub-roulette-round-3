@@ -10,10 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://n6nolxfvm0e" path="res://assets/textures/misc/sunrise.svg" id="6_bpjld"]
 [ext_resource type="Texture2D" uid="uid://dyap0jb0nnppc" path="res://assets/textures/misc/sunset.svg" id="7_645sj"]
 [ext_resource type="Script" uid="uid://gb3303l4ahfs" path="res://ui/screens/game/dev_panel.gd" id="8_a36ut"]
-[ext_resource type="PackedScene" uid="uid://bw66udbsfqsuf" path="res://ui/components/character_inventory.tscn" id="8_r5e40"]
+[ext_resource type="PackedScene" uid="uid://bw66udbsfqsuf" path="res://ui/components/character_info.tscn" id="8_r5e40"]
 [ext_resource type="PackedScene" uid="uid://drgx137s48c3o" path="res://ui/components/character_card_enemy.tscn" id="9_frk5s"]
 [ext_resource type="PackedScene" uid="uid://b5lmluhdjyshd" path="res://ui/screens/game/combat_panel.tscn" id="11_ci8ry"]
-[ext_resource type="Script" uid="uid://bcxpxxhv1rej3" path="res://_common/nodes/floating_panel_container.gd" id="13_uubqb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5vw27"]
 bg_color = Color(0.16, 0.155467, 0.152, 1)
@@ -182,8 +181,6 @@ corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 corner_detail = 1
-
-[sub_resource type="Theme" id="Theme_ouac8"]
 
 [node name="GameScreen" type="Control" unique_id=596123094]
 layout_mode = 3
@@ -571,8 +568,11 @@ theme_override_constants/separation = 136
 [node name="CharacterCard" parent="BottomBar/PlayerMargin/PlayerCharacters" unique_id=1818747066 instance=ExtResource("2_a36ut")]
 unique_name_in_owner = true
 layout_mode = 2
+offset_transform_enabled = true
+offset_transform_visual_only = false
 
-[node name="CharacterInventory" parent="BottomBar/PlayerMargin/PlayerCharacters/CharacterCard" unique_id=2046769854 instance=ExtResource("8_r5e40")]
+[node name="CharacterInfo" parent="BottomBar/PlayerMargin/PlayerCharacters/CharacterCard" unique_id=2046769854 instance=ExtResource("8_r5e40")]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 offset_right = 224.0
@@ -751,16 +751,3 @@ theme_override_constants/margin_bottom = 64
 [node name="EventPanel" parent="EventPanelWrapper/MarginContainer" unique_id=1602760636 instance=ExtResource("4_frk5s")]
 unique_name_in_owner = true
 layout_mode = 2
-
-[node name="FloatingPanelContainer" type="PanelContainer" parent="." unique_id=1139052101]
-visible = false
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 0
-offset_left = 416.0
-offset_top = 328.0
-offset_right = 456.0
-offset_bottom = 368.0
-theme = SubResource("Theme_ouac8")
-theme_type_variation = &"PanelBorder"
-script = ExtResource("13_uubqb")
-metadata/_custom_type_script = "uid://bcxpxxhv1rej3"

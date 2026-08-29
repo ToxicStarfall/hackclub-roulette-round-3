@@ -69,6 +69,7 @@ func _on_location_changed(location: Region):
 	%InfoPanel/%LocationLabel.text = "Location: " + location.name.capitalize()
 
 
+
 func _on_action_started(_action: Game.Action):
 	toggle_travel_actions(false)
 

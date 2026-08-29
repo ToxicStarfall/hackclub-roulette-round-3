@@ -19,6 +19,8 @@ gradient = SubResource("Gradient_eo6kg")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ouac8"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ykb2m"]
 bg_color = Color(0.2, 0.1882353, 0.17254902, 1)
 border_width_top = 2
@@ -59,6 +61,7 @@ theme_override_constants/separation = 0
 unique_name_in_owner = true
 custom_minimum_size = Vector2(68, 90)
 layout_mode = 2
+offset_transform_enabled = true
 theme_override_styles/panel = SubResource("StyleBoxFlat_1bvp3")
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/CharacterProfile" unique_id=1958842604]
@@ -104,7 +107,17 @@ theme_override_font_sizes/font_size = 12
 text = "Character"
 horizontal_alignment = 1
 
+[node name="InfoButton" type="Button" parent="HBoxContainer/CharacterProfile" unique_id=1138853672]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ouac8")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ouac8")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ouac8")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_ouac8")
+
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=1196854616]
+show_behind_parent = true
 layout_mode = 2
 theme_override_constants/separation = 0
 alignment = 2

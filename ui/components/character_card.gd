@@ -5,8 +5,14 @@ var character: CharacterData
 
 
 func _ready() -> void:
-	if has_node("CharacterInventory") and character:
-		$CharacterInventory.linked_inventory = character.inventory
+	%InfoButton.pressed.connect( func(): if has_node("CharacterInfo"): $CharacterInfo.show() )
+	#%InfoButton.mouse_entered.connect( func(): mouse_default_cursor_shape = CURSOR_POINTING_HAND )
+	#%InfoButton.mouse_exited.connect( func(): mouse_default_cursor_shape = CURSOR_ARROW )
+	
+	#print(has_node("CharacterInfo"))
+	if has_node("CharacterInfo") and character:
+		$CharacterInfo.linked_character = character
+		$CharacterInfo.linked_inventory = character.inventory
 
 
 func _on_character_stat_changed(_stat):
@@ -17,6 +23,7 @@ func set_character(new_character: CharacterData):
 	character = new_character
 	character.stat_changed.connect( _on_character_stat_changed )
 	%NameLabel.text = character.name
+	_ready()
 	update()
 
 

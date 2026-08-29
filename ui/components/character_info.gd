@@ -1,24 +1,32 @@
 extends PanelContainer
 
 
+var editable: bool = true  ## If true, the player can edit the character.
+
+var linked_character: CharacterData: set = _set_linked_character
 var linked_inventory: InventoryComponent: set = _set_linked_inventory
 
+@onready var health_tree: Tree = %EquipmentTree
 @onready var equipment_tree: Tree = %EquipmentTree
 @onready var inventory_tree: Tree = %InventoryTree
-@onready var root: TreeItem = inventory_tree.create_item()
 
 
 func _setup():
+	health_tree.create_item()
+	health_tree.set_column_expand(0, true)
+	
 	inventory_tree.item_mouse_selected.connect( _on_item_mouse_selected.bind(inventory_tree) )
+	inventory_tree.create_item()
 	inventory_tree.set_column_expand(0, true)
 	inventory_tree.set_column_expand(1, true)
 	inventory_tree.set_column_expand_ratio(0, 8)
 	inventory_tree.set_column_expand_ratio(1, 2)
-	#root.set_text(0, "ROOT")
 	
 	equipment_tree.item_mouse_selected.connect( _on_item_mouse_selected.bind(equipment_tree) )
 	equipment_tree.create_item()
 	equipment_tree.set_column_expand(0, true)
+	
+	%CloseButton.pressed.connect( self.hide )
 
 
 func _ready():
@@ -56,8 +64,10 @@ func _on_item_mouse_selected(mouse_position: Vector2, mouse_button_index: int, t
 		context_menu.set_options( options )
 
 
-func _on_context_menu_option_selected(option: String, item):
-	linked_inventory.call(StringName(option.to_lower()), item)
+func _on_context_menu_option_selected(option: String, item_id):
+	item_id = item_id.replace(" ", "_")  # Replace spaces in item ids
+	linked_inventory.call(StringName(option.to_lower()), item_id)
+	#update()
 
 
 func _on_item_viewed(item: ItemData):
@@ -66,27 +76,45 @@ func _on_item_viewed(item: ItemData):
 	tooltip.z_index = 1
 	tooltip.set_item(item)
 	UI.add_popup(tooltip)
-	pass
+
 
 
 func update():
+	_clear_health()
 	_clear_inventory()
-	_poppulate_inventory()
-	_poppulate_slots()
-	_poppulate_statuses()
+	_populate_health()
+	_populate_inventory()
+	_populate_slots()
+	_populate_statuses()
+
+
+func _clear_health():
+	for tree_item in health_tree.get_root().get_children():
+		tree_item.free()
+	# TODO - Clear statuses
+	pass
 
 
 func _clear_inventory():
-	for tree_item in root.get_children():
-		#root.remove_child(tree_item)
-		tree_item.free()
-		
+	for tree_item in inventory_tree.get_root().get_children():
+		tree_item.free()	
 	for tree_item in equipment_tree.get_root().get_children():
-		#root.remove_child(tree_item)
 		tree_item.free()
 
 
-func _poppulate_inventory():
+func _populate_health():
+	if linked_character:
+		%NameLabel.text = linked_character.name
+		%HungerBar.max_value = linked_character.get("max_hunger")
+		%HealthBar.max_value = linked_character.get("max_health")
+		%HungerBar.value = linked_character.get("hunger")
+		%HealthBar.value = linked_character.get("health")
+		%HungerBar/Label.text = "%s / %s" % [snapped(linked_character.get("hunger"), 0.1), snapped(linked_character.get("max_hunger"), 1)]
+		%HealthBar/Label.text = "%s / %s" % [snapped(linked_character.get("health"), 0.1), snapped(linked_character.get("max_health"), 1),]
+		pass
+
+
+func _populate_inventory():
 	var items = Registries.ITEMS.load_all_blocking()
 	
 	for id in items:
@@ -95,7 +123,7 @@ func _poppulate_inventory():
 			var quantity = linked_inventory.get_item( id )
 			
 			if quantity > 0:
-				var tree_item: TreeItem = inventory_tree.create_item(root)
+				var tree_item: TreeItem = inventory_tree.create_item( inventory_tree.get_root() )
 				tree_item.set_text(0, item.name)
 				tree_item.set_text(1, str(quantity))
 	
@@ -107,7 +135,7 @@ func _poppulate_inventory():
 			#tree_item.set_text(0, item.name)
 
 
-func _poppulate_slots():
+func _populate_slots():
 	#for slot_node in %CharInvSlots.get_children():
 		#%CharInvSlots.remove_child(slot_node)
 		#slot_node.queue_free()
@@ -121,16 +149,22 @@ func _poppulate_slots():
 	for key in linked_inventory.slots:
 		var slot = linked_inventory.slots[key]
 		if slot.item:
-			var tree_item: TreeItem = equipment_tree.create_item(equipment_tree.get_root())
+			var tree_item: TreeItem = equipment_tree.create_item( equipment_tree.get_root() )
 			var item = Registries.ITEMS.load_entry(slot.item)
 			tree_item.set_text(0, item.name)
 
 
-func _poppulate_statuses():
+func _populate_statuses():
 	pass
 
 
 # - - - - SETTERS - - - - #
+
+func _set_linked_character(character: CharacterData):
+	linked_character = character
+	#linked_character.stat_changed.connect( func(): pass )
+	update()
+
 
 func _set_linked_inventory(inventory: InventoryComponent):
 	linked_inventory = inventory

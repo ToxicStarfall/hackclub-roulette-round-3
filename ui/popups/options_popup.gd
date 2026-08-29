@@ -26,7 +26,7 @@ func set_prompt(prompt: String):
 	%Prompt.text = prompt
 
 
-func set_options(options: Array):
+func set_options(options: Array[String]):
 	for option in options:
 		var button = Button.new()
 		button.text = option.capitalize()

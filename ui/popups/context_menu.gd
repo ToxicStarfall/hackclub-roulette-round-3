@@ -21,17 +21,12 @@ func _input(event: InputEvent) -> void:
 			
 
 
-func _on_item_clicked(index: int, at_position: Vector2, mouse_button_index: int):
+func _on_item_clicked(index: int, _at_position: Vector2, mouse_button_index: int):
 	if mouse_button_index == 1:
 		option_selected.emit( %ItemList.get_item_text(index), item )
 	elif mouse_button_index == 2:
 		UI.clear_popups()
-		
-		#var sim_input = InputEventMouseButton.new()
-		#sim_input.button_index = 2
-		#sim_input.position = at_position
-		#sim_input.pressed = true
-		#Input.parse_input_event(sim_input)
+	UI.clear_popups()
 
 
 func set_options(options: Array):

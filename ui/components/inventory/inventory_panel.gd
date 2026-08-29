@@ -10,7 +10,7 @@ func _ready() -> void:
 
 	tree.set_column_expand_ratio(0, 70)
 	tree.set_column_expand_ratio(1, 30)
-	for i in Items.new().keys():
+	for i in Items.keys():
 		var item: TreeItem = tree.create_item(root)
 		item.set_text(0, i)
 		item.set_text(1, str(Game.inventory.get_item( i.to_upper() )))
@@ -18,7 +18,7 @@ func _ready() -> void:
 
 
 func update():
-	for i in Items.new().keys().size():
+	for i in Items.keys().size():
 	#for i in root
 		var child = root.get_child(i)
 		child.set_text(1, str(Game.inventory.get_item( child.get_text(0) )))

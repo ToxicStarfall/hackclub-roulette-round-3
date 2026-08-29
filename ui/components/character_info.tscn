@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://bw66udbsfqsuf"]
 
-[ext_resource type="Script" uid="uid://ltsiqwodt8o0" path="res://ui/components/inventory.gd" id="1_e5wxb"]
-[ext_resource type="Texture2D" uid="uid://dgr60uub4xhi1" path="res://icon.svg" id="1_kpbie"]
-[ext_resource type="PackedScene" uid="uid://boqffdpcykjmp" path="res://ui/components/inventory/inv_slot.tscn" id="2_kpbie"]
-[ext_resource type="PackedScene" uid="uid://cobh8lbclt0kg" path="res://ui/components/status_effect_node.tscn" id="3_1et0t"]
+[ext_resource type="Script" uid="uid://ltsiqwodt8o0" path="res://ui/components/character_info.gd" id="1_3ools"]
+[ext_resource type="Texture2D" uid="uid://dgr60uub4xhi1" path="res://icon.svg" id="2_dwixf"]
+[ext_resource type="PackedScene" uid="uid://cobh8lbclt0kg" path="res://ui/components/status_effect_node.tscn" id="3_lqgvv"]
+[ext_resource type="PackedScene" uid="uid://boqffdpcykjmp" path="res://ui/components/inventory/inv_slot.tscn" id="4_3ue2b"]
 
 [sub_resource type="Theme" id="Theme_ouac8"]
 
@@ -55,13 +55,13 @@ bg_color = Color(0.76, 0.228, 0.228, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ouac8"]
 bg_color = Color(0.078431375, 0.07450981, 0.07058824, 1)
 
-[node name="CharacterInventory" type="PanelContainer" unique_id=2046769854]
-custom_minimum_size = Vector2(100, 90)
+[node name="CharacterInfo" type="PanelContainer" unique_id=2046769854]
+custom_minimum_size = Vector2(100, 140)
 offset_right = 72.0
 offset_bottom = 92.0
 theme = SubResource("Theme_ouac8")
 theme_override_styles/panel = SubResource("StyleBoxFlat_1bvp3")
-script = ExtResource("1_e5wxb")
+script = ExtResource("1_3ools")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1572079984]
 custom_minimum_size = Vector2(64, 0)
@@ -78,6 +78,7 @@ current_tab = 0
 tab_count = 3
 tab_0/title = "Overview"
 tab_1/title = "Health"
+tab_1/disabled = true
 tab_2/title = "Inventory"
 
 [node name="TabContainer" type="TabContainer" parent="VBoxContainer" unique_id=575161602]
@@ -86,12 +87,11 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 8
 theme_override_styles/panel = SubResource("StyleBoxEmpty_ouac8")
-current_tab = 2
+current_tab = 0
 tabs_visible = false
 
 [node name="Overview" type="PanelContainer" parent="VBoxContainer/TabContainer" unique_id=2000197163]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 metadata/_tab_index = 0
@@ -108,6 +108,7 @@ layout_mode = 2
 theme_override_constants/separation = 8
 
 [node name="ProfileBackground" type="TextureRect" parent="VBoxContainer/TabContainer/Overview/MarginContainer/HBoxContainer" unique_id=1971682503]
+visible = false
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_vertical = 0
@@ -127,12 +128,13 @@ offset_top = -56.0
 offset_right = 28.0
 grow_horizontal = 2
 grow_vertical = 0
-texture = ExtResource("1_kpbie")
+texture = ExtResource("2_dwixf")
 expand_mode = 4
 stretch_mode = 4
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/Overview/MarginContainer/HBoxContainer" unique_id=1011943993]
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/separation = 0
 
 [node name="NameLabel" type="Label" parent="VBoxContainer/TabContainer/Overview/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1521511028]
@@ -177,7 +179,7 @@ theme_override_constants/separation = 0
 [node name="HungerIcon" type="TextureRect" parent="VBoxContainer/TabContainer/Overview/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/StatsPanel/VBoxContainer/HungerGroup" unique_id=1091387871]
 unique_name_in_owner = true
 layout_mode = 2
-texture = ExtResource("1_kpbie")
+texture = ExtResource("2_dwixf")
 expand_mode = 2
 stretch_mode = 4
 
@@ -222,7 +224,7 @@ theme_override_constants/separation = 0
 [node name="HealthIcon" type="TextureRect" parent="VBoxContainer/TabContainer/Overview/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/StatsPanel/VBoxContainer/HealthGroup" unique_id=1710849870]
 unique_name_in_owner = true
 layout_mode = 2
-texture = ExtResource("1_kpbie")
+texture = ExtResource("2_dwixf")
 expand_mode = 2
 stretch_mode = 4
 
@@ -289,6 +291,7 @@ theme_override_constants/margin_bottom = 4
 layout_mode = 2
 
 [node name="ProfileBackground" type="TextureRect" parent="VBoxContainer/TabContainer/Health/MarginContainer/HBoxContainer" unique_id=815802252]
+visible = false
 custom_minimum_size = Vector2(64, 128)
 layout_mode = 2
 size_flags_vertical = 0
@@ -308,12 +311,17 @@ offset_right = 28.0
 offset_bottom = 42.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_kpbie")
+texture = ExtResource("2_dwixf")
 expand_mode = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/Health/MarginContainer/HBoxContainer" unique_id=1704737033]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/TabContainer/Health/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1961139122]
+layout_mode = 2
+theme_override_constants/separation = 2
 
 [node name="StatsPanel" type="PanelContainer" parent="VBoxContainer/TabContainer/Health/MarginContainer/HBoxContainer/VBoxContainer" unique_id=4410560]
 custom_minimum_size = Vector2(120, 0)
@@ -334,7 +342,7 @@ theme_override_constants/separation = 0
 
 [node name="HungerIcon" type="TextureRect" parent="VBoxContainer/TabContainer/Health/MarginContainer/HBoxContainer/VBoxContainer/StatsPanel/VBoxContainer/HungerGroup" unique_id=863783409]
 layout_mode = 2
-texture = ExtResource("1_kpbie")
+texture = ExtResource("2_dwixf")
 expand_mode = 2
 stretch_mode = 4
 
@@ -377,7 +385,7 @@ theme_override_constants/separation = 0
 
 [node name="HealthIcon" type="TextureRect" parent="VBoxContainer/TabContainer/Health/MarginContainer/HBoxContainer/VBoxContainer/StatsPanel/VBoxContainer/HealthGroup" unique_id=1232081341]
 layout_mode = 2
-texture = ExtResource("1_kpbie")
+texture = ExtResource("2_dwixf")
 expand_mode = 2
 stretch_mode = 4
 
@@ -414,17 +422,23 @@ layout_mode = 2
 theme_override_constants/separation = 2
 
 [node name="StatusContainer" type="FlowContainer" parent="VBoxContainer/TabContainer/Health/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1383264486]
+layout_mode = 2
+
+[node name="StatusNode" parent="VBoxContainer/TabContainer/Health/MarginContainer/HBoxContainer/VBoxContainer/StatusContainer" unique_id=1273927536 instance=ExtResource("3_lqgvv")]
 visible = false
 layout_mode = 2
 
-[node name="StatusNode" parent="VBoxContainer/TabContainer/Health/MarginContainer/HBoxContainer/VBoxContainer/StatusContainer" unique_id=1273927536 instance=ExtResource("3_1et0t")]
+[node name="HealthTree" type="Tree" parent="VBoxContainer/TabContainer/Health/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1996345514]
+unique_name_in_owner = true
 layout_mode = 2
-
-[node name="Tree" type="Tree" parent="VBoxContainer/TabContainer/Health/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1996345514]
-layout_mode = 2
+columns = 2
+hide_folding = true
+hide_root = true
+auto_tooltip = false
 
 [node name="Inventory" type="PanelContainer" parent="VBoxContainer/TabContainer" unique_id=1349594498]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(220, 0)
 layout_mode = 2
 metadata/_tab_index = 2
@@ -440,6 +454,7 @@ theme_override_constants/margin_bottom = 4
 layout_mode = 2
 
 [node name="ProfileBackground" type="TextureRect" parent="VBoxContainer/TabContainer/Inventory/MarginContainer/HBoxContainer" unique_id=1283351746]
+visible = false
 custom_minimum_size = Vector2(64, 128)
 layout_mode = 2
 size_flags_vertical = 0
@@ -459,7 +474,7 @@ offset_right = 28.0
 offset_bottom = 42.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_kpbie")
+texture = ExtResource("2_dwixf")
 expand_mode = 1
 
 [node name="CharInvSlots" type="FlowContainer" parent="VBoxContainer/TabContainer/Inventory/MarginContainer/HBoxContainer" unique_id=627060375]
@@ -467,18 +482,18 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
-[node name="CharInvSlot" parent="VBoxContainer/TabContainer/Inventory/MarginContainer/HBoxContainer/CharInvSlots" unique_id=433829358 instance=ExtResource("2_kpbie")]
+[node name="CharInvSlot" parent="VBoxContainer/TabContainer/Inventory/MarginContainer/HBoxContainer/CharInvSlots" unique_id=433829358 instance=ExtResource("4_3ue2b")]
 layout_mode = 2
 
-[node name="CharInvSlot2" parent="VBoxContainer/TabContainer/Inventory/MarginContainer/HBoxContainer/CharInvSlots" unique_id=1757267599 instance=ExtResource("2_kpbie")]
+[node name="CharInvSlot2" parent="VBoxContainer/TabContainer/Inventory/MarginContainer/HBoxContainer/CharInvSlots" unique_id=1757267599 instance=ExtResource("4_3ue2b")]
 visible = false
 layout_mode = 2
 
-[node name="CharInvSlot3" parent="VBoxContainer/TabContainer/Inventory/MarginContainer/HBoxContainer/CharInvSlots" unique_id=646516409 instance=ExtResource("2_kpbie")]
+[node name="CharInvSlot3" parent="VBoxContainer/TabContainer/Inventory/MarginContainer/HBoxContainer/CharInvSlots" unique_id=646516409 instance=ExtResource("4_3ue2b")]
 visible = false
 layout_mode = 2
 
-[node name="CharInvSlot4" parent="VBoxContainer/TabContainer/Inventory/MarginContainer/HBoxContainer/CharInvSlots" unique_id=1120785022 instance=ExtResource("2_kpbie")]
+[node name="CharInvSlot4" parent="VBoxContainer/TabContainer/Inventory/MarginContainer/HBoxContainer/CharInvSlots" unique_id=1120785022 instance=ExtResource("4_3ue2b")]
 visible = false
 layout_mode = 2
 
@@ -538,3 +553,24 @@ allow_rmb_select = true
 hide_folding = true
 hide_root = true
 scroll_horizontal_enabled = false
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=309170272]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="CloseButton" type="Button" parent="MarginContainer" unique_id=1037207311]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+mouse_default_cursor_shape = 2
+icon = ExtResource("2_dwixf")
+icon_alignment = 1
+expand_icon = true

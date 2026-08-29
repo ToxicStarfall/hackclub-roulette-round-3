@@ -19,6 +19,8 @@ gradient = SubResource("Gradient_eo6kg")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b1p7h"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ykb2m"]
 bg_color = Color(0.2, 0.1882353, 0.17254902, 1)
 border_width_left = 2
@@ -42,6 +44,7 @@ bg_color = Color(0.76, 0.228, 0.228, 1)
 
 [node name="CharacterCardEnemy" type="Panel" unique_id=1818747066]
 custom_minimum_size = Vector2(68, 90)
+anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -68.0
@@ -102,6 +105,15 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 12
 text = "Enemy"
 horizontal_alignment = 1
+
+[node name="InfoButton" type="Button" parent="HBoxContainer/MarginContainer" unique_id=496180432]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_b1p7h")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_b1p7h")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_b1p7h")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_b1p7h")
 
 [node name="StatsPanel" type="PanelContainer" parent="HBoxContainer" unique_id=319906711]
 custom_minimum_size = Vector2(120, 0)
