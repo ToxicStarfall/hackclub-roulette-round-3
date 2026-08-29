@@ -2,7 +2,7 @@ class_name ItemData
 extends Resource
 
 
-enum Tags { NONE, ONE_HANDED, TWO_HANDED, CURRENCY, MATERIAL, SWORD, AXE, KNIFE, BOW, SHIELD, FOOD, HEALING }
+enum Tags { NONE, ONE_HANDED, TWO_HANDED, CURRENCY, MATERIAL, SWORD, AXE, KNIFE, BOW, SHIELD, FOOD, HEALING, BODY_PART }
 #enum Quality { NORMAL, DAMAGED, WORN, REINFORCED, HIGH_QUALITY, ORNATE }
 #enum WeaponType { GENERIC, SWORD, SPEAR, AXE, KNIFE, BOW, CROSSBOW, SHIELD }
 enum SlotType { NONE, PRIMARY, SECONDARY, TERTIARY, HEAD, BODY, ARMS, LEGS, HANDS, FEET, NECK, BELT, WRIST, ANKLE, BACK }
@@ -24,7 +24,8 @@ enum SlotType { NONE, PRIMARY, SECONDARY, TERTIARY, HEAD, BODY, ARMS, LEGS, HAND
 @export var stack: int = 1  ## Maximum stack size of this item.
 @export_range(0,3) var tier: int = 0  ## 
 @export var tags: Array[Tags]  ## 
-#@export var mods: Array[Tags]  ## 
+#@export var tags2: Array[StringName]
+#@export var tags3: Array[Tag]  ## 
 
 #@export_enum("None", "Primary", "Secondary", "Tertiary", "Head", "Body", "Arms", "Legs", "Hands", "Feet")
 #var slot_type: String = "None"

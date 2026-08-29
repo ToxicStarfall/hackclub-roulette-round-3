@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1_nein4")
+enabled = false
 name = "Amnesiac"
 agility = 0
 charisma = 0

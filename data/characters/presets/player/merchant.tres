@@ -7,6 +7,11 @@ script = ExtResource("1_55rnj")
 name = "Merchant"
 description = "A wealthy merchant.
 (Difficulty - Easy)"
+agility = 1
+dexterity = 1
+endurance = 2
+intelligence = 4
+strength = 2
 items = Array[StringName]([&"gold_coin", &"ration", &"bandage", &"healing salve", &"sword", &"knife"])
 quantities = Array[int]([20, 8, 4, 4, 1, 1])
 metadata/_custom_type_script = "uid://rg4gdar6l5py"

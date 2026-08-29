@@ -6,9 +6,8 @@
 script = ExtResource("1_inj2g")
 damage = 7.0
 primary_attribute = 6
-enabled = false
 name = "Greatsword"
 tier = 2
-tags = Array[int]([2])
+tags = Array[int]([2, 5])
 slot_type = 1
 metadata/_custom_type_script = "uid://qitehljiq5sn"

@@ -6,6 +6,8 @@
 [resource]
 script = ExtResource("1_rh64w")
 name = "Healing Salve"
+description = "Providese some healing.
+Less effective if used while actively traveling."
 weight = 0.2
 value = 2.0
 stack = 5

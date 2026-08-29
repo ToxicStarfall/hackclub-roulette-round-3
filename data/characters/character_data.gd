@@ -120,9 +120,9 @@ func apply_preset(preset: CharacterPreset):
 
 
 func apply_stat(stat_type: Stat, value: float) -> void:
-	var stat = Stat.keys().get(stat_type).to_lower()  # Get stat type from enum keys.
+	var stat: String = Stat.keys().get(stat_type).to_lower()  # Get stat type from enum keys.
 	#var new_value = min(max( get(stat) + value, 0), 100)
-	var new_value = clamp( get(stat) + value, 0, 100 )
+	var new_value = clamp( get(stat) + value, 0, get("max_"+stat) )
 	set(stat, new_value)
 	stat_changed.emit(stat_type)  # Send ui update request after changing
 

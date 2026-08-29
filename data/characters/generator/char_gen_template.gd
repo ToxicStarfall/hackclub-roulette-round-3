@@ -26,6 +26,10 @@ extends Resource
 @export var intelligence: float = 0.0
 @export var strength: float = 0.0
 
+@export_group("Base Stats")
+@export var base_health: int = 30  ##
+#@export var base_charisma: int = 0
+
 @export_group("")
 #@export var items: Array[ItemFilter]
 @export var items: Array[ItemSelector]

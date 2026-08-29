@@ -30,6 +30,13 @@ quantity_min = 1
 quantity_max = 1
 metadata/_custom_type_script = "uid://wswarbf1xkj6"
 
+[sub_resource type="Resource" id="Resource_uubqb"]
+script = ExtResource("1_vlkn6")
+item = &"gold_coin"
+quantity_min = 1
+quantity_max = 5
+metadata/_custom_type_script = "uid://wswarbf1xkj6"
+
 [resource]
 script = ExtResource("1_p4oxj")
 attr_points = 4
@@ -40,5 +47,6 @@ dexterity = 0.5
 endurance = 0.75
 intelligence = 0.25
 strength = 1.0
-items = Array[ExtResource("1_vlkn6")]([SubResource("Resource_vlkn6"), SubResource("Resource_pkw1x"), SubResource("Resource_lxyu0")])
+base_health = 35
+items = Array[ExtResource("1_vlkn6")]([SubResource("Resource_vlkn6"), SubResource("Resource_pkw1x"), SubResource("Resource_lxyu0"), SubResource("Resource_uubqb")])
 metadata/_custom_type_script = "uid://cmcds5tjhv6rc"

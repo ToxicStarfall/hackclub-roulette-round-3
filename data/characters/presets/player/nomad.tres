@@ -4,4 +4,5 @@
 
 [resource]
 script = ExtResource("1_fpxod")
+enabled = false
 metadata/_custom_type_script = "uid://rg4gdar6l5py"

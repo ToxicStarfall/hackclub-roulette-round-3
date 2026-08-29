@@ -29,6 +29,8 @@ func find():
 		#)
 	
 	item_ids = ITEMS.where({
+		&"enabled":
+			func (e): return e == true,
 		&"slot_type": func(slot_type):
 			if required_slot_type:
 				return required_slot_type == slot_type

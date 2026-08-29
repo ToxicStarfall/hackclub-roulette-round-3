@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://6rrgxrwny8em"]
+
+[ext_resource type="Script" uid="uid://qitehljiq5sn" path="res://data/items/_types/weapon_data.gd" id="1_jgclc"]
+
+[resource]
+script = ExtResource("1_jgclc")
+primary_attribute = 1
+enabled = false
+name = "Claws"
+tags = Array[int]([12])
+slot_type = 1
+metadata/_custom_type_script = "uid://qitehljiq5sn"

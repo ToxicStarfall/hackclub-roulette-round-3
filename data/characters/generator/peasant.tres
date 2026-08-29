@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="CharGenTemplate" format=3 uid="uid://cirams7dqpxlx"]
+
+[ext_resource type="Script" uid="uid://wswarbf1xkj6" path="res://data/items/_util/item_selector.gd" id="1_j8pbl"]
+[ext_resource type="Script" uid="uid://cmcds5tjhv6rc" path="res://data/characters/generator/char_gen_template.gd" id="3_vjk7j"]
+
+[sub_resource type="Resource" id="Resource_vlkn6"]
+script = ExtResource("1_j8pbl")
+item = &"fists"
+quantity_min = 1
+quantity_max = 1
+metadata/_custom_type_script = "uid://wswarbf1xkj6"
+
+[sub_resource type="Resource" id="Resource_pkw1x"]
+script = ExtResource("1_j8pbl")
+item = &"ration"
+quantity_max = 1
+metadata/_custom_type_script = "uid://wswarbf1xkj6"
+
+[sub_resource type="Resource" id="Resource_ci8ry"]
+script = ExtResource("1_j8pbl")
+item = &"gold_coin"
+quantity_max = 1
+metadata/_custom_type_script = "uid://wswarbf1xkj6"
+
+[resource]
+script = ExtResource("3_vjk7j")
+attr_points = 3
+agility = 0.5
+charisma = 0.25
+dexterity = 0.5
+endurance = 1.0
+intelligence = 0.25
+strength = 1.0
+base_health = 20
+items = Array[ExtResource("1_j8pbl")]([SubResource("Resource_vlkn6"), SubResource("Resource_pkw1x"), SubResource("Resource_ci8ry")])
+metadata/_custom_type_script = "uid://cmcds5tjhv6rc"

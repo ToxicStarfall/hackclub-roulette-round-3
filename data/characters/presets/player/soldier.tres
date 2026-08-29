@@ -7,6 +7,10 @@ script = ExtResource("1_qbade")
 name = "Soldier"
 description = "A common foot-soldier of the late king's army.
 (Difficulty - Easy/Normal)"
+agility = 2
+charisma = 2
+endurance = 4
+intelligence = 2
 items = Array[StringName]([&"gold_coin", &"ration", &"bandage", &"healing salve", &"sword", &"gambeson"])
-quantities = Array[int]([10, 5, 3, 2, 1, 1])
+quantities = Array[int]([12, 5, 3, 2, 1, 1])
 metadata/_custom_type_script = "uid://rg4gdar6l5py"

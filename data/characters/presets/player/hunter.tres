@@ -4,7 +4,9 @@
 
 [resource]
 script = ExtResource("1_aug1m")
-enabled = false
 name = "Hunter"
 description = "(Difficulty - Normal)"
+strength = 2
+items = Array[StringName]([&"gold_coin", &"ration", &"bandage", &"healing_salve", &"axe"])
+quantities = Array[int]([14, 4, 2, 1, 1])
 metadata/_custom_type_script = "uid://rg4gdar6l5py"

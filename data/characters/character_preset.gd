@@ -24,3 +24,25 @@ extends Resource
 @export_custom(Registry.PROPERTY_HINT_CUSTOM, "res://data/registries/items.tres,true,true") var items: Array[StringName]
 @export var quantities: Array[int]
 #@export_range(0, 100) var quantities: Array[int]
+
+
+func get_print():
+	var text = "
+		Attributes:
+		- Agility: %s
+		- Charisma: %s
+		- Dexterity: %s
+		- Endurance: %s
+		- Intelligence: %s
+		- Strength: %s
+		Items: \n
+		" % [
+			agility,
+			charisma,
+			dexterity,
+			endurance,
+			intelligence,
+			strength ]
+	for i in items.size():
+		text += "\t- %s: x%s\n" % [items[i].capitalize(), quantities[i]]
+	return text

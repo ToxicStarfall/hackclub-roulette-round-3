@@ -6,7 +6,8 @@
 [resource]
 script = ExtResource("1_3ykpc")
 name = "Ration"
-description = "A simple preserved meal intended for travelers."
+description = "A simple preserved meal intended for travelers.
+Less effective if used while actively traveling."
 weight = 0.5
 stack = 5
 metadata/_custom_type_script = "uid://bpy56hlcsoeha"

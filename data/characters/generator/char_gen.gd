@@ -7,6 +7,15 @@ class_name CharGen
 @export var sample_tier: int = 0
 @export_tool_button("Sample") var sample_button = _sample
 
+const char_gen_template_path = "res://data/characters/generator/"
+
+
+##
+static func generate_character_from_id(id: String, char_tier: int):
+	if ResourceLoader.exists(char_gen_template_path + id + ".tres"):
+		return generate_character( ResourceLoader.load(char_gen_template_path + id + ".tres"), char_tier )
+	else:
+		return null
 
 
 ## Generate semi-randomized character based on a preset.
@@ -27,7 +36,11 @@ static func generate_character(from: CharGenTemplate, char_tier: int) -> Charact
 		var sample = rng.rand_weighted( template.get_attr_weights() )
 		var attribute = attr_list[sample]
 		character.set(attribute, character.get(attribute) + 1)
-		
+	
+	# Set base sttas
+	character.max_health = template.base_health
+	character.health = template.base_health
+	
 	# Fill items
 	for item_selector in template.items:
 		if item_selector and item_selector.is_valid():
