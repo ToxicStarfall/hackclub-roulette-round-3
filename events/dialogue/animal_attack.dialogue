@@ -17,69 +17,81 @@ Animal Attack
 if Regions.is_in(Regions.Grasslands) or Regions.is_in(Regions.Forest)
 	%3 
         set temp["variation"] = "wolf"
-		Walking on through some fields, you notice some dark shapes around you, moving in sync with your pacing.
+		Walking on through some fields, you notice some dark shapes around you, [[moving in sync with your pacing|trailing behind you]].
 			[wait=1][br]A pack of wild wolves have surrounded you!
 			[wait=1][br][br] What will you do?
 	%
         set temp["variation"] = "bear"
-		Walking on through some fields, you notice a large hulking shape, moving towards you from the distance.
+		Walking on through some fields, you notice a large hulking shape, [[moving|shambling]] towards you from the distance.
 			[wait=1][br]Its a grizzly bear!
 			[wait=1][br][br] What will you do?
 elif Regions.is_in(Regions.Desert)
-	Walking on through some fields, you notice some light shapes around you, moving in sync with your pacing.
+    set temp["variation"] = "hyena"
+	Walking on through some fields, you notice some light shapes around you, [[moving in sync with your pacing|trailing behind you]].
 		[wait=1][br]A pack of wild hyenas have surrounded you!
 		[wait=1][br][br] What will you do?
 
 
 - Run away
 	You attempt to run away from the [[wild|rabid|hostile]] [[animals|creatures|beasts]].
+    # TODO - Add attribute comparator to check for escape chance.
 	%
 		You escape from the hungry [[animals|creatures|beasts]].
 	%
 		They catch up to you and attack you.
-		% => fight_failure
-		% => fight_success
+		% => Fight
 
-#- Lure away with food - sacrifice 1 ration.
-#	%2 => fight_failure
-#	%1 => fight_success
+- Lure away with food - sacrifice 1 ration.
+	%1.5 => Fight
+	%1 => Lure_Away
 #- Lure away with food - sacrifice 2 rations.
-#	%1 => fight_failure
-#	%3.5 => fight_success
+#	%1 => Fight
+#	%4 => Lure_Away
 
 - Fight
 	You attempt to fight the [[wild,|rabid|hostile]] [[animals|creatures|beasts]].
+    => Fight
 
-    set temp["char"] = CharGen.generate_character_from_id( temp.variation, 0 )
-    do temp.char.name = temp.variation.capitalize()
-    do temp.char.inventory.set_slot_config_from("animal")
-    do temp.char.inventory.equip_all()
-    do CombatManager.start( temp.char )
+#    set temp["char"] = CharGen.generate_character_from_id( temp.variation, 0 )
+#    do temp.char.name = temp.variation.capitalize()
+#    do temp.char.inventory.set_slot_config_from("animal")
+#    do temp.char.inventory.equip_all()
+#    do CombatManager.start( temp.char )
 
-    _  # Blank dialogue line to trigger code ^
+#    _  # Blank dialogue line to trigger code ^
 
 	#% => fight_success
 	#% => fight_failure
 => END
 
 
-~ fight_success
+~ Fight
+set temp["char"] = CharGen.generate_character_from_id( temp.variation, 0 )
+do temp.char.name = temp.variation.capitalize()
+do temp.char.inventory.set_slot_config_from("animal")
+do temp.char.inventory.equip_all()
+do CombatManager.start( temp.char )
+_  # Blank dialogue line to trigger code ^
+=> END
 
+
+~ fight_success
 do Game.player.apply_stat(CharacterData.Stat.HEALTH, -10.0)
 do Game.player.apply_stat(CharacterData.Stat.HUNGER, -5.0)
 #do Game.inventory.add( Items.FOOD, 2 )
 You sucessfully defeat them albeit not without injury.
 	#[wait=1][br] Food obtained
-
 => END
 
 
 ~ fight_failure
-
 do Game.player.apply_stat(CharacterData.Stat.HUNGER, -5.0)
 #do Game.inventory.add( Items.FOOD, 2 )
 You sucessfully defeat them without injury.
 	#[wait=1][br]2x Food obtained
-
 => END
 
+
+~ Lure_Away
+You successfully lure away the hungry [[animals|creatures|beasts]] with food.
+=> END

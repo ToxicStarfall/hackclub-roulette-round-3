@@ -64,37 +64,38 @@ else
 
 ~ food
 
-- Give 2 Food
-	if Game.inventory.has(Items.FOOD, 2)
-		do Game.inventory.remove(Items.FOOD, 2)
-		%
-			You give the beggar some food, and he thanks you, with much gratitude and happiness, bidding you farewell.
+#- Give 2 Food
+#	if Game.inventory.has(Items.FOOD, 2)
+#		do Game.inventory.remove(Items.FOOD, 2)
+#		%
+#			You give the beggar some food, and he thanks you, with much gratitude and happiness, bidding you farewell.
 		#%
 		#	He reveals himself as a [[wealthy|rich]] [[prince|aristocrat|merchant]], and in payment for your generosity pays you back thrice in return!
 		#	do Game.inventory.add(Items.FOOD, 9)
-	else
-		You do not have enough food.
-		=> food
+#	else
+#		You do not have enough food.
+#		=> food
 
 - Give 1 Food
 	if Game.inventory.has(Items.FOOD, 1)
 		do Game.inventory.remove(Items.FOOD, 1)
 		%
 			You give the beggar some food, and he thanks you, with much gratitude and happiness, bidding you farewell.
-		#%
-		#	He reveals himself as a [[rich]] [[aristocrat|merchant]], and in payment for your generosity pays you back twice in return!
-		#	do Game.inventory.add(Items.GOLD, 3)
+		%3
+			He reveals himself as a [[rich]] [[aristocrat|merchant]], and in payment for your generosity pays you back twice in return!
+			do Game.inventory.add(Items.GOLD, 3)
 	else
 		You do not have enough food.
 		=> food
 
 - Ignore
-	%2 The beggar becomes saddened, the hope bleeding away from his face, and he walks quietly away into the distance.
+	%3 The beggar becomes saddened, the hope bleeding away from his face, and he walks quietly away into the distance.
 	%
 		The beggar suddenly becomes enraged!
-		#%
 		He starts beating you, however you manage to repel him, but not in time to avoid some bruises.
 		do Game.player.apply_stat(Stat.HEALTH, -5)
 		#% He starts to grab at your belongings and runs off.
 
 => END
+
+

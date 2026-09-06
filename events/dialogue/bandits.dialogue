@@ -8,8 +8,12 @@ Bandits
 
 ~ start
 
-As you walk through a particularly overgrown patch of brush, several armed men emerge from the undergrowth, surrounding you.
-	[br][br][wait=1] You have been ambushed by bandits!
+if Regions.is_in(Regions.Forest) or Regions.is_in(Regions.Grasslands)
+    As you walk through a particularly [[overgrown|lush]] path, several armed men emerge from the undergrowth, surrounding you.
+        [br][br][wait=1] You have been ambushed by bandits!
+elif Regions.is_in(Regions.Desert)
+    As you walk through a [[small|narrow]] rock [[passage|valley]], several armed men emerge from the surrounding [[rubble|rock face]], surrounding you.
+        [br][br][wait=1] You have been ambushed by bandits!
 
 - Fight
 	You fight the bandits.
