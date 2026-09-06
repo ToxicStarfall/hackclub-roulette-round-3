@@ -69,11 +69,12 @@ func tween_fade(enabled: bool = true):
 	var tween = get_tree().create_tween().set_parallel()
 	tween.tween_property(Game.World, "modulate", Color(Color.BLACK, 0.9), 2.0)
 	tween.tween_property(ui, "modulate", Color(Color.BLACK, 0.9), 2.0)
-	#tween.set_parallel(false)
-	await tween.finished
+	tween.set_parallel(false)
+	#await tween.finished
 	#tween.set_parallel()
-	tween = get_tree().create_tween()
+	#tween = get_tree().create_tween()
 	if enabled:
+		await tween.finished
 		ui.get_node("%MainMenu").hide()
 		ui.get_node("%GameScreen").show()
 		ui.get_node("%GameScreen/EventPanelWrapper").top_level = true
