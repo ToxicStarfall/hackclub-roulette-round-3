@@ -87,12 +87,7 @@ func _on_option_selected(option: int):
 			if !equipped_item_id: equipped_item_id = "fists"
 			
 			var attack_item = Game.player.get_item_comp(equipped_item_id)
-			
 			var attack_damage = attack_item.damage
-			#if attack_item:
-				##attack_damage = Registries.ITEMS.load_entry(attack_item).damage
-				#print(attack_item.damage)
-				#attack_damage = attack_item.damage
 				
 			for enemy in CombatManager.enemy_party.get_members():
 				enemy.apply_stat(CharacterData.Stat.HEALTH, -attack_damage)

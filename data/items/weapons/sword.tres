@@ -7,6 +7,7 @@ script = ExtResource("1_mn025")
 damage = 5.0
 primary_attribute = 3
 name = "Sword"
+description = "A standard sword. Requires some dexterity to use effectively."
 weight = 1.5
 value = 8.0
 tier = 1.0

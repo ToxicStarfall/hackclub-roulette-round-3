@@ -7,6 +7,7 @@ script = ExtResource("1_p7y2s")
 damage = 3.0
 primary_attribute = 1
 name = "Knife"
+description = "A small knife. Good for fast and agile attacks."
 weight = 0.25
 value = 3.0
 tags = Array[int]([1, 7])

@@ -47,43 +47,44 @@ func _ready() -> void:
 
 
 func start_event(event_id: String = ""):
-	# If an event is currently active, add to queue
-	if current_event:
-		event_queue.append(event_id)
-		return
-
-	#print("Event Started: %s" % [event.title])
-	var event_path = "res://events/dialogue/" + event_id + ".tres"
-	var dialogue_path = "res://events/dialogue/" + event_id + ".dialogue"
-	var event: Event
-	var dialogue: DialogueResource
-
-	if ResourceLoader.exists(event_path):  event = load(event_path)
-	else:  # Create a temproary event
-		push_warning("Missing event resource: %s.tres. Creating temproary event." % [event_id])
-		event = Event.new()
-	if ResourceLoader.exists(dialogue_path):  dialogue = load(dialogue_path)
-	else:
-		push_error("Cannot find an event dialogue of id: %s. Event cancled." % [event_id])
-		return
-
-	if !event:
-		if dialogue:
-			push_warning("[game] Dialogue exists. Creating temproary event.")
-			var title = await dialogue.get_next_dialogue_line("title")
-			if title: event.title = title.text  # Use the declared title within the dialogue.
-			else: event.title = event_id.capitalize()  # Fallback to event id.
-		# Cancel event if not available
-		else:
-			push_warning("No fallback dialogue. Cancelling event.")
+	if Game.events:
+		# If an event is currently active, add to queue
+		if current_event:
+			event_queue.append(event_id)
 			return
 
-	current_event = event
-	current_event.id = event_id
-	current_dialogue = dialogue
-	get_next_dialogue_line("start")  # Retrieves the first dialogue line
+		#print("Event Started: %s" % [event.title])
+		var event_path = "res://events/dialogue/" + event_id + ".tres"
+		var dialogue_path = "res://events/dialogue/" + event_id + ".dialogue"
+		var event: Event
+		var dialogue: DialogueResource
 
-	event_started.emit(current_event)
+		if ResourceLoader.exists(event_path):  event = load(event_path)
+		else:  # Create a temproary event
+			push_warning("Missing event resource: %s.tres. Creating temproary event." % [event_id])
+			event = Event.new()
+		if ResourceLoader.exists(dialogue_path):  dialogue = load(dialogue_path)
+		else:
+			push_error("Cannot find an event dialogue of id: %s. Event cancled." % [event_id])
+			return
+
+		if !event:
+			if dialogue:
+				push_warning("[game] Dialogue exists. Creating temproary event.")
+				var title = await dialogue.get_next_dialogue_line("title")
+				if title: event.title = title.text  # Use the declared title within the dialogue.
+				else: event.title = event_id.capitalize()  # Fallback to event id.
+			# Cancel event if not available
+			else:
+				push_warning("No fallback dialogue. Cancelling event.")
+				return
+
+		current_event = event
+		current_event.id = event_id
+		current_dialogue = dialogue
+		get_next_dialogue_line("start")  # Retrieves the first dialogue line
+
+		event_started.emit(current_event)
 
 
 func start_event_random(_group: String = ""):
@@ -168,6 +169,7 @@ func request_input(prompt: String, save_id: String, default: Variant = null):
 	input_requested.emit(prompt, save_id, default)
 
 
+# TODO
 func request_input_popup(popup_scene: PackedScene, options: Array[String], _values: Array = []):
 	#prompt, save_id, default)
 	var popup = popup_scene.instantiate()

@@ -7,6 +7,7 @@ script = ExtResource("1_bhlvg")
 damage = 6.0
 primary_attribute = 6
 name = "Axe"
+description = "An axe. Requires some strength to use effectively."
 weight = 2.0
 value = 6.0
 tier = 1.0

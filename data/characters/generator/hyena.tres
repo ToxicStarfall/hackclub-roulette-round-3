@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="CharGenTemplate" format=3 uid="uid://d3dkhuppbq81o"]
+
+[ext_resource type="Script" uid="uid://wswarbf1xkj6" path="res://data/items/_util/item_selector.gd" id="1_ki5ix"]
+[ext_resource type="Script" uid="uid://cmcds5tjhv6rc" path="res://data/characters/generator/char_gen_template.gd" id="2_1nt22"]
+
+[sub_resource type="Resource" id="Resource_vlkn6"]
+script = ExtResource("1_ki5ix")
+item = &"mouth"
+quantity_min = 1
+quantity_max = 1
+metadata/_custom_type_script = "uid://wswarbf1xkj6"
+
+[sub_resource type="Resource" id="Resource_pkw1x"]
+script = ExtResource("1_ki5ix")
+item = &"ration"
+quantity_max = 2
+metadata/_custom_type_script = "uid://wswarbf1xkj6"
+
+[resource]
+script = ExtResource("2_1nt22")
+attr_points = 2
+base_agility = 1
+agility = 1.0
+dexterity = 0.5
+endurance = 0.75
+strength = 0.75
+base_health = 15
+items = Array[ExtResource("1_ki5ix")]([SubResource("Resource_vlkn6"), SubResource("Resource_pkw1x")])
+metadata/_custom_type_script = "uid://cmcds5tjhv6rc"

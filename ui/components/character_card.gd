@@ -6,10 +6,7 @@ var character: CharacterData
 
 func _ready() -> void:
 	%InfoButton.pressed.connect( func(): if has_node("CharacterInfo"): $CharacterInfo.show() )
-	#%InfoButton.mouse_entered.connect( func(): mouse_default_cursor_shape = CURSOR_POINTING_HAND )
-	#%InfoButton.mouse_exited.connect( func(): mouse_default_cursor_shape = CURSOR_ARROW )
 	
-	#print(has_node("CharacterInfo"))
 	if has_node("CharacterInfo") and character:
 		$CharacterInfo.linked_character = character
 		$CharacterInfo.linked_inventory = character.inventory
@@ -30,8 +27,13 @@ func set_character(new_character: CharacterData):
 func update():
 	%HungerBar.max_value = character.get("max_hunger")
 	%HealthBar.max_value = character.get("max_health")
-	%HungerBar.value = character.get("hunger")
-	%HealthBar.value = character.get("health")
+	if is_inside_tree():
+		var t = get_tree().create_tween().set_parallel().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+		t.tween_property(%HungerBar, "value", character.get("hunger"), 0.75)
+		t.tween_property(%HealthBar, "value", character.get("health"), 0.75)
+	else:
+		%HungerBar.value = character.get("hunger")
+		%HealthBar.value = character.get("health")
 	%HungerBar/Label.text = "%s / %s" % [snapped(character.get("hunger"), 0.1), snapped(character.get("max_hunger"), 1)]
 	%HealthBar/Label.text = "%s / %s" % [snapped(character.get("health"), 0.1), snapped(character.get("max_health"), 1),]
 	

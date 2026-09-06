@@ -8,9 +8,15 @@ Guards
 
 ~ start
 
-Walking along a small, overgrown path, you come across some armed soldiers.
+if Regions.is_in(Regions.Grasslands) or Regions.is_in(Regions.Forest)
+    Walking along a small, overgrown path, you come across some armed soldiers.
 
-They stop you, saying that you must pay a tax to travel on this "road".
+    They stop you, saying that you must pay a tax to travel on this "road".
+elif Regions.is_in(Regions.Desert)
+    Walking along a rocky path, you come across some armed soldiers.
+
+    They stop you, saying that you must pay a tax to travel on this "road".
+
 
 #set EventManager.temp["bargain"] = false
 #set EventManager.temp["price"] = 2
@@ -33,7 +39,7 @@ They stop you, saying that you must pay a tax to travel on this "road".
 #	%.40 
 #	%.40
 
-- Fight them #(40% success)
+- Fight them
     You decide to fight the soldiers
     => fight
 	#%.40
@@ -50,7 +56,7 @@ They stop you, saying that you must pay a tax to travel on this "road".
 	#	do Game.player.apply_stat(Stat.HEALTH, -15)
 
 - Find a different path
-	Ignoring their demands, you veer off the path into the brush and away from the soldiers.
+	Ignoring their demands, you veer off the path into the brush and rock and away from the soldiers.
 
 => END
 

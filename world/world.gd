@@ -12,8 +12,15 @@ func _ready() -> void:
 	pass
 
 
-#func _process(delta: float) -> void:
-	#pass
+func _process(_delta: float) -> void:
+	# TODO - improve semi randomized parallax textures
+	if %Front.scroll_offset.x > %Front.repeat_size.x - 10:
+		var region_name = Game.current_location.name.to_lower()
+		var sprite_options = ResourceLoader.list_directory("res://world/background/environment/%s/front" % [region_name])
+		if !sprite_options.is_empty():
+			var sprite: Texture2D = ResourceLoader.load("res://world/background/environment/%s/front/%s" % [region_name,Array(sprite_options).pick_random()])
+			%Front/Sprite2D.texture = sprite
+	pass
 
 
 func _on_location_changed(location: Region):
@@ -29,6 +36,7 @@ func apply_region_background(region_name: String):
 		if region_files.size() > parallax_2d.get_index():
 			var texture = ResourceLoader.load(region_dir + "/" + region_files.get( parallax_2d.get_index() ))
 			parallax_2d.get_node("Sprite2D").texture = texture
+	%Front/Sprite2D.texture = null
 
 
 func activate_parallax():
@@ -37,6 +45,7 @@ func activate_parallax():
 	%Foreground.autoscroll.x = -40.0  # -50.0
 	%Event.autoscroll.x = -100.0  # -100.0
 	%Front.autoscroll.x = -80.0  # -100.0
+	
 	if sun_tween: if sun_tween.is_valid(): sun_tween.play()
 
 
@@ -68,7 +77,8 @@ func light_to_dark():
 
 func dark_to_light():
 	var tween = get_tree().create_tween()
-	tween.tween_property(%Parallax, "modulate", Color(0.5, 0.333, 0.25, 1.0), 2)
+	#tween.tween_property(%Parallax, "modulate", Color(0.5, 0.333, 0.25, 1.0), 2)
+	tween.tween_property(%Parallax, "modulate", Color(1.0, 1.0, 1.0, 1.0), 2)
 	await tween.finished
 
 

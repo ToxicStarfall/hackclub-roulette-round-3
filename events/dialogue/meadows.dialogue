@@ -10,7 +10,7 @@ The Meadows
 
 set temp.hunt = 60
 set temp.forage = 1
-do temp.hunt = (temp.hunt * player.get_efficiency()) / 100
+do temp.hunt = (temp.hunt * player.get_efficiency(CharacterData.Efficiency.ACTION)) / 100
 
 As you travel, you [[encounter|find]] a large, [[sprawling|lush]] meadow.
 	[br]There is a herd of [b]cows[/b] [[roaming|feeding on]] the [[fields|land]].

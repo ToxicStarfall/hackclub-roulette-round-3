@@ -7,6 +7,8 @@ script = ExtResource("1_inj2g")
 damage = 7.0
 primary_attribute = 6
 name = "Greatsword"
+description = "A greatsword. Primarily used in combat.
+Requires some strength to use effectively."
 tier = 2
 tags = Array[int]([2, 5])
 slot_type = 1

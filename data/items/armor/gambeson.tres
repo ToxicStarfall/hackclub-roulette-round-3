@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_aplif")
 name = "Gambeson"
+description = "A padded leather jacket. Great as light protection against weaponry."
 weight = 2.5
 value = 5.0
 tier = 1

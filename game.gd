@@ -64,6 +64,7 @@ const TICKS_PER_DAY = HOURS_PER_DAY * TICKS_PER_HOUR  # (160 ticks/seconds)
 
 # Game time
 var paused: bool = true
+var events: bool = true
 var game_speed := 1.0
 
 var current_day: int = 0
@@ -122,13 +123,14 @@ func _on_game_start():
 	#quickstart()
 	#EventManager.start_event("milestones/desert")
 	#EventManager.start_event("animal_attack")
-	#EventManager.start_event("bandits")
 	
 	#var soldier = CharGen.generate_character(preload("res://data/characters/generator/soldier.tres"), 0)
 	#CombatManager.start( [soldier] )
 	
 	GameScreen.get_node("%CharacterCard").set_character(player)
 	#GameScreen.get_node("%CharacterCard").update()
+
+
 
 
 ## Skips character setup.
@@ -170,10 +172,11 @@ func _on_event_started(event: Event):
 	pause()
 	
 	match event.id:
+		"milestones/desert":
+			pause()
+			#await UI.tween_fade()
+			Game.World.light_to_dark()
 		"common/night":
-			for child in ui.get_children():
-				child.modulate = Color.BLACK
-				pass
 			pass
 		#"village":
 			#World.show_village()
@@ -185,6 +188,11 @@ func _on_event_ended(event: Event):
 	unpause()
 
 	match event.id:
+		"milestones/desert":
+			#await UI.tween_fade(false)
+			Game.World.dark_to_light()
+			unpause()
+			pass
 		"common/night":
 			pause()
 			await Game.World.light_to_dark()
@@ -193,10 +201,9 @@ func _on_event_ended(event: Event):
 			Events.day_changed.emit( current_day )
 			EventManager.start_event("common/morning")
 			SaveManager.save_file()
-
 		"common/morning":
 			World.sunrise()
-			
+		
 		#"village":
 			#World.hide_village()
 		"game/start":
