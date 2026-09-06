@@ -7,6 +7,7 @@ script = ExtResource("1_jgbt4")
 damage = 4.0
 primary_attribute = 3
 name = "Short Sword"
+description = "A standard short sword. Requires some dexterity to use effectively."
 tags = Array[int]([1, 5])
 slot_type = 1
 metadata/_custom_type_script = "uid://qitehljiq5sn"

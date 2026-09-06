@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1_s6ati")
+enabled = false
 name = "Buckler"
 weight = 2.0
 value = 5.0
