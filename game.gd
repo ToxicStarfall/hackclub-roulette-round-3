@@ -55,12 +55,12 @@ const GameSpeed = {
 	#FASTEST = 4.0
 }
 
-const EVENT_CHANCE = 0.25  # chance that a event occurs.
+const EVENT_CHANCE = 0.20  ## Chance that a event occurs every hour. 15% chance
 
-const SECONDS_PER_TICK = 1  # 1 second per tick
-const TICKS_PER_HOUR = 10  # 10 ticks per hour
-const HOURS_PER_DAY = 16  # 16 hours per day
-const TICKS_PER_DAY = HOURS_PER_DAY * TICKS_PER_HOUR  # (160 ticks/seconds)
+const SECONDS_PER_TICK = 1  ## 1 second per tick
+const TICKS_PER_HOUR = 10  ## 10 ticks per hour
+const HOURS_PER_DAY = 16  ## 16 hours per day
+const TICKS_PER_DAY = HOURS_PER_DAY * TICKS_PER_HOUR  ## (160 ticks/day)
 
 # Game time
 var paused: bool = true
@@ -122,14 +122,11 @@ func _on_game_start():
 	# - - Testing Configs - - #
 	#quickstart()
 	#EventManager.start_event("milestones/desert")
-	#EventManager.start_event("animal_attack")
 	
 	#var soldier = CharGen.generate_character(preload("res://data/characters/generator/soldier.tres"), 0)
-	#CombatManager.start( [soldier] )
+	#CombatManager.start( soldier )
 	
 	GameScreen.get_node("%CharacterCard").set_character(player)
-	#GameScreen.get_node("%CharacterCard").update()
-
 
 
 
@@ -235,7 +232,7 @@ func tick_hour():
 		EventManager.start_event("common/midday")
 	if current_hour == 13:
 		World.sunset()
-	if randf() < EVENT_CHANCE:  # 25% chance every hour
+	if randf() < EVENT_CHANCE:
 		EventManager.start_event_random()
 
 

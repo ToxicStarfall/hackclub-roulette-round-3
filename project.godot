@@ -24,7 +24,7 @@ resources_spreadsheet_view/freeze_first_column=true
 [application]
 
 config/name="A Survivor's JOURNEY"
-config/version="0.3.0"
+config/version="0.4.0"
 run/main_scene="uid://cqcvewcu1865c"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
@@ -45,6 +45,7 @@ Game="*res://game.gd"
 CombatManager="*uid://b5ibpfs2o6g6l"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 UI="*uid://toybhdfhdkmu"
+AudioManager="*uid://5o5xllhjd3kd"
 
 [debug]
 
