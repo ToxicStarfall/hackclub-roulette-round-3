@@ -2,7 +2,7 @@ class_name CharacterData
 extends Resource
 
 
-signal stat_changed (stat: Stat)
+signal stat_changed (stat: Stat, value)
 #signal status_changed
 signal killed (character: CharacterData)
 
@@ -124,7 +124,7 @@ func apply_stat(stat_type: Stat, value: float) -> void:
 	#var new_value = min(max( get(stat) + value, 0), 100)
 	var new_value = clamp( get(stat) + value, 0, get("max_"+stat) )
 	set(stat, new_value)
-	stat_changed.emit(stat_type)  # Send ui update request after changing
+	stat_changed.emit(stat_type, value)  # Send ui update request after changing
 
 
 func add_status(status: StatusEffect):
@@ -135,7 +135,7 @@ func remove_status(status: StatusEffect):
 	statuses.erase(status)
 
 
-func _on_stat_changed(stat_type: Stat):
+func _on_stat_changed(stat_type: Stat, _value):
 	match stat_type:
 		Stat.HEALTH:
 			if get_stat(stat_type) <= 0:

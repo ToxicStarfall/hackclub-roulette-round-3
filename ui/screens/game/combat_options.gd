@@ -23,6 +23,7 @@ func _ready() -> void:
 	Events.combat_ended.connect( _on_combat_ended )
 	
 	CombatManager.player_turn_started.connect( _on_player_turn_started )
+	CombatManager.player_turn_ended.connect( _on_player_turn_ended )
 	CombatManager.enemy_turn_started.connect( _on_enemy_turn_started )
 	CombatManager.combat_finished.connect( _on_combat_finished )
 	pass
@@ -55,13 +56,17 @@ func _on_combat_finished(player_win: bool):
 
 
 func _on_player_turn_started():
-	$MarginContainer/HBoxContainer.show()
+	$MarginContainer/HBoxContainer.show()  # Show player actions
 	%WaitingLabel.hide()
 	_populate_options()
 
 
+func _on_player_turn_ended():
+	pass
+
+
 func _on_enemy_turn_started():
-	$MarginContainer/HBoxContainer.hide()
+	$MarginContainer/HBoxContainer.hide()  # Hide player actions
 	%WaitingLabel.show()
 
 
@@ -91,10 +96,13 @@ func _on_option_selected(option: int):
 				
 			for enemy in CombatManager.enemy_party.get_members():
 				enemy.apply_stat(CharacterData.Stat.HEALTH, -attack_damage)
+			Events.audio_requested.emit( AudioManager.find("sounds/punch"), "SFX" )
 			pass
 		Options.SKIP:
 			# Add recovery effects
 			# Bonuses for defense actions.
+			UI.add_child(PopupText.new(self.global_position, "Skipped"))
+			Game.player.apply_stat(CharacterData.Stat.HEALTH, randi_range(1, 5))
 			pass
 		Options.ESCAPE:
 			# Compare against enemy movement efficiency and agility attributes.
@@ -109,20 +117,22 @@ func _on_option_selected(option: int):
 			
 			# Escape success
 			if escape_reuslt < escape_chance:
+				UI.add_child(PopupText.new(self.global_position, "Escape Success"))
 				CombatManager.end()
-				pass
 			# Escape fail
 			else:
-				pass
-	CombatManager._process_turn_player()
+				UI.add_child(PopupText.new(self.global_position, "Escape Failed"))
+			pass
+
+	CombatManager.player_action_selected.emit(option)
 	_clear_options()
 
 
 
 func _on_option_confirmed():
-	CombatManager._process_turn_player()
-	_tween_confirm_fail()
-
+	#CombatManager._process_turn_player()
+	#_tween_confirm_fail()
+	pass
 
 
 # - - - - ANIMATION - - - - #

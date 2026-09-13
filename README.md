@@ -2,6 +2,19 @@
 
 Play the game at [https://toxicstarfall.itch.io/a-survivors-journey](Itch.io)
 
+___
+
+### Features
+- Dialogue events & variations
+  - Simple location based dialogue variations and randomization.
+- Inventory and Item system
+- **Basic** turn-based combat system.
+
+
+##### All Events
+- 
+
 <br><br>
+##### Event screenshots
 <img width="527" height="217" alt="Screenshot 2025-08-30 120801" src="https://github.com/user-attachments/assets/3c2da427-8453-4113-9a84-206302699c5d" />
 <img width="502" height="170" alt="Screenshot 2025-08-30 121006" src="https://github.com/user-attachments/assets/bb3bfaed-0bf2-4f87-b82d-a07649e86a87" />

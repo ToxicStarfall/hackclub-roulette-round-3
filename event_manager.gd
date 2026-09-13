@@ -199,7 +199,7 @@ func clear_temp():
 	temp.clear()
 
 
-# - - - - Dialogue utility functions - - - - #
+# - - - - Dialogue Utility Functions - - - - #
 
 func chance(part: float, whole: float) -> bool:
 	return part > randf() * whole

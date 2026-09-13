@@ -4,6 +4,7 @@ extends Node
 @warning_ignore_start("unused_signal")
 signal player_turn_started ()
 signal player_turn_ended ()
+signal player_action_selected (action: Options)
 signal enemy_turn_started ()
 signal enemy_turn_ended ()
 signal combat_finished (player_win: bool)
@@ -18,9 +19,12 @@ var enemy_party = Party.new()
 var loot: Dictionary[StringName, int] = {}
 
 
+func _ready() -> void:
+	player_action_selected.connect( _on_player_action_selected )
 
-func _setup_enemies():
-	pass
+
+#func _setup_enemies():
+	#pass
 
 
 #func start(opponents: Array[CharacterData]):
@@ -33,11 +37,8 @@ func start(opponents: CharacterData):
 	#enemy_party.add_members(opponents)
 	enemy_party.add_member(opponents)
 	
-	player_turn_started.emit()
-	#_process_turn_player()
-	#_process_turn_enemy()
-	
 	Events.combat_started.emit()
+	player_turn_started.emit()
 
 
 func end():
@@ -46,50 +47,64 @@ func end():
 	Events.combat_ended.emit()
 
 
-#func _populate():
-	#pass
+
+func _start_turn_player():
+	player_turn_started.emit()
+	#_await_action_player()
+
+
+func _on_player_action_selected(_action: Options):
+	_process_turn_player()
 
 
 func _process_turn_player():
 	if enemy_party.is_defeated():
 		combat_finished.emit(true)
-		print(loot)
 	else:
-		pass
+		player_turn_ended.emit()
+		_start_turn_enemy()
 	
+	
+
+func _start_turn_enemy():
 	enemy_turn_started.emit()
+	_await_action_enemy()
+
+
+func _await_action_enemy():
+	# Randomize enemy action here
+	
 	_process_turn_enemy()
 
 
 func _process_turn_enemy():
+	await get_tree().create_timer(.5).timeout
 	var equipped_item_id = enemy_party.get_members()[0].inventory.slots.get(&"primary", "")
-	#print(equipped_item_id)
 	if !equipped_item_id: equipped_item_id = "fists"
 	
 	var attack_item = Game.player.get_item_comp(equipped_item_id)
 	var attack_damage = attack_item.damage
-	#print(attack_damage)
 		
 	for member in Game.party.get_members():
 		member.apply_stat(CharacterData.Stat.HEALTH, -attack_damage)
+	Events.audio_requested.emit( AudioManager.find("sounds/punch"), "SFX" )
+	
+	await get_tree().create_timer(.5).timeout
 	
 	if Game.party.is_defeated():
 		combat_finished.emit(false)
-		#print(Game.inventory.get_print())
 		UI.tween_fade()
 		EventManager.start_event("game/death")
-		pass
-	
-	await get_tree().create_timer(1.0).timeout
-	player_turn_started.emit()
-	#_process_turn_pl()
+	else:
+		enemy_turn_ended.emit()
+		_start_turn_player()
+
 
 
 func _on_enemy_party_member_killed(enemy: CharacterData):
 	#print(enemy.inventory.get_items())
 	for item_id in enemy.inventory.get_items():
 		if Registries.ITEMS.filter(&"tags", func(i): return !i.has(ItemData.Tags.BODY_PART) ).has(item_id):
-			
 			if loot.has(item_id):
 				loot.set(item_id, loot.get(item_id) + enemy.inventory.get_item(item_id))
 			else:
@@ -99,6 +114,7 @@ func _on_enemy_party_member_killed(enemy: CharacterData):
 #func _on_item_dropped(item_id):
 	##loot.add
 	#pass
+
 
 
 # - - - - SETTERS & GETTERS - - - - #

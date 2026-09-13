@@ -2,6 +2,8 @@ extends Node
 
 
 @warning_ignore_start("unused_signal")
+signal audio_requested
+
 signal game_started
 signal game_ended
 
