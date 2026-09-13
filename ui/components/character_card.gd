@@ -12,7 +12,15 @@ func _ready() -> void:
 		$CharacterInfo.linked_inventory = character.inventory
 
 
-func _on_character_stat_changed(_stat):
+func _on_character_stat_changed(stat: CharacterData.Stat, value: float):
+	var stat_key: String = CharacterData.Stat.keys()[stat].to_lower()
+	if character.get(stat_key) < character.get("max_" + stat_key):
+		match stat:
+			CharacterData.Stat.HEALTH:
+				var popup_text = "%s%s %s" % ["-" if value < 0 else "+", value, stat_key.capitalize()]
+				UI.add_child( PopupText.new(global_position, popup_text) )
+			#CharacterData.Stat.HUNGER:
+	
 	update()
 
 
